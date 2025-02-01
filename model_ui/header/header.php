@@ -4,5 +4,5 @@
         <li><a href="../../index.php">Home</a></li>
         <li><a href="#">Logout</a></li>
     </ul>
-    <div class="hamburger">&#9776;</div>
+    <div class="hamburger" onclick="">&#9776;</div>
 </nav>

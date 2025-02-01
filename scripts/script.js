@@ -1,4 +1,8 @@
 let scorecard_timer;
+setTimeout(() => {
+    clearInterval(scorecard_timer);
+    clearTimeout(this);
+}, 600000);
 
 function set_cookie(name,value){
     const date = new Date();

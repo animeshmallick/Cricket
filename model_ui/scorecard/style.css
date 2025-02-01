@@ -1,0 +1,88 @@
+
+@keyframes breathe {
+    0% { background-color: royalblue; } /* Dark blue */
+    50% { background-color: rgba(65, 105, 225, 0.6); } /* Lighter blue */
+    100% { background-color: royalblue; } /* Back to dark blue */
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.ball-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ball-hover:active {
+    transform: scale(2) rotate(360deg);
+    box-shadow: 0 1rem 1rem rgb(255, 255, 255);
+}
+
+.live-badge {
+    animation: pulse 2s infinite ease-in-out;
+    transition: transform 0.2s ease, box-shadow 0.1s ease;
+}
+
+.live-badge:active {
+    transform: scale(1.7) rotate(360deg);
+}
+
+.team-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-hover:active {
+    transform: scale(1.2);
+    box-shadow: 0 1rem 1rem rgb(255, 255, 255);
+}
+
+.card-container {
+    border-radius: 1rem;
+    animation: breathe 2s infinite ease-in-out;
+}
+
+.ball-container {
+    display: flex;
+    gap: 1rem;
+    padding: 0.3rem 0;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.score {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: white;
+}
+
+.small-text {
+    font-size: 1rem;
+    color: #d1d5db;
+}
+
+.team-badge {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: white;
+}
+
+.run-rate {
+    font-size: 1rem;
+    color: #d1d5db;
+}
+
+.live-score {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: greenyellow; /* Green */
+}
+div.player {
+    font-size: 0.9rem;
+    color: #34d399; /* Green */
+}

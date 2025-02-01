@@ -1,0 +1,75 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    transition: background 0.3s ease-in-out;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+.nav-links li {
+    margin: 0 15px;
+    padding: 10px 0;
+}
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    transition: color 0.3s ease-in-out;
+}
+.nav-links a:hover {
+    color: #ffcc00;
+}
+.hamburger {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+.hamburger:hover {
+    transform: scale(1.1);
+}
+.hamburger.active {
+    transform: rotate(90deg);
+}
+@media screen and (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #333;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .nav-links li {
+        padding: 15px 0;
+        animation: bounce 0.5s ease-in-out;
+    }
+    .hamburger {
+        display: block;
+        transition: transform 0.3s ease-in-out;
+    }
+    .hamburger:active {
+        transform: scale(0.9);
+    }
+}
+@keyframes bounce {
+    0% { transform: translateY(-5px); }
+    50% { transform: translateY(0px); }
+    100% { transform: translateY(-5px); }
+}

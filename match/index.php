@@ -37,5 +37,5 @@ if ($common->is_user_logged_in()) {
 <?php
 } else {
     $common->logout();
-    header("Location: http://localhost/CricketT20/");
+    $common->redirect_to('CricketT20/');
 }?>

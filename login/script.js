@@ -14,7 +14,7 @@ async function validateForm(event) {
                 set_cookie("ref_id", response.ref_id);
                 set_cookie("fname", response.fname);
                 set_cookie("lname", response.lname);
-                window.location.href = "http://localhost/CricketT20"; // Replace with your desired URL
+                redirect_to('CricketT20/');
                 return true;
             } else {
                 document.getElementById("message").innerHTML = response.error;

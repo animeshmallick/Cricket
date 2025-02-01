@@ -2,7 +2,7 @@
 include "../Common.php";
 $common = new Common();
 if($common->is_user_logged_in()){
-    header("Location: http://localhost/CricketT20/home/");
+    $common->redirect_to('CricketT20/');
 }else{
 ?>
 <!DOCTYPE html>

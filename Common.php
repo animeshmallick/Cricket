@@ -22,4 +22,12 @@ class Common
     public function logout()
     {
     }
+    public function redirect_to(string $url)
+    {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+        $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/" . $url;
+        echo $url;
+
+        header("Location: $url");
+    }
 }

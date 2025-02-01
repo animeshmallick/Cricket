@@ -33,3 +33,8 @@ async function fill_header(){
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .catch(error => console.log(error));
 }
+function redirect_to(path){
+    const url = `${window.location.protocol}//${window.location.hostname}/${path}`;
+    console.log(url);
+    window.location.href = url;
+}

@@ -4,7 +4,7 @@
         <div class="nav-title">Controls</div>
         <a class="nav-link" href="../home/">Home</a>
         <a class="nav-link" onclick="w3_close()">Close</a>
-        <a class="nav-link" href="#">Logout</a>
+        <a class="nav-link" onclick="logout()">Logout</a>
     </nav>
     <div id='side-bar-icon' class="hamburger" onclick="w3_open()">&#9776;</div>
 </div>

@@ -38,3 +38,12 @@ function redirect_to(path){
     console.log(url);
     window.location.href = url;
 }
+function logout(){
+    if (confirm("Are you sure?")) {
+        set_cookie('ref_id', '');
+        set_cookie('fname', '');
+        set_cookie('lname', '');
+        redirect_to('Cricket');
+        console.log('logout');
+    }
+}

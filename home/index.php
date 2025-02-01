@@ -2,8 +2,10 @@
 include "../Common.php";
 $common = new Common();
 if(!$common->is_user_logged_in()){
-    $common->redirect_to('CricketT20/');
+    $common->redirect_to('Cricket/');
 }else{
+    $common->setCookie('series_id', "");
+    $common->setCookie('match_id', "");
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,0 +1,73 @@
+.section-box {
+    background-color: rgba(47, 79, 79, 0.72);
+    box-shadow: 0 1rem 1.2rem rgb(51, 117, 204, 0.6);
+    border-radius: 1rem;
+    animation: fadeIn 1s forwards;
+    margin-bottom: 0.7rem;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.section-header {
+    text-align: center;
+    font-size: 1.5rem; /* Reduced font size */
+    font-weight: bold;
+    margin-bottom: 0.1rem; /* Reduced margin */
+    color: #ffffff;
+    background-color: #343a40;
+    border-radius: 1rem;
+}
+
+/* Button Styles */
+.clickable-button {
+    width: 50%;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    background-color: #28a745;
+    color: white;
+    font-size: 1.2rem; /* Reduced font size */
+    font-weight: 600;
+    text-align: center;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.clickable-button:hover {
+    transform: translateY(-0.7rem);
+    box-shadow: 0 1rem 1.2rem rgb(204, 184, 51);
+    background-color: #339ecc;
+}
+
+/* Go Back Button */
+.go-back-button {
+    background-color: #dc3545; /* Red color */
+    color: white;
+    text-align: center;
+    padding: 0.5rem 1rem; /* Reduced padding */
+    margin-top: 0; /* Reduced margin */
+    font-size: 1.2rem; /* Reduced font size */
+    font-weight: bold;
+    border-radius: 1rem;
+    cursor: pointer;
+    box-shadow: 0 0.5rem 0.75rem rgb(4, 221, 241);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.go-back-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0);
+    background-color: #c82333;
+}

@@ -30,4 +30,8 @@ class Common
 
         header("Location: $url");
     }
+    public function setCookie(string $cookie_name, string $cookie_value): void
+    {
+        setcookie($cookie_name, $cookie_value, time() + (3600), "/");
+    }
 }

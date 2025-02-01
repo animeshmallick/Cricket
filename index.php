@@ -32,7 +32,7 @@ if($common->is_user_logged_in()){
                 to { opacity: 1; }
             }
             .container {
-                background: url('https://source.unsplash.com/400x400/?cricket-ball') no-repeat center center/cover;
+                background-color: lightslategray;
                 padding: 0.5rem;
                 border-radius: 10px;
                 transform: scale(0.9);

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function createMatchCard(match) {
         const matchCardWrapper = document.createElement('a');
         matchCardWrapper.classList.add('match-card');
-        matchCardWrapper.href = match.url; // Set the redirect URL
+        matchCardWrapper.href = `../match/index.php?series_id=${match.series_id}&match_id=${match.match_id}`;
 
         // Assign classes based on the match type
         if (match.type === 'live') {

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Match Summary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0;
+            padding-top: 0;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Match Winner and Other Bids Section */
+        .section-box {
+            background-color: #ffffff;
+            padding: 1rem; /* Reduced padding */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            margin-bottom: 0.8rem;
+            animation: fadeIn 1s forwards;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .section-header {
+            text-align: center;
+            font-size: 1.5rem; /* Reduced font size */
+            font-weight: bold;
+            margin-bottom: 8px; /* Reduced margin */
+            color: #ffffff;
+            background-color: #343a40;
+            border-radius: 8px;
+        }
+
+        /* Button Styles */
+        .clickable-button {
+            background-color: #28a745;
+            color: white;
+            padding: 0.1rem; /* Reduced padding */
+            padding-right: 0;
+            padding-left: 0;
+            margin-top: 0.5rem; /* Reduced margin */
+            font-size: 1.2rem; /* Reduced font size */
+            font-weight: 600;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        /* Button hover effect */
+        .clickable-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            background-color: #218838;
+        }
+
+        /* Go Back Button */
+        .go-back-button {
+            background-color: #dc3545; /* Red color */
+            color: white;
+            padding: 8px 16px; /* Reduced padding */
+            margin-top: 10px; /* Reduced margin */
+            font-size: 14px; /* Reduced font size */
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .go-back-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Innings 1 -->
+    <div class="section-box">
+        <div class="section-header">
+            Innings 1 - India
+        </div>
+        <div class="clickable-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Session 1 (0-6 overs)</a>
+        </div>
+        <div class="clickable-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Session 2 (7-10 overs)</a>
+        </div>
+        <div class="clickable-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Session 3 (11-15 overs)</a>
+        </div>
+        <div class="clickable-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Session 4 (16-20 overs)</a>
+        </div>
+    </div>
+
+    <!-- Innings 2 -->
+    <div class="section-box">
+        <div class="section-header">
+            Innings 2 - Australia
+        </div>
+        <div class="clickable-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Session 1 (0-6 overs)</a>
+        </div>
+        <div class="clickable-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Session 2 (7-10 overs)</a>
+        </div>
+    </div>
+
+    <!-- Match Winner Section -->
+    <div class="section-box">
+        <div class="section-header">
+            Match Winner
+        </div>
+        <div class="clickable-button" id="who-will-win-button">
+            <a style="text-decoration: none; color: inherit;" href="#">Who Will Win?</a>
+        </div>
+    </div>
+
+    <!-- Other Bids Section -->
+    <div class="section-box">
+        <div class="section-header">
+            Other Bids
+        </div>
+        <div class="clickable-button" id="special-bid-button">
+            <a style="text-decoration: none; color: inherit" href="#">Special Bid</a>
+        </div>
+    </div>
+
+    <!-- Go Back Button -->
+    <div class="go-back-button">
+        <a style="text-decoration: none; color: inherit" href="#">Go Back</a>
+    </div>
+
+</div>
+
+</body>
+
+</html>

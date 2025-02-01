@@ -91,6 +91,7 @@ if($common->is_user_logged_in()){
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             }
         </style>
+        <script src="scripts/script.js"></script>
     </head>
     <body>
     <div class="ball"></div>
@@ -99,7 +100,7 @@ if($common->is_user_logged_in()){
         <div class="separator"></div>
         <p style="font-size: 1.5rem">Login To Start Bidding</p>
         <div class="separator"></div>
-        <button class="login-btn">Login</button>
+        <button class="login-btn" onclick="redirect_to('Cricket/login')">Login</button>
     </div>
 
     <script>

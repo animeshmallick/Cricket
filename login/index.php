@@ -19,7 +19,6 @@ if($common->is_user_logged_in()){
 
 </head>
 <body>
-
 <div class="container">
     <h2>Welcome Back</h2>
     <form id="loginForm" onsubmit="return validateForm(event)">
@@ -28,9 +27,8 @@ if($common->is_user_logged_in()){
         <button type="submit" class="btn">Login</button>
     </form>
     <p style ="color:red" id="message"></p>
-    <a href="#" class="link">Forgot Password?</a>
     <div class="register-link">
-        <p style="color:indianred;">Don't have an account? <a href="#" class="link">Register</a></p>
+        <p style="color:indianred;font-size: 1.3rem;margin-top: 2rem">Don't have an account? <a href="#" class="link">Register</a></p>
     </div>
 </div>
 </body>

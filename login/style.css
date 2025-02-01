@@ -1,20 +1,20 @@
 
 .container {
+    margin: 4rem 0;
     background: #e0e5ec;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1), -10px -10px 15px rgba(255, 255, 255, 0.5);
+    padding: 4rem;
+    border-radius: 2rem;
+    box-shadow: 1rem 1rem 1.5rem rgba(0, 0, 0, 0.1), -1rem -1rem 1.5rem rgba(255, 255, 255, 0.5);
     width: 100%;
-    max-width: 400px;
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(15rem);
     animation: slideIn 1s ease-out forwards;
 }
 
 @keyframes slideIn {
     0% {
         opacity: 0;
-        transform: translateY(50px);
+        transform: translateY(4rem);
     }
     100% {
         opacity: 1;
@@ -24,8 +24,8 @@
 
 h2 {
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 28px;
+    margin-bottom: 1rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #333;
     opacity: 0;
@@ -44,13 +44,13 @@ h2 {
 .input-field {
     background: #e0e5ec;
     border: none;
-    border-radius: 15px;
-    padding: 15px;
-    margin: 10px 0;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin: 1rem 0;
     width: 100%;
-    font-size: 16px;
+    font-size: 1.5rem;
     color: #333;
-    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.1), inset -5px -5px 15px rgba(255, 255, 255, 0.5);
+    box-shadow: inset 1rem 1rem 2rem rgba(0, 0, 0, 0.1), inset -1rem -1rem 2rem rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
     opacity: 0;
     animation: slideInFields 0.8s ease-out 1s forwards;
@@ -59,7 +59,7 @@ h2 {
 @keyframes slideInFields {
     0% {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateX(-3rem);
     }
     100% {
         opacity: 1;
@@ -69,16 +69,16 @@ h2 {
 
 .input-field:focus {
     background: #fff;
-    box-shadow: inset 5px 5px 15px rgba(0, 0, 0, 0.2), inset -5px -5px 15px rgba(255, 255, 255, 0.3);
+    box-shadow: inset 1rem 1rem 2rem rgba(0, 0, 0, 0.2), inset -1rem -1rem 2rem rgba(255, 255, 255, 0.3);
     outline: none;
 }
 
 .btn {
     background: #6c5ce7;
     color: #fff;
-    font-size: 18px;
-    padding: 15px;
-    border-radius: 25px;
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 2rem;
     width: 100%;
     border: none;
     cursor: pointer;
@@ -90,7 +90,7 @@ h2 {
 @keyframes fadeInButton {
     0% {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(3rem);
     }
     100% {
         opacity: 1;
@@ -110,7 +110,7 @@ h2 {
 .link {
     color: #6c5ce7;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 1.3rem;
     transition: color 0.3s ease;
 }
 
@@ -119,25 +119,10 @@ h2 {
 }
 
 .register-link {
-    margin-top: 15px;
+    margin-top: 1rem;
     text-align: center;
 }
 
 @media (max-width: 480px) {
-    .container {
-        padding: 25px;
-        width: 90%;
-    }
 
-    h2 {
-        font-size: 24px;
-    }
-
-    .input-field {
-        font-size: 14px;
-    }
-
-    .btn {
-        font-size: 16px;
-    }
 }

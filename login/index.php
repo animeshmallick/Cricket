@@ -1,3 +1,10 @@
+<?php
+include "../Common.php";
+$common = new Common();
+if($common->is_user_logged_in()){
+    header("Location: http://localhost/CricketT20/home/");
+}else{
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,3 +35,4 @@
 </div>
 </body>
 </html>
+<?php } ?>

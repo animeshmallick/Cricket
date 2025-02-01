@@ -1,3 +1,10 @@
+<?php
+include "Common.php";
+$common = new Common();
+if($common->is_user_logged_in()){
+    header("Location: http://localhost/CricketT20/home/");
+}else{
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,7 +171,7 @@
     <div class="hero-overlay">
         <span style="font-size: 2rem">Welcome to Cricket T20</span>
         <div class="padding"></div>
-        <a href="login/login.php" class="cta-btn">Login</a>
+        <a href="login/index.php" class="cta-btn">Login</a>
     </div>
 </section>
 
@@ -188,3 +195,4 @@
 
 </body>
 </html>
+<?php } ?>

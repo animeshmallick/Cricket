@@ -18,3 +18,7 @@ div.padding{
     display: block;
     padding: 2rem;
 }
+div.separator {
+    border: 0.01rem solid #000000;
+    margin: 0.5rem;
+}

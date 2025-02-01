@@ -8,14 +8,14 @@
     <!-- Team Logos and Scores -->
     <div class="space-y-1">
         <div class="team-hover flex justify-between items-center text-sm bg-gray-500 p-2 rounded-md">
-            <img id="team1_logo" src="../images/logo/india.png" alt="India" class="h-5 w-10" />
+            <img id="team1_logo" src="../../images/logo/india.png" alt="India" class="h-5 w-10" />
             <span id='team1_name' class="team-badge">Team 1</span>
             <span id='team1_score' class="score text-yellow-400">245/6</span>
             <span id='team1_overs' class="small-text">(40.2 ov)</span>
         </div>
         <div class="h-1 bg-gray-800 mb-4"></div>
         <div class="team-hover flex justify-between items-center text-sm bg-gray-500 p-2 rounded-md">
-            <img id='team2_logo' src="../images/logo/england.png" alt="Australia" class="h-5 w-10" />
+            <img id='team2_logo' src="../../images/logo/england.png" alt="Australia" class="h-5 w-10" />
             <span id='team2_name' class="team-badge">Team 2</span>
             <span id='team2_score' class="score text-yellow-400">220/10</span>
             <span id='team2_overs' class="small-text">(50 ov)</span>

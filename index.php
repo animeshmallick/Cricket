@@ -5,194 +5,132 @@ if($common->is_user_logged_in()){
     $common->redirect_to('Cricket/home/');
 }else{
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cricket World Hub</title>
-
-    <!-- CSS Styles -->
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        /* Body */
-        body {
-            background-color: #f5f5f5;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            background-color: #2c3e50;
-            color: white;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        header .logo img {
-            max-width: 150px;
-        }
-
-        header nav ul {
-            list-style: none;
-            display: flex;
-        }
-
-        header nav ul li {
-            margin-right: 20px;
-        }
-
-        header nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        header nav ul li a:hover {
-            color: #f39c12;
-        }
-
-        header .login-btn {
-            padding: 10px 20px;
-            background-color: #f39c12;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
-
-        header .login-btn:hover {
-            background-color: #e67e22;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color:grey;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            text-align: center;
-        }
-
-        .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 1rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-btn {
-            background-color: #f39c12;
-            color: white;
-            padding: 8px 15px;
-            margin: 1rem;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-
-        .cta-btn:hover {
-            background-color: #e67e22;
-        }
-
-
-        /* Footer Section */
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-        }
-
-        footer .footer-links ul {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-
-        footer .footer-links ul li {
-            display: inline-block;
-            margin-right: 20px;
-        }
-
-        footer .footer-links ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        footer .social-media a {
-            color: white;
-            margin-right: 15px;
-            text-decoration: none;
-        }
-
-        footer .social-media a:hover {
-            color: #f39c12;
-        }
-    </style>
-</head>
-<body>
-
-<!-- Header Section -->
-<header>
-    <div class="logo">
-        <img src="https://via.placeholder.com/150x50?text=Cricket+World+Hub" alt="Cricket Logo">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cricket Login</title>
+        <link rel="stylesheet" href="styles/style.css?version=<?php echo time(); ?>">
+        <style>
+            body {
+                margin: 0.5rem;
+                padding: 0.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: steelblue;
+                font-family: Arial, sans-serif;
+                color: #f5f5f5;
+                text-align: center;
+                animation: fadeIn 2s ease-in;
+                overflow: hidden;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .container {
+                background: url('https://source.unsplash.com/400x400/?cricket-ball') no-repeat center center/cover;
+                padding: 0.5rem;
+                border-radius: 10px;
+                transform: scale(0.9);
+                animation: popIn 1s ease-out forwards, fadeColor 5s infinite alternate ease-in-out;
+                width: 350px;
+                height: 350px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                box-shadow: 0px 1rem 1rem rgba(0, 0, 0, 0.5);
+            }
+            @keyframes popIn {
+                from { transform: scale(0.5); opacity: 0; }
+                to { transform: scale(1); opacity: 1; }
+            }
+            @keyframes fadeColor {
+                0% {
+                    background-color: rgba(255, 87, 34, 0.6);
+                }
+                50% {
+                    background-color: rgba(255, 193, 7, 0.6);
+                }
+                100% {
+                    background-color: rgba(76, 175, 80, 0.6);
+                }
+            }
+            .login-btn {
+                display: inline-block;
+                padding: 12px 25px;
+                margin-top: 20px;
+                font-size: 18px;
+                color: white;
+                background: linear-gradient(135deg, #ff5722, #ff9800);
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+                animation: slideIn 1s ease-out forwards;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            }
+            .login-btn:hover {
+                background: linear-gradient(135deg, #e64a19, #f57c00);
+                box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.5);
+            }
+            @keyframes slideIn {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .ball {
+                position: absolute;
+                width: 2rem;
+                height: 2rem;
+                background: radial-gradient(circle, #d32f2f, #b71c1c);
+                border-radius: 50%;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            }
+        </style>
+    </head>
+    <body>
+    <div class="ball"></div>
+    <div class="container">
+        <p style="font-size: 2.5rem">Welcome to CricketT20</p>
+        <div class="separator"></div>
+        <p style="font-size: 1.5rem">Login To Start Bidding</p>
+        <div class="separator"></div>
+        <button class="login-btn">Login</button>
     </div>
 
-</header>
+    <script>
+        function getRandomPosition() {
+            let x = Math.floor(Math.random() * window.innerWidth);
+            if(x % 2 === 0)
+                x = (x % 25) * -1;
+            else
+                x = x % 25;
+            let y = Math.floor(Math.random() * window.innerHeight);
+            if(y % 2 === 0)
+                y = (y % 25) * -1;
+            else
+                y = y % 25;
+            return { x, y };
+        }
 
-<!-- Hero Section -->
-<section class="hero">
-    <div class="hero-overlay">
-        <span style="font-size: 2rem">Welcome to Cricket T20</span>
-        <div class="padding"></div>
-        <a href="login/index.php" class="cta-btn">Login</a>
-    </div>
-</section>
+        function moveBall() {
+            const ball = document.querySelector('.ball');
+            const { x, y } = getRandomPosition();
+            ball.style.left = `${ball.getBoundingClientRect().left + x}px`;
+            ball.style.top = `${ball.getBoundingClientRect().top + y}px`;
+        }
 
+        // Move the ball every 2 seconds
+        setInterval(moveBall, 200);
 
+        // Initial ball position
+        moveBall();
+    </script>
+    </body>
+    </html>
 
-<!-- Footer Section -->
-<footer>
-    <div class="footer-links">
-        <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-    <div class="social-media">
-        <a href="#" target="_blank">Facebook</a>
-        <a href="#" target="_blank">Twitter</a>
-        <a href="#" target="_blank">Instagram</a>
-    </div>
-</footer>
-
-</body>
-</html>
 <?php } ?>

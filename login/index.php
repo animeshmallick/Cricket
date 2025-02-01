@@ -2,7 +2,7 @@
 include "../Common.php";
 $common = new Common();
 if($common->is_user_logged_in()){
-    $common->redirect_to('CricketT20/');
+    $common->redirect_to('Cricket/');
 }else{
 ?>
 <!DOCTYPE html>

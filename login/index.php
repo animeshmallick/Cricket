@@ -21,12 +21,14 @@ if($common->is_user_logged_in()){
 <body>
 <div class="container">
     <h2>Welcome Back</h2>
+    <div class="separator"></div>
     <form id="loginForm" onsubmit="return validateForm(event)">
         <input class="input-field" type="tel" id="phone" name="phone" placeholder="Phone Number" required pattern="[0-9]{10}" title="Enter a 10-digit phone number">
         <input class="input-field" type="password" id="password" name="password" placeholder="Password" required>
         <button type="submit" class="btn">Login</button>
     </form>
-    <p style ="color:red" id="message"></p>
+    <p style="color:red;font-size: 1.5rem" id="message"></p>
+    <div class="separator"></div>
     <div class="register-link">
         <p style="color:indianred;font-size: 1.3rem;margin-top: 2rem">Don't have an account? <a href="#" class="link">Register</a></p>
     </div>

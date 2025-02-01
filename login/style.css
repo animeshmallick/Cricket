@@ -1,11 +1,10 @@
 
 .container {
-    margin: 4rem 0;
+    margin: 1rem 0;
     background: #e0e5ec;
-    padding: 4rem;
+    padding: 2rem;
     border-radius: 2rem;
     box-shadow: 1rem 1rem 1.5rem rgba(0, 0, 0, 0.1), -1rem -1rem 1.5rem rgba(255, 255, 255, 0.5);
-    width: 100%;
     opacity: 0;
     transform: translateY(15rem);
     animation: slideIn 1s ease-out forwards;
@@ -14,7 +13,7 @@
 @keyframes slideIn {
     0% {
         opacity: 0;
-        transform: translateY(4rem);
+        transform: translateY(1rem);
     }
     100% {
         opacity: 1;
@@ -47,7 +46,6 @@ h2 {
     border-radius: 1rem;
     padding: 1rem;
     margin: 1rem 0;
-    width: 100%;
     font-size: 1.5rem;
     color: #333;
     box-shadow: inset 1rem 1rem 2rem rgba(0, 0, 0, 0.1), inset -1rem -1rem 2rem rgba(255, 255, 255, 0.5);
@@ -119,6 +117,7 @@ h2 {
 }
 
 .register-link {
+    font-size: 1.5rem;
     margin-top: 1rem;
     text-align: center;
 }

@@ -1,0 +1,127 @@
+<?php
+include "../Common.php";
+$common = new Common();
+if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['session'])){
+    $common->redirect_to('Cricket/');
+}else{
+    $room = $_GET['room'];
+    $session = $_GET['session'];
+    $amount_min = $room == 1 ? 1 : ($room == 2 ? 501 : 1501);
+    $amount_max = $room == 1 ? 500 : ($room == 2 ? 1500 : 2500);
+    $amount_default = $room == 1 ? 199 : ($room == 2 ? 699 : 1999);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Matches</title>
+    <link rel="stylesheet" type = "text/css" href ="../model_ui/header/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../model_ui/footer/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../model_ui/scorecard/style.css?version=<?php echo time();?>">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <script src="../model_ui/header/script.js"></script>
+    <script src="script.js"></script>
+    <script src="../scripts/script.js"></script>
+</head>
+<body onload="fill_header();fill_scorecard();fill_footer();update_session_slots(true);">
+<div id="header"></div>
+<div id="scorecard"></div>
+<div class="separator"></div>
+<div class="container" id="bid_container">
+    <div class="sub-title">Place new bid</div>
+
+    <div class="bid-section">
+        <div class="input-section">
+            <span class="select-amount">Slide to Change Amount</span>
+            <div class="slider-container">
+                <button id="decrease" class="adjust-btn">-100</button>
+                <input type="range" id="bidSlider" class="slider"
+                       min="<?php echo $amount_min;?>"
+                       max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>">
+                <button id="increase" class="adjust-btn">+100</button>
+            </div>
+            <div class="bid-amount" style="text-align: center">Bid Amount <span id="bidAmount">₹0</span></div>
+        </div>
+        <div class="slots">
+            <div class="slot-header">Choose your slot</div>
+            <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat">Session : Innings 1, Over 1-6</div>
+            <div style="display: flex">
+                <div class="balls-remaining-container">Balls Remaining: <span id="balls_remaining">36</span></div>
+                <div class="balls-remaining-container">Session Closing in : <span id="session_close_in_balls">30</span> balls</div>
+            </div>
+            <div class="slot" id="slot_a">
+                <span class="slot-line" id="slot_a_runs">50 Runs or less</span>
+                <span class="slot-line" id="slot_a_runs_1">Max 50 runs</span>
+                <div class="separator"></div>
+                <span class="slot-line" id="slot_a_amount">Put ₹100 get ₹200</span>
+            </div>
+            <div class="slot" id="slot_b">
+                <span class="slot-line" id="slot_b_runs">51 to 55 runs</span>
+                <span class="slot-line" id="slot_b_runs_1">[51 - 55] runs</span>
+                <div class="separator"></div>
+                <span class="slot-line" id="slot_b_amount"> Put ₹100 get ₹200</span>
+            </div>
+            <div class="slot" id="slot_c">
+                <span class="slot-line" id="slot_c_runs">55 runs or more</span>
+                <span class="slot-line" id="slot_c_runs_1">Min 56 runs</span>
+                <div class="separator"></div>
+                <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
+            </div>
+            <div id="placeBidBtn" class="place-bid-btn"><div class="moveText">Place Bid</div></div>
+            <div class="separator"></div>
+            <div class="change-session-btn">
+                <a style="text-decoration: none; color: inherit;" href="#">Change Session</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer"></div>
+
+<script>
+    const bidSlider = document.getElementById('bidSlider');
+    const bidAmount = document.getElementById('bidAmount');
+    const bidInput = document.getElementById('bidInput');
+    const increaseBtn = document.getElementById('increase');
+    const decreaseBtn = document.getElementById('decrease');
+    const placeBidBtn = document.getElementById('placeBidBtn');
+    const slots = document.querySelectorAll('.slot');
+
+    function updateBidAmount(value) {
+        bidAmount.textContent = '₹' + value;
+        bidSlider.value = value;
+    }
+
+    bidSlider.addEventListener('input', () => {
+        updateBidAmount(bidSlider.value);
+    });
+    bidSlider.addEventListener('change', () => {
+        update_session_slots(false);
+    });
+
+    placeBidBtn.addEventListener('click', () => {
+        const bidValue = parseInt(bidSlider.value);
+        const urlParams = new URLSearchParams(window.location.search);
+        const session = urlParams.get('session');
+        const room = urlParams.get('room');
+        redirect_to(`Cricket/place_bid_to_db.php?session=${session}&room=${room}&amount=${bidValue}`)
+    });
+
+    // Slot Click Event: Standout Effect
+    slots.forEach((slot) => {
+        slot.addEventListener('click', () => {
+            slots.forEach(s => s.classList.remove('active'));
+            slot.classList.add('active');
+        });
+    });
+    updateBidAmount('<?php echo $amount_default;?>');
+
+</script>
+</body>
+</html>
+<?php } ?>

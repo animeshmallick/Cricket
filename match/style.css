@@ -1,3 +1,13 @@
+@keyframes breathe-session-btn {
+    0% { background-color: #edcf08; } /* Dark blue */
+    50% { background-color: rgba(237, 207, 8, 0.49); } /* Lighter blue */
+    100% { background-color: #edcf08; } /* Back to dark blue */
+}
+@keyframes breathe-session-btn-selected {
+    0% { background-color: #24f104; } /* Dark blue */
+    50% { background-color: rgba(76, 213, 55, 0.45); } /* Lighter blue */
+    100% { background-color: #24f104; } /* Back to dark blue */
+}
 .section-box {
     background-color: rgba(47, 79, 79, 0.72);
     box-shadow: 0 1rem 1.2rem rgb(51, 117, 204, 0.6);
@@ -31,7 +41,7 @@
     width: 50%;
     margin-top: 0.3rem;
     margin-bottom: 0.3rem;
-    background-color: #28a745;
+    background-color: rgba(148, 204, 51, 0.68);
     color: white;
     font-size: 1.2rem; /* Reduced font size */
     font-weight: 600;
@@ -39,6 +49,7 @@
     border-radius: 1rem;
     cursor: pointer;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease, background-color 0.3s ease;
+    animation: breathe-session-btn 2s infinite ease-in-out;
 }
 
 /* Button hover effect */
@@ -46,6 +57,7 @@
     transform: translateY(-0.7rem);
     box-shadow: 0 1rem 1.2rem rgb(204, 184, 51);
     background-color: #339ecc;
+    animation: breathe-session-btn-selected 2s infinite ease-in-out;
 }
 
 /* Go Back Button */
@@ -70,4 +82,9 @@
     transform: translateY(-5px);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0);
     background-color: #c82333;
+}
+div.disabled {
+    pointer-events: none;
+    animation: none;
+    background-color: lightslategrey;
 }

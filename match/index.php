@@ -38,21 +38,21 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
             <div class="section-box">
                 <div class="section-header">Innings 1</div>
                 <div style="display: flex">
-                    <div class="clickable-button" style="margin-left: 0.6rem;margin-right: 0.3rem">
+                    <div class="clickable-button disabled" id='a1' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/index.php?session=a1&room=1')">
                         <div style="display: block">Session 1</div>
                         <div style="text-decoration: none; color: inherit;">(0-6 overs)</div>
                     </div>
-                    <div class="clickable-button" style="margin-left: 0.3rem;margin-right: 0.6rem">
+                    <div class="clickable-button disabled" id='b1' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/index.php?session=b1&room=1')">
                         <div style="display: block">Session 2</div>
                         <div style="text-decoration: none; color: inherit;">(7-10 overs)</div>
                     </div>
                 </div>
                 <div style="display: flex">
-                    <div class="clickable-button" style="margin-left: 0.6rem;margin-right: 0.3rem">
+                    <div class="clickable-button disabled" id='c1' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/index.php?session=c1&room=1')">
                         <div style="display: block">Session 3</div>
                         <div style="text-decoration: none; color: inherit;">(11-16 overs)</div>
                     </div>
-                    <div class="clickable-button" style="margin-left: 0.3rem;margin-right: 0.6rem">
+                    <div class="clickable-button disabled" id='d1' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/index.php?session=d1&room=1')">
                         <div style="display: block">Session 4</div>
                         <div style="text-decoration: none; color: inherit;">(17-20 overs)</div>
                     </div>
@@ -62,11 +62,11 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
             <div class="section-box">
                 <div class="section-header">Innings 2</div>
                 <div style="display: flex">
-                    <div class="clickable-button" style="margin-left: 0.6rem;margin-right: 0.3rem">
+                    <div class="clickable-button disabled" id='a2' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/index.php?session=a2&room=1')">
                         <div style="display: block">Session 1</div>
                         <div style="text-decoration: none; color: inherit;">(0-6 overs)</div>
                     </div>
-                    <div class="clickable-button" style="margin-left: 0.3rem;margin-right: 0.6rem">
+                    <div class="clickable-button disabled" id='b2' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/index.php?session=b2&room=1')">
                         <div style="display: block">Session 2</div>
                         <div style="text-decoration: none; color: inherit;">(7-10 overs)</div>
                     </div>
@@ -77,10 +77,10 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
             <div class="section-box">
                 <div class="section-header">Match Biding</div>
                 <div style="display: flex">
-                    <div class="clickable-button" style="margin-left: 0.6rem;margin-right: 0.3rem">
+                    <div class="clickable-button disabled" id='winner' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/index.php?session=winner&room=1')">
                         <div style="display: block;padding: 0.5rem">Who Will Win?</div>
                     </div>
-                    <div class="clickable-button" style="margin-left: 0.3rem;margin-right: 0.6rem">
+                    <div class="clickable-button disabled" id='session' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/index.php?session=special')">
                         <div style="display: block;padding: 0.5rem"">Special Bids</div>
                     </div>
                 </div>

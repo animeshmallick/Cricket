@@ -76,7 +76,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
             <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
             <div class="separator"></div>
             <div class="change-session-btn">
-                <a style="text-decoration: none; color: inherit;" href="#">Change Session</a>
+                <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
             </div>
         </div>
     </div>

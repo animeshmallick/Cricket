@@ -1,0 +1,13 @@
+div.footer {
+    background-image: url("../../images/stadium1.png");
+    border-radius: 1rem;
+    text-align: center;
+    display: block;
+    color: #edcf08;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0.5rem 0.5rem rgb(4, 221, 241);
+    border-bottom: 0.2rem solid #3375cc;
+    border-top: 0.1rem;
+    padding-top: 0.3rem;
+}

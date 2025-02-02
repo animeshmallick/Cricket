@@ -37,6 +37,20 @@ document.addEventListener('click', function(e) {
 async function fill_header(){
     fetch('../model_ui/header/header.php')
         .then(async response => document.getElementById('header').innerHTML = await response.text())
+        .then(async () => {
+            const ref_id = getCookie('ref_id');
+            fetch('https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_user_balance/'+ref_id)
+                .then(async response => {return await response.json()})
+                .then(async balance => {
+                    document.getElementById('balance').innerHTML = '&#8377;' + balance.balance;
+                })
+                .catch(error => console.log(error));
+        })
+        .catch(error => console.log(error));
+}
+async function fill_footer(){
+    fetch('../model_ui/footer/footer.php')
+        .then(async response => document.getElementById('footer').innerHTML = await response.text())
         .catch(error => console.log(error));
 }
 function redirect_to(path){

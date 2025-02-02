@@ -16,6 +16,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>All Matches</title>
         <link rel="stylesheet" type = "text/css" href ="../model_ui/header/style.css?version=<?php echo time();?>">
+        <link rel="stylesheet" type = "text/css" href ="../model_ui/footer/style.css?version=<?php echo time();?>">
         <link rel="stylesheet" type = "text/css" href ="../model_ui/scorecard/style.css?version=<?php echo time();?>">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
@@ -27,7 +28,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <script src="script.js"></script>
         <script src="../scripts/script.js"></script>
     </head>
-    <body onload="fill_header();fill_scorecard();">
+    <body onload="fill_header();fill_scorecard();fill_footer();">
         <div id="header"></div>
         <div id="scorecard"></div>
         <div class="separator"></div>
@@ -88,6 +89,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <div class="go-back-button">
             <a style="text-decoration: none; color: inherit" href="../home/">Go Back</a>
         </div>
+        <div class="separator"></div>
+        <div id="footer"></div>
     </body>
     </html>
 <?php } ?>

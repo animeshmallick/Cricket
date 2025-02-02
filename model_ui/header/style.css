@@ -5,7 +5,7 @@
     align-items: center;
     background: #333;
     color: white;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     transition: background 0.3s ease-in-out;
 }
 div.title {
@@ -97,4 +97,69 @@ a.nav-link {
     text-align: center;
     padding: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+div.balance-container {
+    margin-left: 3rem;
+    background-color: #34495e;
+    display: inline-block;
+    padding: 0.1rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: bounce 0.5s ease-in-out, pulse 2s infinite;
+}
+
+div.balance {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+/* Bounce Animation */
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 1rem rgba(46, 204, 113, 0.8), 0 0 30px rgba(46, 204, 113, 0.8);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 2rem rgba(46, 204, 113, 1), 0 0 50px rgba(46, 204, 113, 1);
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 1rem rgba(46, 204, 113, 0.8), 0 0 30px rgba(46, 204, 113, 0.8);
+        transform: scale(1);
+    }
+}
+
+/* Glowing Border Animation */
+@keyframes glow-border {
+    0% {
+        border: 1rem solid #34495e;
+    }
+    50% {
+        border: 1.3rem solid #2ecc71;
+    }
+    100% {
+        border: 1rem solid #34495e;
+    }
 }

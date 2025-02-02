@@ -73,7 +73,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div class="separator"></div>
                 <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
             </div>
-            <div id="placeBidBtn" class="place-bid-btn"><div class="moveText">Place Bid</div></div>
+            <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
             <div class="separator"></div>
             <div class="change-session-btn">
                 <a style="text-decoration: none; color: inherit;" href="#">Change Session</a>

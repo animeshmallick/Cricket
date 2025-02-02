@@ -135,6 +135,7 @@ input[type="number"]:focus {
 }
 
 .place-bid-btn {
+    text-align: center;
     margin-left: 5%;
     background-color: #069727;
     color: white;

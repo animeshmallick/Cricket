@@ -180,3 +180,33 @@ function create_current_over_balls_container(balls){
         container.appendChild(ballDiv);
     });
 }
+const team_badge = document.querySelector('.team-hover')
+if(team_badge != null){
+    team_badge.addEventListener('touchstart', function() {
+        team_badge.classList.add('active');
+    });
+    team_badge.addEventListener('touchend', function() {
+        team_badge.classList.remove('active');
+    });
+}
+
+
+const live_badge = document.querySelector('.live-hover')
+if(live_badge != null) {
+    live_badge.addEventListener('touchstart', function () {
+        live_badge.classList.add('active');
+    });
+    live_badge.addEventListener('touchend', function () {
+        live_badge.classList.remove('active');
+    });
+}
+
+const balls = document.querySelector('.balls')
+if(balls != null) {
+    balls.addEventListener('touchstart', function () {
+        balls.classList.add('active');
+    });
+    balls.addEventListener('touchend', function () {
+        balls.classList.remove('active');
+    });
+}

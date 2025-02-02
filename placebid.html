@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bidding Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #343a40;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+
+    .container {
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding-top: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+      background-color: #343a40;
+      color: white;
+      padding: 0.5rem;
+      margin: 0;
+      border-radius: 8px;
+    }
+
+    .bid-section {
+      margin: 0;
+      padding: 0;
+    }
+
+    .slider-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .input-section {
+      background-color: rgba(236, 201, 70, 0.62);
+      padding: 0.5rem;
+      margin: 0.6rem;
+      font-size: 1.6rem;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    .adjust-btn {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.3s;
+      font-weight: 800;
+    }
+    .slider {
+      width: 80%;
+      margin: 0 15px;
+      transition: all 0.3s ease;
+    }
+
+    .slider:focus {
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+      transform: scale(1.05);
+    }
+
+
+    .bid-amount {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-top: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .slots {
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.1rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      background-color: rgb(134, 140, 137);
+    }
+
+    .slot-header {
+      background-color: #343a40;
+      color: #ffffff;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      border-radius: 8px;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+
+    .slot {
+      display: flex;
+      flex-direction: column;
+      background-color: #ffcc00;
+      padding: 0.2rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
+      margin-bottom: 0.1rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      font-weight: 600;
+      transform: scale(0.85);
+      box-shadow: 0 6px 6px rgba(15, 193, 216, 0.62);
+    }
+
+
+    .slot.active {
+      transform: scale(1);
+      background-color: #8aed7a;
+      color: white;
+      font-weight: 700;
+      padding: 0.5rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
+
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+
+    .place-bid-btn {
+      background-color: #069727;
+      color: white;
+      padding: 0.5rem 0.5rem;
+      font-size: 2.5rem;
+      cursor: pointer;
+      border-radius: 8px;
+      border: none;
+      margin-top: 10px;
+      width: 100%;
+      opacity: 0.5;
+      pointer-events: none;
+      transition: background-color 0.3s, transform 0.3s;
+      box-shadow: 0 4px 6px rgba(216, 15, 15, 0.62);
+      font-weight: 800;
+    }
+
+    .place-bid-btn.enabled {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .place-bid-btn:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+    span.select-amount {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.4rem;
+      background-color: #343a40;
+      color:#ffffff;
+      border-radius: 8px;
+      align-items: center;
+    }
+    span.slot-line {
+      padding: 0;
+      margin: 0;
+    }
+    div.change-session-btn {
+        background-color: #b71c1c;
+        color: white;
+        padding: 12px 20px;
+        font-size: 18px;
+        border-radius: 8px;
+        border: none;
+        margin-top: 10px;
+        width: 100%;
+        opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Place new bid</h1>
+    </div>
+
+    <div class="bid-section">
+      <div class="input-section">
+        <span class="select-amount">Select amount</span>
+        <div class="slider-container">
+          <button id="decrease" class="adjust-btn">-100</button>
+          <input type="range" id="bidSlider" class="slider" min="0" max="5000" step="1" value="0">
+          <button id="increase" class="adjust-btn">+100</button>
+        </div>
+
+        <div class="bid-amount"> Bid Amount
+          <span id="bidAmount">₹0</span>
+        </div>
+      </div>
+      <div class="slots">
+        <div class="slot-header">Choose your slot</div>
+        <div class="slot" id="slot1">
+          <span class="slot-line">50 Runs or less</span>
+          <span class="slot-line">Max 50 runs in 36 balls</span>
+          <span class="slot-line">----------------------------------------</span>
+          <span class="slot-line">Put ₹100 get ₹200</span>
+        </div>
+        <div class="slot" id="slot2">
+          <span class="slot-line">51 to 55 runs</span>
+          <span class="slot-line">Min 51 and max 55 runs in 36 balls</span>
+          <span class="slot-line">----------------------------------------</span>
+          <span class="slot-line"> Put ₹100 get ₹200</span>
+        </div>
+        <div class="slot" id="slot3">
+          <span class="slot-line">55 runs or more</span>
+          <span class="slot-line">Min 56 runs in 36 balls</span>
+          <span class="slot-line">----------------------------------------</span>
+          <span class="slot-line">Put ₹100 get ₹200</span>
+        </div>
+      </div>
+    </div>
+
+    <button id="placeBidBtn" class="place-bid-btn">Place Bid</button>
+    <div class="change-session-btn">
+      <a style="text-decoration: none; color: inherit;" href="#">Change Session</a>
+    </div>
+  </div>
+
+<script>
+  const bidSlider = document.getElementById('bidSlider');
+  const bidAmount = document.getElementById('bidAmount');
+  const bidInput = document.getElementById('bidInput');
+  const increaseBtn = document.getElementById('increase');
+  const decreaseBtn = document.getElementById('decrease');
+  const placeBidBtn = document.getElementById('placeBidBtn');
+  const slots = document.querySelectorAll('.slot');
+
+  function updateBidAmount(value) {
+    bidAmount.textContent = '₹' + value;
+
+    bidSlider.value = value;
+  }
+
+  function togglePlaceBidButton() {
+    const bidValue = parseInt(bidSlider.value);
+    if (bidValue > 0) {
+      placeBidBtn.classList.add('enabled');
+    } else {
+      placeBidBtn.classList.remove('enabled');
+    }
+  }
+
+  bidSlider.addEventListener('input', () => {
+    updateBidAmount(bidSlider.value);
+    togglePlaceBidButton();
+  });
+
+
+  increaseBtn.addEventListener('click', () => {
+    let newValue = parseInt(bidAmount.textContent.replace('₹', '')) + 100;
+    if (newValue <= 10000) {
+      updateBidAmount(newValue);
+    }
+    togglePlaceBidButton();
+  });
+
+  decreaseBtn.addEventListener('click', () => {
+    let newValue = parseInt(bidAmount.textContent.replace('₹', '')) - 100;
+    if (newValue >= 0) {
+      updateBidAmount(newValue);
+    }
+    togglePlaceBidButton();
+  });
+
+  placeBidBtn.addEventListener('click', () => {
+    const bidValue = parseInt(bidInput.value);
+    alert(`You have successfully placed a bid of ₹${bidValue}`);
+  });
+
+  // Slot Click Event: Standout Effect
+  slots.forEach((slot) => {
+    slot.addEventListener('click', () => {
+      slots.forEach(s => s.classList.remove('active'));
+      slot.classList.add('active');
+    });
+  });
+
+  // Initialize with default value
+  updateBidAmount(0);
+</script>
+</body>
+</html>

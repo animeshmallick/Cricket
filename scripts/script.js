@@ -243,3 +243,6 @@ if(balls != null) {
         balls.classList.remove('active');
     });
 }
+function get_query_param(name){
+
+}

@@ -29,7 +29,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     <script src="script.js"></script>
     <script src="../scripts/script.js"></script>
 </head>
-<body onload="fill_header();fill_scorecard();fill_footer();update_session_slots(true);">
+<body onload="fill_header();fill_scorecard();fill_footer();update_slots(true);">
 <div id="header"></div>
 <div id="scorecard"></div>
 <div class="separator"></div>
@@ -67,12 +67,14 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div class="separator"></div>
                 <span class="slot-line" id="slot_b_amount"> Put ₹100 get ₹200</span>
             </div>
-            <div class="slot" id="slot_c">
-                <span class="slot-line" id="slot_c_runs">55 runs or more</span>
-                <span class="slot-line" id="slot_c_runs_1">Min 56 runs</span>
-                <div class="separator"></div>
-                <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
-            </div>
+            <?php if($session == 'a1' || $session == 'b1' || $session == 'c1' || $session == 'd1' || $session == 'a2' || $session == 'b2'){ ?>
+                <div class="slot" id="slot_c">
+                    <span class="slot-line" id="slot_c_runs">55 runs or more</span>
+                    <span class="slot-line" id="slot_c_runs_1">Min 56 runs</span>
+                    <div class="separator"></div>
+                    <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
+                </div>
+            <?php } ?>
             <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
             <div class="separator"></div>
             <div class="change-session-btn">

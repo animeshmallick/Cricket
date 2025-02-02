@@ -59,3 +59,10 @@ function fill_slot_details(bid_master, update_selected){
     slots_time = 0;
     console.log("Slots Updated");
 }
+function update_slots(){
+    const session = (new URLSearchParams(window.location.search)).get('session');
+    if(session === 'a1' || session === 'b1' || session === 'c1' || session === 'd1' || session === 'a2' || session === 'b2')
+        update_session_slots(true);
+    if(session === 'winner')
+        update_winner_slots(true);
+}

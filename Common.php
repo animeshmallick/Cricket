@@ -214,4 +214,99 @@ class Common
             return 20;
         return 0;
     }
+
+    function get_all_bids_from_match(string $series_id, string $match_id, string $type, int $room): array
+    {
+        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_match_bids/" . $series_id . "/" . $match_id . "/" . $type . "/" . $room;
+        return json_decode($this->get_response_from_url($url));
+    }
+    public function get_winner_rates($all_bids, $amount): array
+    {
+        $x = 0.0; $a = 0.0; $b = 0.0;
+        foreach ($all_bids as $bid) {
+            $x += (float)($bid->amount);
+        }
+        $x = $x - ($x/100) + $amount;
+
+        foreach ($all_bids as $bid) {
+            if ($bid->slot == 'T1')
+                $a += (float)($bid->amount);
+        }
+
+        foreach ($all_bids as $bid) {
+            if ($bid->slot == 'T2')
+                $b += (float)($bid->amount);
+        }
+
+        $ga = max(($x - $a), 0.0);
+        $gb = max(($x - $b), 0.0);
+        $g = $ga + $gb;
+
+
+        $ra = $ga/$g;
+        $rb = $gb/$g;
+
+        $f = 4 / ($ra + $rb);
+
+        $ra *= $f;
+        $rb *= $f;
+
+        return [$ra, $rb];
+    }
+    public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)
+    {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+        $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/" . "Cricket/internal/GetWinnerSlotDetails.php?match_id=".$match_id."&series_id=".$series_id."&amount=".$amount."&room=".$room;
+        $response = $this->get_response_from_url($url);
+        return json_decode($response);
+    }
+    public function insert_new_winner_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $slot,
+                                                $rate, $amount, $bid_name, $room): bool|string
+    {
+        $bid_data = array(
+            "id" => $bid_id,
+            "bid_id" => $bid_id,
+            "ref_id" => $ref_id,
+            "series_id" => $series_id,
+            "match_id" => $match_id,
+            "slot" => $slot,
+            "rate" => $rate,
+            "amount" => $amount,
+            "status" => "placed",
+            'type' => 'winner',
+            'bid_name' => $bid_name,
+            'room' => $room
+        );
+        $url = 'https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/save_new_bid';
+        $json_bid_data = json_encode($bid_data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($json_bid_data)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$json_bid_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return false;
+        }
+        curl_close($ch);
+        return $response;
+    }
+    public function recharge_user($recharge_id, $from_ref_id, $to_ref_id, $amount)
+    {
+        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/recharge/".$recharge_id."/".$from_ref_id."/".$to_ref_id."/".$amount;
+        return json_decode($this->get_response_from_url($url));
+    }
+    public function get_unique_recharge_id(): int
+    {
+        for ($i=0; $i<100; $i++){
+            $new_recharge_id = mt_rand(10000000, 99999999);
+            $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_recharge_details/".$new_recharge_id;
+            $recharge = json_decode($this->get_response_from_url($url));
+            if (!isset($recharge->id))
+                return $new_recharge_id;
+        }
+        return -1;
+    }
 }

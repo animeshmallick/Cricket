@@ -24,21 +24,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" &&
             gtag('js', new Date());
             gtag('config', 'G-Z91TWPR0DM');
         </script>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bid Placed Confirmation</title>
-        <link rel="stylesheet" type="text/css" href="../styles/style.css?version=<?php echo time(); ?>">
-        <link rel="stylesheet" type="text/css" href="style.css?version=<?php echo time(); ?>">
-        <link rel="stylesheet" type="text/css" href="../model_ui/header/style.css?version=<?php echo time(); ?>">
-        <link rel="stylesheet" type="text/css" href="../model_ui/scorecard/style.css?version=<?php echo time(); ?>">
-        <link rel="stylesheet" type="text/css" href="../model_ui/footer/style.css?version=<?php echo time(); ?>">
+        <title>All Matches</title>
+        <link rel="stylesheet" type = "text/css" href ="../model_ui/header/style.css?version=<?php echo time();?>">
+        <link rel="stylesheet" type = "text/css" href ="../model_ui/footer/style.css?version=<?php echo time();?>">
+        <link rel="stylesheet" type = "text/css" href ="../model_ui/scorecard/style.css?version=<?php echo time();?>">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <link rel="icon" type="image/x-icon" href="../cricket.ico">
-        <title>Home</title>
-        <link rel="icon" type="image/x-icon" href="../cricket.ico">
-        <script src="script.js?version=<?php echo time(); ?>"></script>
-        <script src="../scripts/script.js?version=<?php echo time(); ?>"></script>
+        <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
+        <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+        <script src="../model_ui/header/script.js"></script>
+        <script src="script.js"></script>
+        <script src="../scripts/script.js"></script>
     </head>
     <body onload="fill_header();
         fill_scorecard();

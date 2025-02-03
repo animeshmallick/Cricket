@@ -156,7 +156,8 @@ class Common
     }
     public function get_session_bid_bookie_details(string $series_id, $match_id, string $session, float $amount, int $room)
     {
-        $url = "localhost/Cricket/internal/GetSessionSlotDetails.php?match_id=".$match_id."&series_id=".$series_id."&session=".$session."&amount=".$amount."&room=".$room;
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+        $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/" . "Cricket/internal/GetSessionSlotDetails.php?match_id=".$match_id."&series_id=".$series_id."&session=".$session."&amount=".$amount."&room=".$room;
         $response = $this->get_response_from_url($url);
         return json_decode($response);
     }

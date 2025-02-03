@@ -35,52 +35,58 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 <div class="separator"></div>
 <div class="container" id="bid_container">
     <div class="sub-title">Place new bid</div>
-
     <div class="bid-section">
-        <div class="input-section">
-            <span class="select-amount">Slide to Change Amount</span>
-            <div class="slider-container">
-                <button id="decrease" class="adjust-btn">-100</button>
-                <input type="range" id="bidSlider" class="slider"
+        <form action="../bid_placed/index.php" method="post" id="place-bid-form">
+            <input type="hidden" name="bid_id" value="<?php echo $common->get_unique_bid_id('session'); ?>" hidden="hidden">
+            <input type="hidden" name="room" value="<?php echo $room;?>">
+            <input type="hidden" name="session" value="<?php echo $session;?>">
+            <input type="hidden" name="bid_amount" id="bid_amount" value="<?php echo $amount_default;?>">
+            <div class="input-section">
+                <span class="select-amount">Slide to Change Amount</span>
+                <div class="input-section" style="display: flex">
+                    <button id="decrease" class="adjust-btn">-100</button>
+                    <input type="range" id="bidSlider" class="slider"
                        min="<?php echo $amount_min;?>"
-                       max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>">
-                <button id="increase" class="adjust-btn">+100</button>
+                       max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>" name="amount">
+                    <button id="increase" class="adjust-btn">+100</button>
+                </div>
+                <div class="bid-amount" style="text-align: center">Bid Amount <span id="bidAmount">₹0</span></div>
             </div>
-            <div class="bid-amount" style="text-align: center">Bid Amount <span id="bidAmount">₹0</span></div>
-        </div>
-        <div class="slots">
-            <div class="slot-header">Choose your slot</div>
-            <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat">Session : Innings 1, Over 1-6</div>
-            <div style="display: flex">
-                <div class="balls-remaining-container">Balls Remaining: <span id="balls_remaining">36</span></div>
-                <div class="balls-remaining-container">Session Closing in : <span id="session_close_in_balls">30</span> balls</div>
-            </div>
-            <div class="slot" id="slot_a">
-                <span class="slot-line" id="slot_a_runs">50 Runs or less</span>
-                <span class="slot-line" id="slot_a_runs_1">Max 50 runs</span>
-                <div class="separator"></div>
-                <span class="slot-line" id="slot_a_amount">Put ₹100 get ₹200</span>
-            </div>
-            <div class="slot" id="slot_b">
-                <span class="slot-line" id="slot_b_runs">51 to 55 runs</span>
-                <span class="slot-line" id="slot_b_runs_1">[51 - 55] runs</span>
-                <div class="separator"></div>
-                <span class="slot-line" id="slot_b_amount"> Put ₹100 get ₹200</span>
-            </div>
-            <?php if($session == 'a1' || $session == 'b1' || $session == 'c1' || $session == 'd1' || $session == 'a2' || $session == 'b2'){ ?>
+            <div class="slots">
+                <div class="slot-header">Choose your slot</div>
+                <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat">Session : Innings 1, Over 1-6</div>
+                <div style="display: flex">
+                    <div class="balls-remaining-container">Balls Remaining: <span id="balls_remaining">36</span></div>
+                    <div class="balls-remaining-container">Session Closing in : <span id="session_close_in_balls">30</span> balls</div>
+                </div>
+                <div class="slot" id="slot_a">
+                    <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
+                    <span class="slot-line" id="slot_a_runs">50 Runs or less</span>
+                    <span class="slot-line" id="slot_a_runs_1">Max 50 runs</span>
+                    <div class="separator"></div>
+                    <span class="slot-line" id="slot_a_amount">Put ₹100 get ₹200</span>
+                </div>
+                <div class="slot" id="slot_b">
+                    <input type="radio" name="slot" id="slot_y" value="y" style="display: none">
+                    <span class="slot-line" id="slot_b_runs">51 to 55 runs</span>
+                    <span class="slot-line" id="slot_b_runs_1">[51 - 55] runs</span>
+                    <div class="separator"></div>
+                    <span class="slot-line" id="slot_b_amount"> Put ₹100 get ₹200</span>
+                </div>
                 <div class="slot" id="slot_c">
+                    <input type="radio" name="slot" id="slot_z" value="z" style="display: none">
                     <span class="slot-line" id="slot_c_runs">55 runs or more</span>
                     <span class="slot-line" id="slot_c_runs_1">Min 56 runs</span>
                     <div class="separator"></div>
                     <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
                 </div>
-            <?php } ?>
-            <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
-            <div class="separator"></div>
-            <div class="change-session-btn">
-                <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
+                <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
+                <div class="separator"></div>
+                <div class="change-session-btn">
+                    <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <div id="footer"></div>
@@ -107,11 +113,12 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     });
 
     placeBidBtn.addEventListener('click', () => {
-        const bidValue = parseInt(bidSlider.value);
-        const urlParams = new URLSearchParams(window.location.search);
-        const session = urlParams.get('session');
-        const room = urlParams.get('room');
-        redirect_to(`Cricket/place_bid_to_db.php?session=${session}&room=${room}&amount=${bidValue}`)
+        const submitBtn = document.getElementById('placeBidBtn');
+        submitBtn.disabled = true;
+        submitBtn.classList.add('disabled');
+        submitBtn.innerHTML = '<div>Placing Bid...</div>';
+        submitBtn.style.backgroundColor = 'orange';
+        document.getElementById('place-bid-form').submit()
     });
 
     // Slot Click Event: Standout Effect
@@ -119,6 +126,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
         slot.addEventListener('click', () => {
             slots.forEach(s => s.classList.remove('active'));
             slot.classList.add('active');
+            slot.children.item(0).checked = true;
         });
     });
     updateBidAmount('<?php echo $amount_default;?>');

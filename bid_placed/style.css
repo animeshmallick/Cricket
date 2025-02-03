@@ -1,0 +1,71 @@
+div.confirm_bid_container {
+    display: block;
+    align-content: center;
+    background-color: transparent;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 1rem rgba(230, 6, 6, 0.3);
+    background-image: url("../images/stadium2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+div.bid-failure-title {
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, red, orange);
+    padding-top: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    border-radius: 1rem;
+    border-bottom: 0.2rem solid #f90606;
+    box-shadow: 0 0.8rem 0.5rem rgba(250, 4, 4, 0.34);
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.5rem;
+}
+div.bid-success-title {
+    background: linear-gradient(90deg, lightgreen, darkgreen);
+    font-size: 2.5rem;
+    padding-top: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.8rem 0.5rem rgba(250, 4, 4, 0.43);
+    padding-bottom: 0.3rem;
+}
+div.bid_details_failure {
+    align-content: center;
+    background: linear-gradient(90deg, orangered, orange);
+    border-radius: 0.75rem;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    margin: 0.5rem 0.3rem 0.3rem;
+}
+div.bid_details_success {
+    align-content: center;
+    background: linear-gradient(90deg, #21cd07, yellow);
+    border: 0.1rem solid #339ecc;
+    border-radius: 0.75rem;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    margin: 0.5rem 0.3rem 0.3rem;
+}
+a.button {
+    display: block;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 3rem rgba(7, 7, 7, 0.31), 0 0 3rem rgba(0,0,0,0.24);
+    font-weight: bolder;
+    white-space: nowrap;
+    padding: 0.3rem 0.5rem;
+    margin: 0.4rem;
+    background: linear-gradient(90deg, #04ddf1, #24f104);
+    text-align: center;
+}
+a.secondary {
+    background: linear-gradient(90deg, #04ddf1, #026bf6);
+    padding: 0.2rem;
+}

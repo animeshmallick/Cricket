@@ -1,7 +1,7 @@
 
 @keyframes breathe {
     0% { background-color: royalblue; } /* Dark blue */
-    50% { background-color: rgba(65, 105, 225, 0.6); } /* Lighter blue */
+    50% { background-color: rgb(244, 60, 5, 0.5); } /* Lighter blue */
     100% { background-color: royalblue; } /* Back to dark blue */
 }
 
@@ -40,7 +40,7 @@
 
 .card-container {
     border-radius: 1rem;
-    animation: breathe 2s infinite ease-in-out;
+    background: linear-gradient(90deg, royalblue, darkgreen);
 }
 
 .ball-container {
@@ -52,29 +52,25 @@
 .card-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: white;
+    color: orange;
 }
 
 .score {
     font-size: 1.7rem;
     font-weight: 700;
-    color: white;
 }
 
 .small-text {
     font-size: 1rem;
-    color: #d1d5db;
 }
 
 .team-badge {
     font-size: 1.2rem;
     font-weight: 500;
-    color: white;
 }
 
 .run-rate {
     font-size: 1rem;
-    color: #d1d5db;
 }
 
 .live-score {

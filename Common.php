@@ -130,4 +130,87 @@ class Common
 
         return [$ra, $rb, $rc];
     }
+    public function get_unique_bid_id(string $type): int
+    {
+        for ($i=0; $i<100; $i++){
+            $new_bid_id = mt_rand(10000000, 99999999);
+            if (isset($this->get_bid_from_bid_id($new_bid_id, $type)->error))
+                return $new_bid_id;
+        }
+        return -1;
+    }
+    public function get_bid_from_bid_id($bid_id, $type)
+    {
+        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_bid/" . $type . "/" .$bid_id;
+        return json_decode($this->get_response_from_url($url));
+    }
+    public function isValidSession($session){
+        if (strlen($session) != 2)
+            return false;
+        if ($session[0] == 'a' || $session[0] == 'b' || $session[0] == 'c' || $session[0] == 'd') {
+            if ($session[1] == 1 || $session[1] == 2) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public function get_session_bid_bookie_details(string $series_id, $match_id, string $session, float $amount, int $room)
+    {
+        $url = "localhost/Cricket/internal/GetSessionSlotDetails.php?match_id=".$match_id."&series_id=".$series_id."&session=".$session."&amount=".$amount."&room=".$room;
+        $response = $this->get_response_from_url($url);
+        return json_decode($response);
+    }
+    public function insert_new_session_bid_to_db(int $bid_id, string $ref_id, string $series_id, string $match_id, string $session,
+                                                 string $slot, int $runs_min, int $runs_max, float $rate, float $amount,
+                                                 string $bid_name, string $room): bool|string
+    {
+        if ($rate == null)
+            return false;
+        $bid_data = array(
+            "id" => $bid_id,
+            "bid_id" => $bid_id,
+            "ref_id" => $ref_id,
+            "series_id" => $series_id,
+            "match_id" => $match_id,
+            "innings" => $session[1],
+            "session" => $session[0],
+            "slot" => $slot,
+            "runs_min" => $runs_min,
+            "runs_max" => $runs_max,
+            "rate" => $rate,
+            "amount" => $amount,
+            "status" => "placed",
+            'type' => 'session',
+            'bid_name' => $bid_name,
+            'room' => $room
+        );
+        $url = 'https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/save_new_bid';
+        $json_bid_data = json_encode($bid_data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($json_bid_data)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$json_bid_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return false;
+        }
+        curl_close($ch);
+        return $response;
+    }
+
+    public function get_end_over_from_session(string $session): int
+    {
+        if($session[0] == 'a')
+            return 6;
+        elseif($session[0] == 'b')
+            return 10;
+        elseif($session[0] == 'c')
+            return 16;
+        elseif($session[0] == 'd')
+            return 20;
+        return 0;
+    }
 }

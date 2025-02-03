@@ -35,7 +35,7 @@
     </div>
 
     <!-- Player Details -->
-    <div class="team-hover mt-2 flex justify-between items-center text-sm bg-gray-500 p-1 rounded-md">
+    <div class="team-hover mt-2 flex justify-between items-center text-sm bg-gray-500 p-1 rounded-md" style="animation: breathe 2s infinite ease-in-out;">
         <div class="player">
             <div style="margin-bottom: 0.4rem;display: flex">
                 <span id='batsman1' class="text-green-400">Batsman 1 : 20 (11)</span>

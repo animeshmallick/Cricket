@@ -13,15 +13,15 @@
 }
 @keyframes breathe-slots {
     0% {
-        background-color: #24f104;
+        background: linear-gradient(90deg, lightgreen, darkgreen);
         transform: scale(1);
     }
     50% {
-        background-color: rgba(76, 213, 55, 0.45);
+        background: linear-gradient(90deg, lightgreen, lawngreen);
         transform: scale(1.1);
     }
     100% {
-        background-color: #24f104;
+        background: linear-gradient(90deg, lightgreen, darkgreen);
         transform: scale(1);
     }
 }
@@ -89,7 +89,7 @@
     transition: transform 0.3s ease;
     box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
     border-radius: 1rem;
-    background-color: powderblue;
+    background: linear-gradient(90deg, royalblue, orchid);
 }
 
 .slot-header {
@@ -135,10 +135,11 @@ input[type="number"]:focus {
 }
 
 .place-bid-btn {
+    animation: breathe-slots 2s infinite ease-in-out;
     text-align: center;
     margin-left: 5%;
-    background-color: #069727;
-    color: white;
+    background: linear-gradient(90deg, greenyellow, dodgerblue);
+    color: coral;
     padding: 0.2rem 0.2rem;
     font-size: 2.5rem;
     cursor: pointer;

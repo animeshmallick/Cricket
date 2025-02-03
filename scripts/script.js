@@ -118,6 +118,7 @@ function update_scorecard(scorecard){
     crr = (scorecard.innings === 1 ? scorecard.team1_score.runs : scorecard.team2_score.runs) / total_balls * 6;
     let rrr = scorecard.innings === 2 ? (6 * (scorecard.team1_score.runs - scorecard.team2_score.runs + 1) / (120 - total_balls)) : 0;
     let team_score = [];
+    document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;'
     document.getElementById('match_name').innerHTML = scorecard.teams[0] + ' vs ' + scorecard.teams[1];
     document.getElementById('team1_logo').setAttribute('src', `../images/logo/${scorecard.teams[0].toLowerCase()}.png`)
     document.getElementById('team2_logo').setAttribute('src', `../images/logo/${scorecard.teams[1].toLowerCase()}.png`)

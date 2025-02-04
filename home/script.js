@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const matchList = document.getElementById('match-list');
     fetch('https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_all_matches')
         .then(response => response.json())
+        .then(response => response.sort((a, b) => b.id - a.id))
         .then(matches => {
             matches.forEach(match => {
                 createMatchCard(match);

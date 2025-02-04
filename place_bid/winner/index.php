@@ -1,5 +1,5 @@
 <?php
-include "../Common.php";
+include "../../Common.php";
 $common = new Common();
 if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['session'])){
     $common->redirect_to('Cricket/');
@@ -16,18 +16,18 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Matches</title>
-    <link rel="stylesheet" type = "text/css" href ="../model_ui/header/style.css?version=<?php echo time();?>">
-    <link rel="stylesheet" type = "text/css" href ="../model_ui/footer/style.css?version=<?php echo time();?>">
-    <link rel="stylesheet" type = "text/css" href ="../model_ui/scorecard/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../../model_ui/header/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../../model_ui/footer/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../../model_ui/scorecard/style.css?version=<?php echo time();?>">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
-    <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../../styles/style.css?version=<?php echo time();?>">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-    <script src="../model_ui/header/script.js"></script>
+    <script src="../../model_ui/header/script.js"></script>
     <script src="script.js"></script>
-    <script src="../scripts/script.js"></script>
+    <script src="../../scripts/script.js"></script>
 </head>
 <body onload="fill_header();fill_scorecard();fill_footer();update_winner_slots(true);">
 <div id="header"></div>
@@ -36,7 +36,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 <div class="container" id="bid_container">
     <div class="sub-title">Place new bid</div>
     <div class="bid-section">
-        <form action="../bid_placed/index.php" method="post" id="place-bid-form">
+        <form action="../../bid_placed/index.php" method="post" id="place-bid-form">
             <input type="hidden" name="bid_id" value="<?php echo $common->get_unique_bid_id('session'); ?>" hidden="hidden">
             <input type="hidden" name="room" value="<?php echo $room;?>">
             <input type="hidden" name="session" value="<?php echo $session;?>">

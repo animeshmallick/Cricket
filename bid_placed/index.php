@@ -12,7 +12,7 @@ $series_id = $common->get_cookie("series_id");
 $match_id = $common->get_cookie("match_id");
 $match_name = $common->get_cookie("match_name");
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" &&
+if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
     isset($_POST["amount"]) && isset($_POST["slot"]) && isset($_POST["session"])) { ?>
     <html lang="en">
     <head>
@@ -152,5 +152,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" &&
     </html>
 <?php } else
 {
-    echo 'invalid';
+    $common->redirect_to(".../index.php");
 }

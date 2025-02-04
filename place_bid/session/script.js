@@ -7,7 +7,7 @@ function update_session_slots(update_selected){
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
     const amount = document.getElementById('bidSlider').value;
-    const url = `../internal/GetSessionSlotDetails.php?series_id=${series_id}&match_id=${match_id}&session=${session}&room=${room}&amount=${amount}`;
+    const url = `${window.location.protocol}//${window.location.hostname}/Cricket/internal/GetSessionSlotDetails.php?series_id=${series_id}&match_id=${match_id}&session=${session}&room=${room}&amount=${amount}`;
     fetch(url)
         .then(response => response.json())
         .then(data => {

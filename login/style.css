@@ -5,41 +5,17 @@
     padding: 2rem;
     border-radius: 2rem;
     box-shadow: 1rem 1rem 1.5rem rgba(0, 0, 0, 0.1), -1rem -1rem 1.5rem rgba(255, 255, 255, 0.5);
-    opacity: 0;
     transform: translateY(15rem);
     animation: slideIn 1s ease-out forwards;
 }
-
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateY(1rem);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 h2 {
     text-align: center;
     margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
     color: #333;
-    opacity: 0;
     animation: fadeIn 1s ease-out 0.5s forwards;
 }
-
-@keyframes fadeIn {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-
 .input-field {
     background: #e0e5ec;
     border: none;
@@ -50,21 +26,8 @@ h2 {
     color: #333;
     box-shadow: inset 1rem 1rem 2rem rgba(0, 0, 0, 0.1), inset -1rem -1rem 2rem rgba(255, 255, 255, 0.5);
     transition: all 0.3s ease;
-    opacity: 0;
     animation: slideInFields 0.8s ease-out 1s forwards;
 }
-
-@keyframes slideInFields {
-    0% {
-        opacity: 0;
-        transform: translateX(-3rem);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
 .input-field:focus {
     background: #fff;
     box-shadow: inset 1rem 1rem 2rem rgba(0, 0, 0, 0.2), inset -1rem -1rem 2rem rgba(255, 255, 255, 0.3);
@@ -81,21 +44,8 @@ h2 {
     border: none;
     cursor: pointer;
     transition: transform 0.3s ease, background 0.3s ease;
-    opacity: 0;
     animation: fadeInButton 1s ease-out 1.5s forwards;
 }
-
-@keyframes fadeInButton {
-    0% {
-        opacity: 0;
-        transform: translateY(3rem);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 .btn:hover {
     background: #5e4bb1;
     transform: scale(1.05);

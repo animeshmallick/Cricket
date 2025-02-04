@@ -1,7 +1,6 @@
 .navbar {
     border-radius: 1rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
     background: #333;
     color: white;
@@ -72,7 +71,6 @@ div.nav-title {
     }
     .nav-links li {
         padding: 1rem 0;
-        animation: bounce 0.5s ease-in-out;
     }
     .hamburger {
         display: block;
@@ -81,11 +79,6 @@ div.nav-title {
     .hamburger:active {
         transform: scale(0.9);
     }
-}
-@keyframes bounce {
-    0% { transform: translateY(-1rem); }
-    50% { transform: translateY(0rem); }
-    100% { transform: translateY(-1rem); }
 }
 a.nav-link {
     width: 90%;
@@ -100,7 +93,6 @@ a.nav-link {
 }
 
 div.balance-container {
-    margin-left: 3rem;
     background-color: #34495e;
     display: inline-block;
     padding: 0.1rem 1rem;
@@ -114,52 +106,4 @@ div.balance {
     font-size: 1.3rem;
     font-weight: bold;
     color: #ecf0f1;
-}
-
-/* Bounce Animation */
-@keyframes bounce {
-    0% {
-        transform: scale(1);
-    }
-    30% {
-        transform: scale(1.1);
-    }
-    50% {
-        transform: scale(0.9);
-    }
-    70% {
-        transform: scale(1.05);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Pulse Animation */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 1rem rgba(46, 204, 113, 0.8), 0 0 30px rgba(46, 204, 113, 0.8);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 0 2rem rgba(46, 204, 113, 1), 0 0 50px rgba(46, 204, 113, 1);
-        transform: scale(1.05);
-    }
-    100% {
-        box-shadow: 0 0 1rem rgba(46, 204, 113, 0.8), 0 0 30px rgba(46, 204, 113, 0.8);
-        transform: scale(1);
-    }
-}
-
-/* Glowing Border Animation */
-@keyframes glow-border {
-    0% {
-        border: 1rem solid #34495e;
-    }
-    50% {
-        border: 1.3rem solid #2ecc71;
-    }
-    100% {
-        border: 1rem solid #34495e;
-    }
 }

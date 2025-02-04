@@ -35,7 +35,7 @@ document.addEventListener('click', function(e) {
     }
 });
 async function fill_header(){
-    fetch('../model_ui/header/header.php')
+    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/header/`)
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .then(async () => {
             const ref_id = getCookie('ref_id');
@@ -49,7 +49,7 @@ async function fill_header(){
         .catch(error => console.log(error));
 }
 async function fill_footer(){
-    fetch('../model_ui/footer/footer.php')
+    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/footer/`)
         .then(async response => document.getElementById('footer').innerHTML = await response.text())
         .catch(error => console.log(error));
 }
@@ -70,7 +70,7 @@ function logout(){
 function fill_scorecard(){
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
-    fetch('../model_ui/scorecard/scorecard.php')
+    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
         .then(async () => {
             fetch(`https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/scores/${series_id}/${match_id}/latest`)
@@ -118,10 +118,15 @@ function update_scorecard(scorecard){
     crr = (scorecard.innings === 1 ? scorecard.team1_score.runs : scorecard.team2_score.runs) / total_balls * 6;
     let rrr = scorecard.innings === 2 ? (6 * (scorecard.team1_score.runs - scorecard.team2_score.runs + 1) / (120 - total_balls)) : 0;
     let team_score = [];
-    document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;'
+    document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
+    document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
     document.getElementById('match_name').innerHTML = scorecard.teams[0] + ' vs ' + scorecard.teams[1];
-    document.getElementById('team1_logo').setAttribute('src', `../images/logo/${scorecard.teams[0].toLowerCase()}.png`)
-    document.getElementById('team2_logo').setAttribute('src', `../images/logo/${scorecard.teams[1].toLowerCase()}.png`)
+
+    document.getElementById('team1_logo')
+        .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${scorecard.teams[0].toLowerCase()}.png`)
+    document.getElementById('team2_logo')
+        .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${scorecard.teams[1].toLowerCase()}.png`)
+
     document.getElementById("team1_name").innerHTML = scorecard.teams[0];
     team_score[0] = scorecard.team1_score.runs + "/" + scorecard.team1_score.wickets;
     document.getElementById("team1_score").innerHTML = team_score[0];
@@ -139,11 +144,27 @@ function update_scorecard(scorecard){
     document.getElementById('this_over_summary').innerHTML =
         "Over " + (scorecard.innings === 1 ? over_str_1 : over_str_2)+"  :  " + scorecard.this_over_summary;
 
-    document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
+    if(scorecard.innings === 1)
+        document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
+    else {
+        let x = crr !== 0 ? (crr.toFixed(2)) : "";
+        let y = rrr !== 0 ? (rrr.toFixed(2)) : "";
+        document.getElementById('crr').innerHTML =  x + " &  R.RR:" + y;
+    }
     //document.getElementById('rrr').innerHTML = rrr !== 0 ? ("Req. RR : "+ rrr.toFixed(2)) : "";
 
     document.getElementById('partnership').innerHTML = scorecard.partnership.replaceAll(' Runs, ', ' (').replaceAll(' B', ')');
-    document.getElementById('last_batsman').innerHTML = scorecard.last_batsman + " @ " +scorecard.last_wicket_at;
+    if (scorecard.last_batsman.trim().length > 0) {
+        if(scorecard.last_wicket_at.trim().length > 0) {
+            document.getElementById('last_batsman').parentElement.parentElement.style.display = "block";
+            document.getElementById('last_batsman').innerHTML = scorecard.last_batsman + " @ " + scorecard.last_wicket_at;
+        }else{
+            document.getElementById('last_batsman').parentElement.parentElement.style.display = "block";
+            document.getElementById('last_batsman').innerHTML = scorecard.last_batsman;
+        }
+    }else{
+        document.getElementById('last_batsman').parentElement.parentElement.style.display = "none";
+    }
     document.getElementById('timer').innerHTML = "&nbsp";
 
     enable_session_buttons(scorecard);
@@ -208,7 +229,7 @@ function create_current_over_balls_container(balls){
         }
 
         const ballDiv = document.createElement('div');
-        ballDiv.classList.add('ball-hover', 'w-12', 'h-8', 'flex', 'items-center', 'justify-center', 'rounded-full', 'text-xl', 'font-bold', 'shadow-md', bgColor, textColor);
+        ballDiv.classList.add('ball-hover', 'w-10', 'h-8', 'flex', 'items-center', 'justify-center', 'rounded-full', 'text-xl', 'font-bold', 'shadow-md', bgColor, textColor);
         ballDiv.textContent = ball;
 
         container.appendChild(ballDiv);
@@ -225,7 +246,7 @@ if(team_badge != null){
 }
 
 
-const live_badge = document.querySelector('.live-hover')
+const live_badge = document.querySelector('.live-badge')
 if(live_badge != null) {
     live_badge.addEventListener('touchstart', function () {
         live_badge.classList.add('active');
@@ -243,7 +264,4 @@ if(balls != null) {
     balls.addEventListener('touchend', function () {
         balls.classList.remove('active');
     });
-}
-function get_query_param(name){
-
 }

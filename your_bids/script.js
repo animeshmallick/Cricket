@@ -4,7 +4,7 @@ function fill_bids() {
         .then(response => response.json())
         .then(data => fill_bid_content(data))
         .then(() => {
-            document.getElementById("loader").style.display = "none";
+            document.getElementById("loading").style.display = "none";
         })
         .catch(error => console.error('Error:', error));
 }

@@ -1,3 +1,6 @@
+body {
+    background-color: blueviolet;
+}
 div.padding{
     display: block;
     padding: 2rem;
@@ -17,6 +20,18 @@ div.sub-title {
     padding: 0.1rem 0.3rem;
     color: wheat;
     background: #009579;
+}
+div.title {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    border-radius: 1rem;
+    box-shadow: 0 1rem 0.5rem rgb(51, 158, 204);
+    padding: 0.1rem 0.3rem;
+    color: wheat;
+    background: #009579;
+    margin-bottom: 1rem;
+    width: 100%;
 }
 @keyframes pulse_plus_zoom {
     0% {
@@ -87,4 +102,31 @@ div.sub-title {
 @keyframes bounce {
     0% { transform: translateY(0); }
     100% { transform: translateY(-5px); }
+}
+button {
+    display: block;
+    width: 100%;
+    border-radius: 1rem;
+    font-size: 1rem;
+    background-color: wheat;
+    text-align: center;
+    padding: 0.6rem;
+}
+button.nav-link {
+    font-size: 1.2rem;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    width: 90%;
+}
+.button {
+    display: block;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 3rem rgba(7, 7, 7, 0.31), 0 0 3rem rgba(0,0,0,0.24);
+    font-weight: bolder;
+    white-space: nowrap;
+    padding: 0.3rem 0.5rem;
+    margin: 0.4rem;
+    background: linear-gradient(90deg, #04ddf1, #24f104);
+    text-align: center;
 }

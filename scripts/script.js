@@ -60,10 +60,13 @@ function redirect_to(path){
 }
 function logout(){
     if (confirm("Are you sure?")) {
-        set_cookie('ref_id', '');
-        set_cookie('fname', '');
-        set_cookie('lname', '');
-        redirect_to('Cricket');
+        document.cookie = "ref_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "fname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "lname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "user_type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "match_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        document.cookie = "series_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        redirect_to('Cricket/');
         console.log('logout');
     }
 }
@@ -172,33 +175,24 @@ function update_scorecard(scorecard){
 }
 function enable_session_buttons(scorecard){
     try{
-        if(scorecard.over_id < 106)
-            document.getElementById('a1').classList.remove('disabled');
-        if(scorecard.over_id > 101 && scorecard.over_id < 110)
-            document.getElementById('b1').classList.remove('disabled');
-        if(scorecard.over_id > 106 && scorecard.over_id < 116)
-            document.getElementById('c1').classList.remove('disabled');
-        if(scorecard.over_id > 110 && scorecard.over_id < 120)
-            document.getElementById('d1').classList.remove('disabled');
-        if(scorecard.over_id >= 120 && scorecard.over_id < 206)
-            document.getElementById('a2').classList.remove('disabled');
-        if(scorecard.over_id > 201 && scorecard.over_id < 210)
-            document.getElementById('b2').classList.remove('disabled');
-        if(scorecard.over_id < 220 || scorecard.team2_score.wickets < 10)
-            document.getElementById('winner').classList.remove('disabled');
+        if(document.getElementById('sessions') !== null) {
+            if (scorecard.over_id < 106)
+                document.getElementById('a1').classList.remove('disabled');
+            if (scorecard.over_id > 101 && scorecard.over_id < 110)
+                document.getElementById('b1').classList.remove('disabled');
+            if (scorecard.over_id > 106 && scorecard.over_id < 116)
+                document.getElementById('c1').classList.remove('disabled');
+            if (scorecard.over_id > 110 && scorecard.over_id < 120)
+                document.getElementById('d1').classList.remove('disabled');
+            if (scorecard.over_id >= 120 && scorecard.over_id < 206)
+                document.getElementById('a2').classList.remove('disabled');
+            if (scorecard.over_id > 201 && scorecard.over_id < 210)
+                document.getElementById('b2').classList.remove('disabled');
+            if (scorecard.over_id < 220 || scorecard.team2_score.wickets < 10)
+                document.getElementById('winner').classList.remove('disabled');
+        }
     }catch(e){
         console.log(e);
-    }
-    if(scorecard.innings === 1){
-        document.getElementById('session-1').classList.remove('bg-gray-500');
-        document.getElementById('session-1').classList.add('bg-green-500');
-        document.getElementById('session-2').classList.remove('bg-green-500');
-        document.getElementById('session-2').classList.add('bg-gray-500');
-    }else{
-        document.getElementById('session-1').classList.remove('bg-green-500');
-        document.getElementById('session-1').classList.add('bg-gray-500');
-        document.getElementById('session-2').classList.remove('bg-gray-500');
-        document.getElementById('session-2').classList.add('bg-green-500');
     }
 }
 function get_valid_balls(this_over){
@@ -265,3 +259,9 @@ if(balls != null) {
         balls.classList.remove('active');
     });
 }
+const parseDate = (dateStr) => {
+    const [datePart, timePart] = dateStr.split(", ");
+    const [day, month, year] = datePart.split("/").map(Number);
+    const [hours, minutes, seconds] = timePart.split(":").map(Number);
+    return new Date(year, month - 1, day, hours, minutes, seconds);
+};

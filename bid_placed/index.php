@@ -85,8 +85,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
     } elseif ($common->is_user_logged_in() && $session == 'winner') {
         $bid_bookie_response = $common->get_match_winner_bid_bookie_details($series_id, $match_id, $amount, $room);
         if(!isset($bid_bookie_response->error)) {
-            $rate = $slot == 'T1' ? $bid_bookie_response->rate_1 : ($slot == 'T2' ? $bid_bookie_response->rate_2 : 0);
-            $msg = $slot == 'T1' ? $bid_bookie_response->team1 : ($slot == 'T2' ? $bid_bookie_response->team2 : '0');
+            $rate = $slot == 'x' ? $bid_bookie_response->rate_1 : ($slot == 'y' ? $bid_bookie_response->rate_2 : 0);
+            $team = $slot == 'x' ? $bid_bookie_response->team_a : ($slot == 'y' ? $bid_bookie_response->team_b : '0');
             $ref_id = $common->get_cookie('ref_id');
             $refund = 0;
             $bid_place_response = $common->insert_new_winner_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $slot,
@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             $bid_place_response = json_decode($bid_place_response);
             if ($bid_place_response->recharge_status) {
                 $status = true;
-                $status_msg_1 = $msg;
+                $status_msg_1 = $team. "Wins the match";
                 $status_msg_2 = "PUT &#8377;".$amount." & Take &#8377;".floor((int)($amount * $rate));
                 $status_msg_3 = "You got refund of &#8377;".floor((int)$amount/10);
                 if ($common->is_user_an_agent()) {
@@ -141,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             <div class="separator"></div>
             <a class="button" style="margin-left: 12.5%; width: 75%" href="../match/index.php?series_id=<?php echo $series_id; ?>&match_id=<?php echo $match_id;?>&match_name=<?php echo $match_name;?>">New Bid</a>
             <div class="separator"></div>
-            <a class="button secondary" style="margin-left: 12.5%; width: 75%" href="../dashboard/index.php">Dashboard</a>
+            <button class="button" style="margin-left: 12.5%; width: 75%" onclick="redirect_to('Cricket/your_bids/')">Dashboard</button>
         </div>
     </div>
     <div class="separator"></div>

@@ -15,6 +15,7 @@ if(!$common->is_user_logged_in()){
     <title>All Matches</title>
     <link rel="stylesheet" type = "text/css" href ="../model_ui/header/style.css?version=<?php echo time();?>">
     <link rel="stylesheet" type = "text/css" href ="../model_ui/footer/style.css?version=<?php echo time();?>">
+    <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
     <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">

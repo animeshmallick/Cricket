@@ -32,7 +32,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <div id="header"></div>
         <div id="scorecard"></div>
         <div class="separator"></div>
-        <div class="container">
+        <div class="container" id="sessions">
             <div class="sub-title">Select Bid Session</div>
             <!-- Innings 1 -->
             <div class="section-box">

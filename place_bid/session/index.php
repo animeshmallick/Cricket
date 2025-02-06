@@ -81,14 +81,15 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                     <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
                 </div>
                 <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
-                <div class="separator"></div>
-                <div class="change-session-btn">
-                    <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
-                </div>
             </div>
         </form>
+        <div class="change-session-btn" style="margin-bottom: 0.25rem">
+            <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
+        </div>
+        <button onclick="redirect_to('Cricket/your_bids/')">Show Your Bids for this match</button>
     </div>
 </div>
+<div class="separator"></div>
 <div id="footer"></div>
 
 <script>

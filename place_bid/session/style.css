@@ -26,15 +26,15 @@
 }
 
 .adjust-btn {
+    margin: 0.3rem 0;
+    width: max-content;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 5px;
-    font-size: 18px;
+    font-size: 1rem;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 1rem;
     transition: background-color 0.3s, transform 0.3s;
-    font-weight: 800;
 }
 .slider {
     width: 80%;

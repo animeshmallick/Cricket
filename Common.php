@@ -42,7 +42,7 @@ class Common
 
     public function get_scorecard_latest($series_id, $match_id)
     {
-        $url = 'https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/scores/' . $series_id . '/' . $match_id . '/latest';
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/' . $series_id . '/' . $match_id . '/latest';
         return json_decode($this->get_response_from_url($url));
     }
 
@@ -113,7 +113,7 @@ class Common
 
     public function get_rates(string $series_id, string $match_id, string $session, int $room, float $amount, float $r): array
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
             return [2.0, 2.0, 2.0];
@@ -156,11 +156,11 @@ class Common
 
     public function get_bid_from_bid_id($bid_id, $type)
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_bid/" . $type . "/" . $bid_id;
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_bid_details/" . $type . "/" . $bid_id;
         return json_decode($this->get_response_from_url($url));
     }
 
-    public function isValidSession($session)
+    public function isValidSession($session): bool
     {
         if (strlen($session) != 2)
             return false;
@@ -180,7 +180,7 @@ class Common
         return json_decode($response);
     }
 
-    public function insert_new_session_bid_to_db(int    $bid_id, string $ref_id, string $series_id, string $match_id, string $session,
+    public function insert_new_session_bid_to_db(int $bid_id, string $ref_id, string $series_id, string $match_id, string $session,
                                                  string $slot, int $runs_min, int $runs_max, float $rate, float $amount,
                                                  string $bid_name, string $room): bool|string
     {
@@ -204,7 +204,7 @@ class Common
             'bid_name' => $bid_name,
             'room' => $room
         );
-        $url = 'https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/save_new_bid';
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data)));
@@ -236,7 +236,7 @@ class Common
 
     function get_all_bids_from_match(string $series_id, string $match_id, string $type, int $room): array
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_match_bids/" . $series_id . "/" . $match_id . "/" . $type . "/" . $room;
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match_bids/" . $series_id . "/" . $match_id . "/" . $type . "/" . $room;
         return json_decode($this->get_response_from_url($url));
     }
 
@@ -301,7 +301,7 @@ class Common
             'bid_name' => $bid_name,
             'room' => $room
         );
-        $url = 'https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/save_new_bid';
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data)));
@@ -320,7 +320,7 @@ class Common
 
     public function recharge_user($recharge_id, $from_ref_id, $to_ref_id, $amount)
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/recharge/" . $recharge_id . "/" . $from_ref_id . "/" . $to_ref_id . "/" . $amount;
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/recharge/" . $recharge_id . "/" . $from_ref_id . "/" . $to_ref_id . "/" . $amount;
         return json_decode($this->get_response_from_url($url));
     }
 
@@ -328,7 +328,7 @@ class Common
     {
         for ($i = 0; $i < 100; $i++) {
             $new_recharge_id = mt_rand(10000000, 99999999);
-            $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_recharge_details/" . $new_recharge_id;
+            $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_recharge_details/" . $new_recharge_id;
             $recharge = json_decode($this->get_response_from_url($url));
             if (!isset($recharge->id))
                 return $new_recharge_id;
@@ -337,17 +337,17 @@ class Common
     }
     public function get_all_bids(string $series_id, string $match_id, string $type)
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_match_bids/" . $series_id . "/" . $match_id . "/" . $type . "/any";
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match_bids/" . $series_id . "/" . $match_id . "/" . $type . "/any";
         return json_decode($this->get_response_from_url($url));
     }
     public function get_all_users()
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_all_users";
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users";
         return json_decode($this->get_response_from_url($url));
     }
     public function get_all_matches(): array
     {
-        $url = 'https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_all_matches';
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches';
         $matches = json_decode($this->get_response_from_url($url));
         usort($matches, function($a, $b) {
             return strcmp($a->id,$b->id) * -1;
@@ -374,7 +374,7 @@ class Common
     }
     public function get_user_from_phone(mixed $phone)
     {
-        $url = "https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/login/phone/" . $phone;
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/phone/" . $phone;
         return json_decode($this->get_response_from_url($url));
     }
 }

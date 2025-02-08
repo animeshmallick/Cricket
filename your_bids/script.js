@@ -1,6 +1,6 @@
 function fill_bids() {
     const ref_id = getCookie('ref_id');
-    fetch("https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_user_bids/" + ref_id + "/session")
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session")
         .then(response => response.json())
         .then(data => fill_bid_content(data))
         .then(() => {

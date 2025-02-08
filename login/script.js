@@ -5,7 +5,7 @@ async function validateForm(event) {
     const password = document.getElementById('password').value;
 
     // Simple validation (you can add more complex validation)
-    const loginUrl = `https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/login/${phone}/${password}`;
+    const loginUrl = `https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/${phone}/${password}`;
     console.log(loginUrl);
     fetch(loginUrl)
         .then(response => response.json())
@@ -26,5 +26,4 @@ async function validateForm(event) {
             return false;
         })
     // Redirect to another page if validation is successful
-
 }

@@ -39,7 +39,7 @@ async function fill_header(){
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .then(async () => {
             const ref_id = getCookie('ref_id');
-            fetch('https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/get_user_balance/'+ref_id)
+            fetch('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id)
                 .then(async response => {return await response.json()})
                 .then(async balance => {
                     document.getElementById('balance').innerHTML = '&#8377;' + balance.balance;
@@ -76,7 +76,7 @@ function fill_scorecard(){
     fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
         .then(async () => {
-            fetch(`https://om8zdfeo2h.execute-api.ap-south-1.amazonaws.com/scores/${series_id}/${match_id}/latest`)
+            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${series_id}/${match_id}/latest`)
                 .then(async response => {return await response.json()})
                 .then(async score => {
                     update_scorecard(score);

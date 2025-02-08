@@ -130,3 +130,24 @@ button.nav-link {
     background: linear-gradient(90deg, #04ddf1, #24f104);
     text-align: center;
 }
+div.rooms-container {
+    background-color: rgba(7, 7, 7, 0.29);
+    border-bottom: 0.2rem solid #f90606;
+    border-radius: 1rem;
+    text-align: center;
+    font-weight: bold;
+    margin: 0.2rem 0.2rem;
+    box-shadow: 0 2rem 1rem rgba(250, 4, 4, 0.5);
+    display: block;
+    align-content: center;
+    padding: 0.2rem;
+    background-image: url("../images/stadium2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+a.room-selected {
+    background-color: greenyellow;
+    border: 0.3rem solid limegreen;
+    font-size: 0.8rem;
+}

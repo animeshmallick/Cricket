@@ -35,6 +35,14 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 <div class="separator"></div>
 <div class="container" id="bid_container">
     <div class="sub-title">Place new bid</div>
+    <div class="play-container">
+        <div class="sub-title">Select Room Based On Bid Amount</div>
+        <div style="display: flex; justify-content: space-between">
+            <a class="room <?php echo $room == 1 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=1" id="room_1"><span>&#8377;1 - &#8377;500</span></a>
+            <a class="room <?php echo $room == 2 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=2" id="room_1"><span>&#8377;500 - &#8377;1500</span></a>
+            <a class="room <?php echo $room == 3 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=3" id="room_1"><span>&#8377;1500 - &#8377;2500</span></a>
+        </div>
+    </div>
     <div class="bid-section">
         <form action="../../bid_placed/index.php" method="post" id="place-bid-form">
             <input type="hidden" name="bid_id" value="<?php echo $common->get_unique_bid_id('session'); ?>" hidden="hidden">

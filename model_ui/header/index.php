@@ -30,7 +30,7 @@
             <button class="nav-link" onclick="redirect_to('Cricket/admin/withdrawals.php')">Withdrawals</button>
             <div class="separator"></div>
         <?php }?>
-        <a class="nav-link" onclick="logout()">Logout</a>
+        <button class="nav-link" onclick="logout();">Logout</button>
         <div class="separator"></div>
         <a class="nav-link" onclick="w3_close()">Close</a>
         <div class="separator"></div>

@@ -183,3 +183,18 @@ span.amount-span {
     padding: 0.2rem 1rem;
     animation: breathe-slots 1s infinite;
 }
+a.room {
+    background-color: powderblue;
+    display: block;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 3rem rgba(7, 7, 7, 0.31), 0 0 3rem rgba(0,0,0,0.24);
+    font-weight: bolder;
+    white-space: nowrap;
+    padding: 0.3rem 0.5rem;
+    margin: 0.4rem;
+    border: 0.3rem solid cornflowerblue;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    width: 33%;
+}

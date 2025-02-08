@@ -14,6 +14,7 @@ async function validateForm(event) {
                 set_cookie("ref_id", response.ref_id);
                 set_cookie("fname", response.fname);
                 set_cookie("lname", response.lname);
+                set_cookie("user_type", response.type);
                 redirect_to('Cricket/');
                 return true;
             } else {

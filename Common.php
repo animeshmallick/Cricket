@@ -251,12 +251,12 @@ class Common
         $x = $x - ($x / 100) + $amount;
 
         foreach ($all_bids as $bid) {
-            if ($bid->slot == 'T1')
+            if ($bid->slot == 'x')
                 $a += (float)($bid->amount);
         }
 
         foreach ($all_bids as $bid) {
-            if ($bid->slot == 'T2')
+            if ($bid->slot == 'y')
                 $b += (float)($bid->amount);
         }
 

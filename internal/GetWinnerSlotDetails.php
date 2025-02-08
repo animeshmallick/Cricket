@@ -12,7 +12,7 @@ $series_id = $_GET["series_id"];
 $amount = (float)$_GET['amount'];
 $room = intval($_GET['room']);
 
-$scorecard = $common->get_scorecard_latest($series_id, $match_id, "GetWinnerSlotDetails");
+$scorecard = $common->get_scorecard_latest($series_id, $match_id);
 
 $all_bids = $common->get_all_bids_from_match($series_id, $match_id, 'winner', $room);
 $rates = $common->get_winner_rates($all_bids, $amount);

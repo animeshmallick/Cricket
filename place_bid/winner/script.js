@@ -7,7 +7,7 @@ function update_winner_slots(update_selected){
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
     const amount = document.getElementById('bidSlider').value;
-    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket//internal/GetWinnerSlotDetails.php?series_id=${series_id}&match_id=${match_id}&session=${session}&room=${room}&amount=${amount}`)
+    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/internal/GetWinnerSlotDetails.php?series_id=${series_id}&match_id=${match_id}&session=${session}&room=${room}&amount=${amount}`)
         .then(response => response.json())
         .then(data => {
             fill_winner_slot_details(data, update_selected);

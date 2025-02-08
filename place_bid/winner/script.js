@@ -1,6 +1,7 @@
 let slots_timer;
 let slots_time = 0;
 function update_winner_slots(update_selected){
+    fill_winner_slot_details_default();
     const urlParams = new URLSearchParams(window.location.search);
     const session = urlParams.get('session');
     const room = urlParams.get('room');
@@ -19,6 +20,22 @@ function update_winner_slots(update_selected){
             }, 5000);
         })
         .catch(err => console.log(err));
+}
+function fill_winner_slot_details_default(){
+    document.getElementById('balls_remaining').style.display = 'block';
+    document.getElementById("slot_a_runs").innerHTML = "Loading...";
+    document.getElementById("slot_a_amount").innerHTML = "Loading...";
+    document.getElementById("slot_b_runs").innerHTML = "Loading...";
+    document.getElementById("slot_b_amount").innerHTML = "Loading...";
+    let slot_a = document.getElementById("slot_a");
+    let slot_b = document.getElementById("slot_b");
+    slot_a.classList.remove("selected");
+    slot_b.classList.remove("selected");
+    slot_a.classList.add("disabled");
+    slot_b.classList.add("disabled");
+    slot_a.disabled = true;
+    slot_b.disabled = true;
+    console.log("Slots Loading");
 }
 function fill_winner_slot_details(bid_master, update_selected){
     const amount = document.getElementById('bidSlider').value;

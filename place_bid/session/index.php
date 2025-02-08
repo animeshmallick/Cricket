@@ -43,12 +43,12 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
             <input type="hidden" name="bid_amount" id="bid_amount" value="<?php echo $amount_default;?>">
             <div class="input-section">
                 <span class="select-amount">Slide to Change Amount</span>
-                <div class="input-section" style="display: flex">
+                <div class="slider-div" style="display: flex">
                     <input type="range" id="bidSlider" class="slider"
                        min="<?php echo $amount_min;?>"
                        max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>" name="amount">
                 </div>
-                <div class="bid-amount" style="text-align: center">Bid Amount <span id="bidAmount">₹0</span></div>
+                <div class="bid-amount" style="text-align: center">Bid Amount <span class="amount-span" id="bidAmount">₹0</span></div>
             </div>
             <div class="slots">
                 <div class="slot-header">Choose your slot</div>
@@ -84,7 +84,9 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
         <div class="change-session-btn" style="margin-bottom: 0.25rem">
             <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
         </div>
-        <button onclick="redirect_to('Cricket/your_bids/')">Show Your Bids for this match</button>
+        <div class="change-session-btn" style="margin-bottom: 0.25rem">
+            <a style="text-decoration: none; color: inherit;" onclick="redirect_to('Cricket/your_bids/')">Show Your Bids for this match</a>
+        </div>
     </div>
 </div>
 <div class="separator"></div>

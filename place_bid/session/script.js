@@ -1,6 +1,7 @@
 let slots_timer;
 let slots_time = 0;
 function update_session_slots(update_selected){
+    fill_slot_details_default();
     const urlParams = new URLSearchParams(window.location.search);
     const session = urlParams.get('session');
     const room = urlParams.get('room');
@@ -20,6 +21,25 @@ function update_session_slots(update_selected){
             }, 5000);
         })
         .catch(err => console.log(err));
+}
+function fill_slot_details_default(){
+    document.getElementById('balls_remaining').innerHTML = "-";
+    document.getElementById('session_close_in_balls').innerHTML = "-";
+    document.getElementById("slot_a_runs").innerHTML = "-";
+    document.getElementById('slot_a_runs_1').innerHTML = "-";
+    document.getElementById("slot_a_amount").innerHTML = "-";
+    document.getElementById("slot_b_runs").innerHTML = "-";
+    document.getElementById('slot_b_runs_1').innerHTML = "-";
+    document.getElementById("slot_b_amount").innerHTML = "-";
+    document.getElementById("slot_c_runs").innerHTML = "-";
+    document.getElementById('slot_c_runs_1').innerHTML = "-";
+    document.getElementById("slot_c_amount").innerHTML = "-";
+    let slot_a = document.getElementById("slot_a");
+    let slot_b = document.getElementById("slot_b");
+    let slot_c = document.getElementById("slot_c");
+    slot_a.classList.remove("selected");
+    slot_b.classList.remove("selected");
+    slot_c.classList.remove("selected");
 }
 function fill_slot_details(bid_master, update_selected){
     const amount = document.getElementById('bidSlider').value;

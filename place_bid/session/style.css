@@ -22,7 +22,12 @@
     padding: 0 0.5rem;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+    border-radius: 1rem;
+}
+div.slider-div {
+    padding: 1rem;
+    background-color: wheat;
+    border-radius: 1rem;
 }
 
 .adjust-btn {
@@ -37,7 +42,7 @@
     transition: background-color 0.3s, transform 0.3s;
 }
 .slider {
-    width: 80%;
+    width: 100%;
     margin: 0 15px;
     transition: all 0.3s ease;
 }
@@ -143,14 +148,16 @@ span.slot-line {
     margin: 0;
 }
 div.change-session-btn {
-    background-color: #b71c1c;
-    color: white;
+    background: linear-gradient(90deg, #edcf08, orangered);
+    width: 90%;
+    font-weight: bold;
+    color: black;
     padding: 0.5rem 1rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     border-radius: 1rem;
     border: none;
     margin-top: 0.75rem;
-    width: 100%;
+    margin-left: 5%;
     text-align: center;
 }
 div.balls-remaining-container {
@@ -166,4 +173,14 @@ div.balls-remaining-container {
 }
 .moveText {
     animation: moveText 2s linear infinite;
+}
+span.amount-span {
+    font-size: 2rem;
+    background: linear-gradient(90deg, #24f104, #edcf08);
+    border-radius: 1rem;
+    padding: 0.2rem 1rem;
+    animation: breathe-slots 1s infinite;
+}
+div.hidden{
+    display: none;
 }

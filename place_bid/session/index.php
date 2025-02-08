@@ -44,11 +44,9 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
             <div class="input-section">
                 <span class="select-amount">Slide to Change Amount</span>
                 <div class="input-section" style="display: flex">
-                    <button id="decrease" class="adjust-btn">-100</button>
                     <input type="range" id="bidSlider" class="slider"
                        min="<?php echo $amount_min;?>"
                        max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>" name="amount">
-                    <button id="increase" class="adjust-btn">+100</button>
                 </div>
                 <div class="bid-amount" style="text-align: center">Bid Amount <span id="bidAmount">₹0</span></div>
             </div>
@@ -96,8 +94,6 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     const bidSlider = document.getElementById('bidSlider');
     const bidAmount = document.getElementById('bidAmount');
     const bidInput = document.getElementById('bidInput');
-    const increaseBtn = document.getElementById('increase');
-    const decreaseBtn = document.getElementById('decrease');
     const placeBidBtn = document.getElementById('placeBidBtn');
     const slots = document.querySelectorAll('.slot');
 

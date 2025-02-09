@@ -12,7 +12,12 @@ function update_session_slots(update_selected){
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            fill_slot_details(data, update_selected);
+            if(data.hasOwnProperty('error')){
+                alert(data.error);
+                redirect_to('Cricket/');
+            }else {
+                fill_slot_details(data, update_selected);
+            }
         })
         .then(() => {
             clearInterval(slots_timer);

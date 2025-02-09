@@ -1,4 +1,5 @@
 async function validateForm(event) {
+    document.getElementsByClassName('btn')[0].innerHTML = "Logging in...";
     event.preventDefault(); // Prevent form submission
 
     const phone = document.getElementById('phone').value;

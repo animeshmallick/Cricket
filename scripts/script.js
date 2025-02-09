@@ -30,7 +30,7 @@ function getCookie(name) {
 document.addEventListener('click', function(e) {
     let sidebar = document.getElementById('side-bar-container');
     const sidebarIcon = document.getElementById('side-bar-icon');
-    if (!sidebar.contains(e.target) && !sidebarIcon.contains(e.target)) {
+    if (sidebar !== null && !sidebar.contains(e.target) && !sidebarIcon.contains(e.target)) {
         w3_close();
     }
 });

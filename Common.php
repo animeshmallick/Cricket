@@ -377,4 +377,10 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/phone/" . $phone;
         return json_decode($this->get_response_from_url($url));
     }
+
+    public function validate_login(mixed $phone, mixed $password)
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/".$phone."/".$password;
+        return json_decode($this->get_response_from_url($url));
+    }
 }

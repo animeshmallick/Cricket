@@ -60,7 +60,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
             </div>
             <div class="slots">
                 <div class="slot-header">Choose your slot</div>
-                <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat">Session : Innings 1, Over 1-6</div>
+                <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat" id="session_name">Session : Innings 1, Over 1-6</div>
                 <div style="display: flex">
                     <div class="balls-remaining-container">Balls Remaining: <span id="balls_remaining">36</span></div>
                     <div class="balls-remaining-container">Session Closing in : <span id="session_close_in_balls">30</span> balls</div>

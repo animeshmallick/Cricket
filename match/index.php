@@ -28,7 +28,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <script src="script.js"></script>
         <script src="../scripts/script.js"></script>
     </head>
-    <body onload="fill_header();fill_scorecard();fill_footer();">
+    <body onload="fill_header();fill_scorecard();enable_session_buttons();fill_footer();">
         <div id="header"></div>
         <div id="scorecard"></div>
         <div class="separator"></div>

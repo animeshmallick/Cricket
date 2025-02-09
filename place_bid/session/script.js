@@ -34,6 +34,7 @@ function fill_slot_details_default(){
     document.getElementById("slot_c_runs").innerHTML = "-";
     document.getElementById('slot_c_runs_1').innerHTML = "-";
     document.getElementById("slot_c_amount").innerHTML = "-";
+    document.getElementById("session_name").innerHTML = "-";
     let slot_a = document.getElementById("slot_a");
     let slot_b = document.getElementById("slot_b");
     let slot_c = document.getElementById("slot_c");
@@ -42,6 +43,7 @@ function fill_slot_details_default(){
     slot_c.classList.remove("selected");
 }
 function fill_slot_details(bid_master, update_selected){
+    document.getElementById("session_name").innerHTML = bid_master.session_name;
     const amount = document.getElementById('bidSlider').value;
     document.getElementById('balls_remaining').innerHTML = bid_master.balls_left;
     document.getElementById('session_close_in_balls').innerHTML = bid_master.balls_left - 6;

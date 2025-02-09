@@ -8,6 +8,15 @@ if($common->is_user_logged_in()){
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-BQY4C789R1');
+    </script>
     <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
     <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
     <script src="script.js"></script>

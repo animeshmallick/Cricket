@@ -17,7 +17,7 @@ function settle_bid(bid_id, type, session){
                     window.location.href = "https://www.cricketipl.in/Cricket/admin/admin_match_"+type+"_dashboard.php?session=" + session;
                 }
             };
-            xmlhttp.open("GET", "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/"+type+"/" + bid_id + "/" + userResponse.toLowerCase(), true);
+            xmlhttp.open("GET", "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/"+bid_id+"/" + type + "/" + userResponse.toLowerCase(), true);
             xmlhttp.send();
         }
     }

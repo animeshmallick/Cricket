@@ -74,3 +74,18 @@ div.player {
 img.team-logo {
     border-radius: 0.75rem;
 }
+div.sub-title {
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
+    border-radius: 1rem;
+    border-bottom: 0.2rem solid #edcf08;
+    box-shadow: 0 0.5rem 0.5rem rgba(237, 207, 8, 0.4);
+    padding: 0.1rem 0.3rem;
+    color: wheat;
+    background: #009579;
+}
+span.player {
+    font-size: 1.2rem;
+    color: wheat;
+}

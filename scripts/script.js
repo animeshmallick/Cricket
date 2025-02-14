@@ -118,41 +118,10 @@ function fill_scorecard(){
         .catch(error => console.log(error));
 }
 function update_scorecard(scorecard){
-    let over_str_1 = scorecard.team1_score.overs;
-    let over_str_2 = scorecard.team2_score.overs;
-    if(scorecard.innings === 1){
-        over_str_1 -= 1;
-        let bls = get_valid_balls(scorecard.this_over);
-        over_str_1 = over_str_1+"."+bls;
-        if(bls === 6 || bls === 0)
-            over_str_1 = scorecard.team1_score.overs;
-    }
-    if(scorecard.innings === 2){
-        over_str_2 -= 1;
-        let bls = get_valid_balls(scorecard.this_over);
-        over_str_2 = over_str_2+"."+bls;
-        if(bls === 6 || bls === 0)
-            over_str_2 = scorecard.team2_score.overs;
-    }
-    let total_balls = 0;
-    if(scorecard.innings === 1){
-        let x = parseFloat(over_str_1) * 10;
-        total_balls = (x * 6 / 10) + (x % 10);
-    }else{
-        let x = parseFloat(over_str_2) * 10;
-        total_balls = (x * 6 / 10) + (x % 10);
-    }
-    if(total_balls <= 0){
-        over_str_1 = 0;
-        over_str_2 = 0;
-    }
-    let crr = 0;
-    crr = (scorecard.innings === 1 ? scorecard.team1_score.runs : scorecard.team2_score.runs) / total_balls * 6;
-    let rrr = scorecard.innings === 2 ? (6 * (scorecard.team1_score.runs - scorecard.team2_score.runs + 1) / (120 - total_balls)) : 0;
-    let team_score = [];
+    const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
     document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
     document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
-    document.getElementById('match_name').innerHTML = scorecard.teams[0] + ' vs ' + scorecard.teams[1];
+    document.getElementById('match_name').innerHTML = scorecard.teams[0].split(' ')[0] + ' vs ' + scorecard.teams[1].split(' ')[0];
 
     document.getElementById('team1_logo')
         .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${scorecard.teams[0].toLowerCase()}.png`)
@@ -160,43 +129,39 @@ function update_scorecard(scorecard){
         .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${scorecard.teams[1].toLowerCase()}.png`)
 
     document.getElementById("team1_name").innerHTML = scorecard.teams[0];
-    team_score[0] = scorecard.team1_score.runs + "/" + scorecard.team1_score.wickets;
-    document.getElementById("team1_score").innerHTML = team_score[0];
-    document.getElementById('team1_overs').innerHTML = " (" + over_str_1 + " ov)";
+    document.getElementById("team1_score").innerHTML = scorecard.team1_score.runs + "/" + scorecard.team1_score.wickets;
+    document.getElementById('team1_overs').innerHTML = " (" + scorecard.team1_score.over + " ov)";
     document.getElementById("team2_name").innerHTML = scorecard.teams[1];
-    team_score[1] = scorecard.team2_score.runs + "/" + scorecard.team2_score.wickets;
-    document.getElementById("team2_score").innerHTML = team_score[1];
-    document.getElementById('team2_overs').innerHTML = " (" + over_str_2 + " ov)";
+    document.getElementById("team2_score").innerHTML = scorecard.team2_score.runs + "/" + scorecard.team2_score.wickets;;
+    document.getElementById('team2_overs').innerHTML = " (" + scorecard.team2_score.over + " ov)";
     document.getElementById("match_additional_details").innerHTML = scorecard.match_additional_details[0];
-    document.getElementById('bowler').innerHTML = scorecard.bowler;
-    document.getElementById('batsman1').innerHTML = scorecard.batsmen[0];
-    document.getElementById('batsman2').innerHTML = scorecard.batsmen[1];
-    //document.getElementById('current-over-id').innerHTML = scorecard.teams[scorecard.innings - 1]+" | " +team_score[scorecard.innings - 1];
-    create_current_over_balls_container(scorecard.this_over);
-    document.getElementById('this_over_summary').innerHTML =
-        "Over " + (scorecard.innings === 1 ? over_str_1 : over_str_2)+"  :  " + scorecard.this_over_summary;
 
-    if(scorecard.innings === 1)
-        document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
-    else {
-        let x = crr !== 0 ? (crr.toFixed(2)) : "";
-        let y = rrr !== 0 ? (rrr.toFixed(2)) : "";
-        document.getElementById('crr').innerHTML =  x + " &  R.RR:" + y;
-    }
+    document.getElementById('batsman1').innerHTML =
+        scorecard.batsmen.batsman1.name+" "+scorecard.batsmen.batsman1.runs+" ("+scorecard.batsmen.batsman1.balls+")";
+    document.getElementById('batsman1_detail').innerHTML =
+        scorecard.batsmen.batsman1.fours+" 4s, "+scorecard.batsmen.batsman1.sixes+" 6s";
+
+    document.getElementById('batsman2').innerHTML =
+        scorecard.batsmen.batsman2.name+" "+scorecard.batsmen.batsman2.runs+" ("+scorecard.batsmen.batsman2.balls+")";
+    document.getElementById('batsman2_detail').innerHTML =
+        scorecard.batsmen.batsman2.fours+" 4s, "+scorecard.batsmen.batsman2.sixes+" 6s";
+
+    document.getElementById('bowler1').innerHTML = scorecard.bowler.bowler1.name;
+    document.getElementById('bowler1_detail').innerHTML = scorecard.bowler.bowler1.runs+" ("+scorecard.bowler.bowler1.overs+") "+scorecard.bowler.bowler1.wickets+"W";
+
+    document.getElementById('bowler2').innerHTML = scorecard.bowler.bowler2.name;
+    document.getElementById('bowler2_detail').innerHTML = scorecard.bowler.bowler2.runs+" ("+scorecard.bowler.bowler2.overs+") "+scorecard.bowler.bowler2.wickets+"W";
+
+    create_current_over_balls_container(scorecard.this_over);
+
+    document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
     //document.getElementById('rrr').innerHTML = rrr !== 0 ? ("Req. RR : "+ rrr.toFixed(2)) : "";
 
-    document.getElementById('partnership').innerHTML = scorecard.partnership.replaceAll(' Runs, ', ' (').replaceAll(' B', ')');
-    if (scorecard.last_batsman.trim().length > 0) {
-        if(scorecard.last_wicket_at.trim().length > 0) {
-            document.getElementById('last_batsman').parentElement.parentElement.style.display = "block";
-            document.getElementById('last_batsman').innerHTML = scorecard.last_batsman + " @ " + scorecard.last_wicket_at;
-        }else{
-            document.getElementById('last_batsman').parentElement.parentElement.style.display = "block";
-            document.getElementById('last_batsman').innerHTML = scorecard.last_batsman;
-        }
-    }else{
-        document.getElementById('last_batsman').parentElement.parentElement.style.display = "none";
-    }
+    document.getElementById('partnership').innerHTML = scorecard.partnership;
+
+    document.getElementById('last_batsman').innerHTML = scorecard.last_batsman;
+    document.getElementById('last_wicket').innerHTML = scorecard.last_wicket_at;
+
     document.getElementById('timer').innerHTML = "&nbsp";
     console.log('Scorecard Updated');
 }
@@ -232,14 +197,11 @@ function enable_session_buttons(){
         .catch(error => console.log(error));
 
 }
-function get_valid_balls(this_over){
-    let count = 0;
-    for (let i=0;i<this_over.length;i++){
-        if(this_over[i].includes('w') || this_over[i].includes('nb'))
-            continue;
-        count++;
-    }
-    return count;
+function get_formated_over(over){
+    let x = over * 10;
+    let y = x / 10;
+    let z = x % 10;
+    return y + z/6;
 }
 function create_current_over_balls_container(balls){
     document.getElementById('current-over-container').textContent = '';

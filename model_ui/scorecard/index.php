@@ -37,19 +37,23 @@
     <!-- Player Details -->
     <div class="team-hover mt-2 flex justify-between items-center text-sm p-1 rounded-md" style="animation: breathe 2s infinite ease-in-out;">
         <div class="player">
-            <div style="margin-bottom: 0.4rem;display: flex">
-                <span id='batsman1' class="text-black">Loading Batsman</span>
-                <svg class="mt-0.5 text-gray-200 ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            <div style="margin-bottom: 0.4rem;">
+                <div><span id='batsman1' class="text-black player">Loading Batsman</span></div>
+                <div><span id='batsman1_detail' class="text-black">Loading Batsman</span></div>
             </div>
-            <div style="margin-bottom: 0.4rem;display: flex">
-                <span id='batsman2' class="text-black">Loading Batsman</span>
-                <svg class="mt-0.95 text-gray-200 ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            <div style="margin-bottom: 0.4rem;">
+                <div><span id='batsman2' class="text-black player">Loading Batsman</span></div>
+                <div><span id='batsman2_detail' class="text-black">Loading Batsman</span></div>
             </div>
         </div>
         <div class="player">
             <div style="margin-bottom: 0.4rem;">
-                <span id='bowler' class="text-black">Loading Bowler</span>
-                <svg class="mt-0.95 text-gray-200 w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+                <div><span id='bowler1' class="text-black player">Loading Bowler</span></div>
+                <div><span id='bowler1_detail' class="text-black">Loading Bowler</span></div>
+            </div>
+            <div style="margin-bottom: 0.4rem;">
+                <div><span id='bowler2' class="text-black player">Loading Bowler</span></div>
+                <div><span id='bowler2_detail' class="text-black">Loading Bowler</span></div>
             </div>
         </div>
     </div>
@@ -62,14 +66,17 @@
         </div>
         <div class="flex items-center gap-1">
             <svg class="w-5 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h4v8h12v-8h4L12 2z"></path></svg>
-            <span>Last Wicket: <span id='last_batsman' class="text-red-400"></span></span>
+            <span>Last Wicket At : <span id='last_wicket' class="text-red-400"></span></span>
+        </div>
+        <div class="flex items-center gap-1">
+            <svg class="w-5 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h4v8h12v-8h4L12 2z"></path></svg>
+            <span>Last Batsman: <span id='last_batsman' class="text-red-400"></span></span>
         </div>
     </div>
     <div class="small-separator"></div>
     <!-- Current Over Scores -->
     <div class="text-l text-gray-300">
-        <span class="font-bold text-red-400">This Over : </span>
-        <span id="this_over_summary" class="text-yellow-200"></span>
+        <div class="sub-title">This Over : </div>
         <div class="ball-container" id="current-over-container">
         </div>
     </div>

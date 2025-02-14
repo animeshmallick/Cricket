@@ -110,6 +110,8 @@ if($common->is_user_logged_in()){
         <p style="font-size: 1.5rem">Login To Start Bidding</p>
         <div class="separator"></div>
         <button class="login-btn" onclick="redirect_to('Cricket/login')">Login</button>
+        <button class="button" onclick="redirect_to('Cricket/register')">Register</button>
+        <div class="separator"></div>
     </div>
 
     <script>

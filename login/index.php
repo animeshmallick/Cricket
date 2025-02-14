@@ -36,7 +36,7 @@ if($common->is_user_logged_in()){
                 <h2>Attention Required</h2>
                 <div class="separator"></div>
                 <p style="color:red;font-size: 1.5rem" id="message">
-                    To activate your account send a Whatsapp/Text Message as "ACTIVATE <?php echo $response->ref_id; ?>" to +91(1111111111) from your registered mobile number (<?php echo $response->phone; ?>).
+                    To activate your account send a Whatsapp/Text Message as "ACTIVATE <?php echo $response->ref_id; ?>" to +91 (9153217256) from your registered mobile number (<?php echo $response->phone; ?>).
                 </p>
                 <div class="separator"></div>
                 <div class="register-link">

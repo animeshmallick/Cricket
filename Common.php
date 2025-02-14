@@ -383,4 +383,52 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/".$phone."/".$password;
         return json_decode($this->get_response_from_url($url));
     }
+
+    public function is_new_phone_number(mixed $phone): bool
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/phone/".$phone;
+        return !isset(json_decode($this->get_response_from_url($url))->id);
+    }
+
+    public function insert_new_user(mixed $fname, mixed $lname, mixed $phone, mixed $password, mixed $ref_id, mixed $email, mixed $parent_ref_id, string $status): bool
+    {
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_new_user';
+        $data = array(
+            "id" => $ref_id,
+            "email" => $email,
+            "fname" => $fname,
+            "lname" => $lname,
+            "parent_ref_id" => $parent_ref_id,
+            "password" => $password,
+            "phone" => $phone,
+            "ref_id" => $ref_id,
+            "status" => $status,
+            "type" => 'user',
+        );
+        $json_data = json_encode($data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($json_data)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS,$json_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return false;
+        }
+        curl_close($ch);
+        return true;
+    }
+
+    public function set_cookie(string $cookie_name, mixed $cookie_value): void
+    {
+        setcookie($cookie_name, $cookie_value, time() + (3600), "/");
+    }
+
+    public function validate_unique_ref_id(int $ref_id): bool
+    {
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/validate_ref_id/' . $ref_id;
+        return json_decode($this->get_response_from_url($url))->result == true;
+    }
 }

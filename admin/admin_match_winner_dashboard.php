@@ -49,17 +49,12 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                     <tr>
                         <td><?php echo $common->get_user_from_users($all_users, $bid->ref_id); ?></td>
                         <td>
-                            <?php if ($bid->slot == 'x')
-                                echo 'Runs '.$bid->runs_max." or Less";
-                            else if($bid->slot == 'y')
-                                echo "Runs ".$bid->runs_min." to ".$bid->runs_max;
-                            else if($bid->slot == 'z')
-                                echo "Runs ".$bid->runs_min." or More";
-                            $result=explode(" VS ", $common->get_match_name_match_id($all_matches, $bid->match_id, $bid->series_id));
-                            if($bid->slot=="T1")
-                                echo $result[0]." Wins";
-                            if($bid->slot=="T2")
-                                echo $result[1]." Wins";
+                            <?php
+                            $teams = $common->get_scorecard_latest($bid->match_id, $bid->series_id)->teams;
+                            if($bid->slot=="x")
+                                echo $teams[0]." Wins";
+                            if($bid->slot=="y")
+                                echo $teams[1]." Wins";
                             ?>
                         </td>
                         <?php $amount_string = '₹'.$bid->amount." && ₹".(int)($bid->amount * $bid->rate);

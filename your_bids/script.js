@@ -24,7 +24,8 @@ function fill_bid_content(bids){
         card.innerHTML = `
                     <div class="card-inner">
                         <div>
-                            <div class="sub-title">${bid.type}</div>
+                            <div class="sub-title">Innings ${bid.innings} : Over ${bid.session === 'a' ? '1 to 6' :
+                                (bid.session === 'b' ? '7 to 10' : (bid.session === 'c' ? '11 to 16' : '17 to 20'))}</div>
                             <div style="display: flex;width: 100%">
                                 <div style="width: 40%">
                                     <div style="text-align: center"><p class="bid_amount">PUT <span class="amount_span_card">${bid.amount}</span></p></div>

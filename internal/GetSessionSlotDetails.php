@@ -17,14 +17,14 @@ $scorecard = $common->get_scorecard_latest($series_id, $match_id);
 $run = $session[1] == 1 ? $scorecard->team1_score->runs : $scorecard->team2_score->runs;
 if ($session[1] == 1){
     if($scorecard->innings == 1)
-        $balls = (($scorecard->over - 1) * 6 ) + $common->get_valid_balls($scorecard->this_over);
+        $balls = $common->get_total_balls($scorecard->over);
     else
         $balls = 120;
 }else{
     if($scorecard->innings == 1)
         $balls = 0;
     else
-        $balls = (($scorecard->over - 1) * 6 ) + $common->get_valid_balls($scorecard->this_over);
+        $balls = $common->get_total_balls($scorecard->over);
 }
 if($session[0] == 'a')
     $balls_left = 36 - $balls;

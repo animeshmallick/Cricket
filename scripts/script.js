@@ -187,8 +187,9 @@ function enable_session_buttons(){
                         document.getElementById('a2').classList.remove('disabled');
                     if (scorecard.over_id > 201 && scorecard.over_id < 210)
                         document.getElementById('b2').classList.remove('disabled');
-                    if (scorecard.over_id < 220 || scorecard.team2_score.wickets < 10)
-                        document.getElementById('winner').classList.remove('disabled');
+                    if (scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 10)
+                        if (scorecard.team2_score.wickets < 10)
+                            document.getElementById('winner').classList.remove('disabled');
                 }
             }catch(e){
                 console.log(e);

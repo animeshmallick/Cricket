@@ -431,4 +431,12 @@ class Common
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/validate_ref_id/' . $ref_id;
         return json_decode($this->get_response_from_url($url))->result == true;
     }
+
+    public function get_total_balls($over): int
+    {
+        $x = $over * 10;
+        $y = floor($x / 10);
+        $z = $x % 10;
+        return $y * 6 + $z;
+    }
 }

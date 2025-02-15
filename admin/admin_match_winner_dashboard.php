@@ -50,7 +50,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                         <td><?php echo $common->get_user_from_users($all_users, $bid->ref_id); ?></td>
                         <td>
                             <?php
-                            $teams = $common->get_scorecard_latest($bid->match_id, $bid->series_id)->teams;
+                            $teams = $common->get_scorecard_latest($bid->series_id, $bid->match_id)->teams;
                             if($bid->slot=="x")
                                 echo $teams[0]." Wins";
                             if($bid->slot=="y")

@@ -2,13 +2,27 @@ function fill_bids() {
     const ref_id = getCookie('ref_id');
     fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session")
         .then(response => response.json())
-        .then(data => fill_bid_content(data))
+        .then(data => {
+            fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/winner")
+                .then(response => response.json())
+                .then(response => data.concat(response))
+                .then(data => {
+                    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${getCookie('series_id')}/${getCookie('match_id')}/latest`)
+                        .then(response => response.json())
+                        .then(score => score.teams)
+                        .then(teams => {
+                            fill_bid_content(data.filter(bid => bid.match_id === getCookie('match_id') && bid.series_id === getCookie('series_id')), teams)
+                        })
+                        .catch(error => console.error('Error:', error));
+                })
+                .catch(error => console.error('Error:', error))
+        })
         .then(() => {
             document.getElementById("loading").style.display = "none";
         })
         .catch(error => console.error('Error:', error));
 }
-function fill_bid_content(bids){
+function fill_bid_content(bids, teams){
     bids.sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp));
     const bidsContainer = document.getElementById("bidsContainer");
     bids.forEach((bid) => {
@@ -18,7 +32,8 @@ function fill_bid_content(bids){
         else if (bid.status === "loss") statusClass = "lost";
         else if (bid.status === "placed") statusClass = "pending";
 
-        const runs_slot = bid.slot === 'x' ? `Runs ${bid.runs_max} or Less` : (bid.slot === 'y' ? `Runs ${bid.runs_min} to ${bid.runs_max}` : `Runs ${bid.runs_min} or More`);
+        const runs_slot = bid.type === 'session' ? bid.slot === 'x' ? `Runs ${bid.runs_max} or Less` : (bid.slot === 'y' ? `Runs ${bid.runs_min} to ${bid.runs_max}` : `Runs ${bid.runs_min} or More`) :
+            (bid.type === 'winner' ? bid.slot === 'x' ? teams[0]+" Wins" : teams[1]+" Wins" : "--");
 
         card.className = `card ${statusClass}`;
         card.innerHTML = `

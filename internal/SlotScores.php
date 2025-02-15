@@ -48,7 +48,12 @@ class Scores {
         $r1 = $this->get_r1($curr_runs, $curr_balls_played, $slot);
         $r2 = $this->get_r2_without_wickets($curr_runs, $curr_balls_played%120, $slot);
         $r2 = max($r1, $this->update_r2_with_wickets($r2, $scorecard, $bid_innings));
-        return max($this->get_r($r1, $r2, $curr_balls_played, $slot),$slot == 'a' ? 36 : ($slot == 'b' ? 60 : ($slot == 'c' ? 96 : 120)));
+        return min(
+                max(
+                    $this->get_r($r1, $r2, $curr_balls_played, $slot),
+            $slot == 'a' ? 36 : ($slot == 'b' ? 60 : ($slot == 'c' ? 96 : 120))),
+            $slot == 'a' ? 75 : ($slot == 'b' ? 130 : ($slot == 'c' ? 200 : 300))
+        );
     }
 
     private function get_valid_balls($this_over): int

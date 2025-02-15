@@ -131,9 +131,9 @@ class Common
         $gc = max(($x - $c), 0.1);
         $g = $ga + $gb + $gc;
 
-        $ra = $ga / $g;
-        $rb = $gb / $g;
-        $rc = $gc / $g;
+        $ra = max($ga / $g, 1.01);
+        $rb = max($gb / $g, 1.01);
+        $rc = max($gc / $g, 1.01);
 
         $f = 6 / ($ra + $rb + $rc);
 

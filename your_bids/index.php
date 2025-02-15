@@ -28,9 +28,9 @@ if(!$common->is_user_logged_in()){
         <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <script src="../model_ui/header/script.js"></script>
-        <script src="script.js"></script>
-        <script src="../scripts/script.js"></script>
+        <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
+        <script src="script.js?version=<?php echo time();?>"></script>
+        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header();fill_footer();fill_scorecard();fill_bids()">
     <div id="loading">Finding all your Bids from Server, Please wait .... </div>

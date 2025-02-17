@@ -169,7 +169,6 @@ div.balls-remaining-container {
     font-weight: bold;
     margin: 0 0.2rem;
     padding: 0 1rem;
-    animation: vibrate 0.5s infinite;
 }
 .moveText {
     animation: moveText 2s linear infinite;

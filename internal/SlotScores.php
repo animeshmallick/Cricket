@@ -51,7 +51,7 @@ class Scores {
         return min(
                 max(
                     $this->get_r($r1, $r2, $curr_balls_played, $slot),
-            $slot == 'a' ? 36 : ($slot == 'b' ? 60 : ($slot == 'c' ? 96 : 120))),
+            $slot == 'a' ? 33 : ($slot == 'b' ? 60 : ($slot == 'c' ? 96 : 120))),
             $slot == 'a' ? 75 : ($slot == 'b' ? 130 : ($slot == 'c' ? 200 : 300))
         );
     }

@@ -16,8 +16,8 @@ class Data {
         }else {
             $this->path = "https://www.crickett20.in/T20/";
         }
-		$this->default_runs_slotA = 49;
-		$this->default_runs_slotB = 82;
+		$this->default_runs_slotA = 48;
+		$this->default_runs_slotB = 80;
 		$this->default_runs_slotC = 135;
 		$this->default_runs_slotD = 170;
 		$this->balls_slotA = 36;

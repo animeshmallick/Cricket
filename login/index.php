@@ -12,8 +12,8 @@
     </script>
     <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
     <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
-    <script src="script.js"></script>
-    <script src="../scripts/script.js"></script>
+    <script src="script.js?version=<?php echo time();?>"></script>
+    <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">

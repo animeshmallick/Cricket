@@ -100,7 +100,7 @@ if($common->is_user_logged_in()){
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             }
         </style>
-        <script src="scripts/script.js"></script>
+        <script src="scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body>
     <div class="ball"></div>

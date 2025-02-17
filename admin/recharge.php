@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && ($common->is_user_an_admin() || $com
         <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
         <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-        <script src="../model_ui/header/script.js"></script>
-        <script src="script.js"></script>
-        <script src="../scripts/script.js"></script>
+        <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
+        <script src="script.js?version=<?php echo time();?>"></script>
+        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header();fill_footer();">
     <div id="header"></div>

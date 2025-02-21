@@ -1,3 +1,178 @@
+function startTour(){
+    if(getCookie('show_tour') !== null) {
+        const tour = new Shepherd.Tour({
+            useModalOverlay: true,
+            defaultStepOptions: {
+                classes: 'shadow-md bg-gray-dark',
+                scrollTo: true
+            }
+        });
+
+        tour.addStep({
+            title: 'Scorecard',
+            text: 'This is the scorecard of the match',
+            attachTo: {element: '#scorecard', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+
+        tour.addStep({
+            title: 'Room',
+            text: 'Select Room based on the amount to play with.',
+            attachTo: {element: '.play-container', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+
+        tour.addStep({
+            title: 'Change Amount',
+            text: 'Move the Slider to change amount',
+            attachTo: {element: '.slider-div', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+
+        tour.addStep({
+            title: 'Balls Left',
+            text: 'Balls remaining in the current session.',
+            attachTo: {element: '#balls_remaining', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Balls Left for Biding',
+            text: 'Balls remaining before the session closes.',
+            attachTo: {element: '#session_close_in_balls', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+
+        tour.addStep({
+            title: 'Option 1',
+            text: 'This is the first option and below 2 are the remaining options for the session.',
+            attachTo: {element: '#slot_a', on: 'top'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+
+        tour.addStep({
+            title: 'Expected Runs',
+            text: 'Expected Runs for This Slot. Select if you think the actual runs would fall in this range at the end of this session.',
+            attachTo: {element: '#slot_a_runs', on: 'top'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+
+        tour.addStep({
+            title: 'Required Runs for the expected slot to win.',
+            text: 'Required Score for this session to win. Select if you think this would be true.',
+            attachTo: {element: '#slot_a_runs_1', on: 'top'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Amount and Returns',
+            text: 'Put X & Get Y, means if you place a bid with RsX and if your prediction is correct then you will receive RsY',
+            attachTo: {element: '#slot_a_amount', on: 'top'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Option 2',
+            text: 'Similarly this is the second option',
+            attachTo: {element: '#slot_b', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Option 3',
+            text: 'Similarly this is the third option',
+            attachTo: {element: '#slot_c', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Place Bid',
+            text: 'Click on the button to place the bid with the selected option and amount.',
+            attachTo: {element: '#placeBidBtn', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Change the Session',
+            text: 'Click on the button to change the Session.',
+            attachTo: {element: '.change-session-btn', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Next', action: tour.next},
+                {text: 'Skip', action: tour.complete}
+            ]
+        });
+        tour.addStep({
+            title: 'Show you placed bids for this match',
+            text: 'Click on the button to see all the bids on this match.',
+            attachTo: {element: '#show_all_bids', on: 'bottom'},
+            highlightClass: 'shepherd-highlight',
+            buttons: [
+                {text: 'Back', action: tour.back},
+                {text: 'Done', action: tour.complete}
+            ]
+        });
+        tour.start();
+        tour.on('complete', () => {
+            document.cookie = "show_tour=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        });
+    }
+}
+
 let slots_timer;
 let slots_time = 0;
 function update_session_slots(update_selected){

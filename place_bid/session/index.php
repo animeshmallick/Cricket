@@ -37,8 +37,10 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     <script src="../../model_ui/header/script.js?version=<?php echo time();?>"></script>
     <script src="script.js?version=<?php echo time();?>"></script>
     <script src="../../scripts/script.js?version=<?php echo time();?>"></script>
+    <script src="https://unpkg.com/shepherd.js@8"></script>
+    <link rel="stylesheet" href="https://unpkg.com/shepherd.js@8/dist/css/shepherd.css">
 </head>
-<body onload="fill_header();fill_scorecard();fill_footer();update_session_slots(true);">
+<body onload="fill_header();fill_scorecard();fill_footer();update_session_slots(true);startTour()">
 <div id="header"></div>
 <div id="scorecard"></div>
 <div class="separator"></div>
@@ -71,8 +73,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div class="slot-header">Choose your slot</div>
                 <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat" id="session_name">Session : Innings 1, Over 1-6</div>
                 <div style="display: flex">
-                    <div class="balls-remaining-container">Balls Remaining: <span id="balls_remaining">36</span></div>
-                    <div class="balls-remaining-container">Session Closing in : <span id="session_close_in_balls">30</span> balls</div>
+                    <div class="balls-remaining-container">Balls Remaining: <span id="balls_remaining">--</span></div>
+                    <div class="balls-remaining-container">Session Closing in : <span id="session_close_in_balls">--</span> balls</div>
                 </div>
                 <div class="slot" id="slot_a">
                     <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
@@ -101,7 +103,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
         <div class="change-session-btn" style="margin-bottom: 0.25rem">
             <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
         </div>
-        <div class="change-session-btn" style="margin-bottom: 0.25rem">
+        <div class="change-session-btn" id="show_all_bids" style="margin-bottom: 0.25rem">
             <a style="text-decoration: none; color: inherit;" onclick="redirect_to('Cricket/your_bids/')">Show Your Bids for this match</a>
         </div>
     </div>

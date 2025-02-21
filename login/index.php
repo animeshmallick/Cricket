@@ -45,6 +45,7 @@ if($common->is_user_logged_in()){
             </div>
             </body>
         <?php }else {
+            $common->setCookie("show_tour", 'yes');
             $common->setCookie("ref_id", $response->ref_id);
             $common->setCookie("fname", $response->fname);
             $common->setCookie("lname", $response->lname);

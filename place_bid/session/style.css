@@ -198,3 +198,10 @@ a.room {
     font-size: 0.8rem;
     width: 33%;
 }
+.shepherd-highlight {
+    position: relative;
+    z-index: 1000 !important;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.5);
+    animation: breathe 1.5s infinite;
+}

@@ -63,6 +63,11 @@ div.title {
         transform: scale(1);
     }
 }
+@keyframes breathe {
+    0% {transform: scale(0.9);}
+    50% {transform: scale(1);}
+    100% {transform: scale(0.9);}
+}
 @keyframes breathe-session-btn {
     0% { background: linear-gradient(90deg, royalblue, orchid); } /* Dark blue */
     50% { background: linear-gradient(90deg, greenyellow, darkgreen); } /* Lighter blue */

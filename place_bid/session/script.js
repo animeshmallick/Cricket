@@ -176,7 +176,7 @@ function startTour(){
 let slots_timer;
 let slots_time = 0;
 function update_session_slots(update_selected){
-    fill_slot_details_default();
+    //fill_slot_details_default();
     const urlParams = new URLSearchParams(window.location.search);
     const session = urlParams.get('session');
     const room = urlParams.get('room');

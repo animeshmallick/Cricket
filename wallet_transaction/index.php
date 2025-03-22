@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">Your Wallet Transaction Tickets</div>
         <div id="transactionContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <!-- Bid cards will be inserted here dynamically -->
+            <!-- Transaction cards will be inserted here dynamically -->
         </div>
     </div>
     <div class="separator"></div>

@@ -1,7 +1,6 @@
 <?php
 include "../Common.php";
 $common = new Common();
-$ref_id = $common->get_cookie('ref_id');
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && ($common->is_user_an_admin() || $common->is_user_an_agent()) && $common->is_user_logged_in()){ ?>
     <html lang="en">
     <head>

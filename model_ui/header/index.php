@@ -29,7 +29,10 @@
             <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Add Money</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/withdrawals.php')">Withdrawals</button>
             <div class="separator"></div>
-        <?php }?>
+        <?php }elseif ($common->get_cookie('user_type') == 'agent'){?>
+            <div class="sub-title">Agents Only</div>
+            <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Transfer Balance</button>
+        <?php } ?>
         <button class="nav-link" onclick="logout();">Logout</button>
         <div class="separator"></div>
         <a class="nav-link" onclick="w3_close()">Close</a>

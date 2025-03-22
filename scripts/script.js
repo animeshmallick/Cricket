@@ -191,10 +191,16 @@ function enable_session_buttons(){
                         document.getElementById('c1').classList.remove('disabled');
                     if (scorecard.over_id > 115 && scorecard.over_id < 120)
                         document.getElementById('d1').classList.remove('disabled');
+
                     if (scorecard.over_id > 201 && scorecard.over_id < 206)
                         document.getElementById('a2').classList.remove('disabled');
-                    if (scorecard.over_id > 206 && scorecard.over_id < 210)
+                    if (scorecard.over_id > 205 && scorecard.over_id < 210)
                         document.getElementById('b2').classList.remove('disabled');
+                    if (scorecard.over_id > 209 && scorecard.over_id < 216)
+                        document.getElementById('c2').classList.remove('disabled');
+                    if (scorecard.over_id > 215 && scorecard.over_id < 220)
+                        document.getElementById('b2').classList.remove('disabled');
+
                     if(scorecard.over_id < 200)
                         document.getElementById('winner').classList.remove('disabled');
                     else if (scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 10)

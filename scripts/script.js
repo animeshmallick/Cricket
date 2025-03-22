@@ -204,8 +204,15 @@ function enable_session_buttons(){
             }catch(e){
                 console.log(e);
             }
-        })
-        .catch(error => console.log(error));
+        }).then(() => {
+            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${series_id}/${match_id}`)
+                .then(async response => {
+                    return await response.json();
+                }).then(response => {
+                    if (response.hasOwnProperty('extra_sessions_enabled') && response.extra_sessions_enabled)
+                        document.getElementById('extra-sessions').style.display = 'flex';
+                }).catch(e => console.log(e));
+        }).catch(error => console.log(error));
 
 }
 function get_formated_over(over){

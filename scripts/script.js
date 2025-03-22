@@ -175,7 +175,7 @@ function enable_session_buttons(){
         .then(scorecard => {
             try{
                 if(document.getElementById('sessions') !== null) {
-                    if (scorecard.over_id < 106)
+                    if (scorecard.over_id > 101 && scorecard.over_id < 106)
                         document.getElementById('a1').classList.remove('disabled');
                     if (scorecard.over_id > 105 && scorecard.over_id < 110)
                         document.getElementById('b1').classList.remove('disabled');
@@ -183,7 +183,7 @@ function enable_session_buttons(){
                         document.getElementById('c1').classList.remove('disabled');
                     if (scorecard.over_id > 115 && scorecard.over_id < 120)
                         document.getElementById('d1').classList.remove('disabled');
-                    if (scorecard.over_id > 119 && scorecard.over_id < 206)
+                    if (scorecard.over_id > 201 && scorecard.over_id < 206)
                         document.getElementById('a2').classList.remove('disabled');
                     if (scorecard.over_id > 206 && scorecard.over_id < 210)
                         document.getElementById('b2').classList.remove('disabled');

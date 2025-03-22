@@ -198,7 +198,7 @@ function enable_session_buttons(){
                         document.getElementById('b2').classList.remove('disabled');
                     if (scorecard.over_id > 209 && scorecard.over_id < 216)
                         document.getElementById('c2').classList.remove('disabled');
-                    if (scorecard.over_id > 215 && scorecard.over_id < 220)
+                    if (scorecard.over_id > 215 && scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 10)
                         document.getElementById('b2').classList.remove('disabled');
 
                     if(scorecard.over_id < 200)

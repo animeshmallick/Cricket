@@ -31,6 +31,8 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
     $session_d1 = $session_a1;
     $session_a2 = $session_a1;
     $session_b2 = $session_a1;
+    $session_c2 = $session_a1;
+    $session_d2 = $session_a1;
     $session_winner = $session_a1;
     $session_special = $session_a1;
     $total_c = 0;
@@ -131,6 +133,32 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 $session_b2['distributed_3'] += (int)((int)$bid->amount * $bid->rate);
             if ($bid->status == 'win')
                 $session_b2['given'] += (int)($bid->amount * $bid->rate);
+            continue;
+        }
+        if ($bid->session.$bid->innings == 'c2'){
+            $session_c2['count'] += 1;
+            $session_c2['collected'] += $bid->amount;
+            if ($bid->slot == 'x')
+                $session_c2['distributed_1'] += (int)((int)$bid->amount * $bid->rate);
+            if ($bid->slot == 'y')
+                $session_c2['distributed_2'] += (int)((int)$bid->amount * $bid->rate);
+            if ($bid->slot == 'z')
+                $session_c2['distributed_3'] += (int)((int)$bid->amount * $bid->rate);
+            if ($bid->status == 'win')
+                $session_c2['given'] += (int)($bid->amount * $bid->rate);
+            continue;
+        }
+        if ($bid->session.$bid->innings == 'd2'){
+            $session_d2['count'] += 1;
+            $session_d2['collected'] += $bid->amount;
+            if ($bid->slot == 'x')
+                $session_d2['distributed_1'] += (int)((int)$bid->amount * $bid->rate);
+            if ($bid->slot == 'y')
+                $session_d2['distributed_2'] += (int)((int)$bid->amount * $bid->rate);
+            if ($bid->slot == 'z')
+                $session_d2['distributed_3'] += (int)((int)$bid->amount * $bid->rate);
+            if ($bid->status == 'win')
+                $session_d2['given'] += (int)($bid->amount * $bid->rate);
             continue;
         }
     }
@@ -306,21 +334,21 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div class="separator"></div>
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;">
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_c1['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_c1['collected']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S1 : <?php echo "₹".$session_c1['distributed_1']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S2 : <?php echo "₹".$session_c1['distributed_2']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S3 : <?php echo "₹".$session_c1['distributed_3']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_c1['collected'] - $session_c1['given']); ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_c2['count']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_c2['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S1 : <?php echo "₹".$session_c2['distributed_1']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S2 : <?php echo "₹".$session_c2['distributed_2']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S3 : <?php echo "₹".$session_c2['distributed_3']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_c2['collected'] - $session_c2['given']); ?></div>
                     <a class="button" href="../admin/admin_match_session_dashboard.php?session=c2">Session C2</a>
                 </div>
                 <div class="bid_container" style="width: 50%">
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_d1['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_d1['collected']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S1 : <?php echo "₹".$session_d1['distributed_1']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S2 : <?php echo "₹".$session_d1['distributed_2']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S3 : <?php echo "₹".$session_d1['distributed_3']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_d1['collected'] - $session_d1['given']); ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_d2['count']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_d2['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S1 : <?php echo "₹".$session_d2['distributed_1']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S2 : <?php echo "₹".$session_d2['distributed_2']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S3 : <?php echo "₹".$session_d2['distributed_3']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_d2['collected'] - $session_d2['given']); ?></div>
                     <a class="button" href="../admin/admin_match_session_dashboard.php?session=d2">Session D2</a>
                 </div>
             </div>

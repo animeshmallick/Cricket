@@ -439,4 +439,36 @@ class Common
         $z = $x % 10;
         return $y * 6 + $z;
     }
+
+    public function save_transaction_ticket(int $transaction_id, string $ref_id, mixed $transaction_type, float $amount)
+    {
+        $transaction_data = array(
+            "id" => $transaction_id,
+            "ref_id" => $ref_id,
+            "transaction_type" => $transaction_type,
+            "amount" => $amount,
+            "status" => "placed"
+        );
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_new_transaction';
+        $json_transaction_data = json_encode($transaction_data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_transaction_data)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_transaction_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return false;
+        }
+        curl_close($ch);
+        return $response;
+    }
+
+    public function get_transaction_tickets(string $ref_id)
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_transaction_tickets/" . $ref_id;
+        return json_decode($this->get_response_from_url($url));
+    }
 }

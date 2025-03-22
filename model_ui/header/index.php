@@ -10,7 +10,7 @@
             <div class="nav-title">CricketT20</div>
             <span><?php echo $header_sub_text;?></span>
         </div>
-        <div class="balance-container">
+        <div class="balance-container" onclick="redirect_to('Cricket/wallet_transaction/index.php')">
             <span class="balance-title">Balance</span>
             <div id="balance" class="balance">&#8377;1000</div>
         </div>

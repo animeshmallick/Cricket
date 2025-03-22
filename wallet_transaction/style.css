@@ -1,0 +1,24 @@
+.container {
+    background: #fff;
+    margin: 10%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
+}
+h2 {
+    margin-bottom: 20px;
+}
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+div.tran_status {
+    margin-top: 0.5rem;
+    padding: 0 0.5rem;
+    background-color: wheat;
+    border-radius: 1rem;
+}

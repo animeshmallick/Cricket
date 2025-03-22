@@ -121,12 +121,12 @@ function update_scorecard(scorecard){
     const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
     document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
     document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
-    document.getElementById('match_name').innerHTML = scorecard.teams[0].split(' ')[0] + ' vs ' + scorecard.teams[1].split(' ')[0];
+    document.getElementById('match_name').innerHTML = ipl_formated(scorecard.teams[0]) + ' vs ' + ipl_formated(scorecard.teams[1]);
 
     document.getElementById('team1_logo')
-        .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${scorecard.teams[0].toLowerCase()}.png`)
+        .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${ipl_formated(scorecard.teams[0])}.png`)
     document.getElementById('team2_logo')
-        .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${scorecard.teams[1].toLowerCase()}.png`)
+        .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${ipl_formated(scorecard.teams[1])}.png`)
 
     document.getElementById("team1_name").innerHTML = scorecard.teams[0];
     document.getElementById("team1_score").innerHTML = scorecard.team1_score.runs + "/" + scorecard.team1_score.wickets;
@@ -164,6 +164,14 @@ function update_scorecard(scorecard){
 
     document.getElementById('timer').innerHTML = "&nbsp";
     console.log('Scorecard Updated');
+}
+function ipl_formated(team){
+    let words = team.split(' ');
+    let str = "";
+    words.forEach((word) => {
+        str += word.charAt(0);
+    });
+    return str.toLowerCase();
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

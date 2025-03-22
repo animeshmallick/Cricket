@@ -45,6 +45,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
                     <ol>
                         <li>1. Session Betting will open/start after the 1st Over for the innings</li>
                         <div class="separator"></div>
+                        <li>3. 3rd and 4th Sessions of 2nd Innings might open at 2nd Innings - 9th Over.</li>
+                        <div class="separator"></div>
                         <li>2. Special Bids : Coming Soon.</li>
                     </ol>
                 </div>

@@ -171,7 +171,7 @@ function ipl_formated(team){
     words.forEach((word) => {
         str += word.charAt(0);
     });
-    return str.toLowerCase();
+    return str.toUpperCase();
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

@@ -198,3 +198,19 @@ a.room {
     font-size: 0.8rem;
     width: 33%;
 }
+label.label {
+    font-size: 1.3rem;
+    padding: 0 0 0 1rem;
+    margin: 1rem auto;
+    color: wheat;
+}
+form input[type=text] {
+    height: 2.5rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 0.2rem solid #ddd;
+    border-radius: 1rem;
+    outline: none;
+    letter-spacing: 0.3rem;
+}

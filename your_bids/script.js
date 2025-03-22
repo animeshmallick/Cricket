@@ -39,6 +39,7 @@ function fill_bid_content(bids, teams){
         card.innerHTML = `
                     <div class="card-inner">
                         <div>
+                            <div class="sub-title">${bid.bid_name === undefined || bid.bid_name === null || bid.bid_name.length === 0 ? '' : 'Name : ' + bid.bid_name}</div>
                             <div class="sub-title">${bid.type === 'session' ? `Innings ${bid.innings} : Over ${bid.session === 'a' ? '1 to 6' :
                                 (bid.session === 'b' ? '7 to 10' : (bid.session === 'c' ? '11 to 16' : '17 to 20'))}` :
                                     bid.type === 'winner' ? 'Match Winner' : 'Special Bid'}</div>

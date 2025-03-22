@@ -97,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
                 $status = true;
                 $status_msg_1 = $team. "Wins the match";
                 $status_msg_2 = "PUT &#8377;".$amount." & Take &#8377;".floor((int)($amount * $rate));
-                $status_msg_3 = "You got refund of &#8377;".floor((int)$amount/10);
+                $status_msg_3 = "You got refund of &#8377;".floor((int)$amount/20);
                 if ($common->is_user_an_agent()) {
                     $common->recharge_user($common->get_unique_recharge_id(),
                         "bidder_refund_agent_".$bid_id, $ref_id, $amount);

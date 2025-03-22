@@ -58,6 +58,11 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
             <input type="hidden" name="room" value="<?php echo $room;?>">
             <input type="hidden" name="session" value="<?php echo $session;?>">
             <input type="hidden" name="bid_amount" id="bid_amount" value="<?php echo $amount_default;?>">
+            <?php if($common->is_user_an_agent()){ ?>
+                <label class="label" for="bid_name">Add name to this bid:</label>
+                <input type="text" id="bid_name" name="bid_name" placeholder="Bid Name" required>
+                <div class="separator"></div>
+            <?php } ?>
             <div class="input-section">
                 <span class="select-amount">Slide to Change Amount</span>
                 <div class="slider-div" style="display: flex">

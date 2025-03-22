@@ -120,11 +120,17 @@ class Common
         $x = $book->collected * 0.8 + $amount;
         $r1 = (int)($r - 1.5);
         $r2 = (int)($r + 1.5);
-        $a = max($book->runs[$r1 - 1], $book->runs[$r1 - 2], $book->runs[$r1 - 3], $book->runs[$r1 - 4], $book->runs[$r1 - 5]);
+        $a = max($book->runs[$r1 - 1], $book->runs[$r1 - 2], $book->runs[$r1 - 3], $book->runs[$r1 - 4], $book->runs[$r1 - 5],
+            $book->runs[$r1 - 6], $book->runs[$r1 - 7], $book->runs[$r1 - 8], $book->runs[$r1 - 9], $book->runs[$r1 - 10],
+            $book->runs[$r1 - 11], $book->runs[$r1 - 12], $book->runs[$r1 - 13], $book->runs[$r1 - 14], $book->runs[$r1 - 15],
+            $book->runs[$r1 - 16], $book->runs[$r1 - 17], $book->runs[$r1 - 18], $book->runs[$r1 - 19], $book->runs[$r1 - 20]);
         $b = 0;
         for ($i = $r1; $i <= $r2; $i++)
             $b = max($b, $book->runs[$i]);
-        $c = max($book->runs[$r2 + 1], $book->runs[$r2 + 2], $book->runs[$r2 + 3], $book->runs[$r2 + 4], $book->runs[$r2 + 5]);
+        $c = max($book->runs[$r2 + 1], $book->runs[$r2 + 2], $book->runs[$r2 + 3], $book->runs[$r2 + 4], $book->runs[$r2 + 5],
+            $book->runs[$r2 + 6], $book->runs[$r2 + 7], $book->runs[$r2 + 8], $book->runs[$r2 + 9], $book->runs[$r2 + 10],
+            $book->runs[$r2 + 11], $book->runs[$r2 + 12], $book->runs[$r2 + 13], $book->runs[$r2 + 14], $book->runs[$r2 + 11],
+            $book->runs[$r2 + 16], $book->runs[$r2 + 17], $book->runs[$r2 + 18], $book->runs[$r2 + 19], $book->runs[$r2 + 20]);
 
         $ga = max(($x - $a), 0.1);
         $gb = max(($x - $b), 0.1);

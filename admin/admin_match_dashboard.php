@@ -239,6 +239,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
         </table>
         <div class="sub-title"><?php echo "Total: ₹".$total_c." - ₹".$total_d." = ₹".($total_c - $total_d)?></div>
         <div class="match-detail">
+            <div class="sub-title">1st Innings</div>
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_a1['count']; ?></div>
@@ -281,6 +282,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 </div>
             </div>
             <div class="separator"></div>
+            <div class="sub-title">2nd Innings</div>
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_a2['count']; ?></div>
@@ -302,6 +304,29 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 </div>
             </div>
             <div class="separator"></div>
+            <div style="display: flex">
+                <div class="bid_container" style="width: 50%;">
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_c1['count']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_c1['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S1 : <?php echo "₹".$session_c1['distributed_1']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S2 : <?php echo "₹".$session_c1['distributed_2']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S3 : <?php echo "₹".$session_c1['distributed_3']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_c1['collected'] - $session_c1['given']); ?></div>
+                    <a class="button" href="../admin/admin_match_session_dashboard.php?session=c2">Session C2</a>
+                </div>
+                <div class="bid_container" style="width: 50%">
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_d1['count']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_d1['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S1 : <?php echo "₹".$session_d1['distributed_1']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S2 : <?php echo "₹".$session_d1['distributed_2']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Given S3 : <?php echo "₹".$session_d1['distributed_3']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_d1['collected'] - $session_d1['given']); ?></div>
+                    <a class="button" href="../admin/admin_match_session_dashboard.php?session=d2">Session D2</a>
+                </div>
+            </div>
+            <div class="separator"></div>
+            <div class="separator"></div>
+            <div class="sub-title">Winner</div>
             <div class="bid_container">
                 <div class="match-detail" style="padding: 0.5rem 1rem">Bids Placed : <?php echo $session_winner['count']; ?></div>
                 <div class="match-detail" style="padding: 0.5rem 1rem">Collected : <?php echo "₹".$session_winner['collected']; ?></div>
@@ -311,6 +336,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 <a class="button" href="../admin/admin_match_winner_dashboard.php?session=winner">Winner</a>
             </div>
             <div class="separator"></div>
+            <div class="sub-title">Specials</div>
             <div class="bid_container">
                 <div class="match-detail" style="padding: 0.5rem 1rem">Bids Placed : <?php echo $session_special['count']; ?></div>
                 <div class="match-detail" style="padding: 0.5rem 1rem">Collected : <?php echo "₹".$session_special['collected']; ?></div>

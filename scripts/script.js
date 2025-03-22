@@ -128,12 +128,12 @@ function update_scorecard(scorecard){
     document.getElementById('team2_logo')
         .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${ipl_formated(scorecard.teams[1])}.png`)
 
-    document.getElementById("team1_name").innerHTML = scorecard.teams[0];
+    document.getElementById("team1_name").innerHTML = ipl_formated(scorecard.teams[0]);
     document.getElementById("team1_score").innerHTML = scorecard.team1_score.runs + "/" + scorecard.team1_score.wickets;
     document.getElementById('team1_overs').innerHTML = " (" + scorecard.team1_score.over + " ov)";
-    document.getElementById("team2_name").innerHTML = scorecard.teams[1];
+    document.getElementById("team2_name").innerHTML = ipl_formated(scorecard.teams[1]);
     document.getElementById("team2_score").innerHTML = scorecard.team2_score.runs + "/" + scorecard.team2_score.wickets;;
-    document.getElementById('team2_overs').innerHTML = " (" + scorecard.team2_score.over + " ov)";
+    document.getElementById('team2_overs').innerHTML = " (" + (scorecard.team2_score.over === null ? '0' : scorecard.team2_score.over) + " ov)";
     document.getElementById("match_additional_details").innerHTML = scorecard.match_additional_details[0];
 
     document.getElementById('batsman1').innerHTML =

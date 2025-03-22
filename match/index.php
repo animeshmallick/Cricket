@@ -38,6 +38,19 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header();fill_scorecard();enable_session_buttons();fill_footer();">
+        <div class="banner" id="banner">
+            <div class="title">Notice</div>
+            <div style="display: flex">
+                <div style="display: block; width: 90%">
+                    <ol>
+                        <li>1. Session Betting will open/start after the 1st Over for the innings</li>
+                        <div class="separator"></div>
+                        <li>2. Special Bids : Coming Soon.</li>
+                    </ol>
+                </div>
+                <button style="width: 10%" class="close-banner" onclick="closeBanner()">✖ <span id="banner_time"></span></button>
+            </div>
+        </div>
         <div id="header"></div>
         <div id="scorecard"></div>
         <div class="separator"></div>

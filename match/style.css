@@ -67,3 +67,23 @@ div.disabled {
     animation: none;
     background-color: lightslategrey;
 }
+.banner {
+    background-color: #007bff;
+    color: white;
+    text-align: left;
+    padding: 0.75rem;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: top 0.5s ease-in-out;
+    border-radius: 1rem;
+    margin: 0.4rem;
+}
+.close-banner {
+    background: rgba(255, 0, 0, 0.76);
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+}

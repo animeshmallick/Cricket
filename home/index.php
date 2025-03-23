@@ -32,7 +32,7 @@ if(!$common->is_user_logged_in()){
     <script src="script.js?version=<?php echo time();?>"></script>
     <script src="../scripts/script.js?version=<?php echo time();?>"></script>
 </head>
-<body onload="fill_header();fill_footer();">
+<body onload="fill_header();fill_footer(); triggerPartyPopper()">
     <div id="header"></div>
     <section id="matches" class="matches">
         <div class="container">
@@ -41,7 +41,89 @@ if(!$common->is_user_logged_in()){
             </ul>
         </div>
     </section>
+    <canvas id="confetti"></canvas>
     <div id="footer"></div>
+    <script>
+        const canvas = document.getElementById("confetti");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Confetti {
+            constructor() {
+                this.x = Math.random() * canvas.width; // Random start position
+                this.y = Math.random() * canvas.height * -1; // Start above screen
+                this.size = Math.random() * 12 + 6;
+                this.speedY = Math.random() * 3 + 4; // Fall speed
+                this.speedX = Math.random() * 3 - 1.5; // Random initial left/right drift
+                this.swing = Math.random() * 5 + 2; // Random swing range
+                this.angle = Math.random() * 360;
+                this.rotationSpeed = Math.random() * 5;
+                this.opacity = 1;
+                this.fadeRate = Math.random() * 0.01 + 0.002;
+                this.shape = Math.random() > 0.5 ? "circle" : "rect";
+                this.color = `hsl(${Math.random() * 360}, 100%, 60%)`;
+
+                this.drift = Math.random() * 0.06 - 0.03; // Unique random drift per popper
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y / 30) * this.swing;
+                this.angle += this.rotationSpeed;
+                if (this.y > canvas.height * 0.8) {
+                    this.opacity -= this.fadeRate;
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.opacity;
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.angle * Math.PI) / 180);
+                ctx.fillStyle = this.color;
+
+                if (this.shape === "rect") {
+                    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                } else {
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        let confettiArray = [];
+        let animationFrame;
+
+        function createConfetti() {
+            confettiArray = [];
+            for (let i = 0; i < 500; i++) {
+                confettiArray.push(new Confetti());
+            }
+            console.log('animated');
+        }
+
+        function animateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            confettiArray = confettiArray.filter((confetti) => confetti.opacity > 0);
+            confettiArray.forEach((confetti) => {
+                confetti.update();
+                confetti.draw();
+            });
+
+            if (confettiArray.length > 0) {
+                animationFrame = requestAnimationFrame(animateConfetti);
+            }
+        }
+
+        function triggerPartyPopper() {
+            createConfetti();
+            animateConfetti();
+        }
+    </script>
 </body>
 </html>
 <?php } ?>

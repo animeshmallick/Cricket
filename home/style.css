@@ -25,7 +25,6 @@ body {
 
 .container {
     width: 90%;
-    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -46,9 +45,8 @@ div.team_name {
 
 .match-card {
     padding: 0.5rem;
-    border-radius: 10px;
+    border-radius: 1rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
     text-decoration: none;
     color: inherit;
@@ -112,4 +110,11 @@ div.right-div {
 div.match-details {
     font-size: 1.2rem;
     color: orangered;
+}
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 }

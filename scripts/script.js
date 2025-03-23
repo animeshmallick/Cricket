@@ -167,7 +167,6 @@ function update_scorecard(scorecard){
 }
 function ipl_formated(team){
     team = team.toLowerCase();
-    console.log(team);
     team = team.replace(' ', '');
     if (team.includes('delhi'))
         return "DC";

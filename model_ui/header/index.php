@@ -24,8 +24,10 @@
             <button class="nav-link" onclick="redirect_to('Cricket/your_bids/')">Your Bids</button>
         <?php }?>
         <?php if($common->get_cookie('user_type') == 'admin') {?>
-                <div class="sub-title">Admins Only</div>
-            <button class="nav-link" onclick="redirect_to('Cricket/admin/admin_match_dashboard.php')">Admin Match Dashboard</button>
+            <div class="sub-title">Admins Only</div>
+            <?php if($common->get_cookie('match_id') != "" && $common->get_cookie('series_id') != ""){ ?>
+                <button class="nav-link" onclick="redirect_to('Cricket/admin/admin_match_dashboard.php')">Admin Match Dashboard</button>
+            <?php } ?>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Add Money</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/withdrawals.php')">Withdrawals</button>
             <div class="separator"></div>

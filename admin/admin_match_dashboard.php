@@ -235,10 +235,11 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
     <body onload="fill_header();fill_footer()">
     <div id="header"></div>
     <div class="bid_container">
-        <div class="sub-title"><?php echo $common->get_cookie('match_name');?></div>
-        <div class="small-gap"></div>
+        <a class="button" href="../match/index.php?series_id=<?= $series_id?>&match_id=<?= $match_id ?>">Go To Match Page</a>
+        <div class="separator"></div>
         <table>
             <thead>
+            <div class="sub-title">Players Bid</div>
             <tr>
                 <th>User</th>
                 <th>Bids Placed</th>

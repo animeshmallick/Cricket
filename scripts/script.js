@@ -166,12 +166,31 @@ function update_scorecard(scorecard){
     console.log('Scorecard Updated');
 }
 function ipl_formated(team){
-    let words = team.split(' ');
-    let str = "";
-    words.forEach((word) => {
-        str += word.charAt(0);
-    });
-    return str.toUpperCase();
+    team = team.toLowerCase();
+    console.log(team);
+    team = team.replace(' ', '');
+    if (team.includes('delhi'))
+        return "DC";
+    else if (team.includes('chennai'))
+        return "CSK";
+    else if (team.includes('mumbai'))
+        return "MI";
+    else if (team.includes('kolkata'))
+        return "KKR";
+    else if (team.includes('bangalore') || team.includes('bengaluru'))
+        return "RCB";
+    else if (team.includes('rajasthan'))
+        return "RR";
+    else if (team.includes('lucknow'))
+        return "LSG";
+    else if (team.includes('gujarat'))
+        return "GT";
+    else if(team.includes('punjab'))
+        return "PBKS";
+    else if(team.includes('hyderabad'))
+        return "SRH";
+    else
+        return "";
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

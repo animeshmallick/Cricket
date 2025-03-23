@@ -24,23 +24,29 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (match.type === 'completed') {
             matchCardWrapper.classList.add('completed');
         }
-        const outer_div = document.createElement('div');
-        outer_div.style.display = 'flex';
-        matchCardWrapper.appendChild(outer_div);
+        const out_div = document.createElement('div');
+        matchCardWrapper.appendChild(out_div);
+
+        const top_div = document.createElement('div');
+        top_div.style.display = 'flex';
+        out_div.appendChild(top_div);
+
+        const bottom_div = document.createElement('div');
+        out_div.appendChild(bottom_div);
 
         const left_div = document.createElement('div');
         left_div.classList.add('left-div');
-        outer_div.appendChild(left_div);
+        top_div.appendChild(left_div);
 
         const right_div = document.createElement('div');
         right_div.classList.add('right-div');
         right_div.style.overflow = 'hidden';
-        outer_div.appendChild(right_div);
+        top_div.appendChild(right_div);
 
         const cover_image = document.createElement('img');
         cover_image.src = `../images/cover/${match.cover_img}.png`;
-        cover_image.style.width = '10rem';
-        cover_image.style.height = '6rem';
+        cover_image.style.width = '11rem';
+        cover_image.style.height = '4rem';
         cover_image.style.borderRadius = '1rem';
         cover_image.style.objectFit = 'cover';
         cover_image.onerror = function (){
@@ -50,19 +56,20 @@ document.addEventListener('DOMContentLoaded', function () {
         cover_image.alt = 'Cover Image';
         right_div.appendChild(cover_image);
 
-        const teams = document.createElement('h2');
+        const teams = document.createElement('div');
+        teams.classList.add('team_name');
         teams.textContent = match.teams.join(' vs ');
         left_div.appendChild(teams);
+
+        const score = document.createElement('span');
+        score.textContent = `${match.score}`;
+        bottom_div.appendChild(score);
 
         const match_details_div = document.createElement('div');
         match_details_div.classList.add('match-details');
         if (match.details)
             match_details_div.textContent = `${match.details}`;
-        left_div.appendChild(match_details_div);
-
-        const status = document.createElement('p');
-        status.textContent = `Status: ${match.type}`;
-        left_div.appendChild(status);
+        bottom_div.appendChild(match_details_div);
 
         if (match.type === 'live') {
             const liveFlag = document.createElement('span');

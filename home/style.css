@@ -29,10 +29,12 @@ body {
     margin: 0 auto;
 }
 
-h2 {
-    text-align: left;
-    font-size: 1.8rem;
-    margin-bottom: 40px;
+div.team_name {
+    padding-top: 1.5rem;
+    font-size: 1.25rem;
+    text-align: center;
+    color: royalblue;
+    font-weight: bold;
     animation: slideUp 1s ease-out; /* Slide-in animation for the title */
 }
 
@@ -101,11 +103,11 @@ h2 {
     opacity: 1; /* Ensure the card is fully visible on hover */
 }
 div.left-div {
-    width: 50%;
+    width: 40%;
 }
 div.right-div {
     padding-left: 1rem;
-    width: 50%;
+    width: 60%;
 }
 div.match-details {
     font-size: 1.2rem;

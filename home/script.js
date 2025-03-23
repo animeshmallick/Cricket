@@ -24,20 +24,45 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (match.type === 'completed') {
             matchCardWrapper.classList.add('completed');
         }
+        const outer_div = document.createElement('div');
+        outer_div.style.display = 'flex';
+        matchCardWrapper.appendChild(outer_div);
 
-        const teams = document.createElement('h3');
+        const left_div = document.createElement('div');
+        left_div.classList.add('left-div');
+        outer_div.appendChild(left_div);
+
+        const right_div = document.createElement('div');
+        right_div.classList.add('right-div');
+        right_div.style.overflow = 'hidden';
+        outer_div.appendChild(right_div);
+
+        const cover_image = document.createElement('img');
+        cover_image.src = `../images/cover/${match.cover_img}.png`;
+        cover_image.style.width = '10rem';
+        cover_image.style.height = '6rem';
+        cover_image.style.borderRadius = '1rem';
+        cover_image.style.objectFit = 'cover';
+        cover_image.onerror = function (){
+            this.src = `../images/cover/ipl.png`;
+            this.onerror = null;
+        };
+        cover_image.alt = 'Cover Image';
+        right_div.appendChild(cover_image);
+
+        const teams = document.createElement('h2');
         teams.textContent = match.teams.join(' vs ');
-        matchCardWrapper.appendChild(teams);
+        left_div.appendChild(teams);
 
         const status = document.createElement('p');
         status.textContent = `Status: ${match.type}`;
-        matchCardWrapper.appendChild(status);
+        left_div.appendChild(status);
 
         if (match.type === 'live') {
             const liveFlag = document.createElement('span');
             liveFlag.classList.add('live-flag');
             liveFlag.textContent = 'LIVE';
-            matchCardWrapper.appendChild(liveFlag);
+            left_div.appendChild(liveFlag);
         }
 
         matchList.appendChild(matchCardWrapper);

@@ -30,7 +30,7 @@ body {
 }
 
 h2 {
-    text-align: center;
+    text-align: left;
     font-size: 1.8rem;
     margin-bottom: 40px;
     animation: slideUp 1s ease-out; /* Slide-in animation for the title */
@@ -43,7 +43,7 @@ h2 {
 }
 
 .match-card {
-    padding: 20px;
+    padding: 0.5rem;
     border-radius: 10px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -99,4 +99,11 @@ h2 {
     transform: translateY(-10px); /* Slight upward movement on hover */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Slight shadow expansion */
     opacity: 1; /* Ensure the card is fully visible on hover */
+}
+div.left-div {
+    width: 50%;
+}
+div.right-div {
+    padding-left: 1rem;
+    width: 50%;
 }

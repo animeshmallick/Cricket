@@ -315,4 +315,7 @@ function update_team_theme_on_scorecard(themes) {
     });
 }
 //Refresh the AUTH cookies and extend time by 1hr if user is active
-['ref_id', 'fname', 'lname', 'user_type'].forEach(cookie => set_cookie(cookie, getCookie(cookie)));
+['ref_id', 'fname', 'lname', 'user_type'].forEach(cookie => {
+    if (getCookie(cookie) !== null)
+    set_cookie(cookie, getCookie(cookie))
+});

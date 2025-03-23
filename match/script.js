@@ -3,7 +3,7 @@ function closeBanner() {
 }
 function show_banner() {
     setTimeout(() => {
-        if(Math.floor(Math.random() * 1000) % 4 === 0)
+        if(Math.floor(Math.random() * 1000) % 5 === 0)
             document.getElementById("banner").style.display = 'block';
     }, 500);
 }

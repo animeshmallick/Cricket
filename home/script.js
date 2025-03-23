@@ -54,6 +54,12 @@ document.addEventListener('DOMContentLoaded', function () {
         teams.textContent = match.teams.join(' vs ');
         left_div.appendChild(teams);
 
+        const match_details_div = document.createElement('div');
+        match_details_div.classList.add('match-details');
+        if (match.details)
+            match_details_div.textContent = `${match.details}`;
+        left_div.appendChild(match_details_div);
+
         const status = document.createElement('p');
         status.textContent = `Status: ${match.type}`;
         left_div.appendChild(status);

@@ -9,7 +9,7 @@
     <div class="space-y-1">
         <div class="team-hover flex justify-between items-center text-sm rounded-md">
             <img id="team1_logo" src="../../images/logo/india.png" alt="India" class="h-10 w-10 team-logo"/>
-            <span id='team1_name' class="team-badge">Leading</span>
+            <span id='team1_name' class="team-badge">Loading</span>
             <span id='team1_score' class="score text-yellow-400"></span>
             <span id='team1_overs' class="text-xl"></span>
         </div>

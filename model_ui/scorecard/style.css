@@ -18,7 +18,7 @@
 
 .team-hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: linear-gradient(90deg, #1cb604, #555555);
+    background: linear-gradient(90deg, #1cb604, rgba(237, 207, 8, 0.63));
 }
 
 .team-hover:active {

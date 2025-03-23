@@ -107,3 +107,7 @@ div.right-div {
     padding-left: 1rem;
     width: 50%;
 }
+div.match-details {
+    font-size: 1.2rem;
+    color: orangered;
+}

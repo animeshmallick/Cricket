@@ -35,7 +35,7 @@ if($session[0] == 'c')
 if($session[0] == 'd')
     $balls_left = 120 - $balls;
 
-if($common->is_eligible_for_session_bid($session, $scorecard->over_id) && $balls_left > 0){
+if($common->is_eligible_for_session_bid($session, $scorecard->over_id) && $balls_left > 6){
     $predicted_runs = $scores->get_slot_runs($session[1], $scorecard, $session[0]);
     $rates = $common->get_rates($series_id, $match_id, $session, $room, $amount, $predicted_runs);
 

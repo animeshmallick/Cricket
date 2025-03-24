@@ -8,7 +8,7 @@ function validate_register_form() {
     let fname = document.forms["register_form"]["fname"].value;
     let phone = document.forms["register_form"]["phone"].value;
     let password = document.forms["register_form"]["password"].value;
-    let confirm_password = document.forms["register_form"]["fname"].value;
+    let confirm_password = document.forms["register_form"]["confirm_password"].value;
 
     if (fname.length < 2) {
         alert("First name must be at least 2 characters");
@@ -22,7 +22,7 @@ function validate_register_form() {
         alert("Password must be more than 2 characters");
         return false;
     }
-    if (password === confirm_password) {
+    if (password !== confirm_password) {
         alert("Password does not match");
         return false;
     }

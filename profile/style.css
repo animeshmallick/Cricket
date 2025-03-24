@@ -1,0 +1,99 @@
+.main_container{
+    margin: 0.2rem 0;
+    display: block;
+    align-content: center;
+    border-radius: 1rem;
+    box-shadow: 0 2rem 1rem rgba(0,0,0,0.3);
+    padding: 4rem 2rem;
+    background-image: url("../images/stadium.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.error {
+    color: red;
+    background: white;
+}
+label.label {
+    display: block;
+    position: relative;
+    font-size: 1rem;
+    padding: 0 0 0 1rem;
+    margin: 1rem auto;
+}
+form{
+    margin: 0 0.2rem;
+    display: block;
+    align-content: center;
+    background: rgba(7, 7, 7, 0.08);
+    border-radius: 1rem;
+    box-shadow: 0 2rem 1rem rgba(0,0,0,0.3);
+}
+form input[type=number], input[type=password], input[type=text], input[type=email] {
+    height: 2.5rem;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border: 0.2rem solid #ddd;
+    border-radius: 1rem;
+    outline: none;
+    letter-spacing: 0.3rem;
+}
+form input[type=submit]{
+    color: #fff;
+    width: 95%;
+    margin-left: 2.5%;
+    padding: 0 0.3rem;
+    background: green;
+    font-size: 1.75rem;
+    cursor: pointer;
+    transition: 0.4s;
+    display: block;
+    border-radius: 1rem;
+    border-width: 0.5rem;
+    font-weight: bolder;
+    box-shadow: 0 1rem 2rem rgba(33, 205, 7, 0.63);
+}
+form input[type=radio] {
+
+}
+form input:hover {
+    background-color: rgb(33, 205, 7);
+    color: black;
+}
+.form input:focus{
+    box-shadow: 0 0.1rem 0 rgba(0,0,0,0.2);
+
+}
+.form a{
+    font-size: 2rem;
+    color: #009579;
+    text-decoration: none;
+}
+.form a:hover{
+    text-decoration: underline;
+}
+
+.form input.button:hover{
+    background: #006653;
+}
+* {
+    box-sizing: border-box;
+}
+.container {
+    margin: 1rem 0;
+    background: wheat;
+    padding: 2rem;
+    border-radius: 2rem;
+    box-shadow: 1rem 1rem 1.5rem rgba(0, 0, 0, 0.1), -1rem -1rem 1.5rem rgba(255, 255, 255, 0.5);
+    transform: translateY(15rem);
+    animation: slideIn 1s ease-out forwards;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}

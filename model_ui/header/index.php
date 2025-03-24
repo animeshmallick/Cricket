@@ -20,6 +20,7 @@
         <div class="nav-title">Controls</div>
         <div class="separator"></div>
         <button class="nav-link" onclick="redirect_to('Cricket/')">Home</button>
+        <button class="nav-link" onclick="redirect_to('Cricket/profile/')">Profile</button>
         <?php if($common->get_cookie('match_id') != "" && $common->get_cookie('series_id') != ""){?>
             <button class="nav-link" onclick="redirect_to('Cricket/your_bids/')">Your Bids</button>
         <?php }?>

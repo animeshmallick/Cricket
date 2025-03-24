@@ -378,6 +378,16 @@ class Common
         }
         return null;
     }
+    public function get_user_details_from_users($ref_id)
+    {
+        $all_users = $this->get_all_users();
+        foreach ($all_users as $user) {
+            if ($user->ref_id == $ref_id) {
+                return $user;
+            }
+        }
+        return null;
+    }
     public function get_user_from_phone(mixed $phone)
     {
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/phone/" . $phone;
@@ -479,6 +489,13 @@ class Common
     public function activate_user(string $ref_id, string $phone, string $otp)
     {
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/activate_user/" .$ref_id. "/" .$phone. "/" .$otp;
+        return json_decode($this->get_response_from_url($url));
+    }
+
+    public function update_user_profile(mixed $fname, mixed $lname, mixed $password)
+    {
+        $ref_id = $this->get_cookie('ref_id');
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/" .$ref_id. "/" .$fname. "/" .$lname. "/" .$password;
         return json_decode($this->get_response_from_url($url));
     }
 }

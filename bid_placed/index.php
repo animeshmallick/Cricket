@@ -43,7 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
     </head>
     <body onload="fill_header();
         fill_scorecard();
-        fill_footer();">
+        fill_footer();
+        triggerPartyPopper()">
     <div id="header"></div>
     <?php
     if ($common->is_user_logged_in() && $common->isValidSession($session)) {
@@ -229,6 +230,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
         function triggerPartyPopper() {
             createConfetti();
             animateConfetti();
+            setTimeout(() => {canvas.remove();}, 3500);
         }
     </script>
     </body>

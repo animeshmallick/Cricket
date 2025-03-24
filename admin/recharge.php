@@ -40,6 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && ($common->is_user_an_admin() || $com
             <div class="gap"></div>
             <label class="label" for="amount">Amount:</label>
             <input type="number" id="amount" name="amount" placeholder="Amount" required>
+            <div class="gap"></div>
+            <div style="display: flex">
+                <div>
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="withdraw">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div>
+                    <span class="toggleCheckbox">This is a withdrawal transaction</span>
+                </div>
+            </div>
             <input type="submit" class="button" value="Recharge">
         </form>
         <p class="error" id="msg"><?php if(isset($_GET['msg'])) { echo $_GET['msg']; } ?></p>
@@ -52,6 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && ($common->is_user_an_admin() || $com
     $phone = $_POST['phone'];
     $amount = $_POST['amount'];
     $recharge_id = $_POST['recharge_id'];
+    $is_withdraw = isset($_POST['withdraw']);
+    if ($is_withdraw){
+        $amount = -$amount;
+    }
     $from_ref_id = $common->get_cookie('ref_id');
     $user = $common->get_user_from_phone($phone);
     if (!isset($user->error)){

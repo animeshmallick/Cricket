@@ -121,17 +121,17 @@ function update_scorecard(scorecard){
     const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
     document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
     document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
-    document.getElementById('match_name').innerHTML = ipl_formated(scorecard.teams[0]) + ' vs ' + ipl_formated(scorecard.teams[1]);
+    document.getElementById('match_name').innerHTML = ipl_formated(scorecard.teams[0]).toUpperCase() + ' vs ' + ipl_formated(scorecard.teams[1]).toUpperCase();
 
     document.getElementById('team1_logo')
         .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${ipl_formated(scorecard.teams[0])}.png`)
     document.getElementById('team2_logo')
         .setAttribute('src', `${window.location.protocol}//${window.location.hostname}/Cricket/images/logo/${ipl_formated(scorecard.teams[1])}.png`)
 
-    document.getElementById("team1_name").innerHTML = ipl_formated(scorecard.teams[0]);
+    document.getElementById("team1_name").innerHTML = ipl_formated(scorecard.teams[0]).toUpperCase();
     document.getElementById("team1_score").innerHTML = scorecard.team1_score.runs + "/" + scorecard.team1_score.wickets;
     document.getElementById('team1_overs').innerHTML = " (" + scorecard.team1_score.over + " ov)";
-    document.getElementById("team2_name").innerHTML = ipl_formated(scorecard.teams[1]);
+    document.getElementById("team2_name").innerHTML = ipl_formated(scorecard.teams[1]).toUpperCase();
     document.getElementById("team2_score").innerHTML = scorecard.team2_score.runs + "/" + scorecard.team2_score.wickets;;
     document.getElementById('team2_overs').innerHTML = " (" + (scorecard.team2_score.over === null ? '0' : scorecard.team2_score.over) + " ov)";
     document.getElementById("match_additional_details").innerHTML = scorecard.match_additional_details[0];

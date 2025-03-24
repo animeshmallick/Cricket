@@ -28,8 +28,9 @@
             <?php if($common->get_cookie('match_id') != "" && $common->get_cookie('series_id') != ""){ ?>
                 <button class="nav-link" onclick="redirect_to('Cricket/admin/admin_match_dashboard.php')">Admin Match Dashboard</button>
             <?php } ?>
-            <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Add Money</button>
-            <button class="nav-link" onclick="redirect_to('Cricket/admin/withdrawals.php')">Withdrawals</button>
+            <button class="nav-link" onclick="redirect_to('Cricket/admin/activate_user.php')">Activate User</button>
+            <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Recharge Wallet</button>
+            <button class="nav-link" onclick="redirect_to('Cricket/admin/withdrawals.php')">Tickets</button>
             <div class="separator"></div>
         <?php }elseif ($common->get_cookie('user_type') == 'agent'){?>
             <div class="sub-title">Agents Only</div>

@@ -477,4 +477,10 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_transaction_tickets/" . $ref_id;
         return json_decode($this->get_response_from_url($url));
     }
+
+    public function activate_user(string $ref_id, string $phone, string $otp)
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/activate_user/" .$ref_id. "/" .$phone. "/" .$otp;
+        return json_decode($this->get_response_from_url($url));
+    }
 }

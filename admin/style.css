@@ -64,3 +64,9 @@ form input[type=submit]{
     font-weight: bolder;
     box-shadow: 0 1rem 2rem rgba(33, 205, 7, 0.63);
 }
+p.error {
+    color: red;
+    background: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}

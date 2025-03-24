@@ -190,7 +190,7 @@ function ipl_formated(team){
     else if(team.includes('hyderabad'))
         return "SRH";
     else
-        return "";
+        return team;
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

@@ -24,15 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' &&
                 <input type="text" id="lname" name="lname" placeholder="Your Last Name">
                 <label class="label" for="phone">Phone Number:</label>
                 <input type="number" id="phone" name="phone" placeholder="Enter 10 digit phone number" required>
-                <label class="label" for="email">Email:</label>
-                <input type="email" id="email" name="email" placeholder="Your Email ID" required>
                 <label class="label" for="password">Create New Password:</label>
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <label class="label" for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
                 <input type="number" id="ref_id" name="ref_id" value="<?php echo get_unique_ref_id($common); ?>" readonly required hidden="hidden">
-                <label class="label" for="parent_ref_id">Referral Code (if any) :</label>
-                <input type="number" id="parent_ref_id" name="parent_ref_id">
                 <input type="submit" class="button" value="Register">
             </form>
             <a class="button" href="../index.php">Go Home</a>
@@ -49,7 +45,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$common->is_user_logged_in())
     } else {
         $ref_id = $_POST['ref_id'];
         if ($common->insert_new_user($_POST['fname'], $_POST['lname'], $_POST['phone'], $_POST['password'],
-            $ref_id, $_POST['email'], $_POST['parent_ref_id'], 'pending')) {
+            $ref_id, 'pending')) {
             $common->set_cookie('user_ref_id', $ref_id);
             $common->set_cookie('user_type', 'pending');
             $common->set_cookie('fname', $_POST['fname']);
@@ -57,8 +53,9 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$common->is_user_logged_in())
             ?>
             <body>
             <div class="container">
-                <h2>Attention Required</h2>
+                <h1>Attention Required</h1>
                 <div class="separator"></div>
+                <h2 style="color: #1cb604">OTP : <?= $ref_id ?></h2>
                 <p style="color:red;font-size: 1.5rem" id="message">
                     To activate your account send a Whatsapp/Text Message as "ACTIVATE <?php echo $ref_id; ?>" to +91 (9153217256) from your registered mobile number (<?php echo $_POST['phone']; ?>).
                 </p>

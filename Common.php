@@ -396,15 +396,13 @@ class Common
         return !isset(json_decode($this->get_response_from_url($url))->id);
     }
 
-    public function insert_new_user(mixed $fname, mixed $lname, mixed $phone, mixed $password, mixed $ref_id, mixed $email, mixed $parent_ref_id, string $status): bool
+    public function insert_new_user(mixed $fname, mixed $lname, mixed $phone, mixed $password, mixed $ref_id, string $status): bool
     {
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_new_user';
         $data = array(
             "id" => $ref_id,
-            "email" => $email,
             "fname" => $fname,
             "lname" => $lname,
-            "parent_ref_id" => $parent_ref_id,
             "password" => $password,
             "phone" => $phone,
             "ref_id" => $ref_id,

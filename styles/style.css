@@ -156,3 +156,8 @@ a.room-selected {
     border: 0.3rem solid limegreen;
     font-size: 0.8rem;
 }
+.card-inner {
+    background: rgba(255, 152, 0, 0.58);
+    border-radius: 1rem;
+    padding: 0.5rem;
+}

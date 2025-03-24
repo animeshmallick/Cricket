@@ -6,11 +6,12 @@ class Scores {
     }
 
     public function get_curr_balls($scorecard, $innings): int{
-        if ($innings == 1) {
-            return $scorecard->innings == 1 ? ((($scorecard->over - 1) * 6) + $this->get_valid_balls($scorecard->this_over)) : 120;
+        if ($scorecard->innings == 1) {
+            $over = floor($scorecard->team1_score->over * 10);
         } else {
-            return $scorecard->innings == 1 ? 0 : ((($scorecard->over - 1) * 6) + $this->get_valid_balls($scorecard->this_over));
+            $over = floor($scorecard->team2_score->over * 10);
         }
+        return ($over/10)*6 + $over%10;
     }
 
     public function get_curr_runs($bid_innings, $scorecard): int{

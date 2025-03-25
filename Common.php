@@ -128,22 +128,11 @@ class Common
         $ga = max(($x - $a), 0);
         $gb = max(($x - $b), 0);
         if ($ga == 0 && $gb == 0)
-            return [1.01, 1.01];
+            return [1.9, 1.9];
 
         $f = 3.8 / ($ga + $gb);
         $ra = $ga * $f;
         $rb = $gb * $f;
-
-        if($ra < 1){
-            $da = 1 - $ra;
-            $ra += $da;
-            $rb -= $da;
-        }
-        if($rb < 1){
-            $db = 1 - $rb;
-            $rb += $db;
-            $ra -= $db;
-        }
         return [$ra, $rb];
     }
     public function get_max($runs, $x, $y)

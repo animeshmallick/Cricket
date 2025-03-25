@@ -117,7 +117,7 @@ class Common
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
             return [2.0, 2.0];
-        $x = $book->collected * 0.9 + $amount;
+        $x = $book->collected + $amount;
         $a = 0;
         $b = 0;
         for ($i = 0; $i < $r; $i++)

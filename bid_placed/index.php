@@ -50,15 +50,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
     if ($common->is_user_logged_in() && $common->isValidSession($session)) {
         $bid_bookie_response = $common->get_session_bid_bookie_details($series_id, $match_id, $session, $amount, $room);
         if(!isset($bid_bookie_response->error)){
-            $rate = $slot == 'x' ? $bid_bookie_response->rate_1 :
-                ($slot == 'y' ? $bid_bookie_response->rate_2 :
-                    ($slot == 'z' ? $bid_bookie_response->rate_3 : 0));
-            $bid_runs_string = $slot == 'x' ? "Runs 0 to ".($bid_bookie_response->predicted_runs_a - 1) :
-                ($slot == 'y' ? "Runs [".$bid_bookie_response->predicted_runs_a." to ".$bid_bookie_response->predicted_runs_b."]" :
-                    ($slot == 'z' ? "Runs ".($bid_bookie_response->predicted_runs_b + 1)." or more" : 0));
-            $bid_runs_string .= ' end of '.$common->get_end_over_from_session($session)."th Over";
-            $run_min = $slot == 'x' ? 0 : ($slot == 'y' ? $bid_bookie_response->predicted_runs_a : ($slot == 'z' ? $bid_bookie_response->predicted_runs_b + 1 : 490));
-            $run_max = $slot == 'x' ? $bid_bookie_response->predicted_runs_a - 1 : ($slot == 'y' ? $bid_bookie_response->predicted_runs_b : ($slot == 'z' ? 490 : -1));
+            $rate = $slot == 'x' ? $bid_bookie_response->rate_1 : ($slot == 'y' ? $bid_bookie_response->rate_2 : 0);
+            $bid_runs_string = $slot == 'x' ? "Runs Less Than ".$bid_bookie_response->predicted_runs :
+                ($slot == 'y' ? "Runs More than ".$bid_bookie_response->predicted_runs : 0);
+            $bid_runs_string .= ' by end of '.$common->get_end_over_from_session($session)."th Over";
+            $run_min = $slot == 'x' ? 0 : ($slot == 'y' ? $bid_bookie_response->predicted_runs + 1 : 999);
+            $run_max = $slot == 'x' ? $bid_bookie_response->predicted_runs - 1 : ($slot == 'y' ? 999 : 0);
             $ref_id = $common->get_cookie('ref_id');
             $bid_place_response = $common->insert_new_session_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $session,
                 $slot, $run_min, $run_max, $rate, $amount, $bid_name, $room);

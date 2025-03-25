@@ -116,24 +116,34 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
-            return [2.0, 2.0, 2.0];
-        $x = $book->collected * 0.7 + $amount;
-        $r1 = (int)($r - 1.5);
-        $r2 = (int)($r + 1.5);
-        $a = $this->get_max($book->runs, 0, $r1);
+            return [2.0, 2.0];
+        $x = $book->collected * 0.8 + $amount;
+        $a = 0;
         $b = 0;
-        for ($i = $r1; $i <= $r2; $i++)
+        for ($i = 0; $i < $r; $i++)
+            $a = max($a, $book->runs[$i]);
+        for ($i = $r + 1; $i < count($book->runs); $i++)
             $b = max($b, $book->runs[$i]);
-        $c = $this->get_max($book->runs, $r2 + 1, count($book->runs));
-        $ga = max(($x - $a), 1.0);
-        $gb = max(($x - $b), 1.0);
-        $gc = max(($x - $c), 1.0);
-        $f = 6 / ($ga + $gb + $gc);
 
-        $ga *= $f;
-        $gb *= $f;
-        $gc *= $f;
-        return [$ga, $gb, $gc];
+        $ga = max(($x - $a), 0.0);
+        $gb = max(($x - $b), 0.0);
+
+        $f = 4 / ($ga + $gb);
+
+        $ra = $ga * $f;
+        $rb = $gb * $f;
+
+        if($ra < 1){
+            $da = 1 - $ra;
+            $ra += $da;
+            $rb -= $da;
+        }
+        if($rb < 1){
+            $db = 1 - $rb;
+            $rb += $db;
+            $ra -= $db;
+        }
+        return [$ra, $rb];
     }
     public function get_max($runs, $x, $y)
     {

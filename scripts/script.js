@@ -309,10 +309,12 @@ const parseDate = (dateStr) => {
 };
 function update_team_theme_on_scorecard(themes) {
     let i = 0;
-    document.querySelectorAll('.team-hover').forEach(element => {
-        element.style.background = `linear-gradient(90deg, #1cb604, ${themes[i]})`;
-        i++;
-    });
+    setTimeout(() => {
+        document.querySelectorAll('.team-hover').forEach(element => {
+            element.style.background = `linear-gradient(90deg, #1cb604, ${themes[i]})`;
+            i++;
+        });
+    }, 1000);
 }
 //Refresh the AUTH cookies and extend time by 1hr if user is active
 ['ref_id', 'fname', 'lname', 'user_type'].forEach(cookie => {

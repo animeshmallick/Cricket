@@ -95,13 +95,6 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                     <div class="separator"></div>
                     <span class="slot-line" id="slot_b_amount"> Put ₹100 get ₹200</span>
                 </div>
-                <div class="slot" id="slot_c">
-                    <input type="radio" name="slot" id="slot_z" value="z" style="display: none">
-                    <span class="slot-line" id="slot_c_runs">55 runs or more</span>
-                    <span class="slot-line" id="slot_c_runs_1">Min 56 runs</span>
-                    <div class="separator"></div>
-                    <span class="slot-line" id="slot_c_amount">Put ₹100 get ₹200</span>
-                </div>
                 <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
             </div>
         </form>

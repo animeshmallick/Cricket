@@ -40,11 +40,9 @@ if($common->is_eligible_for_session_bid($session, $scorecard->over_id) && $balls
     $rates = $common->get_rates($series_id, $match_id, $session, $room, $amount, $predicted_runs);
 
     $output = array(
-        "predicted_runs_a" => (int)($predicted_runs - 1.5),
-        "predicted_runs_b" => (int)($predicted_runs + 1.5),
+        "predicted_runs" => (int)($predicted_runs),
         "rate_1" => $rates[0],
         "rate_2" => $rates[1],
-        "rate_3" => $rates[2],
         "runs" => $run,
         "balls_left" => $balls_left,
         'session_name' => "Innings ".$session[1]." : Over ".

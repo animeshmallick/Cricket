@@ -246,7 +246,7 @@ function fill_slot_details(bid_master, update_selected){
         if (bid_master.rate_1 === max_rate)
             slot_a.click();
         if(getCookie('show_tour') === null)
-            document.getElementById('bid_container').scrollIntoView({behavior: "smooth", block: "end"});
+            document.getElementById('place-bid-form').scrollIntoView({behavior: "smooth", block: "end"});
     }
     slots_time = 0;
     console.log("Slots Updated");

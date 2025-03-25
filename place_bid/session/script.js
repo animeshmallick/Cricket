@@ -227,7 +227,7 @@ function fill_slot_details(bid_master, update_selected){
     const amount = document.getElementById('bidSlider').value;
     document.getElementById('balls_remaining').innerHTML = bid_master.balls_left;
     document.getElementById('session_close_in_balls').innerHTML = bid_master.balls_left - 6;
-    document.getElementById("slot_a_runs").innerHTML = bid_master.predicted_runs - 1;
+    document.getElementById("slot_a_runs").innerHTML = bid_master.predicted_runs;
     document.getElementById('slot_a_runs_1').innerHTML = "(Max "+(bid_master.predicted_runs - bid_master.runs - 1)+" runs in "+bid_master.balls_left+" balls)";
     document.getElementById("slot_a_amount_put").innerHTML = "₹" + amount;
     document.getElementById("slot_a_amount_get").innerHTML = "₹" + Math.trunc(amount * bid_master.rate_1);

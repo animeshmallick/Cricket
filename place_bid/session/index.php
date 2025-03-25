@@ -85,7 +85,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div style="display: flex">
                     <div class="slot" id="slot_a">
                         <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
-                        <span class="slot-line"><span class="slot-runs" id="slot_a_runs"></span> Runs or LESS</span>
+                        <span class="slot-line"><span class="slot-runs" id="slot_a_runs"></span> NOT</span>
+                        <div class="separator"></div>
                         <span class="slot-line" id="slot_a_runs_1">Max 50 runs</span>
                         <div class="separator"></div>
                         <span class="slot-line">Put <span class="amount-span" id="slot_a_amount_put"></span></span>
@@ -93,7 +94,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                     </div>
                     <div class="slot" id="slot_b">
                         <input type="radio" name="slot" id="slot_y" value="y" style="display: none">
-                        <span class="slot-line"><span class="slot-runs" id="slot_b_runs"></span> Runs or MORE</span>
+                        <span class="slot-line"><span class="slot-runs" id="slot_b_runs"></span> YES</span>
+                        <div class="separator"></div>
                         <span class="slot-line" id="slot_b_runs_1">[51 - 55] runs</span>
                         <div class="separator"></div>
                         <span class="slot-line">Put <span class="amount-span" id="slot_b_amount_put"></span></span>
@@ -145,8 +147,11 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     // Slot Click Event: Standout Effect
     slots.forEach((slot) => {
         slot.addEventListener('click', () => {
-            slots.forEach(s => s.classList.remove('active'));
-            slot.classList.add('active');
+            slots.forEach(s => {s.classList.remove('active-green'); s.classList.remove('active-red');});
+            if (slot.id === 'slot_a')
+                slot.classList.add('active-red')
+            else if (slot.id === 'slot_b')
+                slot.classList.add('active-green')
             slot.children.item(0).checked = true;
         });
     });

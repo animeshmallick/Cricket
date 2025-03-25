@@ -51,15 +51,12 @@ div.title {
 }
 @keyframes breathe-slots {
     0% {
-        background: linear-gradient(90deg, lightgreen, darkgreen);
         transform: scale(1);
     }
     50% {
-        background: linear-gradient(90deg, lightgreen, lawngreen);
         transform: scale(1.1);
     }
     100% {
-        background: linear-gradient(90deg, lightgreen, darkgreen);
         transform: scale(1);
     }
 }

@@ -100,6 +100,7 @@ div.slider-div {
 .slot.active {
     transform: scale(1);
     animation: breathe-slots 2s infinite ease-in-out;
+    background-color: lightgreen;
     font-weight: 700;
     padding: 0.5rem;
     margin-right: 1rem;
@@ -178,14 +179,12 @@ span.amount-span {
     background: linear-gradient(90deg, #24f104, #edcf08);
     border-radius: 1rem;
     padding: 0.2rem 1rem;
-    animation: breathe-slots 1s infinite;
 }
 span.slot-runs {
     font-size: 1.4rem;
     background: linear-gradient(90deg, #f43c05, #0dabef);
     border-radius: 1rem;
     padding: 0.2rem 1rem;
-    animation: breathe-slots 1s infinite;
 }
 div.hidden{
     display: none;

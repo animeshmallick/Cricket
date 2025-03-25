@@ -117,7 +117,7 @@ class Common
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
             return [2.0, 2.0];
-        $x = $book->collected * 0.8 + $amount;
+        $x = $book->collected * 0.9 + $amount;
         $a = 0;
         $b = 0;
         for ($i = 0; $i < $r; $i++)
@@ -125,11 +125,12 @@ class Common
         for ($i = $r + 1; $i < count($book->runs); $i++)
             $b = max($b, $book->runs[$i]);
 
-        $ga = max(($x - $a), 0.0);
-        $gb = max(($x - $b), 0.0);
+        $ga = max(($x - $a), 0);
+        $gb = max(($x - $b), 0);
+        if ($ga == 0 && $gb == 0)
+            return [1.01, 1.01];
 
         $f = 4 / ($ga + $gb);
-
         $ra = $ga * $f;
         $rb = $gb * $f;
 

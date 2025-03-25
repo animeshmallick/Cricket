@@ -161,3 +161,7 @@ a.room-selected {
     border-radius: 1rem;
     padding: 0.5rem;
 }
+div.gap {
+    display: block;
+    margin: 0.5rem;
+}

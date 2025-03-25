@@ -130,7 +130,7 @@ class Common
         if ($ga == 0 && $gb == 0)
             return [1.01, 1.01];
 
-        $f = 4 / ($ga + $gb);
+        $f = 3.6 / ($ga + $gb);
         $ra = $ga * $f;
         $rb = $gb * $f;
 

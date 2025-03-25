@@ -116,7 +116,7 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
-            return [2.0, 2.0];
+            return [1.9, 1.9];
         $x = $book->collected + $amount;
         $a = 0;
         $b = 0;
@@ -130,7 +130,7 @@ class Common
         if ($ga == 0 && $gb == 0)
             return [1.01, 1.01];
 
-        $f = 3.6 / ($ga + $gb);
+        $f = 3.8 / ($ga + $gb);
         $ra = $ga * $f;
         $rb = $gb * $f;
 

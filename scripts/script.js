@@ -126,7 +126,6 @@ function fill_scorecard(){
         .catch(error => console.log(error));
 }
 function update_scorecard(scorecard){
-    console.log(scorecard.team1_score.runs + " " + scorecard.team1_score.over + " " + get_formated_over(scorecard.team1_score.over));
     const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
     document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
     document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';

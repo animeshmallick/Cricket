@@ -144,22 +144,40 @@ function update_scorecard(scorecard){
     document.getElementById('team2_overs').innerHTML = " (" + (scorecard.team2_score.over === null ? '0' : scorecard.team2_score.over) + " ov)";
     document.getElementById("match_additional_details").innerHTML = scorecard.match_additional_details[0];
 
-    document.getElementById('batsman1').innerHTML =
-        scorecard.batsmen.batsman1.name+" "+scorecard.batsmen.batsman1.runs+" ("+scorecard.batsmen.batsman1.balls+")";
-    document.getElementById('batsman1_detail').innerHTML =
-        scorecard.batsmen.batsman1.fours+" 4s, "+scorecard.batsmen.batsman1.sixes+" 6s";
+    if (scorecard.batsmen.batsman1.name !== null) {
+        document.getElementById('batsman1').innerHTML =
+            scorecard.batsmen.batsman1.name + " " + scorecard.batsmen.batsman1.runs + " (" + scorecard.batsmen.batsman1.balls + ")";
+        document.getElementById('batsman1_detail').innerHTML =
+            scorecard.batsmen.batsman1.fours + " 4s, " + scorecard.batsmen.batsman1.sixes + " 6s";
+    }else{
+        document.getElementById('batsman1').innerHTML = "";
+        document.getElementById('batsman1_detail').innerHTML = "";
+    }
 
-    document.getElementById('batsman2').innerHTML =
-        scorecard.batsmen.batsman2.name+" "+scorecard.batsmen.batsman2.runs+" ("+scorecard.batsmen.batsman2.balls+")";
-    document.getElementById('batsman2_detail').innerHTML =
-        scorecard.batsmen.batsman2.fours+" 4s, "+scorecard.batsmen.batsman2.sixes+" 6s";
+    if(scorecard.batsmen.batsman2.name !== null) {
+        document.getElementById('batsman2').innerHTML =
+            scorecard.batsmen.batsman2.name + " " + scorecard.batsmen.batsman2.runs + " (" + scorecard.batsmen.batsman2.balls + ")";
+        document.getElementById('batsman2_detail').innerHTML =
+            scorecard.batsmen.batsman2.fours + " 4s, " + scorecard.batsmen.batsman2.sixes + " 6s";
+    }else{
+        document.getElementById('batsman2').innerHTML = "";
+        document.getElementById('batsman2_detail').innerHTML = "";
+    }
 
-    document.getElementById('bowler1').innerHTML = scorecard.bowler.bowler1.name;
-    document.getElementById('bowler1_detail').innerHTML = scorecard.bowler.bowler1.runs+" ("+scorecard.bowler.bowler1.overs+") "+scorecard.bowler.bowler1.wickets+"W";
-
-    document.getElementById('bowler2').innerHTML = scorecard.bowler.bowler2.name;
-    document.getElementById('bowler2_detail').innerHTML = scorecard.bowler.bowler2.runs+" ("+scorecard.bowler.bowler2.overs+") "+scorecard.bowler.bowler2.wickets+"W";
-
+    if(scorecard.bowler.bowler1.name !== null){
+        document.getElementById('bowler1').innerHTML = scorecard.bowler.bowler1.name;
+        document.getElementById('bowler1_detail').innerHTML = scorecard.bowler.bowler1.runs + " (" + scorecard.bowler.bowler1.overs + ") " + scorecard.bowler.bowler1.wickets + "W";
+    }else {
+        document.getElementById('bowler1').innerHTML = "";
+        document.getElementById('bowler1_detail').innerHTML = "";
+    }
+    if(scorecard.bowler.bowler2.name !== null) {
+        document.getElementById('bowler2').innerHTML = scorecard.bowler.bowler2.name;
+        document.getElementById('bowler2_detail').innerHTML = scorecard.bowler.bowler2.runs + " (" + scorecard.bowler.bowler2.overs + ") " + scorecard.bowler.bowler2.wickets + "W";
+    }else{
+        document.getElementById('bowler2').innerHTML = "";
+        document.getElementById('bowler2_detail').innerHTML = "";
+    }
     create_current_over_balls_container(scorecard.this_over);
 
     document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";

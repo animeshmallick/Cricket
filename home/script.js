@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         left_div.appendChild(teams);
 
         const score = document.createElement('span');
-        score.textContent = `${match.score}`;
+        score.textContent = `${match.score.replaceAll('null', '0')}`;
         bottom_div.appendChild(score);
 
         const match_details_div = document.createElement('div');

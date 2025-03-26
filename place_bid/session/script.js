@@ -230,12 +230,12 @@ function fill_slot_details(bid_master, update_selected){
     document.getElementById("slot_a_runs").innerHTML = bid_master.predicted_runs;
     document.getElementById('slot_a_runs_1').innerHTML = "(Max "+(bid_master.predicted_runs - bid_master.runs - 1)+" runs in "+bid_master.balls_left+" balls)";
     document.getElementById("slot_a_amount_put").innerHTML = "₹" + amount;
-    document.getElementById("slot_a_amount_get").innerHTML = "₹" + Math.trunc(amount * bid_master.rate_1);
+    document.getElementById("slot_a_amount_get").innerHTML = "₹" + Math.trunc(amount * (1 + bid_master.rate_1));
 
     document.getElementById("slot_b_runs").innerHTML = bid_master.predicted_runs + 1;
     document.getElementById('slot_b_runs_1').innerHTML = "(Min "+(bid_master.predicted_runs - bid_master.runs + 1)+" runs in "+bid_master.balls_left+" balls)";
     document.getElementById("slot_b_amount_put").innerHTML = "₹" + amount;
-    document.getElementById("slot_b_amount_get").innerHTML = "₹" + Math.trunc(amount * bid_master.rate_2);
+    document.getElementById("slot_b_amount_get").innerHTML = "₹" + Math.trunc(amount * (1 + bid_master.rate_2));
 
     let slot_a = document.getElementById("slot_a");
     let slot_b = document.getElementById("slot_b");

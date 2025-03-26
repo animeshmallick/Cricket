@@ -138,7 +138,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             <?php   }
             } ?>
             <div class="separator"></div>
-            <a class="button" style="margin-left: 12.5%; width: 75%" href="../match/index.php?series_id=<?php echo $series_id; ?>&match_id=<?php echo $match_id;?>&match_name=<?php echo $match_name;?>">New Bid</a>
+            <?php if($session  == 'winner'){ ?>
+                <a class="button" style="margin-left: 12.5%; width: 75%" href="../place_bid/winner/index.php?session=<?= $session ?>&room=<?= $room ?>">New Bid</a>
+            <?php } else if($common->isValidSession($session)) { ?>
+                <a class="button" style="margin-left: 12.5%; width: 75%" href="../place_bid/session/index.php?session=<?= $session ?>&room=<?= $room ?>">New Bid</a>
+            <?php } ?>
             <div class="separator"></div>
             <button class="button" style="margin-left: 12.5%; width: 75%" onclick="redirect_to('Cricket/your_bids/')">Dashboard</button>
         </div>

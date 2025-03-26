@@ -48,7 +48,6 @@ class Scores {
     }
 
     public function get_r($r1, $r2): float{
-        echo $r1 . " " . $r2 . "\n";
         return ($r1 + $r2) / 2;
         //$x = $slot == 'a' ? 0 : ($slot == 'b' ? 36 : ($slot == 'c' ? 60 : 96));
         //return $r2 - (($r2 - $r1) * ($curr_balls - $x) / ($this->datahelper->get_maxballs_for_slot($slot) - $x));

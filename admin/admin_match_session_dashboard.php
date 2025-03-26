@@ -71,7 +71,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                                 echo $result[1]." Wins";
                             ?>
                         </td>
-                        <?php $amount_string = '₹'.$bid->amount." && ₹".(int)($bid->amount * $bid->rate);
+                        <?php $amount_string = '₹'.$bid->amount." && ₹".(int)($bid->amount * (1 + $bid->rate));
                         if($bid->status=="placed")
                             $amount_string = str_replace('&&', "may return", $amount_string);
                         else if($bid->status=="cancel")

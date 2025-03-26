@@ -48,8 +48,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
         <div class="sub-title">Select Room Based On Bid Amount</div>
         <div style="display: flex; justify-content: space-between">
             <a class="room <?php echo $room == 1 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=1"><span>&#8377;1 - &#8377;500</span></a>
-            <a class="room <?php echo $room == 2 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=2"><span>&#8377;500 - &#8377;1500</span></a>
-            <a class="room <?php echo $room == 3 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=3"><span>&#8377;1500 - &#8377;2500</span></a>
+            <a class="room disabled <?php echo $room == 2 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=2"><span>&#8377;500 - &#8377;1500</span></a>
+            <a class="room disabled <?php echo $room == 3 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=3"><span>&#8377;1500 - &#8377;2500</span></a>
         </div>
     </div>
     <div class="bid-section">

@@ -78,17 +78,21 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div style="display: flex">
                     <div class="balls-remaining-container"><span id="balls_remaining"></span></div>
                 </div>
-                <div class="slot" id="slot_a">
-                    <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
-                    <span class="slot-line" id="slot_a_runs">50 Runs or less</span>
-                    <div class="separator"></div>
-                    <span class="slot-line" id="slot_a_amount">Put ₹100 get ₹200</span>
-                </div>
-                <div class="slot" id="slot_b">
-                    <input type="radio" name="slot" id="slot_y" value="y" style="display: none">
-                    <span class="slot-line" id="slot_b_runs">51 to 55 runs</span>
-                    <div class="separator"></div>
-                    <span class="slot-line" id="slot_b_amount"> Put ₹100 get ₹200</span>
+                <div style="display: flex">
+                    <div class="slot" id="slot_a">
+                        <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
+                        <span class="slot-line" id="slot_a_runs">50 Runs or less</span>
+                        <div class="separator"></div>
+                        <span class="slot-line">Put <span class="amount-span" id="slot_a_amount_put"></span></span>
+                        <span class="slot-line">Get <span class="amount-span" id="slot_a_amount_get"></span></span>
+                    </div>
+                    <div class="slot" id="slot_b">
+                        <input type="radio" name="slot" id="slot_y" value="y" style="display: none">
+                        <span class="slot-line" id="slot_b_runs">51 to 55 runs</span>
+                        <div class="separator"></div>
+                        <span class="slot-line">Put <span class="amount-span" id="slot_b_amount_put"></span></span>
+                        <span class="slot-line">Get <span class="amount-span" id="slot_b_amount_get"></span></span>
+                    </div>
                 </div>
                 <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
             </div>

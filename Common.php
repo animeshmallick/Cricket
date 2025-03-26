@@ -138,7 +138,7 @@ class Common
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
             return [0.9, 0.9];
-        $x = $book->collected;
+        $x = $book->collected * 0.9;
         $a = 0;
         $b = 0;
         for ($i = 0; $i < $r; $i++)
@@ -150,11 +150,7 @@ class Common
         $gb = max(($x - $b), 0);
         if ($ga == 0 && $gb == 0)
             return [0.9, 0.9];
-
-        $f = 1.8 / ($ga + $gb);
-        $ra = $ga * $f;
-        $rb = $gb * $f;
-        return [$ra, $rb];
+        return [$ga/$amount, $gb/$amount];
     }
     public function get_max($runs, $x, $y)
     {
@@ -267,32 +263,22 @@ class Common
         foreach ($all_bids as $bid) {
             $x += (float)($bid->amount);
         }
-        $x = $x - ($x / 100) + $amount;
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'x')
-                $a += (float)($bid->amount);
+                $a += (float)($bid->amount * $bid->rate);
         }
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'y')
-                $b += (float)($bid->amount);
+                $b += (float)($bid->amount * $bid->rate);
         }
 
-        $ga = max(($x - $a), 0.0);
-        $gb = max(($x - $b), 0.0);
-        $g = $ga + $gb;
-
-
-        $ra = $ga / $g;
-        $rb = $gb / $g;
-
-        $f = 4 / ($ra + $rb);
-
-        $ra *= $f;
-        $rb *= $f;
-
-        return [$ra, $rb];
+        $ga = max(($x - $a), $amount * 0.01);
+        $gb = max(($x - $b), $amount * 0.01);
+        if ($ga == 0 && $gb == 0)
+            return [0.9, 0.9];
+        return [$ga/$amount, $gb/$amount];
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)

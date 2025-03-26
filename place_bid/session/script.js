@@ -68,32 +68,8 @@ function startTour(){
 
         tour.addStep({
             title: 'Option 1',
-            text: 'This is the first option and below 2 are the remaining options for the session.',
+            text: 'This is the 1st option. Select if expected runs is less than the given number',
             attachTo: {element: '#slot_a', on: 'top'},
-            highlightClass: 'shepherd-highlight',
-            buttons: [
-                {text: 'Back', action: tour.back},
-                {text: 'Next', action: tour.next},
-                {text: 'Skip', action: tour.complete}
-            ]
-        });
-
-        tour.addStep({
-            title: 'Expected Runs',
-            text: 'Expected Runs for This Slot. Select if you think the actual runs would fall in this range at the end of this session.',
-            attachTo: {element: '#slot_a_runs', on: 'top'},
-            highlightClass: 'shepherd-highlight',
-            buttons: [
-                {text: 'Back', action: tour.back},
-                {text: 'Next', action: tour.next},
-                {text: 'Skip', action: tour.complete}
-            ]
-        });
-
-        tour.addStep({
-            title: 'Required Runs for the expected slot to win.',
-            text: 'Required Score for this session to win. Select if you think this would be true.',
-            attachTo: {element: '#slot_a_runs_1', on: 'top'},
             highlightClass: 'shepherd-highlight',
             buttons: [
                 {text: 'Back', action: tour.back},
@@ -114,19 +90,8 @@ function startTour(){
         });
         tour.addStep({
             title: 'Option 2',
-            text: 'Similarly this is the second option',
+            text: 'This is the 2nd option. Select if expected runs equals or more than the given number',
             attachTo: {element: '#slot_b', on: 'bottom'},
-            highlightClass: 'shepherd-highlight',
-            buttons: [
-                {text: 'Back', action: tour.back},
-                {text: 'Next', action: tour.next},
-                {text: 'Skip', action: tour.complete}
-            ]
-        });
-        tour.addStep({
-            title: 'Option 3',
-            text: 'Similarly this is the third option',
-            attachTo: {element: '#slot_c', on: 'bottom'},
             highlightClass: 'shepherd-highlight',
             buttons: [
                 {text: 'Back', action: tour.back},

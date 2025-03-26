@@ -34,7 +34,7 @@ class Scores {
     public function get_r2_without_wickets($curr_rr, $slot): float{
         if($curr_rr == 0)
             return $this->datahelper->get_default_runs($slot);
-        return ($curr_rr + 1) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
+        return ($curr_rr + 1.5) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
     }
 
     public function update_r2_with_wickets($r2, $scorecard, $bid_innings): float{

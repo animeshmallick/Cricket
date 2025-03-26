@@ -167,7 +167,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             $user_bids[$bid->ref_id]['count']++;
             $user_bids[$bid->ref_id]['collected'] += $bid->amount;
             if ($bid->status == 'win')
-                $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * $bid->rate);
+                $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * (1 + $bid->rate));
         }else{
             $obj = array();
             $obj['ref_id'] = $bid->ref_id;

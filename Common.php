@@ -274,8 +274,8 @@ class Common
                 $b += (float)($bid->amount * $bid->rate);
         }
 
-        $ga = max(($x - $a), $amount * 0.01);
-        $gb = max(($x - $b), $amount * 0.01);
+        $ga = max(($x - $a), 0);
+        $gb = max(($x - $b), 0);
         if ($ga == 0 && $gb == 0)
             return [0.9, 0.9];
         return [$ga/$amount, $gb/$amount];

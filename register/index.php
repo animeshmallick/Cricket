@@ -28,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' &&
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <label class="label" for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+                <label class="label" for="parent_ref_id">Referral Code:</label>
+                <input type="number" id="parent_ref_id" name="parent_ref_id" placeholder="Referral Code (if any)">
                 <input type="number" id="ref_id" name="ref_id" value="<?php echo get_unique_ref_id($common); ?>" readonly required hidden="hidden">
                 <input type="submit" class="button" value="Register">
             </form>
@@ -45,7 +47,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$common->is_user_logged_in())
     } else {
         $ref_id = $_POST['ref_id'];
         if ($common->insert_new_user($_POST['fname'], $_POST['lname'], $_POST['phone'], $_POST['password'],
-            $ref_id, 'pending')) {
+            $ref_id, 'pending', floatval($_POST['parent_ref_id']))) {
             $common->set_cookie('user_ref_id', $ref_id);
             $common->set_cookie('user_type', 'pending');
             $common->set_cookie('fname', $_POST['fname']);
@@ -55,7 +57,9 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$common->is_user_logged_in())
             <div class="container">
                 <h1>Attention Required</h1>
                 <div class="separator"></div>
-                <h2 style="color: #1cb604">OTP : <?= $ref_id ?></h2>
+                <h2 style="color: #3375cc">Your Reference Code</h2>
+                <h2 style="color: #1cb604; letter-spacing: 0.25rem; font-size: 2.2rem"><?= $ref_id ?></h2>
+                <div class="separator"></div>
                 <p style="color:red;font-size: 1.5rem" id="message">
                     To activate your account send a Whatsapp/Text Message as "ACTIVATE <?php echo $ref_id; ?>" to +91 (9153217256) from your registered mobile number (<?php echo $_POST['phone']; ?>).
                 </p>

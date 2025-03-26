@@ -4,6 +4,7 @@ $common = new Common();
 if($common->is_user_logged_in()){
     $common->redirect_to('Cricket/home/');
 }else{
+    $common->clear_all_cookies();
 ?>
     <!DOCTYPE html>
     <html lang="en">

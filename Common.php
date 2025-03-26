@@ -19,11 +19,32 @@ class Common
 
     public function is_user_logged_in(): bool
     {
-        return $this->get_cookie('ref_id') != "";
+        return $this->get_cookie('ref_id') != null &&
+            $this->get_cookie('ref_id') != "null" &&
+            strlen($this->get_cookie('ref_id')) > 0;
     }
 
-    public function logout()
+    public function logout(): void
     {
+        $this->clear_all_cookies();
+    }
+    function clear_all_cookies(): void
+    {
+        $this->delete_cookie('ref_id');
+        $this->delete_cookie('fname');
+        $this->delete_cookie('lname');
+        $this->delete_cookie('user_type');
+        $this->delete_cookie('show_tour');
+        $this->delete_cookie('match_id');
+        $this->delete_cookie('series_id');
+        $this->delete_cookie('ghost_ref_id');
+        $this->delete_cookie('ghost_fname');
+        $this->delete_cookie('ghost_lname');
+        $this->delete_cookie('ghost_mode');
+    }
+    function delete_cookie($name): void
+    {
+        setcookie($name, "", time() - 3600, "/");
     }
 
     public function redirect_to(string $url)

@@ -80,3 +80,59 @@ function settle_ticket(ticket_id){
         }
     }
 }
+function fill_all_users_card() {
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users")
+        .then(response => response.json())
+        .then(data => fill_user_card_content(data))
+        .catch(error => console.error('Error:', error));
+}
+function fill_user_card_content(users){
+    users.sort((a, b) => parseDate(b.last_login) - parseDate(a.last_login));
+    const usersContainer = document.getElementById("usersContainer");
+    users.forEach((user) => {
+        const card = document.createElement("div");
+        card.classList.add('card-inner');
+        usersContainer.appendChild(card);
+        const cardInner = document.createElement('div');
+        cardInner.innerHTML = `
+            <div class="tran_status">Name : ${user.fname + " " + user.lname}</div>
+            <div class="tran_status">Phone : ${user.phone}</div>
+            <div class="tran_status">ID : ${user.ref_id}</div>
+            <div class="tran_status">Status : ${user.status}</div>
+            <div class="tran_status">Last Login At: ${user.last_login}</div>
+            <div class="tran_status">Type: ${user.type}</div>  
+        `;
+        const today = new Date();
+        const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+        if(user.last_login && user.last_login.toString().length > 0 && user.last_login.toString().includes(formattedDate)){
+            cardInner.classList.add('active-user');
+        }
+        if(user.ref_id !== getCookie('ref_id')) {
+            const ghostLoginButton = document.createElement('button');
+            ghostLoginButton.classList.add('ghost_login_button');
+            ghostLoginButton.id = user.ref_id;
+            ghostLoginButton.textContent = 'Login as Ghost';
+            ghostLoginButton.onclick = function () {
+                enable_ghost_mode(ghostLoginButton.id);
+            };
+            cardInner.appendChild(ghostLoginButton);
+        }
+        card.appendChild(cardInner);
+    });
+}
+function enable_ghost_mode(ref_id){
+    alert(ref_id);
+    const userResponse = prompt("Are you sure, You want to login as ghost into this account. Type yes.", "no");
+    if(userResponse.toLowerCase() === 'yes') {
+        set_cookie('ghost_ref_id', getCookie('ref_id'));
+        set_cookie('ghost_fname', getCookie('fname'));
+        set_cookie('ghost_lname', getCookie('lname'));
+
+        set_cookie('ref_id', ref_id);
+        set_cookie('fname', "Ghost");
+        set_cookie('lname', "User");
+        set_cookie('ghost_mode', 'yes');
+        alert("Ghost Mode Enabled Successfully");
+        redirect_to('Cricket/');
+    }
+}

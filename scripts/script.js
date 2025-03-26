@@ -35,6 +35,10 @@ function set_cookie(name,value){
     const expires = "; expires="+date.toUTCString();
     document.cookie = `${name}=${value}`+expires+"; path=/";
 }
+function delete_cookie(name){
+    document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/`;
+}
+
 function w3_open() {
     document.getElementById("side-bar-container").style.display = "block";
 }
@@ -85,12 +89,16 @@ function redirect_to(path){
 }
 function logout(){
     if (confirm("Are you sure?")) {
-        document.cookie = "ref_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        document.cookie = "fname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        document.cookie = "lname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        document.cookie = "user_type=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        document.cookie = "match_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
-        document.cookie = "series_id=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/";
+        delete_cookie('ref_id');
+        delete_cookie('fname');
+        delete_cookie('lname');
+        delete_cookie('user_type');
+        delete_cookie('match_id');
+        delete_cookie('series_id');
+        delete_cookie('ghost_ref_id');
+        delete_cookie('ghost_fname');
+        delete_cookie('ghost_lname');
+        delete_cookie('ghost_mode');
         redirect_to('Cricket/');
         console.log('logout');
     }
@@ -301,10 +309,13 @@ if(balls != null) {
     });
 }
 const parseDate = (dateStr) => {
-    const [datePart, timePart] = dateStr.split(", ");
-    const [day, month, year] = datePart.split("/").map(Number);
-    const [hours, minutes, seconds] = timePart.split(":").map(Number);
-    return new Date(year, month - 1, day, hours, minutes, seconds);
+    if (dateStr && dateStr.includes(", ") && dateStr.includes("/") && dateStr.includes(":")) {
+        const [datePart, timePart] = dateStr.split(", ");
+        const [day, month, year] = datePart.split("/").map(Number);
+        const [hours, minutes, seconds] = timePart.split(":").map(Number);
+        return new Date(year, month - 1, day, hours, minutes, seconds);
+    }
+    return new Date(2000, 1, 1, 0, 0, 0);
 };
 
 //Refresh the AUTH cookies and extend time by 1hr if user is active
@@ -312,3 +323,15 @@ const parseDate = (dateStr) => {
     if (getCookie(cookie) !== null)
     set_cookie(cookie, getCookie(cookie))
 });
+function disable_ghost_mode(){
+    set_cookie('ref_id', getCookie('ghost_ref_id'));
+    set_cookie('fname', getCookie('ghost_fname'));
+    set_cookie('lname', getCookie('ghost_lname'));
+
+    delete_cookie('ghost_ref_id');
+    delete_cookie('ghost_fname');
+    delete_cookie('ghost_lname');
+    delete_cookie('ghost_mode');
+
+    redirect_to('Cricket/');
+}

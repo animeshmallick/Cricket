@@ -26,17 +26,22 @@
         <?php }?>
         <?php if($common->get_cookie('user_type') == 'admin') {?>
             <div class="sub-title">Admins Only</div>
+            <?php if($common->get_cookie('ghost_mode') == 'yes'){ ?>
+                <button class="nav-link" onclick="disable_ghost_mode()">Disable Ghost Mode</button>
+            <?php } else {?>
             <?php if($common->get_cookie('match_id') != "" && $common->get_cookie('series_id') != ""){ ?>
                 <button class="nav-link" onclick="redirect_to('Cricket/admin/admin_match_dashboard.php')">Admin Match Dashboard</button>
             <?php } ?>
+            <button class="nav-link" onclick="redirect_to('Cricket/admin/all_users.php')">Customers</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/activate_user.php')">Activate User</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Recharge Wallet</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/view_tickets.php')">Tickets</button>
             <div class="separator"></div>
-        <?php }elseif ($common->get_cookie('user_type') == 'agent'){?>
+        <?php }
+        }elseif ($common->get_cookie('user_type') == 'agent'){?>
             <div class="sub-title">Agents Only</div>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Transfer Balance</button>
-        <?php } ?>
+        <?php }?>
         <button class="nav-link" onclick="logout();">Logout</button>
         <div class="separator"></div>
         <a class="nav-link" onclick="w3_close()">Close</a>

@@ -135,3 +135,13 @@ button.settle_button{
     background: linear-gradient(90deg, blue, orangered);
     color: wheat;
 }
+div.active-user {
+    background: linear-gradient(90deg, #21cd07, #edcf08);
+}
+button.ghost_login_button{
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0;
+    background: linear-gradient(90deg, blue, orangered);
+    color: wheat;
+}

@@ -163,7 +163,6 @@ function update_scorecard(scorecard){
     document.getElementById('last_wicket').innerHTML = scorecard.last_wicket_at;
 
     document.getElementById('timer').innerHTML = "&nbsp";
-    update_team_theme_on_scorecard(scorecard.themes);
     console.log('Scorecard Updated');
 }
 function ipl_formated(team){
@@ -307,15 +306,7 @@ const parseDate = (dateStr) => {
     const [hours, minutes, seconds] = timePart.split(":").map(Number);
     return new Date(year, month - 1, day, hours, minutes, seconds);
 };
-function update_team_theme_on_scorecard(themes) {
-    let i = 0;
-    setTimeout(() => {
-        document.querySelectorAll('.team-hover').forEach(element => {
-            element.style.background = `linear-gradient(90deg, #1cb604, ${themes[i]})`;
-            i++;
-        });
-    }, 1000);
-}
+
 //Refresh the AUTH cookies and extend time by 1hr if user is active
 ['ref_id', 'fname', 'lname', 'user_type'].forEach(cookie => {
     if (getCookie(cookie) !== null)

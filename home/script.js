@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', function () {
             matchCardWrapper.classList.add('yet-to-start');
         } else if (match.type === 'completed') {
             matchCardWrapper.classList.add('completed');
+        }else if (match.type === 'hide') {
+            return;
         }
         const out_div = document.createElement('div');
         matchCardWrapper.appendChild(out_div);

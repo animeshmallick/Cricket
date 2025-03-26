@@ -170,6 +170,8 @@ function update_scorecard(scorecard){
     document.getElementById('last_batsman').innerHTML = scorecard.last_batsman;
     document.getElementById('last_wicket').innerHTML = scorecard.last_wicket_at;
 
+    update_themes(scorecard.teams);
+
     document.getElementById('timer').innerHTML = "&nbsp";
     console.log('Scorecard Updated');
 }
@@ -198,6 +200,17 @@ function ipl_formated(team){
         return "SRH";
     else
         return team;
+}
+function update_themes(teams){
+    if (teams[0].toLowerCase().includes('kolkata'))
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, whitesmoke, #6304c2)`;
+    if (teams[1].toLowerCase().includes('kolkata'))
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, whitesmoke, #6304c2)`;
+
+    if (teams[0].toLowerCase().includes('rajasthan'))
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, whitesmoke, deeppink)`;
+    if (teams[1].toLowerCase().includes('rajasthan'))
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, whitesmoke, deeppink)`;
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

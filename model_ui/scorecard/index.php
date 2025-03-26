@@ -7,14 +7,14 @@
 
     <!-- Team Logos and Scores -->
     <div class="space-y-1">
-        <div class="team-hover flex justify-between items-center text-sm rounded-md">
+        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team1_container">
             <img id="team1_logo" src="../../images/logo/india.png" alt="India" class="h-10 w-10 team-logo"/>
             <span id='team1_name' class="team-badge">Loading</span>
             <span id='team1_score' class="score text-yellow-400"></span>
             <span id='team1_overs' class="text-xl"></span>
         </div>
         <div class="h-1 bg-gray-800 mb-4"></div>
-        <div class="team-hover flex justify-between items-center text-sm rounded-md">
+        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team2_container">
             <img id='team2_logo' src="../../images/logo/england.png" alt="Australia" class="h-10 w-10 team-logo" />
             <span id='team2_name' class="team-badge">Loading</span>
             <span id='team2_score' class="score text-yellow-400"></span>

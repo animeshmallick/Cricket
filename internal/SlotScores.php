@@ -5,7 +5,7 @@ class Scores {
         $this->datahelper = $datahelper;
     }
 
-    public function get_curr_rr($scorecard, $innings): int{
+    public function get_curr_rr($scorecard, $innings): float{
         if ($innings == 1) {
             $over = $scorecard->team1_score->over;
             $x = $over * 10;
@@ -31,24 +31,23 @@ class Scores {
 
     }
 
-    public function get_r2_without_wickets($curr_rr, $slot): float{
+    public function get_r2_without_wickets(float $curr_rr, $slot): float{
         if($curr_rr == 0)
             return $this->datahelper->get_default_runs($slot);
-        return ($curr_rr + 1.5) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
+        return ($curr_rr + 1) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
     }
 
-    public function update_r2_with_wickets($r2, $scorecard, $bid_innings): float{
-        $r2 -= $bid_innings == 1 ? ($scorecard->team1_score->wickets * $this->datahelper->get_wicket_multiplier()) :
-            ($scorecard->team2_score->wickets * $this->datahelper->get_wicket_multiplier());
+    public function update_r2_with_wickets($r2, $scorecard): float{
+        $wkts = 0;
         foreach($scorecard->this_over as $ball){
             if(in_array("W",str_split($ball)))
-                return $r2;
+                $wkts++;
         }
-        return $r2 + 3;
+        return $r2 - ($wkts * $this->datahelper->get_wicket_multiplier());
     }
 
-    public function get_r($r1, $r2): float{
-        return ($r1 + $r2) / 2;
+    public function get_r($r1, $r2): int{
+        return floor(($r1 + $r2) / 2);
         //$x = $slot == 'a' ? 0 : ($slot == 'b' ? 36 : ($slot == 'c' ? 60 : 96));
         //return $r2 - (($r2 - $r1) * ($curr_balls - $x) / ($this->datahelper->get_maxballs_for_slot($slot) - $x));
     }
@@ -56,7 +55,7 @@ class Scores {
         $curr_rr = $this->get_curr_rr($scorecard, $bid_innings);
         $r1 = $this->get_r1($curr_rr, $slot);
         $r2 = $this->get_r2_without_wickets($curr_rr, $slot);
-        $r2 = max($r1, $this->update_r2_with_wickets($r2, $scorecard, $bid_innings));
+        $r2 = max($r1, $this->update_r2_with_wickets($r2, $scorecard));
         return min(
                 max(
                     $this->get_r($r1, $r2),

@@ -30,7 +30,7 @@ function fill_bid_content(bids, teams){
     bids.forEach((bid) => {
         totalSpend += parseInt(bid.amount);
         if (bid.status === "win")
-            totalCollected += Math.floor(parseFloat(bid.rate) * parseFloat(bid.amount));
+            totalCollected += Math.floor((1 + parseFloat(bid.rate)) * parseFloat(bid.amount));
     });
     const summaryCard = document.createElement("div");
     summaryCard.className =`card`;
@@ -68,7 +68,7 @@ function fill_bid_content(bids, teams){
                             <div style="display: flex;width: 100%">
                                 <div style="width: 40%">
                                     <div style="text-align: center"><p class="bid_amount">PUT <span class="amount_span_card">&#8377;${bid.amount}</span></p></div>
-                                    <div style="text-align: center"><p class="bid_amount">GET <span class="amount_span_card">&#8377;${Math.floor(bid.amount * bid.rate)}</span></span></p></div>
+                                    <div style="text-align: center"><p class="bid_amount">GET <span class="amount_span_card">&#8377;${Math.floor(bid.amount * (1 + bid.rate))}</span></span></p></div>
                                 </div>
                                 <div style="width: 60%; text-align: center"><p class="bid_runs">${runs_slot}</p></div>
                             </div>

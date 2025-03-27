@@ -121,7 +121,6 @@ function fill_user_card_content(users){
     });
 }
 function enable_ghost_mode(ref_id){
-    alert(ref_id);
     const userResponse = prompt("Are you sure, You want to login as ghost into this account. Type yes.", "no");
     if(userResponse.toLowerCase() === 'yes') {
         set_cookie('ghost_ref_id', getCookie('ref_id'));

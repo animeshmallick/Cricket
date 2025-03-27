@@ -35,10 +35,15 @@ class Scores {
         if($curr_rr == 0)
             return $this->datahelper->get_default_runs($slot);
         $factor = 1.25;
-        if($wkts > 4)
+        if($wkts >= 2)
             $factor = 1;
-        if($wkts > 6)
-            $factor = 0.6;
+        if($wkts >= 5)
+            $factor = 0.8;
+        if($wkts >= 7)
+            $factor = 0.5;
+        if($wkts >= 9)
+            $factor = 0.25;
+
         return ($curr_rr + $factor) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
     }
 

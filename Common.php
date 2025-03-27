@@ -141,15 +141,20 @@ class Common
         $x = $book->collected * 0.9;
         $a = 0;
         $b = 0;
-        for ($i = 0; $i < $r; $i++)
+        for ($i = ($r - 15); $i < $r; $i++)
             $a = max($a, $book->runs[$i]);
-        for ($i = $r + 1; $i < count($book->runs); $i++)
+        for ($i = $r + 1; $i < min(($r + 15), count($book->runs)); $i++)
             $b = max($b, $book->runs[$i]);
 
         $ga = max(($x - $a), 0);
         $gb = max(($x - $b), 0);
         if ($ga == 0 && $gb == 0)
             return [0.9, 0.9];
+        if($ga == 0)
+            $gb += $amount * 0.2;
+        if ($gb == 0)
+            $ga += $amount * 0.2;
+
         return [$ga/$amount, $gb/$amount];
     }
     public function get_max($runs, $x, $y)

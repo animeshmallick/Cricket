@@ -127,6 +127,7 @@ function fill_scorecard(){
 }
 function update_scorecard(scorecard){
     const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
+    const rrr = scorecard.innings === 2 ? (scorecard.team1_score.runs - scorecard.team2_score.runs) / (20 - get_formated_over(scorecard.team1_score.over)) : 0;
     document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
     document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
     document.getElementById('match_name').innerHTML = ipl_formated(scorecard.teams[0]).toUpperCase() + ' vs ' + ipl_formated(scorecard.teams[1]).toUpperCase();
@@ -181,7 +182,11 @@ function update_scorecard(scorecard){
     create_current_over_balls_container(scorecard.this_over);
 
     document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
-    //document.getElementById('rrr').innerHTML = rrr !== 0 ? ("Req. RR : "+ rrr.toFixed(2)) : "";
+    if(scorecard.innings === 2){
+        document.getElementById('rrr').innerHTML = rrr.toFixed(2);
+        document.getElementById('rrr').parentElement.parentElement.style.display = 'flex';
+    }
+    document.getElementById('rrr').innerHTML = rrr !== 0 ? ("Req. RR : "+ rrr.toFixed(2)) : "";
 
     document.getElementById('partnership').innerHTML = scorecard.partnership;
 
@@ -229,6 +234,16 @@ function update_themes(teams){
         document.getElementById('team1_container').style.background = `linear-gradient(90deg, whitesmoke, deeppink)`;
     if (teams[1].toLowerCase().includes('rajasthan'))
         document.getElementById('team2_container').style.background = `linear-gradient(90deg, whitesmoke, deeppink)`;
+
+    if (teams[0].toLowerCase().includes('hydrabad'))
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, yellow, orangered)`;
+    if (teams[1].toLowerCase().includes('hydrabad'))
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, whitesmoke, #6304c2)`;
+
+    if (teams[0].toLowerCase().includes('lucknow'))
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, orange, royalblue)`;
+    if (teams[1].toLowerCase().includes('lucknow'))
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, orange, royalblue)`;
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

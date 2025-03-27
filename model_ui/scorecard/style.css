@@ -18,7 +18,7 @@
 
 .team-hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background: linear-gradient(90deg, #1cb604, rgba(237, 207, 8, 0.63));
+    background: linear-gradient(90deg, indigo, chocolate);
 }
 
 .team-hover:active {
@@ -28,7 +28,7 @@
 
 .card-container {
     border-radius: 1rem;
-    background: linear-gradient(90deg, #1cb604, #2b5df3);
+    background: linear-gradient(90deg, #1cb604, turquoise);
 }
 
 .ball-container {
@@ -63,9 +63,9 @@
 
 .live-score {
     padding-left: 0.3rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: greenyellow; /* Green */
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: orangered; /* Green */
 }
 div.player {
     font-size: 0.9rem;

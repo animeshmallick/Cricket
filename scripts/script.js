@@ -186,7 +186,7 @@ function update_scorecard(scorecard){
         document.getElementById('rrr').innerHTML = rrr.toFixed(2);
         document.getElementById('rrr').parentElement.parentElement.style.display = 'flex';
     }
-    document.getElementById('rrr').innerHTML = rrr !== 0 ? ("Req. RR : "+ rrr.toFixed(2)) : "";
+    document.getElementById('rrr').innerHTML = rrr !== 0 ? rrr.toFixed(2) : "";
 
     document.getElementById('partnership').innerHTML = scorecard.partnership;
 

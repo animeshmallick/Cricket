@@ -219,7 +219,7 @@ function ipl_formated(team){
         return "GT";
     else if(team.includes('punjab'))
         return "PBKS";
-    else if(team.includes('hydrabad'))
+    else if(team.includes('hydrabad') || team.includes("HYDERABAD"))
         return "SRH";
     else
         return team;

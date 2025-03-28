@@ -181,7 +181,11 @@ function update_scorecard(scorecard){
     }
     create_current_over_balls_container(scorecard.this_over);
 
-    document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
+    if(isNaN(crr))
+        document.getElementById('crr').parentElement.parentElement.style.display = 'none';
+    else
+        document.getElementById('crr').innerHTML = crr !== 0 ? (crr.toFixed(2)) : "";
+
     if(scorecard.innings === 2){
         document.getElementById('rrr').innerHTML = rrr.toFixed(2);
         document.getElementById('rrr').parentElement.parentElement.style.display = 'flex';
@@ -244,6 +248,24 @@ function update_themes(teams){
         document.getElementById('team1_container').style.background = `linear-gradient(90deg, orange, royalblue)`;
     if (teams[1].toLowerCase().includes('lucknow'))
         document.getElementById('team2_container').style.background = `linear-gradient(90deg, orange, royalblue)`;
+
+    console.log(teams[1]);
+    if (teams[0].toLowerCase().includes('bangalore') || teams[0].toLowerCase().includes('bengaluru')) {
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, gold, orangered)`;
+        document.getElementById('team1_score').style.color = `gold`;
+    }
+    if (teams[1].toLowerCase().includes('bangalore') || teams[1].toLowerCase().includes('bengaluru')) {
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, gold, orangered)`;
+        document.getElementById('team2_score').style.color = `gold`;
+    }
+    if (teams[0].toLowerCase().includes('chennai')) {
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, orange, yellow)`;
+        document.getElementById('team1_score').style.color = `royalblue`;
+    }
+    if (teams[1].toLowerCase().includes('chennai')) {
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, orange, yellow)`;
+        document.getElementById('team2_score').style.color = `royalblue`;
+    }
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

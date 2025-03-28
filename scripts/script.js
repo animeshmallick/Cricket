@@ -199,6 +199,10 @@ function update_scorecard(scorecard){
 
     update_themes(scorecard.teams);
 
+    let progressBar = document.getElementById("progressBar");
+    let cur_over = get_formated_over(scorecard.over);
+    progressBar.style.width = (cur_over * 5) + "%";
+
     document.getElementById('timer').innerHTML = "&nbsp";
     console.log('Scorecard Updated');
 }

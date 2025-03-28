@@ -34,11 +34,11 @@
     <!-- Player Details -->
     <div class="team-hover mt-2 flex justify-between items-center text-sm p-1 rounded-md">
         <div class="player">
-            <div style="margin-bottom: 0.4rem;">
+            <div>
                 <div><span id='batsman1' class="text-black player">Loading Batsman</span></div>
                 <div><span id='batsman1_detail' class="text-black">Loading Batsman</span></div>
             </div>
-            <div style="margin-bottom: 0.4rem;">
+            <div>
                 <div><span id='batsman2' class="text-black player">Loading Batsman</span></div>
                 <div><span id='batsman2_detail' class="text-black">Loading Batsman</span></div>
             </div>

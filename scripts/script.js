@@ -274,7 +274,6 @@ function update_themes(teams){
     }
 }
 function enable_session_buttons(){
-    console.log("enable session btns");
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
     fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${series_id}/${match_id}/latest`)

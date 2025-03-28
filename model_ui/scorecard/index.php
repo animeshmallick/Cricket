@@ -25,21 +25,10 @@
             <span id='team2_overs' class="text-xl"></span>
         </div>
     </div>
-
-    <div class="flex items-center text-blue-600">
+    <div class="separator"></div>
+    <div class="flex items-center text-blue-600 match-summary">
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h4v8h12v-8h4L12 2z"></path></svg>
         <span id='match_additional_details' class="live-score">Loading Match Status</span>
-    </div>
-    <!-- Match Status -->
-    <div class="mt-2 flex justify-between items-center text-sm text-gray-800">
-        <div class="flex items-center">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-            <span>&nbsp;C.RR: <span class="small-text" id="crr"></span></span>
-        </div>
-        <div class="flex items-center" style="display: none">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-            <span>&nbsp;R.RR: <span class="small-text" id="rrr"></span></span>
-        </div>
     </div>
 
     <!-- Player Details -->
@@ -63,6 +52,17 @@
                 <div><span id='bowler2' class="text-black player">Loading Bowler</span></div>
                 <div><span id='bowler2_detail' class="text-black">Loading Bowler</span></div>
             </div>
+        </div>
+    </div>
+
+    <div class="mt-2 flex justify-between items-center text-sm text-gray-800">
+        <div class="flex items-center">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            <span>&nbsp;C.RR: <span class="small-text" id="crr"></span></span>
+        </div>
+        <div class="flex items-center" style="display: none">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+            <span>&nbsp;R.RR: <span class="small-text" id="rrr"></span></span>
         </div>
     </div>
 

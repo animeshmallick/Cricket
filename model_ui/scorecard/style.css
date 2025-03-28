@@ -63,9 +63,15 @@
 
 .live-score {
     padding-left: 0.3rem;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    color: orangered; /* Green */
+    color: greenyellow; /* Green */
+}
+div.match-summary {
+    margin: 0.5rem 1.25rem;
+    padding: 0.25rem 0;
+    border-radius: 0.75rem;
+    background: linear-gradient(90deg, dodgerblue, deeppink);
 }
 div.player {
     font-size: 0.9rem;

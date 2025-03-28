@@ -118,6 +118,8 @@ function fill_scorecard(){
                             .then(async response => {return await response.json()})
                             .then(async score => {
                                 update_scorecard(score);
+                                if(window.location.pathname.includes('match'))
+                                    enable_session_buttons();
                             })
                     }, 6000);
                 })
@@ -203,6 +205,7 @@ function update_scorecard(scorecard){
     let cur_over = get_formated_over(scorecard.over);
     progressBar.style.width = (cur_over * 5) + "%";
 
+
     document.getElementById('timer').innerHTML = "&nbsp";
     console.log('Scorecard Updated');
 }
@@ -253,7 +256,6 @@ function update_themes(teams){
     if (teams[1].toLowerCase().includes('lucknow'))
         document.getElementById('team2_container').style.background = `linear-gradient(90deg, orange, royalblue)`;
 
-    console.log(teams[1]);
     if (teams[0].toLowerCase().includes('bangalore') || teams[0].toLowerCase().includes('bengaluru')) {
         document.getElementById('team1_container').style.background = `linear-gradient(90deg, gold, orangered)`;
         document.getElementById('team1_score').style.color = `gold`;
@@ -272,6 +274,7 @@ function update_themes(teams){
     }
 }
 function enable_session_buttons(){
+    console.log("enable session btns");
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
     fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${series_id}/${match_id}/latest`)

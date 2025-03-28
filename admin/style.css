@@ -1,14 +1,15 @@
 div.match-detail {
     display: block;
     align-content: center;
-    background: rgba(191, 197, 218, 0.5);
+    background: rgba(191, 197, 218, 0.75);
     border-radius: 1rem;
     box-shadow: 0 2rem 1rem rgba(0,0,0,0.3);
 }
 .bid_container{
+    padding: 0.5rem;
     display: block;
     align-content: center;
-    background-color: transparent;
+    background-color: orange;
     border-radius: 1rem;
     box-shadow: 0 1rem 1rem rgba(230, 6, 6, 0.3);
     margin: 0.3rem 0.5rem;

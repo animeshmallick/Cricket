@@ -271,18 +271,24 @@ class Common
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'x')
-                $a += (float)($bid->amount * $bid->rate);
+                $a += (float)($bid->amount * (1 + $bid->rate));
         }
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'y')
-                $b += (float)($bid->amount * $bid->rate);
+                $b += (float)($bid->amount * (1 + $bid->rate));
         }
 
         $ga = max(($x - $a), 0);
         $gb = max(($x - $b), 0);
+
         if ($ga == 0 && $gb == 0)
             return [0.9, 0.9];
+        if($ga == 0)
+            $gb += $amount * 0.2;
+        if ($gb == 0)
+            $ga += $amount * 0.2;
+
         return [$ga/$amount, $gb/$amount];
     }
 

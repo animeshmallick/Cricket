@@ -125,11 +125,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         </div>
         <div class="separator"></div>
         <div id="footer"></div>
-        <button class="refresh-btn" onclick="refreshPage(this)">
-            <svg viewBox="0 0 24 24">
-                <path d="M12 6V3L8 7l4 4V8c2.76 0 5 2.24 5 5s-2.24 5-5 5a5 5 0 0 1-5-5H5c0 3.87 3.13 7 7 7s7-3.13 7-7-3.13-7-7-7z"/>
-            </svg>
-        </button>
+        <button class="refresh-btn" onclick="refreshPage(this)">🔄</button>
     </body>
     </html>
 <?php } ?>

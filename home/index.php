@@ -36,7 +36,11 @@ if(!$common->is_user_logged_in()){
     <div id="header"></div>
     <section id="matches" class="matches">
         <div class="container">
-            <h2>Select Match</h2>
+            <div style="display: flex">
+                <div style="font-size: 2rem">Select Match</div>
+                <div class="change-session-btn" onclick="redirect_to('Cricket/ipl_points_table/')">IPL Points Table</div>
+            </div>
+            <div class="separator"></div>
             <ul id="match-list" class="match-list">
             </ul>
         </div>

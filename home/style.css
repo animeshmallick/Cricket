@@ -116,3 +116,16 @@ canvas {
     width: 100vw;
     height: 100vh;
 }
+div.change-session-btn {
+    background: linear-gradient(90deg, #edcf08, orangered);
+    font-weight: bold;
+    color: black;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border-radius: 1rem;
+    border: none;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 5%;
+    text-align: center;
+}

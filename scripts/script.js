@@ -433,3 +433,19 @@ function disable_ghost_mode(){
 
     redirect_to('Cricket/');
 }
+function refreshPage(btn) {
+    // Add click animation
+    btn.classList.add("clicked");
+
+    // Create ripple effect
+    let ripple = document.createElement("span");
+    ripple.classList.add("ripple");
+    btn.appendChild(ripple);
+
+    // Remove the ripple after animation ends
+    setTimeout(() => {
+        ripple.remove();
+        btn.classList.remove("clicked");
+        location.reload(); // Refresh page
+    }, 600);
+}

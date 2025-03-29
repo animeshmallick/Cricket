@@ -117,6 +117,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 </div>
 <div class="separator"></div>
 <div id="footer"></div>
+<button class="refresh-btn" onclick="refreshPage(this)">🔄</button>
 
 <script>
     const bidSlider = document.getElementById('bidSlider');

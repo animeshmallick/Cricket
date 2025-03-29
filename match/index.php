@@ -125,6 +125,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         </div>
         <div class="separator"></div>
         <div id="footer"></div>
+        <button class="refresh-btn" onclick="refreshPage(this)">🔄</button>
     </body>
     </html>
 <?php } ?>

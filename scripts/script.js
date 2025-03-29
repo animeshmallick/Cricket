@@ -287,14 +287,14 @@ function update_themes(teams){
         document.getElementById('team2_name').style.color = `gold`;
     }
     if (teams[0].toLowerCase().includes('mumbai')) {
-        document.getElementById('team1_container').style.background = `linear-gradient(90deg, blue, white)`;
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, blue, orange)`;
         document.getElementById('team1_score').style.color = `gold`;
         document.getElementById('team1_name').style.color = `gold`;
     }
     if (teams[1].toLowerCase().includes('mumbai')) {
-        document.getElementById('team2_container').style.background = `linear-gradient(90deg, blue, yellow)`;
-        document.getElementById('team2_score').style.color = `orangered`;
-        document.getElementById('team2_name').style.color = `orangered`;
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, blue, orange)`;
+        document.getElementById('team2_score').style.color = `gold`;
+        document.getElementById('team2_name').style.color = `gold`;
     }
 }
 function enable_session_buttons(){

@@ -9,17 +9,19 @@ function fill_ipl_points_table() {
             });
 
             const tableBody = document.getElementById("pointsTable");
+            let i = 1;
             data.teams.forEach(team => {
                 let row = `<tr>
-                <td style="font-weight: bolder">${team.name}</td>
+                <td class="name ${i<=4 ? 'qualified' : ''}" style="font-weight: bolder">${team.name}</td>
                 <td>${team.played}</td>
                 <td>${team.win}</td>
                 <td>${team.lost}</td>
-                <td>${team.points}</td>
+                <td style="font-weight: bold">${team.points}</td>
                 <td>${team.run_rate > 0 ? "+"+team.run_rate.toFixed(3):team.run_rate.toFixed(3)}</td>
                 <td class="form">${team.form.map(f => `<span class="${f}">${f}</span>`).join('')}</td>
             </tr>`;
                 tableBody.innerHTML += row;
+                i++;
             });
             console.log('Points Table Displayed');
         })

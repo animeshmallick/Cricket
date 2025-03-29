@@ -76,3 +76,11 @@ tr:hover td {
         font-size: 10px;
     }
 }
+td.name {
+    color: red;
+}
+td.qualified {
+    color: green;
+    font-size: 1.25rem;
+    font-weight: bolder;
+}

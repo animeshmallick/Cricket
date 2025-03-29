@@ -130,8 +130,12 @@ function fill_scorecard(){
 function update_scorecard(scorecard){
     const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
     const rrr = scorecard.innings === 2 ? (scorecard.team1_score.runs - scorecard.team2_score.runs) / (20 - get_formated_over(scorecard.team2_score.over)) : 0;
-    document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
-    document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
+    if(scorecard.match_additional_details[0].includes('won')) {
+        document.getElementById('match_additional_details').parentElement.style = `animation: breathe 1s infinite ease-in-out;`;
+    }else{
+        document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
+        document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
+    }
     document.getElementById('match_name').innerHTML = ipl_formated(scorecard.teams[0]).toUpperCase() + ' vs ' + ipl_formated(scorecard.teams[1]).toUpperCase();
 
     document.getElementById('team1_logo')

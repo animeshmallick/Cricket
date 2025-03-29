@@ -8,7 +8,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     $session = $_GET['session'];
     $amount_min = $room == 1 ? 1 : ($room == 2 ? 501 : 1501);
     $amount_max = $room == 1 ? 500 : ($room == 2 ? 1500 : 2500);
-    $amount_default = $room == 1 ? 199 : ($room == 2 ? 699 : 1999);
+    $amount_default = $room == 1 ? 300 : ($room == 2 ? 1000 : 2000);
 ?>
 <!DOCTYPE html>
 <html lang="en">

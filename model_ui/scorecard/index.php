@@ -26,7 +26,7 @@
         </div>
     </div>
     <div class="separator"></div>
-    <div class="flex items-center text-blue-600 match-summary">
+    <div class="flex items-center text-blue-600 match-summary" style="display: none">
         <span id='match_additional_details' class="live-score">Loading Match Status</span>
     </div>
 

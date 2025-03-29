@@ -145,7 +145,10 @@ function update_scorecard(scorecard){
     document.getElementById("team2_name").innerHTML = ipl_formated(scorecard.teams[1]).toUpperCase();
     document.getElementById("team2_score").innerHTML = scorecard.team2_score.runs + "/" + scorecard.team2_score.wickets;;
     document.getElementById('team2_overs').innerHTML = " (" + (scorecard.team2_score.over === null ? '0' : scorecard.team2_score.over) + " ov)";
-    document.getElementById("match_additional_details").innerHTML = scorecard.match_additional_details[0].replaceAll(".","");
+    if (scorecard.innings === 2){
+        document.getElementById("match_additional_details").innerHTML = scorecard.match_additional_details[0].replaceAll(".", "");
+        document.getElementById("match_additional_details").parentElement.style.display = "flex";
+    }
 
     if (scorecard.batsmen.batsman1.name !== null) {
         document.getElementById('batsman1').innerHTML =

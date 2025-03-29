@@ -125,7 +125,6 @@ div.change-session-btn {
     border-radius: 1rem;
     border: none;
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    margin-left: 5%;
+    margin-bottom: 0;
     text-align: center;
 }

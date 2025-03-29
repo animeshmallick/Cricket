@@ -27,7 +27,6 @@
     </div>
     <div class="separator"></div>
     <div class="flex items-center text-blue-600 match-summary">
-        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h4v8h12v-8h4L12 2z"></path></svg>
         <span id='match_additional_details' class="live-score">Loading Match Status</span>
     </div>
 

@@ -155,7 +155,7 @@ class Common
         if ($gb == 0)
             $ga += $amount * 0.2;
 
-        return [$ga/$amount, $gb/$amount];
+        return [min($ga/$amount, 1.5), min($gb/$amount, 1.5)];
     }
     public function get_max($runs, $x, $y)
     {
@@ -289,7 +289,7 @@ class Common
         if ($gb == 0)
             $ga += $amount * 0.2;
 
-        return [$ga/$amount, $gb/$amount];
+        return [min($ga/$amount, 1.5), min($gb/$amount, 1.5)];
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)

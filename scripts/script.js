@@ -313,6 +313,26 @@ function update_themes(teams){
         document.getElementById('team2_score').style.color = `gold`;
         document.getElementById('team2_name').style.color = `gold`;
     }
+    if (teams[0].toLowerCase().includes('delhi')) {
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, blue, ghostwhite)`;
+        document.getElementById('team1_score').style.color = `white`;
+        document.getElementById('team1_name').style.color = `white`;
+    }
+    if (teams[1].toLowerCase().includes('delhi')) {
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, blue, ghostwhite)`;
+        document.getElementById('team2_score').style.color = `white`;
+        document.getElementById('team2_name').style.color = `white`;
+    }
+    if (teams[0].toLowerCase().includes('hydrabad') || teams[0].toLowerCase().includes("hyderabad")) {
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, darkorange, orange)`;
+        document.getElementById('team1_score').style.color = `white`;
+        document.getElementById('team1_name').style.color = `white`;
+    }
+    if (teams[1].toLowerCase().includes('hydrabad') || teams[1].toLowerCase().includes("hyderabad")) {
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, darkorange, orange)`;
+        document.getElementById('team2_score').style.color = `white`;
+        document.getElementById('team2_name').style.color = `white`;
+    }
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');

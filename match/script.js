@@ -2,10 +2,8 @@ function closeBanner() {
     document.getElementById("banner").style.display = 'none';
 }
 function show_banner() {
-    setTimeout(() => {
-        if(Math.floor(Math.random() * 1000) % 5 === 0)
-            document.getElementById("banner").style.display = 'block';
-    }, 500);
+    if(Math.floor(Math.random() * 1000) % 10 === 0)
+        document.getElementById("banner").style.display = 'block';
 }
 
 let t = 10;

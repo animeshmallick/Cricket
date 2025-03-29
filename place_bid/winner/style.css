@@ -106,6 +106,7 @@ div.slider-div {
     padding: 0.5rem;
     margin-right: 1rem;
     margin-left: 1rem;
+    background: linear-gradient(90deg, greenyellow, orchid);
 }
 
 
@@ -213,4 +214,10 @@ form input[type=text] {
     border-radius: 1rem;
     outline: none;
     letter-spacing: 0.3rem;
+}
+span.slot-runs {
+    font-size: 1.4rem;
+    background: linear-gradient(90deg, #f43c05, #0dabef);
+    border-radius: 1rem;
+    padding: 0.2rem 1rem;
 }

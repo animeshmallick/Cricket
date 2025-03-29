@@ -26,11 +26,11 @@ function fill_winner_slot_details(bid_master, update_selected){
         document.getElementById('balls_remaining').style.display = 'none';
     else
         document.getElementById('balls_remaining').innerHTML = bid_master.target;
-    document.getElementById("slot_a_runs").innerHTML = bid_master.team_a + " Wins";
+    document.getElementById("slot_a_runs").innerHTML = ipl_formated(bid_master.team_a);
     document.getElementById("slot_a_amount_put").innerHTML = "₹" + amount;
     document.getElementById("slot_a_amount_get").innerHTML = "₹" + Math.trunc(amount * (1 + bid_master.rate_1));
 
-    document.getElementById("slot_b_runs").innerHTML = bid_master.team_b + " Wins";
+    document.getElementById("slot_b_runs").innerHTML = ipl_formated(bid_master.team_b);
     document.getElementById("slot_b_amount_put").innerHTML = "₹" + amount;
     document.getElementById("slot_b_amount_get").innerHTML = "₹" + Math.trunc(amount * (1 + bid_master.rate_2));
 

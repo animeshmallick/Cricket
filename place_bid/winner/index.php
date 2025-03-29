@@ -81,14 +81,14 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div style="display: flex">
                     <div class="slot" id="slot_a">
                         <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
-                        <span class="slot-line" id="slot_a_runs">50 Runs or less</span>
+                        <span class="slot-line"><span class="slot-runs" id="slot_a_runs"></span> Wins</span>
                         <div class="separator"></div>
                         <span class="slot-line">Put <span class="amount-span" id="slot_a_amount_put"></span></span>
                         <span class="slot-line">Get <span class="amount-span" id="slot_a_amount_get"></span></span>
                     </div>
                     <div class="slot" id="slot_b">
                         <input type="radio" name="slot" id="slot_y" value="y" style="display: none">
-                        <span class="slot-line" id="slot_b_runs">51 to 55 runs</span>
+                        <span class="slot-line"><span class="slot-runs" id="slot_b_runs"></span> Wins</span>
                         <div class="separator"></div>
                         <span class="slot-line">Put <span class="amount-span" id="slot_b_amount_put"></span></span>
                         <span class="slot-line">Get <span class="amount-span" id="slot_b_amount_get"></span></span>

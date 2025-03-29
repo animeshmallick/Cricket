@@ -2,10 +2,16 @@ function fill_ipl_points_table() {
     fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_ipl_points_table")
         .then(response => response.json())
         .then(data => {
+            data.teams.sort((t1, t2) => {
+                if(t1.points === t2.points)
+                    return t2.run_rate - t1.run_rate;
+                return t2.points - t1.points;
+            });
+
             const tableBody = document.getElementById("pointsTable");
             data.teams.forEach(team => {
                 let row = `<tr>
-                <td>${team.name}</td>
+                <td style="font-weight: bolder">${team.name}</td>
                 <td>${team.played}</td>
                 <td>${team.win}</td>
                 <td>${team.lost}</td>

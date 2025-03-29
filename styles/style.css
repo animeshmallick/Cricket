@@ -168,10 +168,10 @@ a.disabled {
 }
 .refresh-btn {
     position: fixed;
-    bottom: 5%;
-    right: 10%;
-    width: 4rem;
-    height: 4rem;
+    bottom: 3%;
+    right: 7%;
+    width: 3.5rem;
+    height: 3.5rem;
     background: rgba(75, 0, 130, 0.2);
     backdrop-filter: blur(2rem);
     border: 0.25rem solid rgba(16, 77, 158, 0.2);

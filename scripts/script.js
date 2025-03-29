@@ -197,10 +197,20 @@ function update_scorecard(scorecard){
     }
     document.getElementById('rrr').innerHTML = rrr !== 0 ? rrr.toFixed(2) : "";
 
-    document.getElementById('partnership').innerHTML = scorecard.partnership;
+    if (scorecard.partnership !== null && scorecard.partnership.trim().length > 0)
+        document.getElementById('partnership').innerHTML = scorecard.partnership;
+    else
+        document.getElementById('partnership').parentElement.parentElement.style.display = 'none';
 
-    document.getElementById('last_batsman').innerHTML = scorecard.last_batsman;
-    document.getElementById('last_wicket').innerHTML = scorecard.last_wicket_at;
+    if (scorecard.last_batsman !== null && scorecard.last_batsman.trim().length > 0)
+        document.getElementById('last_batsman').innerHTML = scorecard.last_batsman;
+    else
+        document.getElementById('last_batsman').parentElement.parentElement.style.display = 'none';
+
+    if (scorecard.last_wicket_at !== null && scorecard.last_wicket_at.trim().length > 0)
+        document.getElementById('last_wicket').innerHTML = scorecard.last_wicket_at;
+    else
+        document.getElementById('last_wicket').parentElement.parentElement.style.display = 'none';
 
     update_themes(scorecard.teams);
 

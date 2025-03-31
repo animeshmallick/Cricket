@@ -7,13 +7,18 @@ function fill_bids() {
                 .then(response => response.json())
                 .then(response => data.concat(response))
                 .then(data => {
-                    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${getCookie('series_id')}/${getCookie('match_id')}/latest`)
+                    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/special")
                         .then(response => response.json())
-                        .then(score => score.teams)
-                        .then(teams => {
-                            fill_bid_content(data.filter(bid => bid.match_id === getCookie('match_id') && bid.series_id === getCookie('series_id')), teams)
+                        .then(response => data.concat(response))
+                        .then(data => {
+                            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${getCookie('series_id')}/${getCookie('match_id')}/latest`)
+                                .then(response => response.json())
+                                .then(score => score.teams)
+                                .then(teams => {
+                                    fill_bid_content(data.filter(bid => bid.match_id === getCookie('match_id') && bid.series_id === getCookie('series_id')), teams)
+                                })
+                                .catch(error => console.error('Error:', error));
                         })
-                        .catch(error => console.error('Error:', error));
                 })
                 .catch(error => console.error('Error:', error))
         })
@@ -55,7 +60,10 @@ function fill_bid_content(bids, teams){
         else if (bid.status === "placed") statusClass = "pending";
 
         const runs_slot = bid.type === 'session' ? bid.slot === 'x' ? `Runs ${bid.runs_max} or Less` : (bid.slot === 'y' ? `Runs ${bid.runs_min} to ${bid.runs_max}` : `Runs ${bid.runs_min} or More`) :
-            (bid.type === 'winner' ? bid.slot === 'x' ? teams[0]+" Wins" : teams[1]+" Wins" : "--");
+            (bid.type === 'winner' ? bid.slot === 'x' ? teams[0]+" Wins" : teams[1]+" Wins" : (bid.question_value));
+        let answer = null;
+        if(bid.type === 'special')
+            answer = bid.option_value;
 
         card.className = `card ${statusClass}`;
         card.innerHTML = `
@@ -77,6 +85,13 @@ function fill_bid_content(bids, teams){
                         </div>
                     </div>
                 `;
+        if(answer !== null){
+            const answerCard = document.createElement("div");
+            answerCard.style.width = "60%";
+            answerCard.style.textAlign = "center";
+            answerCard.innerHTML = `<p class="bid_runs">${answer}</p>`;
+            card.children[0].children[0].children[2].appendChild(answerCard);
+        }
         card.addEventListener("click", () => {
             card.classList.toggle("flipped");
         });

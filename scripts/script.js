@@ -364,9 +364,14 @@ function enable_session_buttons(){
 
                     if(scorecard.over_id < 200)
                         document.getElementById('winner').classList.remove('disabled');
-                    else if (scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20)
+                    else if (scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20) {
                         if (scorecard.team2_score.wickets < 10)
                             document.getElementById('winner').classList.remove('disabled');
+                    }
+                    if (scorecard.over_id < 200)
+                        document.getElementById('special').classList.remove('disabled');
+                    else if(scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20 && scorecard.team2_score.wickets < 10)
+                        document.getElementById('special').classList.remove('disabled');
                 }
             }catch(e){
                 console.log(e);

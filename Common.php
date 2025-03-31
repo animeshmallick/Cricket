@@ -254,7 +254,7 @@ class Common
         return 0;
     }
 
-    function get_all_bids_from_match(string $series_id, string $match_id, string $type, int $room): array
+    function get_all_bids_from_match(string $series_id, string $match_id, string $type, int $room)
     {
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match_bids/" . $series_id . "/" . $match_id . "/" . $type . "/" . $room;
         return json_decode($this->get_response_from_url($url));
@@ -296,6 +296,13 @@ class Common
     {
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
         $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/" . "Cricket/internal/GetWinnerSlotDetails.php?match_id=" . $match_id . "&series_id=" . $series_id . "&amount=" . $amount . "&room=" . $room;
+        $response = $this->get_response_from_url($url);
+        return json_decode($response);
+    }
+    public function get_special_bid_bookie_details(string $series_id, $match_id, int $amount, int $room, int $question_id)
+    {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? "https" : "http";
+        $url = $protocol . "://" . $_SERVER['HTTP_HOST'] . "/" . "Cricket/internal/GetSpecialSlotDetails.php?match_id=" . $match_id . "&series_id=" . $series_id . "&amount=" . $amount . "&room=" . $room . "&question_id=" . $question_id;
         $response = $this->get_response_from_url($url);
         return json_decode($response);
     }
@@ -508,5 +515,50 @@ class Common
         $ref_id = $this->get_cookie('ref_id');
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/" .$ref_id. "/" .$fname. "/" .$lname. "/" .$password;
         return json_decode($this->get_response_from_url($url));
+    }
+
+    public function get_special_question(mixed $question_id)
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_special_questions/" .$question_id;
+        return json_decode($this->get_response_from_url($url));
+    }
+    public function insert_new_special_bid_to_db(int $bid_id, string $ref_id, string $series_id, string $match_id, int $question_id,
+                                                 string $question_value, int $option_id, string $option_value, float $rate, float $amount,
+                                                 string $bid_name, string $room): bool|string
+    {
+        if ($rate == null)
+            return false;
+        $bid_data = array(
+            "id" => $bid_id,
+            "bid_id" => $bid_id,
+            "ref_id" => $ref_id,
+            "series_id" => $series_id,
+            "match_id" => $match_id,
+            "question_id" => $question_id,
+            "question_value" => $question_value,
+            "option_id" => $option_id,
+            "option_value" => $option_value,
+            "rate" => $rate,
+            "amount" => $amount,
+            "status" => "placed",
+            'bid_name' => $bid_name,
+            'room' => $room,
+            'type' => 'special'
+        );
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
+        $json_bid_data = json_encode($bid_data);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data)));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $json_bid_data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return false;
+        }
+        curl_close($ch);
+        return $response;
     }
 }

@@ -1,14 +1,22 @@
 <?php
 include "../../Common.php";
 $common = new Common();
-if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['session'])){
+$series_id = $common->get_cookie('series_id');
+$match_id = $common->get_cookie('match_id');
+if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null || $match_id == null){
     $common->redirect_to('Cricket/');
 }else{
     $room = $_GET['room'];
-    $session = $_GET['session'];
+    if(!isset($_GET['question_id'])){
+        $question_id = rand(0, 4);
+        $common->redirect_to('Cricket/place_bid/special/index.php?room='.$room.'&question_id='.$question_id);
+    }else{
+    $question_id = $_GET['question_id'];
     $amount_min = $room == 1 ? 1 : ($room == 2 ? 501 : 1501);
     $amount_max = $room == 1 ? 500 : ($room == 2 ? 1500 : 2500);
-    $amount_default = $room == 1 ? 300 : ($room == 2 ? 1000 : 2000);
+    $amount_default = $room == 1 ? 100 : ($room == 2 ? 700 : 2000);
+    if (isset($_GET['amount']))
+        $amount_default = floatval($_GET['amount']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,26 +45,28 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     <script src="../../model_ui/header/script.js?version=<?php echo time();?>"></script>
     <script src="script.js?version=<?php echo time();?>"></script>
     <script src="../../scripts/script.js?version=<?php echo time();?>"></script>
+    <script src="https://unpkg.com/shepherd.js@8"></script>
+    <link rel="stylesheet" href="https://unpkg.com/shepherd.js@8/dist/css/shepherd.css">
 </head>
-<body onload="fill_header();fill_scorecard();fill_footer();update_winner_slots(true);">
+<body onload="fill_header();fill_scorecard();fill_footer();fill_special_question(<?= $question_id ?>, true)">
 <div id="header"></div>
 <div id="scorecard"></div>
 <div class="separator"></div>
 <div class="container" id="bid_container">
     <div class="sub-title">Place new bid</div>
-    <div class="rooms-container">
+    <div class="play-container">
         <div class="sub-title">Select Room Based On Bid Amount</div>
         <div style="display: flex; justify-content: space-between">
-            <a class="room <?php echo $room == 1 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=1"><span>&#8377;1 - &#8377;500</span></a>
-            <a class="room disabled <?php echo $room == 2 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=2"><span>&#8377;500 - &#8377;1500</span></a>
-            <a class="room disabled <?php echo $room == 3 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=3"><span>&#8377;1500 - &#8377;2500</span></a>
+            <a class="room <?php echo $room == 1 ? 'room-selected' : ''?>" href="index.php?question_id=<?php echo $_GET['question_id']; ?>&room=1" id="room_1"><span>&#8377;1 - &#8377;500</span></a>
+            <a class="room disabled <?php echo $room == 2 ? 'room-selected' : ''?>" href="index.php?question_id=<?php echo $_GET['question_id']; ?>&room=2" id="room_1"><span>&#8377;500 - &#8377;1500</span></a>
+            <a class="room disabled <?php echo $room == 3 ? 'room-selected' : ''?>" href="index.php?question_id=<?php echo $_GET['question_id']; ?>&room=3" id="room_1"><span>&#8377;1500 - &#8377;2500</span></a>
         </div>
     </div>
     <div class="bid-section">
-        <form action="../../bid_placed/index.php" method="post" id="place-bid-form">
-            <input type="hidden" name="bid_id" value="<?php echo $common->get_unique_bid_id('winner'); ?>" hidden="hidden">
+        <form action="../../bid_placed/special.php" method="get" id="place-bid-form">
+            <input type="hidden" name="bid_id" value="<?php echo $common->get_unique_bid_id('special'); ?>" hidden="hidden">
             <input type="hidden" name="room" value="<?php echo $room;?>">
-            <input type="hidden" name="session" value="<?php echo $session;?>">
+            <input type="hidden" name="question_id" value="<?php echo $question_id;?>">
             <input type="hidden" name="bid_amount" id="bid_amount" value="<?php echo $amount_default;?>">
             <?php if($common->is_user_an_agent()){ ?>
                 <label class="label" for="bid_name">Add name to this bid:</label>
@@ -68,39 +78,34 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
                 <div class="slider-div" style="display: flex">
                     <input type="range" id="bidSlider" class="slider"
                        min="<?php echo $amount_min;?>"
-                       max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>" name="amount">
+                       max="<?php echo $amount_max;?>" step="1" value="<?php echo $amount_default;?>" name="bid_amount">
                 </div>
                 <div class="bid-amount" style="text-align: center">Bid Amount <span class="amount-span" id="bidAmount">₹0</span></div>
             </div>
-            <div class="slots">
-                <div class="slot-header">Choose your slot</div>
-                <div class="balls-remaining-container" style="width: 98%; margin-bottom: 0.3rem; background-color: wheat">Session : Match Winner</div>
-                <div style="display: flex">
-                    <div class="balls-remaining-container"><span id="balls_remaining"></span></div>
-                </div>
-                <div style="display: flex">
-                    <div class="slot" id="slot_a">
-                        <input type="radio" name="slot" id="slot_x" value="x" style="display: none">
-                        <span class="slot-line"><span class="slot-runs" id="slot_a_runs"></span> Wins</span>
-                        <div class="separator"></div>
-                        <span class="slot-line">Put <span class="amount-span" id="slot_a_amount_put"></span></span>
-                        <span class="slot-line">Get <span class="amount-span" id="slot_a_amount_get"></span></span>
-                    </div>
-                    <div class="slot" id="slot_b">
-                        <input type="radio" name="slot" id="slot_y" value="y" style="display: none">
-                        <span class="slot-line"><span class="slot-runs" id="slot_b_runs"></span> Wins</span>
-                        <div class="separator"></div>
-                        <span class="slot-line">Put <span class="amount-span" id="slot_b_amount_put"></span></span>
-                        <span class="slot-line">Get <span class="amount-span" id="slot_b_amount_get"></span></span>
-                    </div>
-                </div>
-                <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
+            <div class="question-name" id="question_name">Question 1 here</div>
+            <div class="slot-header">Choose your options</div>
+            <div class="gap"></div>
+            <div class="slots" id="slots">
+
             </div>
+            <div id="placeBidBtn" class="place-bid-btn"><div>Place Bid</div></div>
         </form>
+        <div class="change-question-btn" style="margin-bottom: 0.25rem">
+            <?php
+            $new_question_id = rand(0, 4);
+            $trial = 0;
+            while($new_question_id == $question_id && $trial < 50) {
+                $new_question_id = rand(0, 4);
+                $trial++;
+            }
+            ?>
+            <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/place_bid/special/index.php?room=${<?= $room ?>}&question_id=${<?= $new_question_id ?>}`)">Change Question</a>
+        </div>
+        <div class="separator"></div>
         <div class="change-session-btn" style="margin-bottom: 0.25rem">
             <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
         </div>
-        <div class="change-session-btn" style="margin-bottom: 0.25rem">
+        <div class="change-session-btn" id="show_all_bids" style="margin-bottom: 0.25rem">
             <a style="text-decoration: none; color: inherit;" onclick="redirect_to('Cricket/your_bids/')">Show Your Bids for this match</a>
         </div>
     </div>
@@ -110,12 +115,12 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 <button class="refresh-btn" onclick="refreshPage(this)">🔄</button>
 
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
     const bidSlider = document.getElementById('bidSlider');
     const bidAmount = document.getElementById('bidAmount');
     const bidInput = document.getElementById('bidInput');
     const placeBidBtn = document.getElementById('placeBidBtn');
-    const slots = document.querySelectorAll('.slot');
-
+    console.log(slots.length);
     function updateBidAmount(value) {
         bidAmount.textContent = '₹' + value;
         bidSlider.value = value;
@@ -125,7 +130,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
         updateBidAmount(bidSlider.value);
     });
     bidSlider.addEventListener('change', () => {
-        update_winner_slots(false);
+        fill_special_question(urlParams.get('question_id'), false);
     });
 
     placeBidBtn.addEventListener('click', () => {
@@ -138,16 +143,18 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     });
 
     // Slot Click Event: Standout Effect
-    slots.forEach((slot) => {
-        slot.addEventListener('click', () => {
-            slots.forEach(s => s.classList.remove('active'));
-            slot.classList.add('active');
-            slot.children.item(0).checked = true;
+    function changeOptionsUI() {
+        let options = document.querySelectorAll('.slot');
+        options.forEach(s => {
+            s.classList.remove('active');
         });
-    });
+        this.classList.add('active');
+        this.children.item(0).checked = true;
+    }
     updateBidAmount('<?php echo $amount_default;?>');
 
 </script>
 </body>
 </html>
-<?php } ?>
+<?php }
+} ?>

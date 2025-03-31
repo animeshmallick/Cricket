@@ -114,7 +114,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
                     <div class="clickable-button disabled" id='winner' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/winner/index.php?session=winner&room=1')">
                         <div style="display: block;padding: 0.5rem">Who Will Win?</div>
                     </div>
-                    <div class="clickable-button disabled" id='session' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/special/index.php?session=special')">
+                    <div class="clickable-button disabled" id='special' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/special/index.php?&room=1')">
                         <div style="display: block;padding: 0.5rem"">Special Bids</div>
                     </div>
                 </div>

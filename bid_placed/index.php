@@ -45,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
         fill_scorecard();
         fill_footer();
         triggerPartyPopper()">
-    <div id="header"></div>
     <?php
     if ($common->is_user_logged_in() && $common->isValidSession($session)) {
         $bid_bookie_response = $common->get_session_bid_bookie_details($series_id, $match_id, $session, $amount, $room);

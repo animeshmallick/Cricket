@@ -130,16 +130,32 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
         }
         $total_c += (int)$bid->amount;
         if ($bid->status == 'win')
-            $total_d += (int)((int)$bid->amount * (1 + $bid->rate));
+            $total_d += (int)($bid->amount * (1 + $bid->rate));
         $session_winner['count'] += 1;
         $session_winner['collected'] += $bid->amount;
         if ($bid->status == 'win')
             $session_winner['given'] += (int)($bid->amount * (1 + $bid->rate));
     }
     foreach ($all_bids_special as $bid){
+        if(isset($user_bids[$bid->ref_id])){
+            $user_bids[$bid->ref_id]['count']++;
+            $user_bids[$bid->ref_id]['collected'] += $bid->amount;
+            if ($bid->status == 'win')
+                $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * (1 + $bid->rate));
+        }else{
+            $obj = array();
+            $obj['ref_id'] = $bid->ref_id;
+            $obj['count'] = 1;
+            $obj['collected'] = $bid->amount;
+            if ($bid->status == 'win')
+                $obj['given'] = (int)($bid->amount * (1 + $bid->rate));
+            else
+                $obj['given'] = 0;
+            $user_bids[$bid->ref_id] = $obj;
+        }
         $total_c += (int)$bid->amount;
         if ($bid->status == 'win')
-            $total_d += (int)((int)$bid->amount * $bid->rate);
+            $total_d += (int)($bid->amount * (1 + $bid->rate));
         $session_special['count'] += 1;
         $session_special['collected'] += $bid->amount;
         if ($bid->status == 'win')

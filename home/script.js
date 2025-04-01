@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
         match_details_div.classList.add('match-details');
         if (match.details) {
             let index = match.details.indexOf('(');
-            match_details_div.textContent = `${match.details.substring(0, index === -1 ? match.details.length : index)}`;
+            match_details_div.textContent = `${match.details.toString().substring(0, index === -1 ? match.details.length : index)}`;
         }
         bottom_div.appendChild(match_details_div);
 

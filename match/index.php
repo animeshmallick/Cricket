@@ -47,7 +47,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
                         <div class="separator"></div>
                         <li>3. 3rd and 4th Sessions of 2nd Innings might open at 2nd Innings - 9th Over.</li>
                         <div class="separator"></div>
-                        <li>2. Special Bids : Coming Soon.</li>
+                        <li>2. Special Bids : <p style="color: lawngreen">Are now Open.</p></li>
                     </ol>
                 </div>
                 <button style="width: 10%" class="close-banner" onclick="closeBanner()">✖ <span id="banner_time"></span></button>

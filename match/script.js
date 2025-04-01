@@ -2,7 +2,7 @@ function closeBanner() {
     document.getElementById("banner").style.display = 'none';
 }
 function show_banner() {
-    if(Math.floor(Math.random() * 1000) % 10 === 0)
+    if(Math.floor(Math.random() * 1000) % 8 === 0)
         document.getElementById("banner").style.display = 'block';
 }
 

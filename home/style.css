@@ -28,7 +28,6 @@ body {
 }
 
 div.team_name {
-    padding-top: 1.5rem;
     font-size: 1.25rem;
     text-align: center;
     color: royalblue;
@@ -99,15 +98,18 @@ div.team_name {
     opacity: 1; /* Ensure the card is fully visible on hover */
 }
 div.left-div {
-    width: 40%;
+    width: 50%;
 }
 div.right-div {
-    padding-left: 1rem;
-    width: 60%;
+    width: 52%;
 }
 div.match-details {
     font-size: 1.2rem;
-    color: orangered;
+    color: greenyellow;
+    border-radius: 0.5rem;
+    padding-left: 0.25rem;
+    background: linear-gradient(90deg, indigo, plum);
+    animation: breathe 1s infinite ease-in-out;
 }
 canvas {
     position: absolute;

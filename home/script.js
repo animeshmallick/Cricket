@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
         cover_image.src = `../images/cover/${match.cover_img}.png`;
         cover_image.style.width = '11rem';
         cover_image.style.height = '4rem';
-        cover_image.style.borderRadius = '1rem';
+        cover_image.style.borderRadius = '0.5rem';
         cover_image.style.objectFit = 'cover';
         cover_image.onerror = function (){
             this.src = `../images/cover/ipl.png`;
@@ -64,13 +64,16 @@ document.addEventListener('DOMContentLoaded', function () {
         left_div.appendChild(teams);
 
         const score = document.createElement('span');
-        score.textContent = `${match.score.replaceAll('null', '0')}`;
-        bottom_div.appendChild(score);
+        score.style.fontSize = '0.85rem';
+        score.textContent = `${match.score.replaceAll('null', '0').replaceAll('(20)', '')}`;
+        left_div.appendChild(score);
 
         const match_details_div = document.createElement('div');
         match_details_div.classList.add('match-details');
-        if (match.details)
-            match_details_div.textContent = `${match.details}`;
+        if (match.details) {
+            let index = match.details.indexOf('(');
+            match_details_div.textContent = `${match.details.substring(0, index === -1 ? match.details.length : index)}`;
+        }
         bottom_div.appendChild(match_details_div);
 
         if (match.type === 'live') {

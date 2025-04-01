@@ -10,6 +10,7 @@ if($common->is_user_logged_in()){
     <html lang="en">
     <head>
         <title>CricketIPL</title>
+        <script src="scripts/script.js?version=<?php echo time();?>"></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
         <script>
@@ -124,7 +125,6 @@ if($common->is_user_logged_in()){
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
             }
         </style>
-        <script src="scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body>
     <div class="ball"></div>

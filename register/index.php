@@ -1,6 +1,7 @@
 <html lang="en">
 <head>
     <title>Register</title>
+    <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     <script>
         if(!window.location.hostname.includes("localhost"){
             window.dataLayer = window.dataLayer || [];
@@ -34,7 +35,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../styles/style.css?version=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="style.css?version=<?php echo time(); ?>">
-    <script src="../scripts/script.js?version=<?php echo time(); ?>"></script>
 </head>
 <?php
 include "../Common.php";

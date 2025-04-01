@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
     <html lang="en">
     <head>
         <title>Admin : All Customers</title>
+        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
+        <script src="script.js?version=<?php echo time();?>"></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
         <script>
@@ -52,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
-        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header();fill_all_users_card();fill_footer();">
     <div id="header"></div>

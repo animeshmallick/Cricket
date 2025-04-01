@@ -14,10 +14,11 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 <html lang="en">
 <head>
     <title>Place Bid : Winner</title>
+    <script src="../../scripts/script.js?version=<?php echo time();?>"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
     <script>
-        if(!window.location.hostname.includes("localhost"){
+        if(!window.location.hostname.includes("localhost")){
             window.dataLayer = window.dataLayer || [];
             function gtag() {
                 dataLayer.push(arguments);
@@ -59,7 +60,6 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <script src="../../model_ui/header/script.js?version=<?php echo time();?>"></script>
     <script src="script.js?version=<?php echo time();?>"></script>
-    <script src="../../scripts/script.js?version=<?php echo time();?>"></script>
 </head>
 <body onload="fill_header();fill_scorecard();fill_footer();update_winner_slots(true);">
 <div id="header"></div>

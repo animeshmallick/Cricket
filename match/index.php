@@ -13,6 +13,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
     <html lang="en">
     <head>
         <title>Match : <?= $match_id ?></title>
+        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
         <script>
@@ -58,7 +59,6 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
-        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header();fill_scorecard();enable_session_buttons();fill_footer();show_banner()">
         <div class="banner" id="banner">

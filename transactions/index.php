@@ -8,6 +8,7 @@ if(!$common->is_user_logged_in()){
     <html lang="en">
     <head>
         <title>My Transactions : <?= $common->get_cookie('ref_id') ?></title>
+        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
         <script>
@@ -53,7 +54,6 @@ if(!$common->is_user_logged_in()){
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
-        <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header();fill_footer();fill_recharges()">
     <div id="header"></div>

@@ -29,7 +29,7 @@ div.title {
     box-shadow: 0 1rem 0.5rem rgb(51, 158, 204);
     padding: 0.1rem 0.3rem;
     color: wheat;
-    background: #009579;
+    background: magenta;
     margin-bottom: 1rem;
     width: 100%;
 }
@@ -156,7 +156,7 @@ a.room-selected {
 .card-inner {
     background: rgba(255, 152, 0, 0.58);
     border-radius: 1rem;
-    padding: 0.5rem;
+    padding: 0.1rem 0.5rem;
 }
 div.gap {
     display: block;

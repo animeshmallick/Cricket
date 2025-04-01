@@ -183,13 +183,6 @@ function update_scorecard(scorecard){
         document.getElementById('bowler1').innerHTML = "";
         document.getElementById('bowler1_detail').innerHTML = "";
     }
-    if(scorecard.bowler.bowler2.name !== null) {
-        document.getElementById('bowler2').innerHTML = scorecard.bowler.bowler2.name;
-        document.getElementById('bowler2_detail').innerHTML = scorecard.bowler.bowler2.runs + " (" + scorecard.bowler.bowler2.overs + ") " + scorecard.bowler.bowler2.wickets + "W";
-    }else{
-        document.getElementById('bowler2').innerHTML = "";
-        document.getElementById('bowler2_detail').innerHTML = "";
-    }
     if (scorecard.source.includes('default'))
         document.getElementById('current_player_details').style.display = 'none';
     else

@@ -47,10 +47,6 @@
                 <div><span id='bowler1' class="text-black player">Loading Bowler</span></div>
                 <div><span id='bowler1_detail' class="text-black">Loading Bowler</span></div>
             </div>
-            <div style="margin-bottom: 0.4rem;">
-                <div><span id='bowler2' class="text-black player">Loading Bowler</span></div>
-                <div><span id='bowler2_detail' class="text-black">Loading Bowler</span></div>
-            </div>
         </div>
     </div>
 

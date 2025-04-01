@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()) {
         <script src="script.js?version=<?php echo time();?>"></script>
         <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
-        <body onload="fill_header();fill_footer()">
+        <body onload="fill_header();fill_footer();store_previous_profile_data()">
             <div id="header"></div>
             <div id="header"></div>
             <div class="main_container">

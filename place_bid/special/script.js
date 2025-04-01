@@ -42,12 +42,12 @@ function fill_special_question_data(data, update_options){
 
         span = document.createElement('span');
         span.classList.add('slot-line');
-        span.innerHTML = `<span class="slot-line">Put <span class="amount-span" id="slot_${index+1}_amount_put">${amount}</span></span>`
+        span.innerHTML = `<span class="slot-line">Put <span class="amount-span" id="slot_${index+1}_amount_put">₹${amount}</span></span>`
         optionOuterDiv.appendChild(span);
 
         span = document.createElement('span');
         span.classList.add('slot-line');
-        span.innerHTML = `<span class="slot-line">Get <span class="amount-span" id="slot_${index+1}_amount_get">${Math.trunc((1 + data.rates[index]) * amount)}</span></span>`
+        span.innerHTML = `<span class="slot-line">Get <span class="amount-span" id="slot_${index+1}_amount_get">₹${Math.trunc((1 + data.rates[index]) * amount)}</span></span>`
         optionOuterDiv.appendChild(span);
 
         slots.appendChild(optionOuterDiv);

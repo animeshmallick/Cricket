@@ -9,18 +9,41 @@ if($common->is_user_logged_in()){
     <!DOCTYPE html>
     <html lang="en">
     <head>
+        <title>CricketIPL</title>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
         <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-BQY4C789R1');
+            if(!window.location.hostname.includes("localhost"){
+                window.dataLayer = window.dataLayer || [];
+                function gtag() {
+                    dataLayer.push(arguments);
+                }
+                gtag('js', new Date());
+                gtag('config', 'G-BQY4C789R1');
+                gtag('set', {
+                    'user_id': getCookie('ref_id'),
+                    'user_name': getCookie('fname') + " " + getCookie('lname'),
+                    'user_type': getCookie('user_type'),
+                    'browser_details': navigator.userAgent
+                })
+                gtag('event', 'page_view', {
+                    'page_title': document.title,
+                    'page_path': window.location.pathname
+                });
+                let startTime = new Date().getTime();
+                window.addEventListener('beforeunload', function () {
+                    let timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
+                    gtag('event', 'time_on_page', {
+                        'event_category': 'User Engagement',
+                        'event_label': 'Page Duration',
+                        'value': timeSpent
+                    });
+                });
+            }
         </script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Cricket Login</title>
+        <link rel="icon" type="image/x-icon" href="images/ball.png">
         <link rel="stylesheet" href="styles/style.css?version=<?php echo time(); ?>">
         <style>
             body {

@@ -1,10 +1,39 @@
 <html lang="en">
 <head>
     <title>Register</title>
+    <script>
+        if(!window.location.hostname.includes("localhost"){
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', 'G-BQY4C789R1');
+            gtag('set', {
+                'user_id': "-1",
+                'user_name': "Unknown User : Register",
+                'user_type': "Unknown",
+                'browser_details': navigator.userAgent
+            })
+            gtag('event', 'page_view', {
+                'page_title': document.title,
+                'page_path': window.location.pathname
+            });
+            let startTime = new Date().getTime();
+            window.addEventListener('beforeunload', function () {
+                let timeSpent = Math.round((new Date().getTime() - startTime) / 1000);
+                gtag('event', 'time_on_page', {
+                    'event_category': 'User Engagement',
+                    'event_label': 'Page Duration',
+                    'value': timeSpent
+                });
+            });
+        }
+    </script>
+    <link rel="icon" type="image/x-icon" href="/images/ball.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../styles/style.css?version=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="style.css?version=<?php echo time(); ?>">
-    <link rel="icon" type="image/x-icon" href="../cricket.ico">
     <script src="../scripts/script.js?version=<?php echo time(); ?>"></script>
 </head>
 <?php

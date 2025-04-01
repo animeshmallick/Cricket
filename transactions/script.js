@@ -7,6 +7,13 @@ function fill_recharges() {
 }
 function fill_recharges_content(recharges){
     recharges.sort((a, b) => parseDate(b.time) - parseDate(a.time));
+    recharges.push({
+        'amount': 100,
+        'time': 'account creation',
+        'id': -1,
+        'from': 'Cashback',
+        'to_ref_id': getCookie('ref_id')
+    })
     const rechargesContainer = document.getElementById("rechargesContainer");
 
     recharges.forEach((recharge) => {
@@ -28,6 +35,8 @@ function fill_recharges_content(recharges){
             card.children[0].style.backgroundColor = 'lightblue';
         else if (isFinite(Number(recharge.from)))
             card.children[0].style.backgroundColor = 'yellow';
+        else if(recharge.from.toLowerCase().includes('cashback'))
+            card.children[0].style.backgroundColor = 'greenyellow';
 
         rechargesContainer.appendChild(card);
     });

@@ -10,7 +10,7 @@ if(!$common->is_user_logged_in()){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home : <?= $common->get_Cookie('ref_id') ?></title>
+    <title>Home : <?= $common->get_Cookie('fname')." ".$common->get_Cookie('lname') ?></title>
     <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>

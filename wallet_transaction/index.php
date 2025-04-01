@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
         <script>
-            if(!window.location.hostname.includes("localhost"){
+            if(!window.location.hostname.includes("localhost")){
                 window.dataLayer = window.dataLayer || [];
                 function gtag() {
                     dataLayer.push(arguments);

@@ -246,7 +246,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             for (let i = 0; i < 500; i++) {
                 confettiArray.push(new Confetti());
             }
-            console.log('animated');
         }
 
         function animateConfetti() {

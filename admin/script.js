@@ -37,7 +37,7 @@ function fill_transaction_ticket_content(transactions){
         transactionContainer.appendChild(card);
         const cardInner = document.createElement('div');
         cardInner.innerHTML = `
-            <div class="sub-title">Type : ${transaction.transaction_type}</div>
+            <div class="${transaction.transaction_type === 'add' ? 'sub-title-add' : 'sub-title-withdraw'}">Type : ${transaction.transaction_type.replace(/^./, char => char.toUpperCase())}</div>
             <div class="tran_status">Name : ${transaction.name}</div>
             <div class="tran_status">Phone : ${transaction.phone}</div>
             <div class="tran_status">Amount : ${transaction.amount}</div>
@@ -58,6 +58,11 @@ function fill_transaction_ticket_content(transactions){
             settledAt.classList.add('tran_status');
             settledAt.textContent = `Settled At: ${transaction.settled_timestamp}`;
             cardInner.appendChild(settledAt);
+        }
+        const today = new Date();
+        const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+        if(transaction.timestamp && transaction.timestamp.toString().includes(formattedDate)){
+            cardInner.classList.add('active-user');
         }
         card.appendChild(cardInner);
     });

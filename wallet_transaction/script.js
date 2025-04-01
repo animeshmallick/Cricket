@@ -13,16 +13,20 @@ function fill_transaction_ticket_content(transactions){
         card.innerHTML = `
                     <div class="card-inner">
                         <div>
-                            <div class="sub-title">Type : ${transaction.transaction_type}</div>
+                            <div class="${transaction.transaction_type === 'add' ? 'sub-title-add' : 'sub-title-withdraw'}">Type : ${transaction.transaction_type.replace(/^./, char => char.toUpperCase())}</div>
                             <div class="tran_status">Amount : ${transaction.amount}</div>
                             <div class="tran_status">Status: ${transaction.status}</div>
                             <div class="tran_status">Placed At: ${transaction.timestamp}</div>
+                            <div class="tran_status">Placed At: ${transaction.settled_timestamp === undefined ? "Not Settled" : transaction.settled_timestamp}</div>
                         </div>
                     </div>
                 `;
         card.addEventListener("click", () => {
             card.classList.toggle("flipped");
         });
+        if (transaction.status.includes('placed'))
+            card.children[0].style.backgroundColor = 'red';
+
         transactionContainer.appendChild(card);
     });
 }

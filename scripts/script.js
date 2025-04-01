@@ -133,8 +133,10 @@ function update_scorecard(scorecard){
     if(scorecard.match_additional_details[0].includes('won')) {
         document.getElementById('match_additional_details').parentElement.style = `animation: breathe 1s infinite ease-in-out;`;
     }else{
-        document.getElementsByClassName('team-hover')[scorecard.innings - 1].style = 'animation: breathe 2s infinite ease-in-out;';
-        document.getElementsByClassName('team-logo')[scorecard.innings - 1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
+        if(scorecard.innings === 1 && scorecard.source.includes('bot'))
+            document.getElementsByClassName('team-hover')[0].style = 'animation: breathe 2s infinite ease-in-out;';
+        if(scorecard.innings === 2 && scorecard.source.includes('bot'))
+            document.getElementsByClassName('team-logo')[1].style = 'animation: breathe-team-logo 2s infinite ease-in-out;';
     }
     document.getElementById('match_name').innerHTML = ipl_formated(scorecard.teams[0]).toUpperCase() + ' vs ' + ipl_formated(scorecard.teams[1]).toUpperCase();
 
@@ -188,6 +190,11 @@ function update_scorecard(scorecard){
         document.getElementById('bowler2').innerHTML = "";
         document.getElementById('bowler2_detail').innerHTML = "";
     }
+    if (scorecard.source.includes('default'))
+        document.getElementById('current_player_details').style.display = 'none';
+    else
+        document.getElementById('current_player_details').style.display = 'flex';
+
     create_current_over_balls_container(scorecard.this_over);
 
     if(isNaN(crr))
@@ -250,7 +257,7 @@ function ipl_formated(team){
     else if(team.includes('hydrabad') || team.includes("hyderabad"))
         return "SRH";
     else
-        return team;
+        return team.substring(0,3);
 }
 function update_themes(teams){
     if (teams[0].toLowerCase().includes('kolkata'))
@@ -333,6 +340,16 @@ function update_themes(teams){
         document.getElementById('team2_score').style.color = `white`;
         document.getElementById('team2_name').style.color = `white`;
     }
+    if (teams[0].toLowerCase().includes('punjab')) {
+        document.getElementById('team1_container').style.background = `linear-gradient(90deg, red, white)`;
+        document.getElementById('team1_score').style.color = `maroon`;
+        document.getElementById('team1_name').style.color = `white`;
+    }
+    if (teams[1].toLowerCase().includes('punjab')) {
+        document.getElementById('team2_container').style.background = `linear-gradient(90deg, red, white)`;
+        document.getElementById('team2_score').style.color = `maroon`;
+        document.getElementById('team2_name').style.color = `white`;
+    }
 }
 function enable_session_buttons(){
     const series_id = getCookie('series_id');
@@ -396,6 +413,12 @@ function get_formated_over(over){
 function create_current_over_balls_container(balls){
     document.getElementById('current-over-container').textContent = '';
     const container = document.querySelector('#current-over-container');
+
+    if(balls.length === 0)
+        container.parentElement.children[0].style.display = 'none';
+    else {
+        container.parentElement.children[0].style.display = 'block';
+    }
 
     // Function to create ball elements with animations
     balls.forEach(ball => {

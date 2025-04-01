@@ -4,7 +4,7 @@
     align-items: center;
     background: #333;
     color: white;
-    padding: 0.5rem 1rem;
+    padding: 0 1rem;
     transition: background 0.3s ease-in-out;
 }
 div.nav-title {
@@ -86,7 +86,7 @@ a.nav-link {
 div.balance-container {
     background-color: #34495e;
     display: inline-block;
-    padding: 0.1rem 1rem;
+    padding: 0.1rem 0.5rem;
     border-radius: 1rem;
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;

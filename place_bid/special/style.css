@@ -64,7 +64,7 @@ div.slider-div {
     display: flex;
     gap: 0.25rem;
     flex-wrap: wrap;
-    padding-bottom: 1rem;
+    padding: 1rem 0;
     transition: transform 0.3s ease;
     box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
     border-radius: 1rem;

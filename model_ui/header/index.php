@@ -7,12 +7,12 @@
     <div id='side-bar-icon' class="hamburger" onclick="w3_open()">&#9776;</div>
     <div style="display: flex; justify-content: space-between; width: 100%">
         <div style="margin-left: 1rem" onclick="redirect_to('Cricket/home/')">
-            <div class="nav-title">CricketT20</div>
+            <div class="nav-title">CricketIPL</div>
             <span><?php echo $header_sub_text;?></span>
         </div>
         <div class="balance-container" onclick="redirect_to('Cricket/wallet_transaction/index.php')">
             <span class="balance-title">Balance</span>
-            <div id="balance" class="balance">&#8377;1000</div>
+            <div id="balance" class="balance">&#8377;--</div>
         </div>
     </div>
 

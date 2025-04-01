@@ -31,7 +31,7 @@
     </div>
 
     <!-- Player Details -->
-    <div class="team-hover mt-2 flex justify-between items-center text-sm p-1 rounded-md">
+    <div class="team-hover mt-1 pl-2 pr-2 flex justify-between items-center text-sm rounded-md" id="current_player_details">
         <div class="player">
             <div>
                 <div><span id='batsman1' class="text-black player">Loading Batsman</span></div>
@@ -54,19 +54,17 @@
         </div>
     </div>
 
-    <div class="mt-2 flex justify-between items-center text-sm text-gray-800">
+    <div class="mt-1 flex justify-between items-center text-sm text-gray-800">
         <div class="flex items-center">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-            <span>&nbsp;C.RR: <span class="small-text" id="crr"></span></span>
+            <span>&nbsp;C.RR: <span id="crr"></span></span>
         </div>
         <div class="flex items-center" style="display: none">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
-            <span>&nbsp;R.RR: <span class="small-text" id="rrr"></span></span>
+            <span>&nbsp;R.RR: <span id="rrr"></span></span>
         </div>
     </div>
 
     <!-- Partnership and Last Wicket -->
-    <div class="mt-1 text-l text-gray-300">
+    <div class="mt-1 text-sm text-gray-300">
         <div class="flex items-center gap-1">
             <svg class="w-5 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 12h4v8h12v-8h4L12 2z"></path></svg>
             <span>Partnership: <span id='partnership' class="text-yellow-300"></span></span>

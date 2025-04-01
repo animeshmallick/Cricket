@@ -3,11 +3,11 @@
     box-shadow: 0 1rem 1.2rem rgb(51, 117, 204, 0.6);
     border-radius: 1rem;
     animation: fadeIn 1s forwards;
-    margin-bottom: 0.7rem;
+    margin-bottom: 0.3rem;
 }
 .section-header {
     text-align: center;
-    font-size: 1.5rem; /* Reduced font size */
+    font-size: 1.2rem; /* Reduced font size */
     font-weight: bold;
     margin-bottom: 0.1rem; /* Reduced margin */
     color: #ffffff;
@@ -19,10 +19,10 @@
 .clickable-button {
     width: 50%;
     margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     background-color: rgba(148, 204, 51, 0.68);
     color: white;
-    font-size: 1.2rem; /* Reduced font size */
+    font-size: 1rem; /* Reduced font size */
     font-weight: 600;
     text-align: center;
     border-radius: 1rem;

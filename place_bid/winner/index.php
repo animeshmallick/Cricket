@@ -44,6 +44,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
 <div class="separator"></div>
 <div class="container" id="bid_container">
     <div class="sub-title">Place new bid</div>
+
+    <!-- Todo: Remove comment once the rooms are ready to handle requests
     <div class="rooms-container">
         <div class="sub-title">Select Room Based On Bid Amount</div>
         <div style="display: flex; justify-content: space-between">
@@ -52,6 +54,8 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
             <a class="room disabled <?php echo $room == 3 ? 'room-selected' : ''?>" href="index.php?session=<?php echo $_GET['session']; ?>&room=3"><span>&#8377;1500 - &#8377;2500</span></a>
         </div>
     </div>
+    -->
+
     <div class="bid-section">
         <form action="../../bid_placed/index.php" method="post" id="place-bid-form">
             <input type="hidden" name="bid_id" value="<?php echo $common->get_unique_bid_id('winner'); ?>" hidden="hidden">

@@ -7,7 +7,7 @@
 
     <!-- Team Logos and Scores -->
     <div class="space-y-1">
-        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team1_container">
+        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team1_container" onclick="openScorecardPopup('team1')">
             <img id="team1_logo" src="../../images/logo/india.png" alt="India" class="h-10 w-10 team-logo"/>
             <span id='team1_name' class="team-badge">Loading</span>
             <span id='team1_score' class="score text-yellow-400"></span>
@@ -18,7 +18,7 @@
                 <div id="progressBar" class="progress-bar"></div>
             </div>
         </div>
-        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team2_container">
+        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team2_container" onclick="openScorecardPopup('team2')">
             <img id='team2_logo' src="../../images/logo/england.png" alt="Australia" class="h-10 w-10 team-logo" />
             <span id='team2_name' class="team-badge">Loading</span>
             <span id='team2_score' class="score text-yellow-400"></span>
@@ -83,3 +83,5 @@
     </div>
     <div style="display: none;text-align: right"><span id="timer" class="text-xs">0sec ago</span></div>
 </div>
+<div class="overlay" onclick="closeScorecardPopup()"></div>
+<div class="modal" id="playerModal"></div>

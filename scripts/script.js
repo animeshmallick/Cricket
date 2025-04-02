@@ -507,3 +507,52 @@ function refreshPage(btn) {
         location.reload(); // Refresh page
     }, 600);
 }
+function openScorecardPopup(team) {
+    document.getElementById('scorecard').style.height = '100vh';
+    const modal = document.getElementById("playerModal");
+    const overlay = document.querySelector(".overlay");
+    const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod//get_detailed_score/"+getCookie('series_id')+"/"+getCookie('match_id');
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            let batsmen = data[team+'_batsmen'];
+            let bowlers = data[team+'_bowlers'];
+            modal.innerHTML = `
+                <div class="title" style="font-size: 1.5rem">${document.getElementById(team + '_name').innerHTML + " : Innings"}</div>
+                <div class="sub-title">Batsmen Details</div>
+                <div class="details_scorecard_container">
+                    ${batsmen.map(p => 
+                        `<div class="player_detail">
+                            <div class="player_name" style="background: linear-gradient(90deg, ${p.status.includes('not out') ? 'green' : 'red'}, greenyellow);}">${p.name}</div>
+                            <div class="player_score">${p.runs}(${p.balls})</div>
+                            <div class="player_status" style="background: linear-gradient(90deg, ${p.status.includes('not out') ? 'green' : 'red'}, yellow);}">${formatted_status(p.status)}</div>
+                        </div>`
+                    ).join('')}
+                </div>
+                <div class="separator"></div>
+                <div class="sub-title">Bowler Details</div>
+                <div class="details_scorecard_container">
+                    ${bowlers.map(p =>
+                        `<div class="player_detail">
+                            <div class="player_name" style="background: linear-gradient(90deg, royalblue, greenyellow);}">${p.name}</div>
+                            <div class="player_status" style="background: linear-gradient(90deg, royalblue, yellow);}">${formatted_status(p.status)} Ov - ${p.balls} R</div>
+                        </div>`
+                    ).join('')}
+                </div>
+                <button class="close-detailed-scorecard-btn" onclick='closeScorecardPopup()'>Close</button>`;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    modal.style.display = "block";
+    overlay.style.display = "block";
+}
+
+function closeScorecardPopup() {
+    document.getElementById('scorecard').style.height = 'auto';
+    document.getElementById("playerModal").style.display = "none";
+    document.querySelector(".overlay").style.display = "none";
+}
+
+function formatted_status(status){
+    return status.replace(/c ([A-Za-z]+) ([A-Za-z]+) /g, (match, first, last) => `c ${first.charAt(0)}.${last} `)
+        .replace(/b ([A-Za-z]+) ([A-Za-z]+)/g, (match, first, last) => `b ${first.charAt(0)}.${last}`);
+}

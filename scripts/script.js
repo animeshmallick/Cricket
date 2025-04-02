@@ -511,7 +511,8 @@ function openScorecardPopup(team) {
     document.getElementById('scorecard').style.height = '100vh';
     const modal = document.getElementById("playerModal");
     const overlay = document.querySelector(".overlay");
-    const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod//get_detailed_score/"+getCookie('series_id')+"/"+getCookie('match_id');
+    modal.innerHTML = `<div class="title" style="font-size:2rem">Loading Player Details</div>`
+    const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_detailed_score/"+getCookie('series_id')+"/"+getCookie('match_id');
     fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -523,9 +524,9 @@ function openScorecardPopup(team) {
                 <div class="details_scorecard_container">
                     ${batsmen.map(p => 
                         `<div class="player_detail">
-                            <div class="player_name" style="background: linear-gradient(90deg, ${p.status.includes('not out') ? 'green' : 'red'}, greenyellow);}">${p.name}</div>
+                            <div class="player_name" style="background: linear-gradient(90deg, ${p.status.includes('not out') ? 'green' : 'red'}, greenyellow);}">${p.name.replaceAll('†', '')}</div>
                             <div class="player_score">${p.runs}(${p.balls})</div>
-                            <div class="player_status" style="background: linear-gradient(90deg, ${p.status.includes('not out') ? 'green' : 'red'}, yellow);}">${formatted_status(p.status)}</div>
+                            <div class="player_status" style="background: linear-gradient(90deg, ${p.status.includes('not out') ? 'green' : 'red'}, greenyellow);}">${formatted_status(p.status.replace('†',''))}</div>
                         </div>`
                     ).join('')}
                 </div>
@@ -535,7 +536,7 @@ function openScorecardPopup(team) {
                     ${bowlers.map(p =>
                         `<div class="player_detail">
                             <div class="player_name" style="background: linear-gradient(90deg, royalblue, greenyellow);}">${p.name}</div>
-                            <div class="player_status" style="background: linear-gradient(90deg, royalblue, yellow);}">${formatted_status(p.status)} Ov - ${p.balls} R</div>
+                            <div class="player_status" style="background: linear-gradient(90deg, royalblue, yellow);}">${p.overs} Ov - ${p.runs} R - ${p.wickets} W</div>
                         </div>`
                     ).join('')}
                 </div>

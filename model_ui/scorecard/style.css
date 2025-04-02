@@ -178,7 +178,7 @@ div.player_name {
     font-weight: bolder;
     padding: 0 0.75rem;
     white-space: nowrap;
-    overflow: clip;
+    overflow: hidden;
     word-wrap: break-word;
     font-size: 1.1rem;
 }
@@ -188,13 +188,13 @@ div.player_score {
     font-weight: bolder;
     padding: 0 0.2rem;
     white-space: nowrap;
-    overflow: clip;
+    overflow: hidden;
     word-wrap: break-word
 }
 div.player_status {
     padding: 0 0.3rem;
     white-space: nowrap;
-    overflow: clip;
+    overflow: hidden;
     word-wrap: break-word;
     border-radius: 0.5rem;
 }

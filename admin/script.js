@@ -1,3 +1,52 @@
+function settle_bid_all(type){
+    if (window.location.hostname.includes('localhost')) {
+        alert("Cannot perform action from localhost.");
+    }else {
+        const userResponse = prompt("Type Runs for this session.", "0");
+        let runs = 0;
+        if (userResponse != null && Number.isInteger(Number(userResponse))) {
+            runs = Number(userResponse);
+        }
+        if(runs > 0) {
+            document.querySelectorAll('tr').forEach((tr) => {
+                let run_min = tr.getAttribute('min');
+                let run_max = tr.getAttribute('max');
+                let winner = runs >= run_min && runs <= run_max;
+                if (tr.children[3].innerHTML.includes('placed')) {
+                    let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/" + tr.id + "/" + type + "/" + (winner ? "win" : "loss");
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status.includes('successfully')) {
+                                tr.style.backgroundColor = data.winner ? 'green' : 'red';
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+            });
+            //location.reload();
+        }else if(userResponse.toLowerCase() === "x" || userResponse.toLowerCase() === "y"){
+            document.querySelectorAll('tr').forEach((tr) => {
+                let winner = tr.getAttribute('winner') === userResponse.toLowerCase();
+                if(tr.children[3].innerHTML.includes('placed')) {
+                    let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/" + tr.id + "/" + type + "/" + (winner ? "win" : "loss");
+                    fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status.includes('successfully')) {
+                                tr.style.backgroundColor = data.winner ? 'green' : 'red';
+                            }
+                        })
+                        .catch(error => console.error('Error:', error))
+                }
+            });
+            //location.reload();
+        }
+        else {
+            alert("Please enter a valid number.");
+        }
+    }
+}
 function settle_bid(bid_id, type, session){
     if (window.location.hostname.includes('localhost')) {
         alert("Cannot perform action from localhost.");

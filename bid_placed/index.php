@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
                     'series_id': '<?= $series_id ?>',
                     'match_id': '<?= $match_id ?>',
                     'session': '<?= $session ?>',
-                    'type': `<?= $common->isValidSession($session) ? "session" : ($session == "winner" ? "winner" : "--") ?>`
+                    'type': `<?= $common->isValidSession($session) ? "session" : ($session == "winner" ? "winner" : "--") ?>`,
                     'room': '<?= $room ?>
                 })
                 let startTime = new Date().getTime();

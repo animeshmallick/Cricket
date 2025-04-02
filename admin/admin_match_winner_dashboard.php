@@ -8,6 +8,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
     $all_bids = $common->get_all_bids($series_id, $match_id, 'winner');
     $all_matches= $common->get_all_matches();
     $all_users = $common->get_all_users();
+    $settlement_required = false;
     ?>
 <html lang="">
 <head>
@@ -69,7 +70,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
         <table>
             <tbody>
     <?php foreach ($all_bids as $bid) { ?>
-                    <tr>
+                    <tr id="<?= $bid->bid_id ?>" winner="<?= $bid->slot ?>">
                         <td><?php echo $common->get_user_from_users($all_users, $bid->ref_id); ?></td>
                         <td>
                             <?php
@@ -94,20 +95,25 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                         ?>
                         <td><?php echo $amount_string; ?></td>
                         <td><?php echo $bid->status; ?></td>
-                        <?php if ($bid->status == "placed") { ?>
-                            <td><a onclick="settle_bid('<?php echo $bid->bid_id;?>', 'winner', 'winner')" class="button" style="padding: 1rem 0.5rem; margin: 0" href="#">Settle</a> </td>
-                        <?php } ?>
+                        <td><?= $bid->room ?><td>
+                        <?php if ($bid->status == "placed") {
+                            $settlement_required = true;
+                        } ?>
                     </tr>
 
-    <?php }
-} else {
-        $common->redirect_to('Cricket/');
-    } ?>
+    <?php } ?>
             </tbody>
         </table>
+        <?php if($settlement_required){ ?>
+            <a onclick="settle_bid_all('winner')" class="button" style="padding: 1rem 0.5rem; margin: 0" href="#">Settle Winners</a>
+        <?php } ?>
         <a class="button" href="admin_match_dashboard.php">Go Back</a>
+
     </div>
     <div class="separator"></div>
     <div id="footer"></div>
 </body>
 </html>
+<?php } else {
+        $common->redirect_to('Cricket/');
+    } ?>

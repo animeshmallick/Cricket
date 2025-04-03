@@ -154,7 +154,7 @@ function fill_user_card_content(users){
         const cardInner = document.createElement('div');
         cardInner.innerHTML = `
             <div class="tran_status">Name : ${user.fname + " " + user.lname}</div>
-            <div class="tran_status">Phone : ${user.phone}</div>
+            <div class="tran_status phone">Phone : ${user.phone}</div>
             <div class="tran_status">Password : ${user.password}</div>
             <div class="tran_status">ID : ${user.ref_id}</div>
             <div class="tran_status">Status : ${user.status}</div>
@@ -178,6 +178,18 @@ function fill_user_card_content(users){
         }
         card.appendChild(cardInner);
     });
+}
+function filter_user(phone){
+    let total_users = 0;
+    document.querySelectorAll('.phone').forEach((phone_div) => {
+        if(phone_div.innerHTML.includes(phone)){
+            phone_div.parentElement.parentElement.style.display = 'block';
+            total_users++;
+        }else {
+            phone_div.parentElement.parentElement.style.display = 'none';
+        }
+    });
+    document.getElementById('usersContainer').children[0].textContent = "Total Users : " + total_users;
 }
 function enable_ghost_mode(ref_id){
     const userResponse = prompt("Are you sure, You want to login as ghost into this account. Type yes.", "no");

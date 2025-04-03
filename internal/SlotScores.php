@@ -6,19 +6,12 @@ class Scores {
     }
 
     public function get_curr_rr($scorecard, $innings): float{
-        if ($innings == 1) {
-            $over = $scorecard->team1_score->over;
-            $x = $over * 10;
-            $y = floor($x / 10);
-            $z = $x % 10;
-            return $scorecard->team1_score->runs / ($y + $z/6);
-        } else {
-            $over = $scorecard->team2_score->over;
-            $x = $over * 10;
-            $y = floor($x / 10);
-            $z = $x % 10;
-            return $scorecard->team2_score->runs / ($y + $z/6);
-        }
+        $x = $scorecard->balls_played / 6;
+        $y = $scorecard->balls_played % 6;
+        if ($innings == 1)
+            return $scorecard->team1_score->runs / ($x + $y/6);
+        else
+            return $scorecard->team2_score->runs / ($x + $y/6);
     }
 
     public function get_curr_runs($bid_innings, $scorecard): int{

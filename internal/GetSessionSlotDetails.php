@@ -15,17 +15,8 @@ $amount = (float)$_GET['amount'];
 
 $scorecard = $common->get_scorecard_latest($series_id, $match_id);
 $run = $session[1] == 1 ? $scorecard->team1_score->runs : $scorecard->team2_score->runs;
-if ($session[1] == 1){
-    if($scorecard->innings == 1)
-        $balls = $common->get_total_balls($scorecard->over);
-    else
-        $balls = 120;
-}else{
-    if($scorecard->innings == 1)
-        $balls = 0;
-    else
-        $balls = $common->get_total_balls($scorecard->over);
-}
+$balls = $scorecard->balls_played;
+$balls_left = 0;
 if($session[0] == 'a')
     $balls_left = 36 - $balls;
 if($session[0] == 'b')

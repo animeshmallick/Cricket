@@ -133,7 +133,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
             <a style="text-decoration: none; color: inherit;" onclick="redirect_to(`Cricket/match/index.php?series_id=${getCookie('series_id')}&match_id=${getCookie('match_id')}`)">Change Session</a>
         </div>
         <div class="change-session-btn" id="show_all_bids" style="margin-bottom: 0.25rem">
-            <a style="text-decoration: none; color: inherit;" onclick="redirect_to('Cricket/your_bids/')">Show Your Bids for this match</a>
+            <a style="text-decoration: none; color: inherit;" onclick="redirect_to('Cricket/your_bids/')">My Bids</a>
         </div>
     </div>
 </div>

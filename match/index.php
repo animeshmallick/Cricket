@@ -60,7 +60,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header();fill_scorecard();enable_session_buttons();fill_footer();show_banner()">
+    <body onload="fill_header();fill_scorecard();fill_footer();show_banner()">
         <div class="banner" id="banner">
             <div class="title">Notice</div>
             <div style="display: flex">

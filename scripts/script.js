@@ -119,7 +119,7 @@ function fill_scorecard(){
                             .then(async score => {
                                 update_scorecard(score);
                                 if(window.location.pathname.includes('match'))
-                                    enable_session_buttons();
+                                    enable_session_buttons(score);
                             })
                     }, 4000);
                 })
@@ -128,8 +128,8 @@ function fill_scorecard(){
         .catch(error => console.log(error));
 }
 function update_scorecard(scorecard){
-    const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.team1_score.over) : scorecard.team2_score.runs / get_formated_over(scorecard.team2_score.over));
-    const rrr = scorecard.innings === 2 ? (scorecard.team1_score.runs - scorecard.team2_score.runs) / (20 - get_formated_over(scorecard.team2_score.over)) : 0;
+    const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.balls_played) : scorecard.team2_score.runs / get_formated_over(scorecard.balls_played));
+    const rrr = scorecard.innings === 2 ? (scorecard.team1_score.runs - scorecard.team2_score.runs) / (20 - get_formated_over(scorecard.balls_played)) : 0;
     if(scorecard.match_additional_details[0].includes('won')) {
         document.getElementById('match_additional_details').parentElement.style = `animation: breathe 1s infinite ease-in-out;`;
     }else{
@@ -344,64 +344,46 @@ function update_themes(teams){
         document.getElementById('team2_name').style.color = `white`;
     }
 }
-function enable_session_buttons(){
-    const series_id = getCookie('series_id');
-    const match_id = getCookie('match_id');
-    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
+function enable_session_buttons(scorecard){
+    if (scorecard.ball_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 1)
+        document.getElementById('a1').classList.remove('disabled');
+    if (scorecard.balls_played > 30 && scorecard.balls_played < 54 && scorecard.innings === 1)
+        document.getElementById('b1').classList.remove('disabled');
+    if (scorecard.balls_played > 59 && scorecard.balls_played < 90 && scorecard.innings === 1)
+        document.getElementById('c1').classList.remove('disabled');
+    if (scorecard.balls_played > 90 && scorecard.balls_played < 114 && scorecard.innings === 1)
+        document.getElementById('d1').classList.remove('disabled');
+
+    if (scorecard.balls_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 2)
+        document.getElementById('a2').classList.remove('disabled');
+    if (scorecard.balls_played > 30 && scorecard.balls_played < 54 && scorecard.innings === 2)
+        document.getElementById('b2').classList.remove('disabled');
+    if (scorecard.balls_played > 59 && scorecard.balls_played < 90 && scorecard.innings === 2)
+        document.getElementById('c2').classList.remove('disabled');
+
+    if (scorecard.balls_played > 90 && scorecard.over_id < 114 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 10)
+        document.getElementById('d2').classList.remove('disabled');
+
+    if (scorecard.balls_played < 114 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20) {
+        if (scorecard.team2_score.wickets < 10)
+            document.getElementById('winner').classList.remove('disabled');
+    }
+    if (scorecard.balls_played < 90 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20 && scorecard.team2_score.wickets < 10)
+        document.getElementById('special').classList.remove('disabled');
+
+    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${series_id}/${match_id}`)
         .then(async response => {
-            return await response.json()
-        })
-        .then(scorecard => {
-            try{
-                if(document.getElementById('sessions') !== null) {
-                    if (scorecard.over_id > 101 && scorecard.over_id < 106)
-                        document.getElementById('a1').classList.remove('disabled');
-                    if (scorecard.over_id > 105 && scorecard.over_id < 110)
-                        document.getElementById('b1').classList.remove('disabled');
-                    if (scorecard.over_id > 109 && scorecard.over_id < 116)
-                        document.getElementById('c1').classList.remove('disabled');
-                    if (scorecard.over_id > 115 && scorecard.over_id < 120)
-                        document.getElementById('d1').classList.remove('disabled');
-
-                    if (scorecard.over_id > 201 && scorecard.over_id < 206)
-                        document.getElementById('a2').classList.remove('disabled');
-                    if (scorecard.over_id > 205 && scorecard.over_id < 210)
-                        document.getElementById('b2').classList.remove('disabled');
-                    if (scorecard.over_id > 209 && scorecard.over_id < 216)
-                        document.getElementById('c2').classList.remove('disabled');
-                    if (scorecard.over_id > 215 && scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 10)
-                        document.getElementById('d2').classList.remove('disabled');
-
-                    if(scorecard.over_id < 200)
-                        document.getElementById('winner').classList.remove('disabled');
-                    else if (scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20) {
-                        if (scorecard.team2_score.wickets < 10)
-                            document.getElementById('winner').classList.remove('disabled');
-                    }
-                    if (scorecard.over_id < 200)
-                        document.getElementById('special').classList.remove('disabled');
-                    else if(scorecard.over_id < 220 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20 && scorecard.team2_score.wickets < 10)
-                        document.getElementById('special').classList.remove('disabled');
-                }
-            }catch(e){
-                console.log(e);
-            }
-        }).then(() => {
-            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${series_id}/${match_id}`)
-                .then(async response => {
-                    return await response.json();
-                }).then(response => {
-                    if (response.hasOwnProperty('extra_sessions_enabled') && response.extra_sessions_enabled)
-                        document.getElementById('extra-sessions').style.display = 'flex';
-                }).catch(e => console.log(e));
-        }).catch(error => console.log(error));
+            return await response.json();
+        }).then(response => {
+        if (response.hasOwnProperty('extra_sessions_enabled') && response.extra_sessions_enabled)
+            document.getElementById('extra-sessions').style.display = 'flex';
+    }).catch(e => console.log(e));
 
 }
-function get_formated_over(over){
-    let x = over * 10;
-    let y = Math.floor(x / 10);
-    let z = x % 10;
-    return y + z/6;
+function get_formated_over(balls_played){
+    let x = balls_played % 6;
+    let y = Math.floor(balls_played / 6);
+    return y + x/6;
 }
 function create_current_over_balls_container(balls){
     document.getElementById('current-over-container').textContent = '';

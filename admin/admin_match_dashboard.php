@@ -252,13 +252,13 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;" onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=a1')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_a1['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_a1['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_a1['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_a1['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_a1['collected'] - $session_a1['given']); ?></div>
                 </div>
                 <div class="bid_container" style="width: 50%"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=b1')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_b1['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_b1['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_b1['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_b1['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_b1['collected'] - $session_b1['given']); ?></div>
                 </div>
@@ -267,13 +267,13 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=c1')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_c1['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_c1['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_c1['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_c1['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_c1['collected'] - $session_c1['given']); ?></div>
                 </div>
                 <div class="bid_container" style="width: 50%"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=d1')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_d1['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_d1['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_d1['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_d1['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_d1['collected'] - $session_d1['given']); ?></div>
                 </div>
@@ -283,13 +283,13 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=a2')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_a2['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_a2['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_a2['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_a2['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_a2['collected'] - $session_a2['given']); ?></div>
                 </div>
                 <div class="bid_container" style="width: 50%"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=b2')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_b2['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_b2['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_b2['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_b2['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_b2['collected'] - $session_b2['given']); ?></div>
                 </div>
@@ -298,13 +298,13 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=c2')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_c2['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_c2['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_c2['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_c2['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_c2['collected'] - $session_c2['given']); ?></div>
                 </div>
                 <div class="bid_container" style="width: 50%"  onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=d2')">
                     <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_d2['count']; ?></div>
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Collected : <?php echo "₹".$session_d2['collected']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_d2['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_d2['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_d2['collected'] - $session_d2['given']); ?></div>
                 </div>
@@ -314,7 +314,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div class="sub-title">Winner</div>
             <div class="bid_container" onclick="redirect_to('Cricket/admin/admin_match_winner_dashboard.php?session=winner')">
                 <div class="match-detail" style="padding: 0.5rem 1rem">Bids Placed : <?php echo $session_winner['count']; ?></div>
-                <div class="match-detail" style="padding: 0.5rem 1rem">Collected : <?php echo "₹".$session_winner['collected']; ?></div>
+                <div class="match-detail" style="padding: 0.5rem 1rem">Collect : <?php echo "₹".$session_winner['collected']; ?></div>
                 <div class="match-detail" style="padding: 0.5rem 1rem">Given: <?php echo "₹".$session_winner['given']; ?></div>
                 <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_winner['collected'] - $session_winner['given']); ?></div>
             </div>
@@ -322,7 +322,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div class="sub-title">Specials</div>
             <div class="bid_container" onclick="redirect_to('Cricket/admin/admin_match_special_dashboard.php?session=special')">
                 <div class="match-detail" style="padding: 0.5rem 1rem">Bids Placed : <?php echo $session_special['count']; ?></div>
-                <div class="match-detail" style="padding: 0.5rem 1rem">Collected : <?php echo "₹".$session_special['collected']; ?></div>
+                <div class="match-detail" style="padding: 0.5rem 1rem">Collect : <?php echo "₹".$session_special['collected']; ?></div>
                 <div class="match-detail" style="padding: 0.5rem 1rem">Given: <?php echo "₹".$session_special['given']; ?></div>
                 <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_special['collected'] - $session_special['given']); ?></div>
             </div>

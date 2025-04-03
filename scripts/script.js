@@ -121,7 +121,7 @@ function fill_scorecard(){
                                 if(window.location.pathname.includes('match'))
                                     enable_session_buttons();
                             })
-                    }, 6000);
+                    }, 4000);
                 })
                 .catch(error => console.log(error));
         })

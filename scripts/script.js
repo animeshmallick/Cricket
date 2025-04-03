@@ -109,12 +109,12 @@ function fill_scorecard(){
     fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
         .then(async () => {
-            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${series_id}/${match_id}/latest`)
+            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
                 .then(async response => {return await response.json()})
                 .then(async score => {
                     update_scorecard(score);
                     scorecard_timer = setInterval(() => {
-                        fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${series_id}/${match_id}/latest`)
+                        fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
                             .then(async response => {return await response.json()})
                             .then(async score => {
                                 update_scorecard(score);
@@ -347,7 +347,7 @@ function update_themes(teams){
 function enable_session_buttons(){
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
-    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${series_id}/${match_id}/latest`)
+    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
         .then(async response => {
             return await response.json()
         })

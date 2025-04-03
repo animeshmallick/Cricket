@@ -63,7 +63,7 @@ class Common
 
     public function get_scorecard_latest($series_id, $match_id)
     {
-        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/' . $series_id . '/' . $match_id . '/latest';
+        $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/' . $series_id . '/' . $match_id;
         return json_decode($this->get_response_from_url($url));
     }
 

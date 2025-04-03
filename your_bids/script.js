@@ -11,7 +11,7 @@ function fill_bids() {
                         .then(response => response.json())
                         .then(response => data.concat(response))
                         .then(data => {
-                            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scores/${getCookie('series_id')}/${getCookie('match_id')}/latest`)
+                            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${getCookie('series_id')}/${getCookie('match_id')}`)
                                 .then(response => response.json())
                                 .then(score => score.teams)
                                 .then(teams => {

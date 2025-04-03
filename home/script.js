@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Function to create match cards
     function createMatchCard(match) {
+        if (match.series_id.includes('dummy') && match.match_id.includes('dummy') && getCookie('user_type') !== 'admin') {
+                return;
+        }
         const matchCardWrapper = document.createElement('a');
         matchCardWrapper.classList.add('match-card');
         matchCardWrapper.href = `../match/index.php?series_id=${match.series_id}&match_id=${match.match_id}`;

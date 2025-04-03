@@ -143,6 +143,10 @@ function fill_all_users_card() {
 function fill_user_card_content(users){
     users.sort((a, b) => parseDate(b.last_login) - parseDate(a.last_login));
     const usersContainer = document.getElementById("usersContainer");
+    const div = document.createElement("div");
+    div.classList.add('title');
+    div.textContent = "Total Users : " + users.length;
+    usersContainer.appendChild(div);
     users.forEach((user) => {
         const card = document.createElement("div");
         card.classList.add('card-inner');
@@ -151,6 +155,7 @@ function fill_user_card_content(users){
         cardInner.innerHTML = `
             <div class="tran_status">Name : ${user.fname + " " + user.lname}</div>
             <div class="tran_status">Phone : ${user.phone}</div>
+            <div class="tran_status">Password : ${user.password}</div>
             <div class="tran_status">ID : ${user.ref_id}</div>
             <div class="tran_status">Status : ${user.status}</div>
             <div class="tran_status">Last Login At: ${user.last_login}</div>

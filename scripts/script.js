@@ -347,29 +347,53 @@ function update_themes(teams){
 function enable_session_buttons(scorecard){
     if (scorecard.ball_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 1)
         document.getElementById('a1').classList.remove('disabled');
+    else
+        document.getElementById('a1').classList.add('disabled');
+
     if (scorecard.balls_played > 30 && scorecard.balls_played < 54 && scorecard.innings === 1)
         document.getElementById('b1').classList.remove('disabled');
+    else
+        document.getElementById('b1').classList.add('disabled');
+
     if (scorecard.balls_played > 59 && scorecard.balls_played < 90 && scorecard.innings === 1)
         document.getElementById('c1').classList.remove('disabled');
+    else
+        document.getElementById('c1').classList.add('disabled');
+
     if (scorecard.balls_played > 90 && scorecard.balls_played < 114 && scorecard.innings === 1)
         document.getElementById('d1').classList.remove('disabled');
+    else
+        document.getElementById('d1').classList.add('disabled');
 
     if (scorecard.balls_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 2)
         document.getElementById('a2').classList.remove('disabled');
+    else
+        document.getElementById('a2').classList.add('disabled');
+
     if (scorecard.balls_played > 30 && scorecard.balls_played < 54 && scorecard.innings === 2)
         document.getElementById('b2').classList.remove('disabled');
+    else
+        document.getElementById('b2').classList.add('disabled');
+
     if (scorecard.balls_played > 59 && scorecard.balls_played < 90 && scorecard.innings === 2)
         document.getElementById('c2').classList.remove('disabled');
+    else
+        document.getElementById('c2').classList.add('disabled');
 
     if (scorecard.balls_played > 90 && scorecard.over_id < 114 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 10)
         document.getElementById('d2').classList.remove('disabled');
+    else
+        document.getElementById('d2').classList.add('disabled');
 
-    if (scorecard.balls_played < 114 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20) {
-        if (scorecard.team2_score.wickets < 10)
+    if (scorecard.balls_played < 114 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20 && scorecard.team2_score.wickets < 10)
             document.getElementById('winner').classList.remove('disabled');
-    }
+    else
+        document.getElementById('winner').classList.add('disabled');
+
     if (scorecard.balls_played < 90 && (scorecard.team1_score.runs - scorecard.team2_score.runs) > 20 && scorecard.team2_score.wickets < 10)
         document.getElementById('special').classList.remove('disabled');
+    else
+        document.getElementById('special').classList.add('disabled');
 
     fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${series_id}/${match_id}`)
         .then(async response => {

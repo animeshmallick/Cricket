@@ -17,7 +17,7 @@ $scorecard = $common->get_scorecard_latest($series_id, $match_id);
 $all_bids = $common->get_all_bids_from_match($series_id, $match_id, 'winner', $room);
 $rates = $common->get_winner_rates($all_bids, $amount);
 
-if ($scorecard->over_id < 218) {
+if ($scorecard->balls_played < 114 && ($scorecard->team1_score->runs - $scorecard->team2_score->runs) > 15 && $scorecard->team2_score->wickets < 10) {
     $output = array(
         "team_a" => $scorecard->teams[0],
         "team_b" => $scorecard->teams[1],

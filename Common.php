@@ -148,8 +148,8 @@ class Common
             for ($i = $r + 1; $i < count($book->runs); $i++)
                 $b = max($b, $book->runs[$i]);
         }
-        $ga = max((($x - $a) * 0.9), 0);
-        $gb = max((($x - $b) * 0.9), 0);
+        $ga = max((($x - $a) * 0.8), 0);
+        $gb = max((($x - $b) * 0.8), 0);
         $f = 1.8 / ($ga + $gb);
         $r1 = $f * $ga;
         $r2 = $f * $gb;
@@ -254,14 +254,14 @@ class Common
 
     public function get_winner_rates($all_bids, $amount): array
     {
-        $x = 0.0;
+        $x = $amount;
         $a = 0.0;
         $b = 0.0;
         foreach ($all_bids as $bid) {
             $x += (float)($bid->amount);
         }
-        if ($x == 0)
-            $x = $amount;
+        if ($x == $amount)
+            $x += $amount;
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'x')
@@ -273,8 +273,8 @@ class Common
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
 
-        $ga = max((($x - $a) * 0.9), 0);
-        $gb = max((($x - $b) * 0.9), 0);
+        $ga = max((($x - $a) * 0.8), 0);
+        $gb = max((($x - $b) * 0.8), 0);
 
         $f = 1.8 / ($ga + $gb);
         $r1 = $f * $ga;

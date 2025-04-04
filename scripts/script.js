@@ -113,7 +113,9 @@ function fill_scorecard(){
                 .then(async response => {return await response.json()})
                 .then(async score => {
                     update_scorecard(score);
-                    scorecard_timer = setInterval(() => {
+                    if(window.location.pathname.includes('match'))
+                        enable_session_buttons(score);
+                    scorecard_timer = setTimeout(() => {
                         fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
                             .then(async response => {return await response.json()})
                             .then(async score => {

@@ -137,8 +137,8 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
         if (isset($book->error))
-            return [0.9, 0.9];
-        $x = $book->collected * 0.9;
+            return [0.75, 0.75];
+        $x = $book->collected;
         $a = 0;
         $b = 0;
         for ($i = ($r - 15); $i < $r; $i++)
@@ -148,14 +148,11 @@ class Common
 
         $ga = max(($x - $a), 0);
         $gb = max(($x - $b), 0);
-        if ($ga == 0 && $gb == 0)
-            return [0.9, 0.9];
         if($ga == 0)
-            $gb += $amount * 0.2;
-        if ($gb == 0)
-            $ga += $amount * 0.2;
-
-        return [min($ga/$amount, 1.5), min($gb/$amount, 1.5)];
+            $gb += $amount*0.25;
+        if($gb == 0)
+            $ga += $amount*0.25;
+        return [min($ga/$amount, 2), min($gb/$amount, 2)];
     }
     public function get_max($runs, $x, $y)
     {
@@ -283,13 +280,13 @@ class Common
         $gb = max(($x - $b), 0);
 
         if ($ga == 0 && $gb == 0)
-            return [0.9, 0.9];
+            return [0.75, 0.75];
         if($ga == 0)
-            $gb += $amount * 0.2;
+            $gb += $amount * 0.25;
         if ($gb == 0)
-            $ga += $amount * 0.2;
+            $ga += $amount * 0.25;
 
-        return [min($ga/$amount, 1.5), min($gb/$amount, 1.5)];
+        return [min($ga/$amount, 2), min($gb/$amount, 2)];
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)

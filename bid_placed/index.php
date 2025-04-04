@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
                     'match_id': '<?= $match_id ?>',
                     'session': '<?= $session ?>',
                     'type': `<?= $common->isValidSession($session) ? "session" : ($session == "winner" ? "winner" : "--") ?>`,
-                    'room': '<?= $room ?>
+                    'room': '<?= $room ?>'
                 })
                 let startTime = new Date().getTime();
                 window.addEventListener('beforeunload', function () {
@@ -80,6 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
         fill_scorecard();
         fill_footer();
         triggerPartyPopper()">
+    <div id="header"></div>
     <?php
     if ($common->is_user_logged_in() && $common->isValidSession($session)) {
         $bid_bookie_response = $common->get_session_bid_bookie_details($series_id, $match_id, $session, $amount, $room);
@@ -94,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             $bid_place_response = $common->insert_new_session_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $session,
                 $slot, $run_min, $run_max, $rate, $amount, $bid_name, $room);
             $bid_place_response = json_decode($bid_place_response);
-            if($bid_place_response->recharge_status){
+            if($bid_place_response != null && $bid_place_response->recharge_status){
                 $status = true;
                 $status_msg_1 = $bid_runs_string;
                 $status_msg_2 = "PUT &#8377;".$amount." Take &#8377;".floor(($amount * (1 + $rate)));
@@ -105,7 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
                 }
             } else {
                 $status = false;
-                $status_msg_1 = $bid_place_response->recharge_msg;
+                $status_msg_1 = isset($bid_place_response->recharge_msg) ? $bid_place_response->recharge_msg : "Bid Rejected";
                 $status_msg_2 = "Bid Amount &#8377;".$amount;
                 $status_msg_3 = " -- ";
             }
@@ -154,7 +155,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
     }
     if ($status){
     ?>
-    <div id="header"></div>
     <div class="confirm_bid_container">
         <div class="bid-success-title"><p class="confirm">&#9989; Placed</p></div>
         <div class="bid_details_success"><span><?php echo $status_msg_1;?></span></div>

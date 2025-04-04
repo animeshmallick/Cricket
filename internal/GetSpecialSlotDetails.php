@@ -14,7 +14,8 @@ $room = intval($_GET["room"]);
 $amount = (float)$_GET['amount'];
 
 $question = $common->get_special_question($question_id);
-if($question !== null){
+$scorecard = $common->get_scorecard_latest($series_id, $match_id);
+if($question !== null && ($scorecard->innings == 1 || ($scorecard->team1_score->runs - $scorecard->team2_score->runs > 15))){
     $special_bids_all = $common->get_all_bids_from_match($series_id, $match_id, 'special', $room);
     $special_bids = array();
     foreach ($special_bids_all as $bid) {

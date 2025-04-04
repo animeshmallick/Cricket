@@ -162,6 +162,7 @@ function fill_user_card_content(users){
             <div class="tran_status" style="display: ${user.referral_from === undefined ? 'none' : 'block'}">Refferal From : ${user.referral_from}</div>
             <div class="tran_status">Reffered To : ${user.referral_count === undefined ? 0 : user.referral_count} users</div>
             <div class="tran_status type">Type: ${user.type}</div>  
+            <div class="tran_status">Activated By: ${user.activated_by}</div>
         `;
         const today = new Date();
         const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;

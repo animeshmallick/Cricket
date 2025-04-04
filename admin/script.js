@@ -159,6 +159,8 @@ function fill_user_card_content(users){
             <div class="tran_status id">ID : ${user.ref_id}</div>
             <div class="tran_status status">Status : ${user.status}</div>
             <div class="tran_status">Last Login At: ${user.last_login}</div>
+            <div class="tran_status" style="display: ${user.referral_from === undefined ? 'none' : 'block'}">Refferal From : ${user.referral_from}</div>
+            <div class="tran_status">Reffered To : ${user.referral_count === undefined ? 0 : user.referral_count} users</div>
             <div class="tran_status type">Type: ${user.type}</div>  
         `;
         const today = new Date();

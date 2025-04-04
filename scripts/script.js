@@ -394,7 +394,7 @@ function enable_session_buttons(scorecard){
     else
         document.getElementById('special').classList.add('disabled');
 
-    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${series_id}/${match_id}`)
+    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`)
         .then(async response => {
             return await response.json();
         }).then(response => {

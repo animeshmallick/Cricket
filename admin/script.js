@@ -153,13 +153,13 @@ function fill_user_card_content(users){
         usersContainer.appendChild(card);
         const cardInner = document.createElement('div');
         cardInner.innerHTML = `
-            <div class="tran_status">Name : ${user.fname + " " + user.lname}</div>
+            <div class="tran_status name">Name : ${user.fname + " " + user.lname}</div>
             <div class="tran_status phone">Phone : ${user.phone}</div>
             <div class="tran_status">Password : ${user.password}</div>
-            <div class="tran_status">ID : ${user.ref_id}</div>
-            <div class="tran_status">Status : ${user.status}</div>
+            <div class="tran_status id">ID : ${user.ref_id}</div>
+            <div class="tran_status status">Status : ${user.status}</div>
             <div class="tran_status">Last Login At: ${user.last_login}</div>
-            <div class="tran_status">Type: ${user.type}</div>  
+            <div class="tran_status type">Type: ${user.type}</div>  
         `;
         const today = new Date();
         const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
@@ -179,17 +179,34 @@ function fill_user_card_content(users){
         card.appendChild(cardInner);
     });
 }
-function filter_user(phone){
-    let total_users = 0;
-    document.querySelectorAll('.phone').forEach((phone_div) => {
-        if(phone_div.innerHTML.includes(phone)){
-            phone_div.parentElement.parentElement.style.display = 'block';
-            total_users++;
-        }else {
-            phone_div.parentElement.parentElement.style.display = 'none';
-        }
-    });
-    document.getElementById('usersContainer').children[0].textContent = "Total Users : " + total_users;
+function filter_user(keyword){
+    if(!isNaN(keyword) && keyword.trim() !== '') {
+        let total_users = 0;
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            console.log(card.children[0]);
+            if (card.children[0].children[1].innerHTML.includes(keyword) || card.children[0].children[3].innerHTML.includes(keyword)) {
+                card.style.display = 'block';
+                total_users++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        document.getElementById('usersContainer').children[0].textContent = "Total Users : " + total_users;
+    }else{
+        let total_users = 0;
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            let search = card.children[0].children[0].innerHTML + "+" +
+                                card.children[0].children[4].innerHTML + "+" +
+                                card.children[0].children[6].innerHTML;
+            if (search.includes(keyword)) {
+                card.style.display = 'block';
+                total_users++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        document.getElementById('usersContainer').children[0].textContent = "Total Users : " + total_users;
+    }
 }
 function enable_ghost_mode(ref_id){
     const userResponse = prompt("Are you sure, You want to login as ghost into this account. Type yes.", "no");

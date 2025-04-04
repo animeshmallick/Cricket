@@ -48,6 +48,8 @@ function get_formated_recharge_from(recharge_from){
         return 'New Bid Placed';
     else if (recharge_from.includes('referral'))
         return 'Referral Bonus';
+    else if (recharge_from.includes('settle'))
+        return 'Ticket Settlement';
     else if (isFinite(Number(recharge_from)))
         return 'Wallet Recharge';
     else

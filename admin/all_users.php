@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">All User Details</div>
         <form>
-            <input type="number" id="user_phone" placeholder="Search Phone Number" onkeyup="filter_user(this.value)">
+            <input type="text" id="keyword" placeholder="Search User" onkeyup="filter_user(this.value)">
         </form>
         <div id="usersContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Transaction cards will be inserted here dynamically -->

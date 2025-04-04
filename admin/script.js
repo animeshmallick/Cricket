@@ -155,6 +155,7 @@ function fill_user_card_content(users){
         cardInner.innerHTML = `
             <div class="tran_status name">Name : ${user.fname + " " + user.lname}</div>
             <div class="tran_status phone">Phone : ${user.phone}</div>
+            <div class="tran_status phone">Balance : ${user.balance}</div>
             <div class="tran_status">Password : ${user.password}</div>
             <div class="tran_status id">ID : ${user.ref_id}</div>
             <div class="tran_status status">Status : ${user.status}</div>

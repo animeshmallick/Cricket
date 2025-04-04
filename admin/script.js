@@ -135,7 +135,7 @@ function settle_ticket(ticket_id){
     }
 }
 function fill_all_users_card() {
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users")
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true")
         .then(response => response.json())
         .then(data => fill_user_card_content(data))
         .catch(error => console.error('Error:', error));

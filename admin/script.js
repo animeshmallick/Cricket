@@ -2,7 +2,7 @@ function settle_bid_all(type){
     if (window.location.hostname.includes('localhost')) {
         alert("Cannot perform action from localhost.");
     }else {
-        const userResponse = prompt("Type Runs for this session.", "0");
+        const userResponse = prompt("Enter Runs for session. Or Enter x or y for winners", "0-x");
         let runs = 0;
         if (userResponse != null && Number.isInteger(Number(userResponse))) {
             runs = Number(userResponse);

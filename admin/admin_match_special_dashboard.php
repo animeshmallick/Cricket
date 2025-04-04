@@ -85,9 +85,6 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                         ?>
                         <td><?php echo $amount_string; ?></td>
                         <td><?php echo $bid->status; ?></td>
-                        <?php if ($bid->status == "placed") { ?>
-                            <td><a onclick="settle_bid('<?php echo $bid->bid_id;?>', 'special', 'special')" class="button" style="padding: 1rem 0.5rem; margin: 0" href="#">Settle</a> </td>
-                        <?php } ?>
                     </tr>
 
     <?php }

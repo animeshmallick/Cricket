@@ -9,9 +9,9 @@ class Scores {
         $x = $scorecard->balls_played / 6;
         $y = $scorecard->balls_played % 6;
         if ($innings == 1)
-            return $scorecard->team1_score->runs / ($x + $y/6);
+            return $scorecard->team1_score->runs / ($x + floatval($y)/6);
         else
-            return $scorecard->team2_score->runs / ($x + $y/6);
+            return $scorecard->team2_score->runs / ($x + floatval($y)/6);
     }
 
     public function get_curr_runs($bid_innings, $scorecard): int{
@@ -21,7 +21,7 @@ class Scores {
         if($curr_rr == 0){
             return $this->datahelper->get_default_runs($slot);}
         if ($curr_wkts >= 8)
-            return $curr_runs;
+            return $curr_runs * 1.05;
         return ($curr_rr) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
     }
 

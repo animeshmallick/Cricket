@@ -152,9 +152,9 @@ class Common
         $gb = max(($x - $b), 0);
         $old_gb = $gb;
         if($ga == 0)
-            $gb += $amount * 0.25;
+            $gb += $amount * 0.5;
         if($old_gb == 0)
-            $ga += $amount * 0.25;
+            $ga += $amount * 0.5;
         return [min(floatval($ga)/$amount, 1.25), min(floatval($gb)/$amount, 1.25)];
     }
     public function get_max($runs, $x, $y)
@@ -286,9 +286,9 @@ class Common
 
         $old_gb = $gb;
         if($ga == 0)
-            $gb += floatval($amount) * 0.25;
+            $gb += floatval($amount) * 0.5;
         if ($old_gb == 0)
-            $ga += floatval($amount) * 0.25;
+            $ga += floatval($amount) * 0.5;
 
         return [min($ga/$amount, 2), min($gb/$amount, 2)];
     }

@@ -33,7 +33,7 @@ if($question !== null && ($scorecard->innings == 1 || ($scorecard->team1_score->
         $y[$i] = max($x - $v, 0.0);
     }
     foreach ($y as $i => $v){
-        $y[$i] = min($v/$amount, 1.5);
+        $y[$i] = min($v/$amount, 3);
     }
     $flag = false;
     foreach ($y as $v){
@@ -41,7 +41,7 @@ if($question !== null && ($scorecard->innings == 1 || ($scorecard->team1_score->
             $flag = true;
     }
     if ($flag) {
-        $y = array_fill(0, count($question->options), 0.9);
+        $y = array_fill(0, count($question->options), 0.6);
     }
     $output = array(
         "question" => $question->question_name,

@@ -136,16 +136,18 @@ class Common
     {
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
-        if (isset($book->error))
-            return [0.75, 0.75];
-        $x = $book->collected;
+        $x = 0;
         $a = 0;
         $b = 0;
-        for ($i = ($r - 15); $i < $r; $i++)
-            $a = max($a, $book->runs[$i]);
-        for ($i = $r + 1; $i < min(($r + 15), count($book->runs)); $i++)
-            $b = max($b, $book->runs[$i]);
-
+        if (isset($book->error)){
+            $x = $amount * 0.75;
+        }else {
+            $x = $book->collected;
+            for ($i = ($r - 15); $i < $r; $i++)
+                $a = max($a, $book->runs[$i]);
+            for ($i = $r + 1; $i < min(($r + 15), count($book->runs)); $i++)
+                $b = max($b, $book->runs[$i]);
+        }
         $ga = max(($x - $a), 0);
         $gb = max(($x - $b), 0);
         $old_gb = $gb;
@@ -266,6 +268,8 @@ class Common
         foreach ($all_bids as $bid) {
             $x += (float)($bid->amount);
         }
+        if ($x == 0)
+            $x = $amount * 0.75;
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'x')
@@ -280,8 +284,6 @@ class Common
         $ga = max(($x - $a), 0);
         $gb = max(($x - $b), 0);
 
-        if ($ga == 0 && $gb == 0)
-            return [0.75, 0.75];
         $old_gb = $gb;
         if($ga == 0)
             $gb += floatval($amount) * 0.25;

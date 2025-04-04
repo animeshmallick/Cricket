@@ -152,7 +152,7 @@ class Common
             $gb += $amount*0.25;
         if($gb == 0)
             $ga += $amount*0.25;
-        return [min($ga/$amount, 2), min($gb/$amount, 2)];
+        return [min($ga/$amount, 1.5), min($gb/$amount, 1.5)];
     }
     public function get_max($runs, $x, $y)
     {

@@ -6,7 +6,7 @@ class Scores {
     }
 
     public function get_curr_rr($scorecard, $innings): float{
-        $x = $scorecard->balls_played / 6;
+        $x = floor($scorecard->balls_played / 6);
         $y = $scorecard->balls_played % 6;
         if ($innings == 1)
             return $scorecard->team1_score->runs / ($x + floatval($y)/6);

@@ -29,9 +29,9 @@ function validate_register_form() {
     return true;
 }
 
-function set_cookie(name,value){
+function setCookie(name, value){
     const date = new Date();
-    date.setTime(date.getTime()+(60*60*1000));
+    date.setTime(date.getTime()+(20*60*1000));
     const expires = "; expires="+date.toUTCString();
     document.cookie = `${name}=${value}`+expires+"; path=/";
 }
@@ -482,12 +482,12 @@ const parseDate = (dateStr) => {
 //Refresh the AUTH cookies and extend time by 1hr if user is active
 ['ref_id', 'fname', 'lname', 'user_type'].forEach(cookie => {
     if (getCookie(cookie) !== null)
-    set_cookie(cookie, getCookie(cookie))
+    setCookie(cookie, getCookie(cookie))
 });
 function disable_ghost_mode(){
-    set_cookie('ref_id', getCookie('ghost_ref_id'));
-    set_cookie('fname', getCookie('ghost_fname'));
-    set_cookie('lname', getCookie('ghost_lname'));
+    setCookie('ref_id', getCookie('ghost_ref_id'));
+    setCookie('fname', getCookie('ghost_fname'));
+    setCookie('lname', getCookie('ghost_lname'));
 
     delete_cookie('ghost_ref_id');
     delete_cookie('ghost_fname');

@@ -194,14 +194,14 @@ function filter_user(phone){
 function enable_ghost_mode(ref_id){
     const userResponse = prompt("Are you sure, You want to login as ghost into this account. Type yes.", "no");
     if(userResponse.toLowerCase() === 'yes') {
-        set_cookie('ghost_ref_id', getCookie('ref_id'));
-        set_cookie('ghost_fname', getCookie('fname'));
-        set_cookie('ghost_lname', getCookie('lname'));
+        setCookie('ghost_ref_id', getCookie('ref_id'));
+        setCookie('ghost_fname', getCookie('fname'));
+        setCookie('ghost_lname', getCookie('lname'));
 
-        set_cookie('ref_id', ref_id);
-        set_cookie('fname', "Ghost");
-        set_cookie('lname', "User");
-        set_cookie('ghost_mode', 'yes');
+        setCookie('ref_id', ref_id);
+        setCookie('fname', "Ghost");
+        setCookie('lname', "User");
+        setCookie('ghost_mode', 'yes');
         alert("Ghost Mode Enabled Successfully");
         redirect_to('Cricket/');
     }

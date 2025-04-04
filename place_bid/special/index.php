@@ -157,6 +157,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
         updateBidAmount(bidSlider.value);
     });
     bidSlider.addEventListener('change', () => {
+        updateBidAmount(Math.round(bidSlider.value / 10) * 10);
         fill_special_question(urlParams.get('question_id'), false);
     });
 

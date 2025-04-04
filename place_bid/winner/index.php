@@ -152,6 +152,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || !isset($_GET['sessi
         updateBidAmount(bidSlider.value);
     });
     bidSlider.addEventListener('change', () => {
+        updateBidAmount(Math.round(bidSlider.value / 10) * 10);
         update_winner_slots(false);
     });
 

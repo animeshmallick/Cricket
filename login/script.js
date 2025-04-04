@@ -12,10 +12,10 @@ async function validateForm(event) {
         .then(response => response.json())
         .then(response => {
             if (response.hasOwnProperty("ref_id")) {
-                set_cookie("ref_id", response.ref_id);
-                set_cookie("fname", response.fname);
-                set_cookie("lname", response.lname);
-                set_cookie("user_type", response.type);
+                setCookie("ref_id", response.ref_id);
+                setCookie("fname", response.fname);
+                setCookie("lname", response.lname);
+                setCookie("user_type", response.type);
                 redirect_to('Cricket/');
                 return true;
             } else {

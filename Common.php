@@ -58,7 +58,7 @@ class Common
 
     public function setCookie(string $cookie_name, string $cookie_value): void
     {
-        setcookie($cookie_name, $cookie_value, time() + (3600), "/");
+        setcookie($cookie_name, $cookie_value, time() + (1200), "/");
     }
 
     public function get_scorecard_latest($series_id, $match_id)
@@ -451,11 +451,6 @@ class Common
         }
         curl_close($ch);
         return true;
-    }
-
-    public function set_cookie(string $cookie_name, mixed $cookie_value): void
-    {
-        setcookie($cookie_name, $cookie_value, time() + (3600), "/");
     }
 
     public function validate_unique_ref_id(int $ref_id): bool

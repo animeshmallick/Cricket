@@ -346,7 +346,7 @@ function update_themes(teams){
     }
 }
 function enable_session_buttons(scorecard){
-    if (scorecard.ball_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 1)
+    if (scorecard.balls_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 1)
         document.getElementById('a1').classList.remove('disabled');
     else
         document.getElementById('a1').classList.add('disabled');

@@ -386,12 +386,12 @@ function enable_session_buttons(scorecard){
     else
         document.getElementById('d2').classList.add('disabled');
 
-    if (scorecard.balls_played < 114 && (scorecard.team2_score.runs === 0 || (scorecard.team1_score.runs - scorecard.team2_score.runs) > 15) && scorecard.team2_score.wickets < 10)
+    if (scorecard.innings === 1 || (scorecard.balls_played < 114 && (scorecard.team2_score.runs === 0 || (scorecard.team1_score.runs - scorecard.team2_score.runs) > 15) && scorecard.team2_score.wickets < 10))
             document.getElementById('winner').classList.remove('disabled');
     else
         document.getElementById('winner').classList.add('disabled');
 
-    if (scorecard.balls_played < 90 && (scorecard.team2_score.runs === 0 || (scorecard.team1_score.runs - scorecard.team2_score.runs) > 15) && scorecard.team2_score.wickets < 10)
+    if (scorecard.innings === 1 || (scorecard.balls_played < 90 && (scorecard.team2_score.runs === 0 || (scorecard.team1_score.runs - scorecard.team2_score.runs) > 15) && scorecard.team2_score.wickets < 10))
         document.getElementById('special').classList.remove('disabled');
     else
         document.getElementById('special').classList.add('disabled');

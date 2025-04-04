@@ -140,29 +140,21 @@ class Common
         $a = 0;
         $b = 0;
         if (isset($book->error)){
-            $x = $amount * 0.75;
+            $x = $amount;
         }else {
             $x = $book->collected;
-            for ($i = ($r - 15); $i < $r; $i++)
+            for ($i = 0; $i < $r; $i++)
                 $a = max($a, $book->runs[$i]);
-            for ($i = $r + 1; $i < min(($r + 15), count($book->runs)); $i++)
+            for ($i = $r + 1; $i < count($book->runs); $i++)
                 $b = max($b, $book->runs[$i]);
         }
-        $ga = max(($x - $a), 0);
-        $gb = max(($x - $b), 0);
-        $old_gb = $gb;
-        if($ga == 0)
-            $gb += $amount * 0.5;
-        if($old_gb == 0)
-            $ga += $amount * 0.5;
-        return [min(floatval($ga)/$amount, 1.25), min(floatval($gb)/$amount, 1.25)];
-    }
-    public function get_max($runs, $x, $y)
-    {
-        $max = 0.0;
-        for ($i = $x; $i < $y; $i++)
-            $max = max($max, $runs[$i]);
-        return $max;
+        $ga = max((($x - $a) * 0.9), 0);
+        $gb = max((($x - $b) * 0.9), 0);
+        $f = 1.8 / ($ga + $gb);
+        $r1 = $f * $ga;
+        $r2 = $f * $gb;
+
+        return [$r1, $r2];
     }
     public function get_unique_bid_id(string $type): int
     {
@@ -269,7 +261,7 @@ class Common
             $x += (float)($bid->amount);
         }
         if ($x == 0)
-            $x = $amount * 0.75;
+            $x = $amount;
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'x')
@@ -281,16 +273,14 @@ class Common
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
 
-        $ga = max(($x - $a), 0);
-        $gb = max(($x - $b), 0);
+        $ga = max((($x - $a) * 0.9), 0);
+        $gb = max((($x - $b) * 0.9), 0);
 
-        $old_gb = $gb;
-        if($ga == 0)
-            $gb += floatval($amount) * 0.5;
-        if ($old_gb == 0)
-            $ga += floatval($amount) * 0.5;
+        $f = 1.8 / ($ga + $gb);
+        $r1 = $f * $ga;
+        $r2 = $f * $gb;
 
-        return [min($ga/$amount, 2), min($gb/$amount, 2)];
+        return [$r1, $r2];
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)

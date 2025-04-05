@@ -150,6 +150,8 @@ class Common
             for ($i = $r + 1; $i < count($book->runs); $i++)
                 $b = max($b, $book->runs[$i]);
         }
+        if($x == 0)
+            return [0.25, 0.25];
         $ga = max((($x - $a) * 0.8), 0);
         $gb = max((($x - $b) * 0.8), 0);
         if ($ga == 0 && $gb == 0)

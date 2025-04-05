@@ -85,6 +85,7 @@ function fill_transaction_ticket_content(transactions){
         card.classList.add('card-inner');
         transactionContainer.appendChild(card);
         const cardInner = document.createElement('div');
+        cardInner.style.borderRadius = "1rem";
         cardInner.innerHTML = `
             <div class="${transaction.transaction_type === 'add' ? 'sub-title-add' : 'sub-title-withdraw'}">Type : ${transaction.transaction_type.replace(/^./, char => char.toUpperCase())}</div>
             <div class="tran_status">Name : ${transaction.name}</div>
@@ -98,23 +99,24 @@ function fill_transaction_ticket_content(transactions){
             const settleButton = document.createElement('button');
             settleButton.classList.add('settle_button');
             settleButton.textContent = 'Settle Ticket';
-            settleButton.onclick = function() {
-                settle_ticket(transaction.id);
-            };
+            settleButton.onclick = function() {settle_ticket(transaction.id);};
+            cardInner.classList.add('pending-user');
             cardInner.appendChild(settleButton);
         }else {
             const settledAt = document.createElement('div');
             settledAt.classList.add('tran_status');
             settledAt.textContent = `Settled At: ${transaction.settled_timestamp}`;
             cardInner.appendChild(settledAt);
+            cardInner.classList.add('active-user');
         }
         const today = new Date();
         const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
         if(transaction.timestamp && transaction.timestamp.toString().includes(formattedDate)){
-            cardInner.classList.add('active-user');
+            //cardInner.classList.add('active-user');
         }
         card.appendChild(cardInner);
     });
+    filter_tickets('open');
 }
 function settle_ticket(ticket_id){
     if (window.location.hostname.includes('localhost') && false) {
@@ -226,4 +228,74 @@ function enable_ghost_mode(ref_id){
         alert("Ghost Mode Enabled Successfully");
         redirect_to('Cricket/');
     }
+}
+function filter_tickets(value){
+    let count = 0;
+    if(value === 'all'){
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            card.style.display = 'block';
+            count++;
+        });
+    }else if(value === 'closed'){
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            if(card.children[0].children[5].innerHTML.toLowerCase().includes('settled')){
+                card.style.display = 'block';
+                count++;
+            }else {
+                card.style.display = 'none';
+            }
+        });
+    }else if(value === 'open') {
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            if (card.children[0].children[5].innerHTML.toLowerCase().includes('placed')) {
+                card.style.display = 'block';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    } else if(value === 'withdraw'){
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            if (card.children[0].children[0].innerHTML.toLowerCase().includes('withdraw')) {
+                card.style.display = 'block';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }else if(value === 'add'){
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            if (card.children[0].children[0].innerHTML.toLowerCase().includes('add')) {
+                card.style.display = 'block';
+                count++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }else if(value === 'yesterday'){
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            const today = new Date();
+            const formattedDate = `${String(today.getDate() - 1).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+            const timestamp = card.children[0].children[6].innerHTML;
+            if(timestamp.includes(formattedDate)){
+                card.style.display = 'block';
+                count++;
+            }else {
+                card.style.display = 'none';
+            }
+        });
+    }else if(value === 'today'){
+        document.querySelectorAll('.card-inner').forEach((card) => {
+            const today = new Date();
+            const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+            const timestamp = card.children[0].children[6].innerHTML;
+            if(timestamp.includes(formattedDate)){
+                card.style.display = 'block';
+                count++;
+            }else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    document.getElementById('ticket_count').innerHTML = count.toString();
 }

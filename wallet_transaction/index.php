@@ -53,6 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
+        <script>
+            function changeBtn(value){
+                if (value === 'add')
+                    document.getElementById('create-ticket-btn').innerHTML = "Add Money";
+                if (value === 'withdraw')
+                    document.getElementById('create-ticket-btn').innerHTML = "Withdraw";
+            }
+        </script>
     </head>
     <body onload="fill_header();fill_wallet_transaction_tickets();fill_footer();">
     <div id="header"></div>
@@ -61,12 +69,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         <form action="index.php" method="POST">
             <div class="container">
                 <input type="text" name="transaction_id" value="<?php echo $common->get_unique_recharge_id();?>" hidden="hidden">
-                <select name="transaction-type" required>
+                <select name="transaction-type" required onchange="changeBtn(this.value)">
                     <option value="add">Add Money</option>
                     <option value="withdraw">Withdraw</option>
                 </select>
                 <input type="number" name="amount" placeholder="Enter amount" required>
-                <button class="button" type="submit">Create Transaction</button>
+                <button class="button" id='create-ticket-btn' type="submit">Add Money</button>
             </div>
         </form>
     </div>

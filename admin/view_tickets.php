@@ -58,6 +58,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
     <div id="header"></div>
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">All Wallet Transaction Tickets</div>
+        <form action="" method="get">
+            <select name="transaction-type" required onchange="filter_tickets(this.value)">
+                <option value="today">Today</option>
+                <option value="yesterday">Yesterday</option>
+                <option value="add">Add</option>
+                <option value="withdraw">Withdraw</option>
+                <option value="open" selected>Open</option>
+                <option value="closed">Closed</option>
+                <option value="all">All</option>
+            </select>
+        </form>
+        <div class="sub-title"><span id="ticket_count"></span> Tickets Found</div>
         <div id="transactionContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Transaction cards will be inserted here dynamically -->
         </div>

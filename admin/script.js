@@ -107,6 +107,12 @@ function fill_transaction_ticket_content(transactions){
             settledAt.classList.add('tran_status');
             settledAt.textContent = `Settled At: ${transaction.settled_timestamp}`;
             cardInner.appendChild(settledAt);
+
+            const settledBy = document.createElement('div');
+            settledBy.classList.add('tran_status');
+            settledBy.textContent = `Settled By: ${transaction.settled_by}`;
+            cardInner.appendChild(settledBy);
+
             cardInner.classList.add('active-user');
         }
         const today = new Date();

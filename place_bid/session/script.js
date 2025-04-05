@@ -140,6 +140,7 @@ function startTour(){
 
 let slots_timer;
 let slots_time = 0;
+let error_count = 0;
 function update_session_slots(update_selected){
     //fill_slot_details_default();
     const urlParams = new URLSearchParams(window.location.search);
@@ -153,7 +154,12 @@ function update_session_slots(update_selected){
         .then(response => response.json())
         .then(data => {
             if(data.hasOwnProperty('error')){
-                setTimeout(() => {update_session_slots(update_selected)}, 3000);
+                setTimeout(() => {
+                    if (error_count > 3)
+                        redirect_to("Cricket/")
+                    update_session_slots(update_selected);
+                    error_count++;
+                }, 3000);
             }else {
                 fill_slot_details(data, update_selected);
             }

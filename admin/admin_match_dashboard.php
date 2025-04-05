@@ -121,6 +121,14 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 continue;
             }
         }
+        if ($bid->session . $bid->innings == 'a1')
+            $session_a1['count'] += 1;
+        if ($bid->session . $bid->innings == 'b1')
+            $session_b1['count'] += 1;
+        if ($bid->session . $bid->innings == 'c1')
+            $session_c1['count'] += 1;
+        if ($bid->session . $bid->innings == 'd1')
+            $session_d1['count'] += 1;
     }
     foreach ($all_bids_winner as $bid){
         if(isset($user_bids[$bid->ref_id])){

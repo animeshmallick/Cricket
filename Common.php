@@ -139,7 +139,9 @@ class Common
         $x = 0;
         $a = 0;
         $b = 0;
-        if (isset($book->error)){
+        if(isset($book->error))
+            return [];
+        else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
             $x = $amount;
         }else {
             $x = $book->collected;

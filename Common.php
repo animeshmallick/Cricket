@@ -58,7 +58,7 @@ class Common
 
     public function setCookie(string $cookie_name, string $cookie_value): void
     {
-        setcookie($cookie_name, $cookie_value, time() + (1200), "/");
+        setcookie($cookie_name, $cookie_value, time() + (30*60), "/");
     }
 
     public function get_scorecard_latest($series_id, $match_id)

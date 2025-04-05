@@ -125,25 +125,18 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
     foreach ($all_bids_winner as $bid){
         if(isset($user_bids[$bid->ref_id])){
             $user_bids[$bid->ref_id]['count']++;
-            if(!is_user_an_admin($all_users, $bid->ref_id)) {
-                $user_bids[$bid->ref_id]['collected'] += $bid->amount;
-                if ($bid->status == 'win')
-                    $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * (1 + $bid->rate));
-            }
+            $user_bids[$bid->ref_id]['collected'] += $bid->amount;
+            if ($bid->status == 'win')
+                $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * (1 + $bid->rate));
         }else{
             $obj = array();
             $obj['ref_id'] = $bid->ref_id;
             $obj['count'] = 1;
-            if(!is_user_an_admin($all_users, $bid->ref_id)) {
-                $obj['collected'] = $bid->amount;
-                if ($bid->status == 'win')
-                    $obj['given'] = (int)($bid->amount * (1 + $bid->rate));
-                else
-                    $obj['given'] = 0;
-            }else{
-                $obj['collected'] = 0;
+            $obj['collected'] = $bid->amount;
+            if ($bid->status == 'win')
+                $obj['given'] = (int)($bid->amount * (1 + $bid->rate));
+            else
                 $obj['given'] = 0;
-            }
             $user_bids[$bid->ref_id] = $obj;
         }
         $session_winner['count'] += 1;
@@ -159,14 +152,9 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
     foreach ($all_bids_special as $bid){
         if(isset($user_bids[$bid->ref_id])){
             $user_bids[$bid->ref_id]['count']++;
-            if(!is_user_an_admin($all_users, $bid->ref_id)) {
-                $user_bids[$bid->ref_id]['collected'] += $bid->amount;
-                if ($bid->status == 'win')
-                    $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * (1 + $bid->rate));
-            }else{
-                $user_bids[$bid->ref_id]['collected'] = 0;
-                $user_bids[$bid->ref_id]['given'] = 0;
-            }
+            $user_bids[$bid->ref_id]['collected'] += $bid->amount;
+            if ($bid->status == 'win')
+                $user_bids[$bid->ref_id]['given'] += (int)($bid->amount * (1 + $bid->rate));
         }else{
             $obj = array();
             $obj['ref_id'] = $bid->ref_id;

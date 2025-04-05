@@ -203,7 +203,7 @@ function filter_user(keyword){
             let search = card.children[0].children[0].innerHTML + "+" +
                                 card.children[0].children[5].innerHTML + "+" +
                                 card.children[0].children[6].innerHTML;
-            if (search.includes(keyword)) {
+            if (search.toLowerCase().includes(keyword.toLowerCase())) {
                 card.style.display = 'block';
                 total_users++;
             } else {

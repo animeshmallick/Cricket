@@ -123,7 +123,7 @@ function fill_scorecard(){
                                 if(window.location.pathname.includes('match'))
                                     enable_session_buttons(score);
                             })
-                    }, 4000);
+                    }, 6000);
                 })
                 .catch(error => console.log(error));
         })

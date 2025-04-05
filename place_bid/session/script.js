@@ -163,7 +163,7 @@ function update_session_slots(update_selected){
             clearInterval(slots_timer);
             slots_timer = setInterval(() => {
                 update_session_slots(false);
-            }, 5000);
+            }, 7000);
         })
         .catch(err => console.log(err));
 }

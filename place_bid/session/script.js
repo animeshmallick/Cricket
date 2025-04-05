@@ -153,8 +153,7 @@ function update_session_slots(update_selected){
         .then(response => response.json())
         .then(data => {
             if(data.hasOwnProperty('error')){
-                alert(data.error);
-                redirect_to('Cricket/');
+                setTimeout(() => {update_session_slots(update_selected)}, 3000);
             }else {
                 fill_slot_details(data, update_selected);
             }

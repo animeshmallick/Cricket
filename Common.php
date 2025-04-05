@@ -140,7 +140,7 @@ class Common
         $a = 0;
         $b = 0;
         if(isset($book->error))
-            return [];
+            return [0.1, 0.1];
         else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
             $x = $amount;
         }else {
@@ -152,6 +152,8 @@ class Common
         }
         $ga = max((($x - $a) * 0.8), 0);
         $gb = max((($x - $b) * 0.8), 0);
+        if ($ga == 0 && $gb == 0)
+            return [0.8, 0.8];
         $f = 1.8 / ($ga + $gb);
         $r1 = $f * $ga;
         $r2 = $f * $gb;

@@ -66,10 +66,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div id="header"></div>
     <div class="main_container">
         <div class="sub-title">My Wallet Transaction</div>
-        <form action="index.php" method="POST">
+        <form action="index.php" method="POST" id="ticket_form">
             <div class="container">
                 <input type="text" name="transaction_id" value="<?php echo $common->get_unique_recharge_id();?>" hidden="hidden">
-                <select name="transaction-type" required onchange="changeBtn(this.value)">
+                <select name="transaction-type" id="transaction_type" required onchange="changeBtn(this.value)">
                     <option value="add">Add Money</option>
                     <option value="withdraw">Withdraw</option>
                 </select>
@@ -79,6 +79,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         </form>
     </div>
     <div class="separator"></div>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h3>Edit Ticket Amount</h3>
+            <div style="display: none" id="tran_id"></div>
+            <input type="number" id="newAmount" />
+            <button onclick="updateTicketAmount()">Save</button>
+            <button onclick="closeEditTicketPopup()">Cancel</button>
+        </div>
+    </div>
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">Your Wallet Transaction Tickets</div>
         <div id="transactionContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -88,6 +97,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div class="separator"></div>
     <div id="footer"></div>
     </body>
+    <script>
+        document.getElementById('ticket_form').addEventListener('submit', function (e){
+            if(document.getElementById('transaction_type').value === 'withdraw' && open_withdrawal_ticket !== null){
+                alert("Open Tickets available. Please update the existing open ticket");
+                e.preventDefault();
+            }
+            if(document.getElementById('transaction_type').value === 'add' && open_add_ticket !== null){
+                alert("Open Tickets available. Please update the existing open ticket");
+                e.preventDefault();
+            }
+        });
+    </script>
     </html>
 <?php } else if($_SERVER['REQUEST_METHOD'] === 'POST' && $common->is_user_logged_in()) {
     $transaction_id = intval($_POST['transaction_id']);

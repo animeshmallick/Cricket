@@ -150,10 +150,10 @@ class Common
             for ($i = $r + 1; $i < count($book->runs); $i++)
                 $b = max($b, $book->runs[$i]);
         }
-        $deduction = min(($x * 0.15), 300);
+        $deduction = min(($x * 0.1), 300);
         $x -= $deduction;
-        $ga = max((($x - $a) * 0.85), 0);
-        $gb = max((($x - $b) * 0.85), 0);
+        $ga = max((($x - $a)), 0);
+        $gb = max((($x - $b)), 0);
 
         $r1=max(min($ga/$amount,1.2),0);
         $r2=max(min($gb/$amount,1.2),0);

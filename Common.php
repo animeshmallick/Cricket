@@ -288,7 +288,6 @@ class Common
 
         $ga = max((($x - $a) * 0.6), 0);
         $gb = max((($x - $b) * 0.6), 0);
-        echo $x." ".$ga." ".$gb;
 
         $r1=max(min($ga/$amount,1.2),0);
         $r2=max(min($gb/$amount,1.2),0);

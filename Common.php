@@ -150,15 +150,22 @@ class Common
             for ($i = $r + 1; $i < count($book->runs); $i++)
                 $b = max($b, $book->runs[$i]);
         }
-        if($x == 0)
-            return [0.25, 0.25];
-        $ga = max((($x - $a) * 0.8), 0);
-        $gb = max((($x - $b) * 0.8), 0);
-        if ($ga == 0 && $gb == 0)
-            return [0.8, 0.8];
-        $f = 1.8 / ($ga + $gb);
-        $r1 = $f * $ga;
-        $r2 = $f * $gb;
+        $ga = max((($x - $a) * 0.6), 0);
+        $gb = max((($x - $b) * 0.6), 0);
+
+        $r1=max(min($ga/$amount,1.2),0);
+        $r2=max(min($gb/$amount,1.2),0);
+
+        if($r1 == 1.2 && $r2 == 1.2){
+            $f = 1.2/($ga + $gb);
+        } else if ($r1 + $r2 > 1.4){
+            $f = 1.2/($r1 + $r2);
+        }else{
+            $f = 1;
+        }
+
+        $r1 *= $f;
+        $r2 *= $f;
 
         return [$r1, $r2];
     }
@@ -279,12 +286,23 @@ class Common
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
 
-        $ga = max((($x - $a) * 0.8), 0);
-        $gb = max((($x - $b) * 0.8), 0);
+        $ga = max((($x - $a) * 0.6), 0);
+        $gb = max((($x - $b) * 0.6), 0);
+        echo $x." ".$ga." ".$gb;
 
-        $f = 1.8 / ($ga + $gb);
-        $r1 = $f * $ga;
-        $r2 = $f * $gb;
+        $r1=max(min($ga/$amount,1.2),0);
+        $r2=max(min($gb/$amount,1.2),0);
+
+        if($r1 == 1.2 && $r2 == 1.2){
+            $f = 1.2/($ga + $gb);
+        } else if ($r1 + $r2 > 1.4){
+            $f = 1.2/($r1 + $r2);
+        }else{
+            $f = 1;
+        }
+
+        $r1 *= $f;
+        $r2 *= $f;
 
         return [$r1, $r2];
     }

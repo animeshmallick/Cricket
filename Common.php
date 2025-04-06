@@ -267,13 +267,13 @@ class Common
 
     public function get_winner_rates($all_bids, $amount): array
     {
-        $x = $amount;
+        $x = 0;
         $a = 0.0;
         $b = 0.0;
         foreach ($all_bids as $bid) {
             $x += (float)($bid->amount);
         }
-        if ($x == $amount)
+        if ($x == 0)
             $x += $amount;
 
         foreach ($all_bids as $bid) {

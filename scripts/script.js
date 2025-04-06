@@ -391,10 +391,10 @@ function enable_session_buttons(scorecard){
     else
         document.getElementById('winner').classList.add('disabled');
 
-    if (scorecard.innings === 1 || (scorecard.balls_played < 90 && (scorecard.team2_score.runs === 0 || (scorecard.team1_score.runs - scorecard.team2_score.runs) > 15) && scorecard.team2_score.wickets < 10))
-        document.getElementById('special').classList.remove('disabled');
-    else
-        document.getElementById('special').classList.add('disabled');
+    //if (scorecard.innings === 1 || (scorecard.balls_played < 90 && (scorecard.team2_score.runs === 0 || (scorecard.team1_score.runs - scorecard.team2_score.runs) > 15) && scorecard.team2_score.wickets < 10))
+    //    document.getElementById('special').classList.remove('disabled');
+    //else
+    //    document.getElementById('special').classList.add('disabled');
 
     fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`)
         .then(async response => {

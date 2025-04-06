@@ -139,18 +139,29 @@ class Common
         $x = 0;
         $a = 0;
         $b = 0;
+        $df = 0.05;
         if(isset($book->error))
             return [0.1, 0.1];
         else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
             $x = $amount;
         }else {
             $x = $book->collected;
-            for ($i = 0; $i < $r; $i++)
+            for ($i = min($r-36,0); $i < $r; $i++)
                 $a = max($a, $book->runs[$i]);
-            for ($i = $r + 1; $i < count($book->runs); $i++)
+            for ($i = $r + 1; $i < max(count($book->runs),$r+36); $i++)
                 $b = max($b, $book->runs[$i]);
         }
-        $deduction = min(($x * 0.1), 300);
+        if(isset($book->count)) {
+            if ($book->count <= 4)
+                $df = 0.07;
+            else if ($book->count <= 8)
+                $df = 0.14;
+            else if ($book->count <= 12)
+                $df = 0.2;
+            else
+                $df = 0.25;
+        }
+        $deduction = min(($x * $df), 300);
         $x -= $deduction;
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);
@@ -159,9 +170,9 @@ class Common
         $r2=max(min($gb/$amount,1.2),0);
 
         if($r1 == 1.2 && $r2 == 1.2){
-            $f = 1.2/($ga + $gb);
+            $f = 1.6/($ga + $gb);
         } else if ($r1 + $r2 > 1.4){
-            $f = 1.2/($r1 + $r2);
+            $f = 1.6/($r1 + $r2);
         }else{
             $f = 1;
         }
@@ -287,8 +298,15 @@ class Common
             if ($bid->slot == 'y')
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
-
-        $deduction = min(($x * 0.15), 300);
+        if (count($all_bids) <= 4)
+            $df = 0.07;
+        else if (count($all_bids) <= 8)
+            $df = 0.14;
+        else if (count($all_bids) <= 12)
+            $df = 0.2;
+        else
+            $df = 0.25;
+        $deduction = min(($x * $df), 300);
         $x -= $deduction;
         $ga = max((($x - $a) * 0.85), 0);
         $gb = max((($x - $b) * 0.85), 0);
@@ -297,9 +315,9 @@ class Common
         $r2=max(min($gb/$amount,1.2),0);
 
         if($r1 == 1.2 && $r2 == 1.2){
-            $f = 1.2/($ga + $gb);
+            $f = 1.6/($ga + $gb);
         } else if ($r1 + $r2 > 1.4){
-            $f = 1.2/($r1 + $r2);
+            $f = 1.6/($r1 + $r2);
         }else{
             $f = 1;
         }

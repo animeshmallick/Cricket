@@ -23,7 +23,9 @@ div.tran_status {
     border-radius: 1rem;
 }
 button.edit-ticket-btn {
-    background: linear-gradient(90deg, #edcf08, orangered);
+    margin-left: 20%;
+    background: linear-gradient(90deg, forestgreen, dodgerblue);
+    width: 60%;
     font-weight: bold;
     color: black;
     padding: 0.3rem 0.5rem;

@@ -150,8 +150,10 @@ class Common
             for ($i = $r + 1; $i < count($book->runs); $i++)
                 $b = max($b, $book->runs[$i]);
         }
-        $ga = max((($x - $a) * 0.6), 0);
-        $gb = max((($x - $b) * 0.6), 0);
+        $deduction = min(($x * 0.15), 300);
+        $x -= $deduction;
+        $ga = max((($x - $a) * 0.85), 0);
+        $gb = max((($x - $b) * 0.85), 0);
 
         $r1=max(min($ga/$amount,1.2),0);
         $r2=max(min($gb/$amount,1.2),0);
@@ -286,8 +288,10 @@ class Common
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
 
-        $ga = max((($x - $a) * 0.6), 0);
-        $gb = max((($x - $b) * 0.6), 0);
+        $deduction = min(($x * 0.15), 300);
+        $x -= $deduction;
+        $ga = max((($x - $a) * 0.85), 0);
+        $gb = max((($x - $b) * 0.85), 0);
 
         $r1=max(min($ga/$amount,1.2),0);
         $r2=max(min($gb/$amount,1.2),0);

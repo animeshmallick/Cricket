@@ -59,6 +59,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
     <div id="header"></div>
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">All User Details</div>
+        <div class="sub-title">Total Withdraw Amount ₹<span style="color: red" id="total_withdraw_amount"></span></div>
+        <div class="gap"></div>
         <form>
             <input type="text" id="keyword" placeholder="Search User" onkeyup="filter_user(this.value)">
         </form>

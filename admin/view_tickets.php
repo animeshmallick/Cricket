@@ -56,6 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
     </head>
     <body onload="fill_header();fill_all_wallet_transaction_tickets();fill_footer();">
     <div id="header"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Resolved</th>
+                <th>Amount Taken</th>
+                <th>Amount Given</th>
+                <th>Net Amount</th>
+            </tr>
+        </thead>
+        <tbody id="admin_ticket_table"></tbody>
+    </table>
+    <div class="separator"></div>
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">All Wallet Transaction Tickets</div>
         <form action="" method="get">

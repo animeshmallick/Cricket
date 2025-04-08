@@ -80,7 +80,33 @@ function fill_all_wallet_transaction_tickets() {
 function fill_transaction_ticket_content(transactions){
     transactions.sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp));
     const transactionContainer = document.getElementById("transactionContainer");
+    let admin_table = [];
     transactions.forEach((transaction) => {
+        if (transaction.status === 'settled'){
+            let flag = false;
+            admin_table.forEach(admin => {
+                if (admin.name === transaction.settled_by){
+                    if(transaction.transaction_type === 'add') {
+                        admin.amount_taken += transaction.amount;
+                        admin.count += 1;
+                        flag = true;
+                    }
+                    if(transaction.transaction_type === 'withdraw') {
+                        admin.amount_taken -= transaction.amount;
+                        admin.count += 1;
+                        flag = true;
+                    }
+                }
+            });
+            if(!flag){
+                admin_table.push({
+                    name: transaction.settled_by,
+                    amount_taken: transaction.transaction_type === 'add' ? transaction.amount : 0,
+                    amount_given: transaction.transaction_type === 'withdraw' ? transaction.amount : 0,
+                    count: 1
+                });
+            }
+        }
         const card = document.createElement("div");
         card.classList.add('card-inner');
         transactionContainer.appendChild(card);
@@ -122,6 +148,37 @@ function fill_transaction_ticket_content(transactions){
         }
         card.appendChild(cardInner);
     });
+    let tbody = document.querySelector('tbody');
+    let total_profit = 0;
+    let total_resolved = 0;
+    let total_taken = 0;
+    let total_given = 0;
+
+    admin_table.forEach(admin => {
+        total_taken += admin.amount_taken;
+        total_given += admin.amount_given;
+        total_resolved += admin.count;
+        total_profit += admin.amount_taken - admin.amount_given;
+        let tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${admin.name}</td>
+            <td>${admin.count}</td>
+            <td>${admin.amount_taken}</td>
+            <td>${admin.amount_given}</td>
+            <td>${admin.amount_taken - admin.amount_given}</td>
+        `;
+        tbody.appendChild(tr);
+    });
+    let tr = document.createElement('tr');
+    tr.style.fontWeight = 'bold';
+    tr.innerHTML = `
+            <td>Total</td>
+            <td>${total_resolved}</td>
+            <td>${total_taken}</td>
+            <td>${total_given}</td>
+            <td>${total_profit}</td>
+    `;
+    tbody.appendChild(tr);
     filter_tickets('open');
 }
 function settle_ticket(ticket_id){
@@ -149,6 +206,7 @@ function fill_all_users_card() {
         .catch(error => console.error('Error:', error));
 }
 function fill_user_card_content(users){
+    let total_withdraw_balance = 0;
     users.sort((a, b) => parseDate(b.last_login) - parseDate(a.last_login));
     const usersContainer = document.getElementById("usersContainer");
     const div = document.createElement("div");
@@ -156,22 +214,32 @@ function fill_user_card_content(users){
     div.textContent = "Total Users : " + users.length;
     usersContainer.appendChild(div);
     users.forEach((user) => {
+        let x = 0;
+        if (user.type !== 'admin') {
+            x = Math.max(user.balance - (user.referral_count === undefined ? 0 : user.referral_count) * 50 - 100, 0);
+            console.log(user.fname+" "+user.lname+" : ₹"+x);
+            total_withdraw_balance += x;
+        }
         const card = document.createElement("div");
         card.classList.add('card-inner');
         usersContainer.appendChild(card);
         const cardInner = document.createElement('div');
         cardInner.innerHTML = `
-            <div class="tran_status name">Name : ${user.fname + " " + user.lname}</div>
+            <div class="tran_status name" style="font-weight: bold;font-size: 1.2rem">Name : ${user.fname + " " + user.lname}</div>
             <div class="tran_status phone">Phone : ${user.phone}</div>
-            <div class="tran_status phone">Balance : ${user.balance}</div>
             <div class="tran_status">Password : ${user.password}</div>
+            <div class="tran_status">Reffered To : ${user.referral_count === undefined ? 0 : user.referral_count} users</div>
+            <div class="tran_status" style="display: ${user.referral_from === undefined ? 'none' : 'block'}">Refferal From : ${user.referral_from}</div>
+            <div class="separator"></div>
+            <div class="tran_status phone">Balance : ₹${user.balance}</div>
+            <div class="tran_status">Max Withdraw Balance : ${x}</div>
+            <div class="separator"></div>
             <div class="tran_status id">ID : ${user.ref_id}</div>
             <div class="tran_status status">Status : ${user.status}</div>
-            <div class="tran_status">Last Login At: ${user.last_login}</div>
-            <div class="tran_status" style="display: ${user.referral_from === undefined ? 'none' : 'block'}">Refferal From : ${user.referral_from}</div>
-            <div class="tran_status">Reffered To : ${user.referral_count === undefined ? 0 : user.referral_count} users</div>
-            <div class="tran_status type">Type: ${user.type}</div>  
+            <div class="tran_status type">Type: ${user.type}</div>
             <div class="tran_status">Activated By: ${user.activated_by}</div>
+            <div class="separator"></div>
+            <div class="tran_status">Last Login At: ${user.last_login}</div>
         `;
         const today = new Date();
         const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
@@ -190,6 +258,7 @@ function fill_user_card_content(users){
         }
         card.appendChild(cardInner);
     });
+    document.getElementById('total_withdraw_amount').innerHTML = total_withdraw_balance;
 }
 function filter_user(keyword){
     if(!isNaN(keyword) && keyword.trim() !== '') {

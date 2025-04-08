@@ -186,7 +186,7 @@ class Common
         $r2 *= $f;
 
         if($r1 == 0 && $r2 == 0)
-            return [0.2, 0.2];
+            return [0.4, 0.4];
         return [$r1, $r2];
     }
     public function get_unique_bid_id(string $type): int

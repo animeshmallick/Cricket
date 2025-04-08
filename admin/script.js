@@ -257,7 +257,7 @@ function filter_user(keyword){
         let total_users = 0;
         document.querySelectorAll('.card-inner').forEach((card) => {
             let search = card.children[0].children[0].innerHTML + "+" +
-                                card.children[0].children[9].innerHTML;
+                                card.children[0].children[10].innerHTML;
             if (search.toLowerCase().includes(keyword.toLowerCase())) {
                 card.style.display = 'block';
                 total_users++;

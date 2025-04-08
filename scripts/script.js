@@ -122,6 +122,7 @@ function fill_scorecard(){
         .catch(error => console.log(error));
 }
 function update_scorecard(scorecard){
+    document.getElementById('scorecard').style.height = 'auto';
     const crr = (scorecard.innings === 1 ? scorecard.team1_score.runs / get_formated_over(scorecard.balls_played) : scorecard.team2_score.runs / get_formated_over(scorecard.balls_played));
     const rrr = scorecard.innings === 2 ? (scorecard.team1_score.runs - scorecard.team2_score.runs) / (20 - get_formated_over(scorecard.balls_played)) : 0;
     if(scorecard.match_additional_details[0].includes('won')) {

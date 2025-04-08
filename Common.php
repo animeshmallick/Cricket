@@ -189,7 +189,7 @@ class Common
 
         if($r1 == 0 && $r2 == 0)
             return [0.4, 0.4];
-        return [$r1, $r2];
+        return [max($r1, 1.2), max($r2, 1.2)];
     }
     public function get_unique_bid_id(string $type): int
     {

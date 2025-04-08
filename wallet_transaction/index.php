@@ -55,10 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         <script src="script.js?version=<?php echo time();?>"></script>
         <script>
             function changeBtn(value){
-                if (value === 'add')
+                if (value === 'add') {
                     document.getElementById('create-ticket-btn').innerHTML = "Add Money";
-                if (value === 'withdraw')
+                    document.getElementById('max_withdraw_div').style.display = "none";
+                }
+                if (value === 'withdraw') {
                     document.getElementById('create-ticket-btn').innerHTML = "Withdraw";
+                    document.getElementById('max_withdraw_div').style.display = "block";
+                }
             }
         </script>
     </head>
@@ -68,6 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         <div class="sub-title">My Wallet Transaction</div>
         <form action="index.php" method="POST" id="ticket_form">
             <div class="container">
+                <div class="sub-title" id="max_withdraw_div" style="display: none">Max Amount To Withdraw ₹<span id="max_withdraw_amount"></span></div>
+                <div class="separator"></div>
                 <input type="text" name="transaction_id" value="<?php echo $common->get_unique_recharge_id();?>" hidden="hidden">
                 <select name="transaction-type" id="transaction_type" required onchange="changeBtn(this.value)">
                     <option value="add">Add Money</option>

@@ -11,10 +11,11 @@ h2 {
 }
 select, input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
+    padding: 0.75rem;
+    margin: 0.5rem;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 1rem;
+    background-color: #b9f6b1;
 }
 div.tran_status {
     margin-top: 0.5rem;
@@ -50,4 +51,7 @@ button.edit-ticket-btn {
     background: white;
     padding: 20px;
     border-radius: 10px;
+}
+div.large-gap {
+    height: 1rem;
 }

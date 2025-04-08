@@ -73,6 +73,9 @@ async function fill_header(){
                 .then(async response => {return await response.json()})
                 .then(async balance => {
                     document.getElementById('balance').innerHTML = '&#8377;' + balance.balance;
+                    if(window.location.pathname.includes('wallet_transaction')){
+                        document.getElementById('max_withdraw_amount').innerHTML = balance.max_withdraw_amount;
+                    }
                 })
                 .catch(error => console.log(error));
         })

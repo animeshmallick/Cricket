@@ -274,7 +274,10 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             </thead>
             </tbody>
         </table>
-        <div class="sub-title"><?php echo "Total: ₹".$total_c." - ₹".$total_d." = ₹".($total_c - $total_d)." (".round((($total_c - $total_d)/$total_c*100.0),2)."%)"?></div>
+        <?php if($total_c > 0){ ?>
+            <div class="sub-title"><?php echo "Total: ₹".$total_c." - ₹".$total_d." = ₹".($total_c - $total_d)." (".round((($total_c - $total_d)/$total_c*100.0),2)."%)"?></div>
+        <?php } ?>
+        <div class="separator"></div>
         <div class="match-detail">
             <div class="sub-title">1st Innings</div>
             <div style="display: flex">

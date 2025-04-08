@@ -69,7 +69,7 @@ function fill_transaction_ticket_content(transactions){
                         flag = true;
                     }
                     if(transaction.transaction_type === 'withdraw') {
-                        admin.amount_taken -= transaction.amount;
+                        admin.amount_given += transaction.amount;
                         admin.count += 1;
                         flag = true;
                     }

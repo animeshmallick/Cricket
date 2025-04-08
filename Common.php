@@ -152,9 +152,11 @@ class Common
         }else {
             $x = $book->collected;
             for ($i = min($r-36,0); $i < $r; $i++)
-                $a = max($a, $book->runs[$i]);
-            for ($i = $r + 1; $i < max(count($book->runs),$r+36); $i++)
-                $b = max($b, $book->runs[$i]);
+                $a += $book->runs[$i];
+            $a  /= 36;
+            for ($i = $r + 1; $i < min(count($book->runs),$r+36); $i++)
+                $b += $book->runs[$i];
+            $b /=  36;
         }
         if(isset($book->count)) {
             if ($book->count <= 4)

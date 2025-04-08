@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const matchList = document.getElementById('match-list');
-    fetch('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches')
+    fetch('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches',
+        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
         .then(response => response.sort((a, b) => b.id - a.id))
         .then(matches => {

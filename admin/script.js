@@ -14,7 +14,7 @@ function settle_bid_all(type){
                 let winner = runs >= run_min && runs <= run_max;
                 if (tr.children[3].innerHTML.includes('placed')) {
                     let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/" + tr.id + "/" + type + "/" + (winner ? "win" : "loss");
-                    fetch(url)
+                    fetch(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
                         .then(response => response.json())
                         .then(data => {
                             if (data.status.includes('successfully')) {
@@ -30,7 +30,7 @@ function settle_bid_all(type){
                 let winner = tr.getAttribute('winner') === userResponse.toLowerCase();
                 if(tr.children[3].innerHTML.includes('placed')) {
                     let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/" + tr.id + "/" + type + "/" + (winner ? "win" : "loss");
-                    fetch(url)
+                    fetch(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
                         .then(response => response.json())
                         .then(data => {
                             if (data.status.includes('successfully')) {
@@ -47,32 +47,9 @@ function settle_bid_all(type){
         }
     }
 }
-function settle_bid(bid_id, type, session){
-    if (window.location.hostname.includes('localhost')) {
-        alert("Cannot perform action from localhost.");
-    }else {
-        const userResponse = prompt("Type WIN or LOSS as input.", "LOSS");
-        let execute = false;
-        if (userResponse != null && userResponse.toLowerCase() === 'win') {
-            execute = true;
-        }
-        if(userResponse != null && userResponse.toLowerCase() === 'loss') {
-            execute = true
-        }
-        if(execute) {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    window.location.href = "https://www.cricketipl.in/Cricket/admin/admin_match_"+type+"_dashboard.php?session=" + session;
-                }
-            };
-            xmlhttp.open("GET", "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/"+bid_id+"/" + type + "/" + userResponse.toLowerCase(), true);
-            xmlhttp.send();
-        }
-    }
-}
 function fill_all_wallet_transaction_tickets() {
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any")
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any",
+        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
         .then(data => fill_transaction_ticket_content(data))
         .catch(error => console.error('Error:', error));
@@ -187,20 +164,24 @@ function settle_ticket(ticket_id){
     }else {
         const userResponse = prompt("Are you sure, You want to settle the bid. Type yes.", "no");
         if(userResponse.toLowerCase() === 'yes') {
-            const xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function () {
-                if (this.readyState === 4 && this.status === 200) {
-                    alert("Ticket Settled Successfully");
-                    redirect_to('Cricket/admin/view_tickets.php');
-                }
-            };
-            xmlhttp.open("GET", "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_ticket/" + ticket_id + "/" + getCookie('ref_id'), true);
-            xmlhttp.send();
+            const ref_id = getCookie('ref_id');
+            fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_ticket/" + ticket_id + "/" + ref_id,
+                {method: "GET", headers: {"ref_id": ref_id}})
+                .then(response => {
+                    if (response.status === 200) {
+                        alert("Ticket Settled Successfully");
+                        redirect_to('Cricket/admin/view_tickets.php');
+                    } else {
+                        alert("Ticket Settled Failed");
+                    }
+                })
+                .catch(e => console.log(e));
         }
     }
 }
 function fill_all_users_card() {
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true")
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true",
+        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
         .then(data => fill_user_card_content(data))
         .catch(error => console.error('Error:', error));

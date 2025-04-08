@@ -69,9 +69,13 @@ class Common
 
     private function get_response_from_url($url): string
     {
+        $ref_id = $this->get_cookie('ref_id');
+        if ($ref_id == null || $ref_id == "null" || strlen($ref_id) == 0)
+            $ref_id = 'Unknown';
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // return response as string
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // follow redirects
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ['ref_id: '.$ref_id]);
         $response = curl_exec($ch);
         curl_close($ch);
         return $response;
@@ -247,7 +251,7 @@ class Common
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data)));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($json_bid_data), 'ref_id: '.$ref_id));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json_bid_data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -365,7 +369,7 @@ class Common
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data)));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data), 'ref_id: '.$ref_id));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json_bid_data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -477,7 +481,7 @@ class Common
         );
         $json_data = json_encode($data);
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($json_data)));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json','Content-Length: ' . strlen($json_data), 'ref_id: '.$ref_id));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_POSTFIELDS,$json_data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -517,7 +521,7 @@ class Common
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_new_transaction';
         $json_transaction_data = json_encode($transaction_data);
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_transaction_data)));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_transaction_data), 'ref_id: '.$ref_id));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json_transaction_data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -581,7 +585,7 @@ class Common
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);
         $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data)));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json', 'Content-Length: ' . strlen($json_bid_data), 'ref_id: '.$ref_id));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $json_bid_data);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

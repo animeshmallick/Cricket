@@ -2,7 +2,8 @@ let open_withdrawal_ticket = null;
 let open_add_ticket = null;
 function fill_wallet_transaction_tickets() {
     const ref_id = getCookie('ref_id');
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/" + ref_id)
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/" + ref_id,
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => fill_transaction_ticket_content(data))
         .catch(error => console.error('Error:', error));
@@ -63,7 +64,8 @@ function updateTicketAmount() {
 }
 function update_ticket_amount(ticket_id, updatedAmount){
     const ref_id = getCookie('ref_id');
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_ticket_amount/"+ticket_id+"/"+updatedAmount)
+    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_ticket_amount/"+ticket_id+"/"+updatedAmount,
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => {
             if (data.status === 'success') {

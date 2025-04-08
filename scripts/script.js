@@ -68,7 +68,8 @@ async function fill_header(){
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .then(async () => {
             const ref_id = getCookie('ref_id');
-            fetch('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id)
+            fetch('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id,
+                {method: "GET", headers: {"ref_id": ref_id}})
                 .then(async response => {return await response.json()})
                 .then(async balance => {
                     document.getElementById('balance').innerHTML = '&#8377;' + balance.balance;
@@ -109,7 +110,8 @@ function fill_scorecard(){
     fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
         .then(async () => {
-            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
+            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`,
+                {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
                 .then(async response => {return await response.json()})
                 .then(async score => {
                     update_scorecard(score);
@@ -389,7 +391,8 @@ function enable_session_buttons(scorecard){
     //else
     //    document.getElementById('special').classList.add('disabled');
 
-    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`)
+    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`,
+        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(async response => {
             return await response.json();
         }).then(response => {
@@ -513,7 +516,7 @@ function openScorecardPopup(team) {
     const overlay = document.querySelector(".overlay");
     modal.innerHTML = `<div class="title" style="font-size:2rem">Loading Player Details</div>`
     const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_detailed_score/"+getCookie('series_id')+"/"+getCookie('match_id');
-    fetch(url)
+    fetch(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
         .then(data => {
             let batsmen = data[team+'_batsmen'];

@@ -115,15 +115,7 @@ function fill_scorecard(){
                     update_scorecard(score);
                     if(window.location.pathname.includes('match'))
                         enable_session_buttons(score);
-                    scorecard_timer = setTimeout(() => {
-                        fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`)
-                            .then(async response => {return await response.json()})
-                            .then(async score => {
-                                update_scorecard(score);
-                                if(window.location.pathname.includes('match'))
-                                    enable_session_buttons(score);
-                            })
-                    }, 6000);
+                    scorecard_timer = setTimeout(() => fill_scorecard(), 6000);
                 })
                 .catch(error => console.log(error));
         })

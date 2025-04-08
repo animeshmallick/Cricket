@@ -31,7 +31,7 @@ function validate_register_form() {
 
 function setCookie(name, value){
     const date = new Date();
-    date.setTime(date.getTime()+(30*60*1000));
+    date.setTime(date.getTime()+(15*60*1000));
     const expires = "; expires="+date.toUTCString();
     document.cookie = `${name}=${value}`+expires+"; path=/";
 }

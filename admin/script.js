@@ -245,7 +245,7 @@ function filter_user(keyword){
     if(!isNaN(keyword) && keyword.trim() !== '') {
         let total_users = 0;
         document.querySelectorAll('.card-inner').forEach((card) => {
-            if (card.children[0].children[1].innerHTML.includes(keyword) || card.children[0].children[4].innerHTML.includes(keyword)) {
+            if (card.children[0].children[1].innerHTML.includes(keyword) || card.children[0].children[8].innerHTML.includes(keyword)) {
                 card.style.display = 'block';
                 total_users++;
             } else {
@@ -257,8 +257,7 @@ function filter_user(keyword){
         let total_users = 0;
         document.querySelectorAll('.card-inner').forEach((card) => {
             let search = card.children[0].children[0].innerHTML + "+" +
-                                card.children[0].children[5].innerHTML + "+" +
-                                card.children[0].children[6].innerHTML;
+                                card.children[0].children[9].innerHTML;
             if (search.toLowerCase().includes(keyword.toLowerCase())) {
                 card.style.display = 'block';
                 total_users++;

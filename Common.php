@@ -141,7 +141,7 @@ class Common
     {
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
-        $x = 0;
+        $x = 100;
         $a = 0;
         $b = 0;
         $df = 0.05;
@@ -150,7 +150,7 @@ class Common
         else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
             $x = $amount;
         }else {
-            $x = $book->collected;
+            $x = max($book->collected, 100);
             for ($i = min($r-36,0); $i < $r; $i++)
                 $a += $book->runs[$i];
             $a  /= 36;
@@ -289,14 +289,12 @@ class Common
 
     public function get_winner_rates($all_bids, $amount): array
     {
-        $x = 0;
+        $x = 100;
         $a = 0.0;
         $b = 0.0;
         foreach ($all_bids as $bid) {
             $x += (float)($bid->amount);
         }
-        if ($x == 0)
-            $x += $amount;
 
         foreach ($all_bids as $bid) {
             if ($bid->slot == 'x')

@@ -188,7 +188,7 @@ class Common
         $r2 *= $f;
 
         if($r1 == 0 && $r2 == 0)
-            return [0.4, 0.4];
+            return [0.7, 0.7];
         return [min($r1, 1.5), min($r2, 1.5)];
     }
     public function get_unique_bid_id(string $type): int

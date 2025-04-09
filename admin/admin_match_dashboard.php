@@ -263,7 +263,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                     <td><?php echo $bid['count']?></td>
                     <td><?php echo $bid['collected']?></td>
                     <td><?php echo $bid['given']?></td>
-                    <td><?php echo ($bid['collected'] - $bid['given']); ?></td>
+                    <td><?php echo ($bid['given'] - $bid['collected']); ?></td>
                 </tr>
             <?php } ?>
             <thead>

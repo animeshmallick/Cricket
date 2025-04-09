@@ -190,9 +190,9 @@ class Common
         if($r1 == 0 && $r2 == 0)
             return [0.7, 0.7];
         if ($r1 <= 0.1)
-            $r2 += 0.2;
+            $r2 += 0.3;
         if ($r2 <= 0.1)
-            $r1 += 0.2;
+            $r1 += 0.3;
         return [min($r1, 1.5), min($r2, 1.5)];
     }
     public function get_unique_bid_id(string $type): int

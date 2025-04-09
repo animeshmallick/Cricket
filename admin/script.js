@@ -210,7 +210,7 @@ function fill_user_card_content(users){
             <div class="tran_status phone">Phone : ${user.phone}</div>
             <div class="tran_status">Password : ${user.password}</div>
             <div class="tran_status">Reffered To : ${user.referral_count === undefined ? 0 : user.referral_count} users</div>
-            <div class="tran_status" style="display: ${user.referral_from === undefined ? 'none' : 'block'}">Refferal From : ${user.referral_from}</div>
+            <div class="tran_status">Refferal From : ${user.referral_from}</div>
             <div class="separator"></div>
             <div class="tran_status phone">Balance : ₹${user.balance}</div>
             <div class="tran_status">Max Withdraw Balance : ${x}</div>

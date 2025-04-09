@@ -19,6 +19,7 @@
     <nav class="w3-sidebar w3-bar-block w3-animate-left w3-top" style="font-size: 1rem;z-index:3;width:75%;display:none;left:0;margin: 0;padding: 0; background-image: url('../../images/stadium2.png'), url('../images/stadium2.png')" id="side-bar-container">
         <div class="nav-title">Controls</div>
         <div class="separator"></div>
+        <div class="title">My Referral Code: <?= $common->get_cookie('ref_id')?></div>
         <button class="nav-link" onclick="redirect_to('Cricket/')">Home</button>
         <button class="nav-link" onclick="redirect_to('Cricket/profile/')">Profile</button>
         <button class="nav-link" onclick="redirect_to('Cricket/transactions/')">My Transactions</button>

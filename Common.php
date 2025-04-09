@@ -177,7 +177,7 @@ class Common
         $r2=max(min($gb/$amount,1.2),0);
 
         if($r1 == 1.2 && $r2 == 1.2){
-            $f = 1.6/($ga + $gb);
+            $f = 1.6/($r1 + $r2);
         } else if ($r1 + $r2 > 1.4){
             $f = 1.6/($r1 + $r2);
         }else if ($r1 + $r2 < 1) {
@@ -185,7 +185,6 @@ class Common
         }else{
             $f = 1;
         }
-
         $r1 *= $f;
         $r2 *= $f;
 

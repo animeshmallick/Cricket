@@ -253,6 +253,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 <th>Bids Placed</th>
                 <th>Collected</th>
                 <th>Given</th>
+                <th>Profit</th>
             </tr>
             </thead>
             <tbody>
@@ -262,6 +263,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                     <td><?php echo $bid['count']?></td>
                     <td><?php echo $bid['collected']?></td>
                     <td><?php echo $bid['given']?></td>
+                    <td><?php echo ($bid['collected'] - $bid['given']); ?></td>
                 </tr>
             <?php } ?>
             <thead>
@@ -270,6 +272,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                 <th><?php echo count($all_bids_session) + count($all_bids_winner) + count($all_bids_special)?></th>
                 <th><?php echo $total_c?></th>
                 <th><?php echo $total_d?></th>
+                <th><?= $total_c - $total_d ?></th>
             </tr>
             </thead>
             </tbody>

@@ -282,7 +282,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <div class="sub-title">1st Innings</div>
             <div style="display: flex">
                 <div class="bid_container" style="width: 50%;" onclick="redirect_to('Cricket/admin/admin_match_session_dashboard.php?session=a1')">
-                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids Placed : <?php echo $session_a1['count']; ?></div>
+                    <div class="match-detail" style="padding: 0.3rem 1rem">Bids : <?php echo $session_a1['count']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Collect : <?php echo "₹".$session_a1['collected']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Given: <?php echo "₹".$session_a1['given']; ?></div>
                     <div class="match-detail" style="padding: 0.3rem 1rem">Profit : <?php echo "₹".($session_a1['collected'] - $session_a1['given']); ?></div>

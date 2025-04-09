@@ -176,7 +176,9 @@ class Common
         $r1=max(min($ga/$amount,1.2),0);
         $r2=max(min($gb/$amount,1.2),0);
 
-        if($r1 == 1.2 && $r2 == 1.2){
+        if($r1 == 0 && $r2 == 0){
+            return [0.7, 0.7];
+        } else if($r1 == 1.2 && $r2 == 1.2){
             $f = 1.6/($r1 + $r2);
         } else if ($r1 + $r2 > 1.4){
             $f = 1.6/($r1 + $r2);
@@ -188,8 +190,6 @@ class Common
         $r1 *= $f;
         $r2 *= $f;
 
-        if($r1 == 0 && $r2 == 0)
-            return [0.7, 0.7];
         return [min($r1, 1.5), min($r2, 1.5)];
     }
     public function get_unique_bid_id(string $type): int
@@ -322,6 +322,8 @@ class Common
         $r1=max(min($ga/$amount,1.2),0);
         $r2=max(min($gb/$amount,1.2),0);
 
+        if ($r1 == 0 && $r2 == 0)
+            return [0.7, 0.7];
         if ($r1 == 1.2 && $r2 == 1.2) {
             $f = 1.6 / ($ga + $gb);
         } else if ($r1 + $r2 > 1.4) {

@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div id="header"></div>
     <div class="main_container">
         <div class="sub-title">My Wallet Transaction</div>
-        <form action="index.php" method="POST" id="ticket_form" onsubmit="return create_ticket()">
+        <form action="index.php" method="POST" name='ticket_form' id="ticket_form">
             <div class="container">
                 <div class="sub-title" id="max_withdraw_div" style="display: none">Max Amount To Withdraw ₹<span id="max_withdraw_amount"></span></div>
                 <div class="separator"></div>
@@ -111,6 +111,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
             }
             if(document.getElementById('transaction_type').value === 'add' && open_add_ticket !== null){
                 alert("Open Tickets available. Please update the existing open ticket");
+                e.preventDefault();
+            }
+            let type = document.forms['ticket_form']['transaction_type'];
+            let amount = document.forms['ticket_form']['amount'];
+            if (type === 'withdraw' && amount > max_withdraw_amount){
+                alert("Amount exceeds maximum withdrawal amount");
                 e.preventDefault();
             }
         });

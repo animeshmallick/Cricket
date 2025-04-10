@@ -77,19 +77,3 @@ function update_ticket_amount(ticket_id, updatedAmount){
         })
         .catch(error => console.error('Error:', error));
 }
-function create_ticket(){
-    let type = document.forms['ticket_form']['transaction_type'];
-    let amount = document.forms['ticket_form']['amount'];
-    if (type === 'add' && amount > 0)
-        return true;
-
-    if (type === 'withdraw' && amount > 0){
-        let max_withdrawal_amount = parseInt(document.getElementById('max_withdraw_amount').innerHTML);
-        if (amount > max_withdrawal_amount){
-            alert("Your Max Withdraw amount is ₹"+max_withdrawal_amount);
-            return false;
-        }
-        return true;
-    }
-    return false;
-}

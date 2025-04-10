@@ -70,7 +70,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
         <table>
             <tbody>
     <?php foreach ($all_bids as $bid) { ?>
-                    <tr id="<?= $bid->bid_id ?>" winner="<?= $bid->slot ?>">
+                    <tr id="<?= $bid->bid_id ?>" winner="<?= $bid->slot ?>" style="background-color: <?= $bid->slot == 'x' ? 'red' : 'pink'?>">
                         <td><?php echo $common->get_user_from_users($all_users, $bid->ref_id); ?></td>
                         <td>
                             <?php

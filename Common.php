@@ -194,7 +194,7 @@ class Common
         if($r2 == 0)
             $r1 += 0.15;
 
-        return [min($r1, 1.5), min($r2, 1.5)];
+        return [min($r1, 1.2), min($r2, 1.2)];
     }
     public function get_unique_bid_id(string $type): int
     {

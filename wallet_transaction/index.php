@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div id="header"></div>
     <div class="main_container">
         <div class="sub-title">My Wallet Transaction</div>
-        <form action="index.php" method="POST" id="ticket_form">
+        <form action="index.php" method="POST" id="ticket_form" onsubmit="return create_ticket()">
             <div class="container">
                 <div class="sub-title" id="max_withdraw_div" style="display: none">Max Amount To Withdraw ₹<span id="max_withdraw_amount"></span></div>
                 <div class="separator"></div>

@@ -113,10 +113,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
                 alert("Open Tickets available. Please update the existing open ticket");
                 e.preventDefault();
             }
-            let type = document.forms['ticket_form']['transaction_type'];
-            let amount = document.forms['ticket_form']['amount'];
+            let type = document.forms['ticket_form']['transaction_type'].value;
+            let amount = parseInt(document.forms['ticket_form']['amount'].value);
+            let max_withdraw_amount = parseInt(document.getElementById('max_withdraw_amount').innerHTML);
             if (type === 'withdraw' && amount > max_withdraw_amount){
-                alert("Amount exceeds maximum withdrawal amount");
+                alert("Maximum Withdraw Amount is ₹"+max_withdraw_amount);
                 e.preventDefault();
             }
         });

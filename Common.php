@@ -182,8 +182,6 @@ class Common
             $f = 1.6/($r1 + $r2);
         } else if ($r1 + $r2 > 1.4){
             $f = 1.6/($r1 + $r2);
-        }else if ($r1 + $r2 < 0.7) {
-            $f = 1 / ($r1 + $r2);
         }else{
             $f = 1;
         }
@@ -328,9 +326,7 @@ class Common
             $f = 1.6 / ($r1 + $r2);
         } else if ($r1 + $r2 > 1.4) {
             $f = 1.6 / ($r1 + $r2);
-        } else if ($r1 + $r2 < 0.7){
-            $f = 1 / ($r1 + $r2);
-        }else{
+        } else{
             $f = 1;
         }
 

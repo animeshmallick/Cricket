@@ -332,13 +332,23 @@ class Common
             $f = 1.6 / ($r1 + $r2);
         } else if ($r1 + $r2 > 1.4) {
             $f = 1.6 / ($r1 + $r2);
-        } else{
+        } else if ($r1 + $r2 < 0.4){
+            $f = 0.7 / ($r1 + $r2);
+        }else{
             $f = 1;
         }
 
         $r1 *= $f;
         $r2 *= $f;
-        return [$r1, $r2];
+        if($r1 == 0)
+            $r2 += 0.15;
+        if($r2 == 0)
+            $r1 += 0.15;
+
+        // TODO: Change Rate Based on Wins
+        $r1 += 0.3;
+
+        return [min($r1, 1.5), min($r2, 1.5)];
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)

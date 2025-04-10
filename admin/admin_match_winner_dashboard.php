@@ -70,7 +70,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
         <table>
             <tbody>
     <?php foreach ($all_bids as $bid) { ?>
-                    <tr id="<?= $bid->bid_id ?>" winner="<?= $bid->slot ?>" style="background-color: <?= $bid->slot == 'x' ? 'red' : 'pink'?>">
+                    <tr id="<?= $bid->bid_id ?>" winner="<?= $bid->slot ?>" style="background-color: <?= $bid->slot == 'x' ? 'white' : 'blue'?>">
                         <td><?php echo $common->get_user_from_users($all_users, $bid->ref_id); ?></td>
                         <td>
                             <?php
@@ -95,7 +95,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
                         ?>
                         <td><?php echo $amount_string; ?></td>
                         <td><?php echo $bid->status; ?></td>
-                        <td><?= $bid->room ?><td>
+                        <td><?= $bid->room ?></td>
                         <?php if ($bid->status == "placed") {
                             $settlement_required = true;
                         } ?>

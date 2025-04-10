@@ -148,7 +148,7 @@ class Common
         if(isset($book->error))
             return [0.1, 0.1];
         else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
-            $x = $amount;
+            $x = min(100, $amount);
         }else {
             $x = max($book->collected, 100);
             for ($i = min($r-36,0); $i < $r; $i++)

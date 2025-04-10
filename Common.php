@@ -346,7 +346,7 @@ class Common
             $r1 += 0.15;
 
         // TODO: Change Rate Based on Wins
-        $r1 += 0.2;
+        $r1 += 0.15;
 
         return [min($r1, 1.5), min($r2, 1.5)];
     }

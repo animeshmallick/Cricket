@@ -195,10 +195,10 @@ function fill_user_card_content(users){
     div.textContent = "Total Users : " + users.length;
     usersContainer.appendChild(div);
     users.forEach((user) => {
+        console.log(user.fname+' '+user.referral_from)
         let x = 0;
         if (user.type !== 'admin') {
             x = Math.max(user.balance - (user.referral_count === undefined ? 0 : user.referral_count) * 50 - 100, 0);
-            console.log(user.fname+" "+user.lname+" : ₹"+x);
             total_withdraw_balance += x;
         }
         const card = document.createElement("div");

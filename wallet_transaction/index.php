@@ -105,6 +105,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     </body>
     <script>
         document.getElementById('ticket_form').addEventListener('submit', function (e){
+            let amount = parseInt(document.forms['ticket_form']['amount'].value);
+            if (amount < 100){
+                alert("Minimum Amount is ₹100");
+                e.preventDefault();
+            }
             if(document.getElementById('transaction_type').value === 'withdraw' && open_withdrawal_ticket !== null){
                 alert("Open Tickets available. Please update the existing open ticket");
                 e.preventDefault();
@@ -114,7 +119,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
                 e.preventDefault();
             }
             let type = document.forms['ticket_form']['transaction_type'].value;
-            let amount = parseInt(document.forms['ticket_form']['amount'].value);
             let max_withdraw_amount = parseInt(document.getElementById('max_withdraw_amount').innerHTML);
             if (type === 'withdraw' && amount > max_withdraw_amount){
                 alert("Maximum Withdraw Amount is ₹"+max_withdraw_amount);

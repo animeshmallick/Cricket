@@ -61,6 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
         <div class="title">All User Details</div>
         <div class="sub-title">Total Withdraw Amount ₹<span style="color: red" id="total_withdraw_amount"></span></div>
         <div class="gap"></div>
+        <div>
+            <input type="checkbox" id="show_withdrawn" onchange="fill_user_card_content(data, this.checked)">
+            <label for="show_withdrawn">Sort By Balance</label>
+        </div>
         <form>
             <input type="text" id="keyword" placeholder="Search User" onkeyup="filter_user(this.value)">
         </form>

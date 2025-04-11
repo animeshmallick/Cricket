@@ -179,17 +179,24 @@ function settle_ticket(ticket_id){
         }
     }
 }
+let data = null;
 function fill_all_users_card() {
     fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true",
         {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
-        .then(data => fill_user_card_content(data))
+        .then(data => fill_user_card_content(data, false))
         .catch(error => console.error('Error:', error));
 }
-function fill_user_card_content(users){
+function fill_user_card_content(users, sort){
+    data = users;
     let total_withdraw_balance = 0;
-    users.sort((a, b) => parseDate(b.last_login) - parseDate(a.last_login));
+    if(sort)
+        users.sort((a, b) => (b.balance) - (a.balance));
+    else
+        users.sort((a, b) => parseDate(b.last_login) - parseDate(a.last_login));
+
     const usersContainer = document.getElementById("usersContainer");
+    usersContainer.innerHTML = "";
     const div = document.createElement("div");
     div.classList.add('title');
     div.textContent = "Total Users : " + users.length;

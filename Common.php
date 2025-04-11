@@ -346,9 +346,10 @@ class Common
             $r1 += 0.15;
 
         // TODO: Change Rate Based on Wins
-        $r1 += 0;
+        $r1 += 0.5;
+        $r2 -= 0.5;
 
-        return [min($r1, 1.5), min($r2, 1.5)];
+        return [max(min($r1, 1.5), 0), max(min($r2, 1.5),0)];
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)

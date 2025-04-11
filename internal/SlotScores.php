@@ -36,7 +36,7 @@ class Scores {
         if($wkts >= 7)
             $factor = 0.5;
         if($wkts >= 9)
-            $factor = 0.25;
+            $factor = 0;
 
         if($curr_rr > 12)
             $factor = ($curr_rr - 12) / 2.0;

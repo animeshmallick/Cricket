@@ -144,7 +144,6 @@ class Common
         $x = 100;
         $a = 0;
         $b = 0;
-        $df = 0.05;
         if(isset($book->error))
             return [0.1, 0.1];
         else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
@@ -158,43 +157,8 @@ class Common
                 $b += $book->runs[$i];
             $b /=  36;
         }
-        if(isset($book->count)) {
-            if ($book->count <= 4)
-                $df = 0.1;
-            else if ($book->count <= 8)
-                $df = 0.17;
-            else if ($book->count <= 12)
-                $df = 0.25;
-            else
-                $df = 0.3;
-        }
-        $deduction = min(($x * $df), 300);
-        $x -= $deduction;
-        $ga = max((($x - $a)), 0);
-        $gb = max((($x - $b)), 0);
-
-        $r1=max(min($ga/$amount,1.2),0);
-        $r2=max(min($gb/$amount,1.2),0);
-
-        if($r1 == 0 && $r2 == 0){
-            return [0.7, 0.7];
-        } else if($r1 == 1.2 && $r2 == 1.2){
-            $f = 1.6/($r1 + $r2);
-        } else if ($r1 + $r2 > 1.4){
-            $f = 1.6/($r1 + $r2);
-        }else if ($r1 + $r2 < 0.3){
-            $f = 0.4 / ($r1 + $r2);
-        } else{
-            $f = 1;
-        }
-        $r1 *= $f;
-        $r2 *= $f;
-        if($r1 == 0)
-            $r2 += 0.15;
-        if($r2 == 0)
-            $r1 += 0.15;
-
-        return [min($r1, 1.2), min($r2, 1.2)];
+        $rates = $this->calculate_rates($x, $a, $b, $book->count, $amount, true);
+        return $rates;
     }
     public function get_unique_bid_id(string $type): int
     {
@@ -310,46 +274,13 @@ class Common
             if ($bid->slot == 'y')
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
-        if (count($all_bids) <= 4)
-            $df = 0.1;
-        else if (count($all_bids) <= 8)
-            $df = 0.17;
-        else if (count($all_bids) <= 12)
-            $df = 0.25;
-        else
-            $df = 0.3;
-        $deduction = min(($x * $df), 300);
-        $x -= $deduction;
-        $ga = max((($x - $a) * 0.85), 0);
-        $gb = max((($x - $b) * 0.85), 0);
-
-        $r1=max(min($ga/$amount,1.2),0);
-        $r2=max(min($gb/$amount,1.2),0);
-
-        if ($r1 == 0 && $r2 == 0)
-            return [1, 0.1];
-        if ($r1 == 1.2 && $r2 == 1.2) {
-            $f = 1.6 / ($r1 + $r2);
-        } else if ($r1 + $r2 > 1.4) {
-            $f = 1.6 / ($r1 + $r2);
-        } else if ($r1 + $r2 < 0.3){
-            $f = 0.4 / ($r1 + $r2);
-        }else{
-            $f = 1;
-        }
-
-        $r1 *= $f;
-        $r2 *= $f;
-        if($r1 == 0)
-            $r2 += 0.15;
-        if($r2 == 0)
-            $r1 += 0.15;
+        $rates = $this->calculate_rates($x, $a, $b, count($all_bids), $amount, true);
 
         // TODO: Change Rate Based on Wins
-        $r1 += 0.5;
-        $r2 -= 0.5;
+        $rates[0] = max($rates[0] - 0.5, 0);
+        $rates[1] = max($rates[1] + 0.5, 0);
 
-        return [max(min($r1, 1.5), 0), max(min($r2, 1.5),0)];
+        return $rates;
     }
 
     public function get_match_winner_bid_bookie_details(string $series_id, $match_id, int $amount, int $room)
@@ -615,5 +546,51 @@ class Common
         }
         curl_close($ch);
         return $response;
+    }
+
+    private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
+    {
+        $df = 0.05;
+        if ($count <= 4)
+            $df = 0.1;
+        else if ($count <= 8)
+            $df = 0.17;
+        else if ($count <= 12)
+            $df = 0.25;
+        else
+            $df = 0.3;
+
+        $deduction = min(($x * $df), 300);
+        $x -= $deduction;
+        $ga = max((($x - $a)), 0);
+        $gb = max((($x - $b)), 0);
+
+        $r1=max(min($ga/$amount,1.2),0);
+        $r2=max(min($gb/$amount,1.2),0);
+
+        try {
+            if ($r1 == 0 && $r2 == 0 && $flag) {
+                $flag = !$flag;
+                return $this->calculate_rates($x + min($amount, 100), $a, $b, $count, $amount, $flag);
+            } else if ($r1 == 1.2 && $r2 == 1.2) {
+                $f = 1.6 / ($r1 + $r2);
+            } else if ($r1 + $r2 > 1.4) {
+                $f = 1.6 / ($r1 + $r2);
+            } else if ($r1 + $r2 < 0.3) {
+                $f = 0.4 / ($r1 + $r2);
+            } else {
+                $f = 1;
+            }
+        }catch (DivisionByZeroError $e){
+            return [0.25, 0.25];
+        }
+        $r1 *= $f;
+        $r2 *= $f;
+        if($r1 == 0)
+            $r2 += 0.15;
+        if($r2 == 0)
+            $r1 += 0.15;
+
+        return [min($r1, 1.2), min($r2, 1.2)];
     }
 }

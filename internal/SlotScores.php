@@ -68,7 +68,7 @@ class Scores {
         return min(
                 max(
                     $this->get_r($r1, $r2),
-            $slot == 'a' ? 45 - (5 * $curr_wkts) : ($slot == 'b' ? 69 : ($slot == 'c' ? 105 : 120))),
+            $slot == 'a' ? 45 - (3 * $curr_wkts) : ($slot == 'b' ? 69 : ($slot == 'c' ? 105 : 120))),
             $slot == 'a' ? 90 : ($slot == 'b' ? 160 : ($slot == 'c' ? 225 : 320))
         );
     }

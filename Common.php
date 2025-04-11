@@ -160,13 +160,13 @@ class Common
         }
         if(isset($book->count)) {
             if ($book->count <= 4)
-                $df = 0.07;
+                $df = 0.1;
             else if ($book->count <= 8)
-                $df = 0.14;
+                $df = 0.17;
             else if ($book->count <= 12)
-                $df = 0.2;
-            else
                 $df = 0.25;
+            else
+                $df = 0.3;
         }
         $deduction = min(($x * $df), 300);
         $x -= $deduction;
@@ -311,13 +311,13 @@ class Common
                 $b += (float)($bid->amount * (1 + $bid->rate));
         }
         if (count($all_bids) <= 4)
-            $df = 0.07;
+            $df = 0.1;
         else if (count($all_bids) <= 8)
-            $df = 0.14;
+            $df = 0.17;
         else if (count($all_bids) <= 12)
-            $df = 0.2;
-        else
             $df = 0.25;
+        else
+            $df = 0.3;
         $deduction = min(($x * $df), 300);
         $x -= $deduction;
         $ga = max((($x - $a) * 0.85), 0);

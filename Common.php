@@ -550,34 +550,20 @@ class Common
 
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
-        $df = 0.05;
-        if ($count <= 4)
-            $df = 0.1;
-        else if ($count <= 8)
-            $df = 0.17;
-        else if ($count <= 12)
-            $df = 0.25;
-        else
-            $df = 0.3;
+        $x -= min($x * 0.7, 100);
 
-        $deduction = min(($x * $df), 300);
-        $x -= $deduction;
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);
 
-        $r1=max(min($ga/$amount,1.2),0);
-        $r2=max(min($gb/$amount,1.2),0);
+        $r1=max(min($ga/$amount,1),0);
+        $r2=max(min($gb/$amount,1),0);
 
         try {
             if ($r1 == 0 && $r2 == 0 && $flag) {
                 $flag = !$flag;
-                return $this->calculate_rates($x + min($amount, 100), $a, $b, $count, $amount, $flag);
-            } else if ($r1 == 1.2 && $r2 == 1.2) {
-                $f = 1.6 / ($r1 + $r2);
-            } else if ($r1 + $r2 > 1.4) {
-                $f = 1.6 / ($r1 + $r2);
-            } else if ($r1 + $r2 < 0.3) {
-                $f = 0.4 / ($r1 + $r2);
+                return $this->calculate_rates($x + min($amount * 0.5, 100), $a, $b, $count, $amount, $flag);
+            } else if ($r1 + $r2 > 1) {
+                $f = 1 / ($r1 + $r2);
             } else {
                 $f = 1;
             }
@@ -586,11 +572,7 @@ class Common
         }
         $r1 *= $f;
         $r2 *= $f;
-        if($r1 == 0)
-            $r2 += 0.15;
-        if($r2 == 0)
-            $r1 += 0.15;
 
-        return [min($r1, 1.2), min($r2, 1.2)];
+        return [min($r1, 1), min($r2, 1)];
     }
 }

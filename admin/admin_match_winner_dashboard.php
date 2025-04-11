@@ -69,7 +69,15 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
         <div class="control-title">All Bids On Session <?php echo $session; ?></div>
         <table>
             <tbody>
-    <?php foreach ($all_bids as $bid) { ?>
+    <?php
+    $x_total = 0;
+    $y_total = 0;
+    foreach ($all_bids as $bid) {
+        if($bid->slot=="x")
+            $x_total += $bid->amount * (1 + $bid->rate);
+        if($bid->slot=="y")
+            $y_total += $bid->amount * (1 + $bid->rate);
+        ?>
                     <tr id="<?= $bid->bid_id ?>" winner="<?= $bid->slot ?>" style="background-color: <?= $bid->slot == 'x' ? 'white' : 'blue'?>">
                         <td><?php echo $common->get_user_from_users($all_users, $bid->ref_id); ?></td>
                         <td>
@@ -104,6 +112,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
     <?php } ?>
             </tbody>
         </table>
+        <div class="title"><?=ceil($x_total)?> VS <?=ceil($y_total)?></div>
         <?php if($settlement_required){ ?>
             <a onclick="settle_bid_all('winner')" class="button" style="padding: 1rem 0.5rem; margin: 0" href="#">Settle Winners</a>
         <?php } ?>

@@ -327,7 +327,7 @@ class Common
         $r2=max(min($gb/$amount,1.2),0);
 
         if ($r1 == 0 && $r2 == 0)
-            return [0.7, 0.7];
+            return [1, 0.1];
         if ($r1 == 1.2 && $r2 == 1.2) {
             $f = 1.6 / ($r1 + $r2);
         } else if ($r1 + $r2 > 1.4) {

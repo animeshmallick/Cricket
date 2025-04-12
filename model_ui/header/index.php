@@ -10,6 +10,10 @@
             <div class="nav-title">CricketIPL</div>
             <span><?php echo $header_sub_text;?></span>
         </div>
+        <?php
+        if($common->get_cookie('user_type') == 'admin'){ ?>
+            <div class="open-ticket" id="open_ticket">T0</div>
+        <?php } ?>
         <div class="balance-container" onclick="redirect_to('Cricket/wallet_transaction/index.php')">
             <span class="balance-title">Balance</span>
             <div id="balance" class="balance">&#8377;--</div>

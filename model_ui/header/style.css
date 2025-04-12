@@ -98,3 +98,13 @@ div.balance {
     font-weight: bold;
     color: #ecf0f1;
 }
+div.open-ticket {
+    background-color: #34495e;
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: bounce 0.5s ease-in-out, pulse 2s infinite;
+}

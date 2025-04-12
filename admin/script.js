@@ -162,7 +162,7 @@ function settle_ticket(ticket_id){
     if (window.location.hostname.includes('localhost') && false) {
         alert("Cannot perform action from localhost.");
     }else {
-        const userResponse = prompt("Are you sure, You want to settle the bid. Type yes.", "no");
+        const userResponse = prompt("Are you sure, You want to settle the bid. Type yes or reject", "no");
         if(userResponse.toLowerCase() === 'yes') {
             const ref_id = getCookie('ref_id');
             fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_ticket/" + ticket_id + "/" + ref_id,
@@ -173,6 +173,20 @@ function settle_ticket(ticket_id){
                         redirect_to('Cricket/admin/view_tickets.php');
                     } else {
                         alert("Ticket Settled Failed");
+                    }
+                })
+                .catch(e => console.log(e));
+        }
+        if(userResponse.toLowerCase() === 'reject'){
+            const ref_id = getCookie('ref_id');
+            fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/reject_ticket/" + ticket_id + "/" + ref_id,
+                {method: "GET", headers: {"ref_id": ref_id}})
+                .then(response => {
+                    if (response.status === 200) {
+                        alert("Ticket Rejected Successfully");
+                        redirect_to('Cricket/admin/view_tickets.php');
+                    } else {
+                        alert("Ticket Rejection Failed");
                     }
                 })
                 .catch(e => console.log(e));

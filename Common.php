@@ -562,6 +562,8 @@ class Common
             if ($r1 == 0 && $r2 == 0 && $flag) {
                 $flag = !$flag;
                 return $this->calculate_rates($x + min($amount * 0.5, 50), $a, $b, $count, $amount, $flag);
+            } else if($r1 ==0 && $r2 ==0 && !$flag){
+                return [0.2, 0.2];
             } else if ($r1 + $r2 > 1) {
                 $f = 1 / ($r1 + $r2);
             } else {

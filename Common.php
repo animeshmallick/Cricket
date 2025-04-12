@@ -277,8 +277,8 @@ class Common
         $rates = $this->calculate_rates($x, $a, $b, count($all_bids), $amount, true);
 
         // TODO: Change Rate Based on Wins
-        $rates[0] = max($rates[0], 0);
-        $rates[1] = max($rates[1], 0);
+        $rates[0] = max($rates[0]+0.3, 0);
+        $rates[1] = max($rates[1]-0.3, 0);
 
         return $rates;
     }
@@ -550,7 +550,7 @@ class Common
 
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
-        $x -= min($x * $count == 0 ? 0.3 : 0.03 * $count, 300);
+        $x -= min($x * $count == 0 ? 0.3 : (0.03 * $count), 300);
 
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);

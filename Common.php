@@ -157,7 +157,7 @@ class Common
                 $b += $book->runs[$i];
             $b /=  36;
         }
-        $rates = $this->calculate_rates($x, $a, $b, $book->count, $amount, true);
+        $rates = $this->calculate_rates($x, $a, $b, $book->count ?? 0, $amount, true);
         return $rates;
     }
     public function get_unique_bid_id(string $type): int

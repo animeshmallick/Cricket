@@ -277,8 +277,8 @@ class Common
         $rates = $this->calculate_rates($x, $a, $b, count($all_bids), $amount, true);
 
         // TODO: Change Rate Based on Wins
-        $rates[0] = max($rates[0]+0.4, 0);
-        $rates[1] = max($rates[1]-0.4, 0);
+        $rates[0] = max($rates[0]+0.6, 0);
+        $rates[1] = max($rates[1]-0.6, 0);
 
         return $rates;
     }

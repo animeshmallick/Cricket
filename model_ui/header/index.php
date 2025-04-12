@@ -12,7 +12,7 @@
         </div>
         <?php
         if($common->get_cookie('user_type') == 'admin'){ ?>
-            <div class="open-ticket" id="open_ticket">T0</div>
+            <div class="open-ticket" id="open_ticket" onclick="redirect_to('Cricket/admin/view_tickets.php')">T0</div>
         <?php } ?>
         <div class="balance-container" onclick="redirect_to('Cricket/wallet_transaction/index.php')">
             <span class="balance-title">Balance</span>

@@ -550,7 +550,7 @@ class Common
 
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
-        $x -= min($x * 0.3, 100);
+        $x -= min($x * 0.3, 300);
 
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);
@@ -561,7 +561,7 @@ class Common
         try {
             if ($r1 == 0 && $r2 == 0 && $flag) {
                 $flag = !$flag;
-                return $this->calculate_rates($x + min($amount * 0.5, 100), $a, $b, $count, $amount, $flag);
+                return $this->calculate_rates($x + min($amount * 0.5, 50), $a, $b, $count, $amount, $flag);
             } else if ($r1 + $r2 > 1) {
                 $f = 1 / ($r1 + $r2);
             } else {

@@ -563,6 +563,14 @@ class Common
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
         $x -= min($x * $count == 0 ? 0.3 : (0.03 * $count), 300);
+        if($count > 3 && $count < 7)
+            $x -= 25;
+        if($count > 6 && $count < 10)
+            $x -= 50;
+        if($count > 9 && $count < 14)
+            $x -= 75;
+        if($count > 13)
+            $x -= 100;
 
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);

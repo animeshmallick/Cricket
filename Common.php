@@ -150,12 +150,24 @@ class Common
             $x = min(100, $amount);
         }else {
             $x = max($book->collected, 100);
-            for ($i = min($r-36,0); $i < $r; $i++)
-                $a += $book->runs[$i];
-            $a  /= 36;
-            for ($i = $r + 1; $i < min(count($book->runs),$r+36); $i++)
-                $b += $book->runs[$i];
-            $b /=  36;
+            $ai = 0;
+            for ($i = min($r-36,0); $i < $r; $i++) {
+                $tmp = $book->runs[$i];
+                if ($tmp > 0){
+                    $a += $tmp;
+                    $ai++;
+                }
+            }
+            $a /= $ai;
+            $bi = 0;
+            for ($i = $r + 1; $i < min(count($book->runs),$r+36); $i++) {
+                $tmp = $book->runs[$i];
+                if ($tmp > 0){
+                    $b += $tmp;
+                    $bi++;
+                }
+            }
+            $b /= $bi;
         }
         $rates = $this->calculate_rates($x, $a, $b, $book->count ?? 0, $amount, true);
         return $rates;

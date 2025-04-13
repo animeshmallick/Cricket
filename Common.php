@@ -149,7 +149,7 @@ class Common
         else if (isset($book->msg) && str_contains($book->msg, "No Bids")){
             $x = min(100, $amount);
         }else {
-            $x = max($book->collected, 100);
+            $x = $book->collected;
             $ai = 0;
             for ($i = min($r-36,0); $i < $r; $i++) {
                 $tmp = $book->runs[$i];
@@ -569,14 +569,16 @@ class Common
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
         $x -= min($x * $count == 0 ? 0.3 : (0.03 * $count), 300);
-        if($count > 3 && $count < 7)
+
+        if($count > 2 && $count < 6)
             $x -= 25;
-        if($count > 6 && $count < 10)
+        if($count > 5 && $count < 9)
             $x -= 50;
-        if($count > 9 && $count < 14)
+        if($count > 8 && $count < 13)
             $x -= 75;
-        if($count > 13)
+        if($count > 12)
             $x -= 100;
+        echo $x." ".$a." ".$b." ".$count." ".$amount." ".$flag."<br>";
 
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);

@@ -108,21 +108,27 @@ function logout(){
     }
 }
 function fill_scorecard(){
-    const series_id = getCookie('series_id');
-    const match_id = getCookie('match_id');
     fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
-        .then(async () => {
-            fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`,
-                {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
-                .then(async response => {return await response.json()})
-                .then(async score => {
-                    update_scorecard(score);
-                    if(window.location.pathname.includes('match'))
-                        enable_session_buttons(score);
-                    scorecard_timer = setTimeout(() => fill_scorecard(), 6000);
-                })
-                .catch(error => console.log(error));
+        .then(async () => fill_scorecard_content())
+        .catch(error => console.log(error));
+}
+function fill_scorecard_content(){
+    const series_id = getCookie('series_id');
+    const match_id = getCookie('match_id');
+    if(series_id === null || match_id === null){
+        clearInterval(scorecard_timer);
+        redirect_to('Cricket/');
+        return;
+    }
+    fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`,
+        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        .then(async response => {return await response.json()})
+        .then(async score => {
+            update_scorecard(score);
+            if(window.location.pathname.includes('match'))
+                enable_session_buttons(score);
+            scorecard_timer = setTimeout(() => fill_scorecard_content(), 6000);
         })
         .catch(error => console.log(error));
 }

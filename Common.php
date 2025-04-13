@@ -555,8 +555,8 @@ class Common
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);
 
-        $r1=max(min($ga/$amount,1),0);
-        $r2=max(min($gb/$amount,1),0);
+        $r1=max(min($ga/$amount,1.2),0);
+        $r2=max(min($gb/$amount,1.2),0);
 
         try {
             if ($r1 == 0 && $r2 == 0 && $flag) {

@@ -22,7 +22,7 @@ class Data {
 		$this->default_runs_slotD = 170;
 		$this->balls_slotA = 36;
 		$this->balls_slotB = 60;
-		$this->balls_slotC = 96;
+		$this->balls_slotC = 90;
 		$this->balls_slotD = 120;
         $this->wicket_multiplier = 6;
     }

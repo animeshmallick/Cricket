@@ -111,7 +111,7 @@ class Common
         } elseif ($session == 'b') {
             $eligible_overID = ($bid_innings * 100) + 10;
         } elseif ($session == 'c') {
-            $eligible_overID = ($bid_innings * 100) + 16;
+            $eligible_overID = ($bid_innings * 100) + 15;
         } elseif ($session == 'd') {
             $eligible_overID = ($bid_innings * 100) + 20;
         }

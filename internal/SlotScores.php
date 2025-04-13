@@ -53,10 +53,10 @@ class Scores {
         return $r2 - ($wkts * $this->datahelper->get_wicket_multiplier());
     }
 
-    public function get_r($r1, $r2): int{
-        return floor(($r1 + $r2) / 2);
-        //$x = $slot == 'a' ? 0 : ($slot == 'b' ? 36 : ($slot == 'c' ? 60 : 96));
-        //return $r2 - (($r2 - $r1) * ($curr_balls - $x) / ($this->datahelper->get_maxballs_for_slot($slot) - $x));
+    public function get_r($r1, $r2, $slot, $curr_balls): int{
+        //return floor(($r1 + $r2) / 2);
+        $x = $slot == 'a' ? 0 : ($slot == 'b' ? 36 : ($slot == 'c' ? 60 : 90));
+        return $r2 - (($r2 - $r1) * ($curr_balls - $x) / ($this->datahelper->get_maxballs_for_slot($slot) - $x));
     }
     public function get_slot_runs($bid_innings, $scorecard, $slot): float{
         $curr_runs = $this->get_curr_runs($bid_innings, $scorecard);
@@ -67,7 +67,7 @@ class Scores {
         $r2 = max($r1, $this->update_r2_with_wickets($r2, $scorecard));
         return min(
                 max(
-                    $this->get_r($r1, $r2),
+                    $this->get_r($r1, $r2, $slot, $this->get_balls_played($scorecard, $bid_innings)),
             $slot == 'a' ? 45 - (3 * $curr_wkts) : ($slot == 'b' ? 69 : ($slot == 'c' ? 105 : 120))),
             $slot == 'a' ? 90 : ($slot == 'b' ? 160 : ($slot == 'c' ? 225 : 320))
         );

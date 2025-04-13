@@ -22,7 +22,7 @@ if($session[0] == 'a')
 if($session[0] == 'b')
     $balls_left = 60 - $balls;
 if($session[0] == 'c')
-    $balls_left = 96 - $balls;
+    $balls_left = 90 - $balls;
 if($session[0] == 'd')
     $balls_left = 120 - $balls;
 
@@ -37,7 +37,7 @@ if($common->is_eligible_for_session_bid($session, $scorecard->over_id) && $balls
         "runs" => $run,
         "balls_left" => $balls_left,
         'session_name' => "Innings ".$session[1]." : Over ".
-            ($session[0] == 'a' ? '1 to 6' : ($session[0] == 'b' ? '7 to 10' : ($session[0] == 'c' ? '11 to 16' : ($session[0] == 'd' ? '17 to 20' : ' - - '))))
+            ($session[0] == 'a' ? '1 to 6' : ($session[0] == 'b' ? '7 to 10' : ($session[0] == 'c' ? '11 to 15' : ($session[0] == 'd' ? '16 to 20' : ' - - '))))
     );
     echo json_encode($output);
 }

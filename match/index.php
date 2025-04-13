@@ -97,11 +97,11 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
                 <div style="display: flex">
                     <div class="clickable-button disabled" id='c1' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/session/index.php?session=c1&room=1')">
                         <div style="display: block">Session 3</div>
-                        <div style="text-decoration: none; color: inherit;">(11-16 overs)</div>
+                        <div style="text-decoration: none; color: inherit;">(11-15 overs)</div>
                     </div>
                     <div class="clickable-button disabled" id='d1' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/session/index.php?session=d1&room=1')">
                         <div style="display: block">Session 4</div>
-                        <div style="text-decoration: none; color: inherit;">(17-20 overs)</div>
+                        <div style="text-decoration: none; color: inherit;">(16-20 overs)</div>
                     </div>
                 </div>
             </div>
@@ -121,11 +121,11 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
                 <div style="display: none" id="extra-sessions">
                     <div class="clickable-button disabled" id='c2' style="margin-left: 0.6rem;margin-right: 0.3rem" onclick="redirect_to('Cricket/place_bid/session/index.php?session=c2&room=1')">
                         <div style="display: block">Session 3</div>
-                        <div style="text-decoration: none; color: inherit;">(11-16 overs)</div>
+                        <div style="text-decoration: none; color: inherit;">(11-15 overs)</div>
                     </div>
                     <div class="clickable-button disabled" id='d2' style="margin-left: 0.3rem;margin-right: 0.6rem" onclick="redirect_to('Cricket/place_bid/session/index.php?session=d2&room=1')">
                         <div style="display: block">Session 4</div>
-                        <div style="text-decoration: none; color: inherit;">(17-20 overs)</div>
+                        <div style="text-decoration: none; color: inherit;">(16-20 overs)</div>
                     </div>
                 </div>
             </div>

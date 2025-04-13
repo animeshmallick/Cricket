@@ -360,12 +360,12 @@ function enable_session_buttons(scorecard){
     else
         document.getElementById('b1').classList.add('disabled');
 
-    if (scorecard.balls_played > 54 && scorecard.balls_played < 90 && scorecard.innings === 1)
+    if (scorecard.balls_played > 54 && scorecard.balls_played < 84 && scorecard.innings === 1)
         document.getElementById('c1').classList.remove('disabled');
     else
         document.getElementById('c1').classList.add('disabled');
 
-    if (scorecard.balls_played > 90 && scorecard.balls_played < 114 && scorecard.innings === 1)
+    if (scorecard.balls_played > 84 && scorecard.balls_played < 114 && scorecard.innings === 1)
         document.getElementById('d1').classList.remove('disabled');
     else
         document.getElementById('d1').classList.add('disabled');

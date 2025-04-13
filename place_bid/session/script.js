@@ -150,7 +150,7 @@ function update_session_slots(update_selected){
     const match_id = getCookie('match_id');
     const amount = document.getElementById('bidSlider').value;
     const url = `${window.location.protocol}//${window.location.hostname}/Cricket/internal/GetSessionSlotDetails.php?series_id=${series_id}&match_id=${match_id}&session=${session}&room=${room}&amount=${amount}`;
-    fetch(url)
+    fetchWrapper(url)
         .then(response => response.json())
         .then(data => {
             if(data.hasOwnProperty('error')){

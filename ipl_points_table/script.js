@@ -1,5 +1,5 @@
 function fill_ipl_points_table() {
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_ipl_points_table",
+    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_ipl_points_table",
         {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
         .then(data => {

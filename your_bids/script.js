@@ -1,20 +1,20 @@
 function fill_bids() {
     const ref_id = getCookie('ref_id');
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session",
+    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session",
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => {
-            fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/winner",
+            fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/winner",
                 {method: "GET", headers: {"ref_id": ref_id}})
                 .then(response => response.json())
                 .then(response => data.concat(response))
                 .then(data => {
-                    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/special",
+                    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/special",
                         {method: "GET", headers: {"ref_id": ref_id}})
                         .then(response => response.json())
                         .then(response => data.concat(response))
                         .then(data => {
-                            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${getCookie('series_id')}/${getCookie('match_id')}`,
+                            fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${getCookie('series_id')}/${getCookie('match_id')}`,
                                 {method: "GET", headers: {"ref_id": ref_id}})
                                 .then(response => response.json())
                                 .then(score => score.teams)

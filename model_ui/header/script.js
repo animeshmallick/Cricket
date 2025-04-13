@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     if(getCookie('user_type') === 'admin'){
-        fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any",
+        fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any",
             {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
             .then(response => response.json())
             .then(data => {

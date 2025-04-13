@@ -64,11 +64,11 @@ document.addEventListener('click', function(e) {
     }
 });
 async function fill_header(){
-    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/header/`)
+    fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/header/`)
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .then(async () => {
             const ref_id = getCookie('ref_id');
-            fetch('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id,
+            fetchWrapper('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id,
                 {method: "GET", headers: {"ref_id": ref_id}})
                 .then(async response => {return await response.json()})
                 .then(async balance => {
@@ -82,7 +82,7 @@ async function fill_header(){
         .catch(error => console.log(error));
 }
 async function fill_footer(){
-    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/footer/`)
+    fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/footer/`)
         .then(async response => document.getElementById('footer').innerHTML = await response.text())
         .catch(error => console.log(error));
 }
@@ -110,10 +110,10 @@ function logout(){
 function fill_scorecard(){
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
-    fetch(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
+    fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
         .then(async () => {
-            fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`,
+            fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`,
                 {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
                 .then(async response => {return await response.json()})
                 .then(async score => {
@@ -394,7 +394,7 @@ function enable_session_buttons(scorecard){
     //else
     //    document.getElementById('special').classList.add('disabled');
 
-    fetch(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`,
+    fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`,
         {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(async response => {
             return await response.json();
@@ -519,7 +519,7 @@ function openScorecardPopup(team) {
     const overlay = document.querySelector(".overlay");
     modal.innerHTML = `<div class="title" style="font-size:2rem">Loading Player Details</div>`
     const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_detailed_score/"+getCookie('series_id')+"/"+getCookie('match_id');
-    fetch(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+    fetchWrapper(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
         .then(data => {
             let batsmen = data[team+'_batsmen'];
@@ -562,4 +562,20 @@ function closeScorecardPopup() {
 function formatted_status(status){
     return status.replace(/c ([A-Za-z]+) ([A-Za-z]+) /g, (match, first, last) => `c ${first.charAt(0)}.${last} `)
         .replace(/b ([A-Za-z]+) ([A-Za-z]+)/g, (match, first, last) => `b ${first.charAt(0)}.${last}`);
+}
+async function fetchWrapper(url, options, retries = 3, delay = 1000) {
+    for (let i = 0; i < retries; i++) {
+        try {
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response;
+        } catch (error) {
+            console.error(`Attempt ${i + 1} failed: ${error.message}`);
+            if (i < retries - 1) {
+                await new Promise(resolve => setTimeout(resolve, delay));
+            }
+        }
+    }
 }

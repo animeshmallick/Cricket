@@ -7,7 +7,7 @@ async function validateForm(event) {
 
     // Simple validation (you can add more complex validation)
     const loginUrl = `https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/login/${phone}/${password}`;
-    fetch(loginUrl, {method: "GET", headers: {"ref_id": "Guest"}})
+    fetchWrapper(loginUrl, {method: "GET", headers: {"ref_id": "Guest"}})
         .then(response => response.json())
         .then(response => {
             if (response.hasOwnProperty("ref_id")) {

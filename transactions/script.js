@@ -1,6 +1,6 @@
 function fill_recharges() {
     const ref_id = getCookie('ref_id');
-    fetch("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_recharges/" + ref_id,
+    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_recharges/" + ref_id,
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => fill_recharges_content(data))

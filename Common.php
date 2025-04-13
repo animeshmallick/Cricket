@@ -578,7 +578,6 @@ class Common
             $x -= 75;
         if($count > 12)
             $x -= 100;
-        echo $x." ".$a." ".$b." ".$count." ".$amount." ".$flag."<br>";
 
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);

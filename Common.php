@@ -158,7 +158,10 @@ class Common
                     $ai++;
                 }
             }
-            $a /= $ai;
+            if($ai > 0)
+                $a /= $ai;
+            else
+                $a = 0;
             $bi = 0;
             for ($i = $r + 1; $i < min(count($book->runs),$r+36); $i++) {
                 $tmp = $book->runs[$i];
@@ -167,7 +170,10 @@ class Common
                     $bi++;
                 }
             }
-            $b /= $bi;
+            if($bi > 0)
+                $b /= $bi;
+            else
+                $b = 0;
         }
         $rates = $this->calculate_rates($x, $a, $b, $book->count ?? 0, $amount, true);
         return $rates;

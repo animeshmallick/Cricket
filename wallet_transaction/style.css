@@ -9,13 +9,21 @@
 h2 {
     margin-bottom: 20px;
 }
-select, input {
+select {
     width: 100%;
     padding: 0.75rem;
     margin: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 1rem;
     background-color: #b9f6b1;
+}
+input {
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    background-color: #ffffff;
 }
 div.tran_status {
     margin-top: 0.5rem;

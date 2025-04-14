@@ -100,21 +100,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <?php foreach ($accounts as $account){ ?>
         <div class="promotion-card-container">
             <div class="title" style="font-size: 1.5rem"><?= $account['name'] ?></div>
-            <div class="card">
-                <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Added ₹<?= floor($account['total_added']) ?></div>
-            </div>
-            <div class="card">
-                <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Withdrawn ₹<?= floor($account['total_withdrawn']) ?></div>
-            </div>
-            <div class="card">
-                <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Matches Played <?= $account['matches_played'] ?></div>
-            </div>
-            <div class="card">
-                <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Bid Placed ₹<?= floor($account['total_bid_placed_amount']) ?></div>
-            </div>
-            <div class="card">
-                <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Winnings ₹<?= floor($account['total_bid_win_amount']) ?></div>
-            </div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Phone : <?= $account['phone'] ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Balance : <?= $account['balance'] ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Added ₹<?= floor($account['total_added']) ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Withdrawn ₹<?= floor($account['total_withdrawn']) ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Matches Played <?= $account['matches_played'] ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Bid Placed ₹<?= floor($account['total_bid_placed_amount']) ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Total Winnings ₹<?= floor($account['total_bid_win_amount']) ?></div>
+            <div class="sub-title" style="text-align: left; padding: 0.25rem 0.1rem">Profit : <?= $account['total_profit'] ?></div>
         </div>
         <div class="separator"></div>
         <div class="gap"></div>

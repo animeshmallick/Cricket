@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     }
     foreach ($bids as $bid) {
         if ($bid->status == "win")
-            $total_bid_placed_amount += (1 + $bid->rate) * $bid->amount;
+            $total_bid_win_amount += (1 + $bid->rate) * $bid->amount;
         $total_bid_placed_amount += $bid->amount;
         $unique_matches_played[] = $bid->series_id . '&&' . $bid->match_id;
     }
@@ -95,10 +95,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         </div>
         <div class="separator"></div>
         <div class="card">
+            <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Matches Played <?= count($unique_matches_played) ?> (<?= floor(count($unique_matches_played)*5)?>%)</div>
+        </div>
+        <div class="card">
             <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Total Bid Placed ₹<?= floor($total_bid_placed_amount) ?> (<?= floor($total_bid_placed_amount/250)?>%)</div>
         </div>
         <div class="card">
-            <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Matches Played <?= count($unique_matches_played) ?> (<?= floor(count($unique_matches_played)*5)?>%)</div>
+            <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Total Winnings ₹<?= floor($total_bid_win_amount) ?></div>
         </div>
         <div class="separator"></div>
         <div class="change-session-btn" style="margin-bottom: 0.25rem">

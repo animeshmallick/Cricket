@@ -377,6 +377,11 @@ class Common
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users";
         return json_decode($this->get_response_from_url($url));
     }
+    public function get_all_users_with_balance()
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true";
+        return json_decode($this->get_response_from_url($url));
+    }
     public function get_all_matches(): array
     {
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches';

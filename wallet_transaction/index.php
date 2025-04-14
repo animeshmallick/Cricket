@@ -106,8 +106,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <script>
         document.getElementById('ticket_form').addEventListener('submit', function (e){
             let amount = parseInt(document.forms['ticket_form']['amount'].value);
-            if (amount < 100){
-                alert("Minimum Amount is ₹100");
+            if (amount < 100 || amount > 1000){
+                alert("Minimum Amount is ₹100 and maximum amount is ₹1000");
                 e.preventDefault();
             }
             if(document.getElementById('transaction_type').value === 'withdraw' && open_withdrawal_ticket !== null){

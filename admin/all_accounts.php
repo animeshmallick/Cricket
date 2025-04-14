@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
 
     $accounts = array();
     foreach ($users as $user) {
-        if ($user->status == 'active' && $user->type == 'user') {
+        if ($user->status == 'active' && $user->type != 'admin') {
             $ref_id = $user->ref_id;
             $tickets = $common->get_tickets($ref_id);
             $bids = $common->get_bids($ref_id);

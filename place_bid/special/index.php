@@ -12,7 +12,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
         $common->redirect_to('Cricket/place_bid/special/index.php?room='.$room.'&question_id='.$question_id);
     }else{
     $question_id = $_GET['question_id'];
-    $amount_min = $room == 1 ? 1 : ($room == 2 ? 501 : 1501);
+    $amount_min = $room == 1 ? 10 : ($room == 2 ? 501 : 1501);
     $amount_max = $room == 1 ? 500 : ($room == 2 ? 1500 : 2500);
     $amount_default = $room == 1 ? 100 : ($room == 2 ? 700 : 2000);
     if (isset($_GET['amount']))

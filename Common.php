@@ -604,4 +604,25 @@ class Common
 
         return [min($r1, 1), min($r2, 1)];
     }
+
+    public function get_tickets(string $ref_id)
+    {
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/" . $ref_id;
+        return json_decode($this->get_response_from_url($url));
+    }
+
+    public function get_bids(string $ref_id): array
+    {
+        $all_bids = [];
+
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" . $ref_id . "/session";
+        $bids = json_decode($this->get_response_from_url($url));
+        $all_bids = array_merge($all_bids, $bids);
+
+        $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" . $ref_id . "/winner";
+        $bids = json_decode($this->get_response_from_url($url));
+        $all_bids = array_merge($all_bids, $bids);
+
+        return $all_bids;
+    }
 }

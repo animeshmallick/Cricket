@@ -1,0 +1,19 @@
+div.change-session-btn {
+    background: linear-gradient(90deg, #edcf08, #f43c05);
+    width: 90%;
+    font-weight: bold;
+    color: black;
+    padding: 0.5rem 1rem;
+    font-size: 1.3rem;
+    border-radius: 1rem;
+    border: none;
+    margin-top: 0.75rem;
+    margin-left: 5%;
+    text-align: center;
+}
+div.promotion-card-container {
+    border-radius: 1rem;
+    background: linear-gradient(90deg, #1cb604, turquoise);
+    margin: 1rem 0.5rem;
+    padding: 1rem 0;
+}

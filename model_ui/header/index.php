@@ -3,6 +3,7 @@
     $common = new Common();
     $header_sub_text = "Hi, " . $common->get_cookie('fname') . " " . $common->get_cookie('lname');
 ?>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <div class="navbar">
     <div id='side-bar-icon' class="hamburger" onclick="w3_open()">&#9776;</div>
     <div style="display: flex; justify-content: space-between; width: 100%">
@@ -27,6 +28,7 @@
         <button class="nav-link" onclick="redirect_to('Cricket/')">Home</button>
         <button class="nav-link" onclick="redirect_to('Cricket/profile/')">Profile</button>
         <button class="nav-link" onclick="redirect_to('Cricket/transactions/')">My Transactions</button>
+        <button class="nav-link" onclick="redirect_to('Cricket/account/')">Account</button>
         <?php if($common->get_cookie('match_id') != "" && $common->get_cookie('series_id') != ""){?>
             <button class="nav-link" onclick="redirect_to('Cricket/your_bids/')">Your Bids</button>
         <?php }?>
@@ -48,6 +50,11 @@
             <div class="sub-title">Agents Only</div>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Transfer Balance</button>
         <?php }?>
+        <button class="nav-link">
+            <a href="https://wa.me/919153217256?text=Hello%20!" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-whatsapp" style="font-size: 1.5rem; color: green;"></i> Contact US
+            </a>
+        </button>
         <button class="nav-link" onclick="logout();">Logout</button>
         <div class="separator"></div>
         <a class="nav-link" onclick="w3_close()">Close</a>

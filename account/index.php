@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     $unique_matches_played = array_unique($unique_matches_played);
     $eligible_for_promotion = false;
     if (count($unique_matches_played) >= 20 && $total_added > 2000 && $total_withdrawn > 1000 &&
-        $total_bid_placed_amount > 25000 &&$total_added * 0.75 > $total_withdrawn && !isset($user->promotion_id))
+        $total_bid_placed_amount > 12500 &&$total_added * 0.75 > $total_withdrawn && !isset($user->promotion_id))
             $eligible_for_promotion = true;
     ?>
     <html lang="en">
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
             <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Matches Played <?= count($unique_matches_played) ?> (<?= floor(count($unique_matches_played)*5)?>%)</div>
         </div>
         <div class="card">
-            <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Total Bid Placed ₹<?= floor($total_bid_placed_amount) ?> (<?= floor($total_bid_placed_amount/250)?>%)</div>
+            <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Total Bid Placed ₹<?= floor($total_bid_placed_amount) ?> (<?= floor($total_bid_placed_amount/125)?>%)</div>
         </div>
         <div class="card">
             <div class="sub-title" style="text-align: left; padding: 0.75rem 0.3rem">Total Winnings ₹<?= floor($total_bid_win_amount) ?></div>

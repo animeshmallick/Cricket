@@ -43,7 +43,7 @@
             <button class="nav-link" onclick="redirect_to('Cricket/admin/all_users.php')">Customers</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/all_accounts.php')">Accounts</button>
             <button class="nav-link" onclick="redirect_to('Cricket/admin/activate_user.php')">Activate User</button>
-            <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Recharge Wallet</button>
+            <!-- <button class="nav-link" onclick="redirect_to('Cricket/admin/recharge.php')">Recharge Wallet</button> -->
             <button class="nav-link" onclick="redirect_to('Cricket/admin/view_tickets.php')">Tickets</button>
             <div class="separator"></div>
         <?php }

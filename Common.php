@@ -573,7 +573,8 @@ class Common
 
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
-        $x -= min($x * $count == 0 ? 0.3 : (0.03 * $count), 300);
+        //$x -= min($x * $count == 0 ? 0.3 : (0.03 * $count), 300);
+        $x -= min($x * 0.3, 300);
 
         if($count > 2 && $count < 6)
             $x -= 25;

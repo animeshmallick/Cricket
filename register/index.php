@@ -57,8 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' &&
                 <input type="password" id="password" name="password" placeholder="Password" required>
                 <label class="label" for="confirm_password">Confirm Password:</label>
                 <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
-                <label class="label" for="parent_ref_id">Referral Code:</label>
-                <input type="number" id="parent_ref_id" name="parent_ref_id" placeholder="Referral Code (if any)">
                 <input type="number" id="ref_id" name="ref_id" value="<?php echo get_unique_ref_id($common); ?>" readonly required hidden="hidden">
                 <input type="submit" class="button" value="Register">
             </form>
@@ -76,7 +74,7 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$common->is_user_logged_in())
     } else {
         $ref_id = $_POST['ref_id'];
         if ($common->insert_new_user($_POST['fname'], $_POST['lname'], $_POST['phone'], $_POST['password'],
-            $ref_id, 'pending', floatval($_POST['parent_ref_id']))) {
+            $ref_id, 'pending')) {
             $common->setCookie('user_ref_id', $ref_id);
             $common->setCookie('user_type', 'pending');
             $common->setCookie('fname', $_POST['fname']);

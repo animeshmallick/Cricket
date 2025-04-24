@@ -437,7 +437,7 @@ class Common
         return !isset(json_decode($this->get_response_from_url($url))->id);
     }
 
-    public function insert_new_user(mixed $fname, mixed $lname, mixed $phone, mixed $password, mixed $ref_id, string $status, float $parent_ref_id): bool
+    public function insert_new_user(mixed $fname, mixed $lname, mixed $phone, mixed $password, mixed $ref_id, string $status): bool
     {
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_new_user';
         $data = array(
@@ -448,8 +448,7 @@ class Common
             "phone" => $phone,
             "ref_id" => $ref_id,
             "status" => $status,
-            "type" => 'user',
-            "parent_ref_id" => $parent_ref_id
+            "type" => 'user'
         );
         $json_data = json_encode($data);
         $ch = curl_init($url);

@@ -38,8 +38,8 @@ class Scores {
         if($wkts >= 9)
             $factor = 0;
 
-        if($curr_rr > 12)
-            $factor = ($curr_rr - 12) / 2.0;
+        if($curr_rr > 11)
+            $factor = 0;
 
         return ($curr_rr + $factor) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);
     }

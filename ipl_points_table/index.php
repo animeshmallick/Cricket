@@ -62,7 +62,6 @@
             <th>L</th>
             <th>PTS</th>
             <th>RR</th>
-            <th>Form</th>
         </tr>
         </thead>
         <tbody id="pointsTable"></tbody>

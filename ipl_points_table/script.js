@@ -19,12 +19,10 @@ function fill_ipl_points_table() {
                 <td>${team.lost}</td>
                 <td style="font-weight: bold">${team.points}</td>
                 <td>${team.run_rate > 0 ? "+"+team.run_rate.toFixed(3):team.run_rate.toFixed(3)}</td>
-                <td class="form">${team.form.map(f => `<span class="${f}">${f}</span>`).join('')}</td>
             </tr>`;
                 tableBody.innerHTML += row;
                 i++;
             });
-            console.log('Points Table Displayed');
         })
         .catch(error => console.error('Error:', error));
 }

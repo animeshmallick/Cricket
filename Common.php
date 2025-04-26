@@ -151,11 +151,16 @@ class Common
         }else {
             $x = $book->collected;
             $ai = 0;
+            $flag = false;
             for ($i = min($r-36,0); $i < $r; $i++) {
                 $tmp = $book->runs[$i];
-                if ($tmp > 0){
+                if($tmp > 0){
                     $a += $tmp;
                     $ai++;
+                    $flag = true;
+                }else{
+                    if($flag)
+                        $ai++;
                 }
             }
             if($ai > 0)
@@ -163,11 +168,16 @@ class Common
             else
                 $a = 0;
             $bi = 0;
+            $flag = false;
             for ($i = $r + 1; $i < min(count($book->runs),$r+36); $i++) {
                 $tmp = $book->runs[$i];
-                if ($tmp > 0){
+                if($tmp > 0){
                     $b += $tmp;
                     $bi++;
+                    $flag = true;
+                }else{
+                    if($flag)
+                        $bi++;
                 }
             }
             if($bi > 0)

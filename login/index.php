@@ -34,6 +34,7 @@
             });
         }
     </script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" type = "text/css" href ="style.css?version=<?php echo time();?>">
     <link rel="stylesheet" type = "text/css" href ="../styles/style.css?version=<?php echo time();?>">
     <script src="script.js?version=<?php echo time();?>"></script>
@@ -60,6 +61,13 @@ if($common->is_user_logged_in()){
                 <p style="color:red;font-size: 1.5rem" id="message">
                     To activate your account send a Whatsapp/Text Message as "ACTIVATE <?php echo $response->ref_id; ?>" to +91 (9153217256) from your registered mobile number (<?php echo $response->phone; ?>).
                 </p>
+                <div class="register-link">
+                    <button class="button">
+                        <a class="link" href="https://wa.me/919153217256?text=ACTIVATE%20<?= $response->ref_id ?>" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem; color: green;"></i> Send Message
+                        </a>
+                    </button>
+                </div>
                 <div class="separator"></div>
                 <div class="register-link">
                     <button class="button"><a href="../index.php" class="link">Logout/Home</a></button>

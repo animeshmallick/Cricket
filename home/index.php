@@ -55,7 +55,20 @@ if(!$common->is_user_logged_in()){
     <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
     <script src="script.js?version=<?php echo time();?>"></script>
 </head>
-<body onload="fill_header();fill_footer(); triggerPartyPopper()">
+<body onload="fill_header();fill_footer(); triggerPartyPopper(); show_banner()">
+<div class="banner" id="banner">
+    <div class="title">Notice</div>
+    <div style="display: flex">
+        <div style="display: block; width: 90%">
+            <ol>
+                <li>Add Money and get 25% extra bonus</li>
+                <div class="separator"></div>
+                <li>Offer valid only for today</li>
+            </ol>
+        </div>
+        <button style="width: 10%" class="close-banner" onclick="closeBanner()">✖ <span id="banner_time"></span></button>
+    </div>
+</div>
     <div id="header"></div>
     <section id="matches" class="matches">
         <div class="container">

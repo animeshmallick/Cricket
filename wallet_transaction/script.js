@@ -78,14 +78,14 @@ function update_ticket_amount(ticket_id, updatedAmount){
         .catch(error => console.error('Error:', error));
 }
 function validate_ticket_form(){
+    let trans_type = document.getElementById('transaction_type').value
     let amount = parseInt(document.forms['ticket_form']['amount'].value);
     let payment_mode = document.querySelector('input[name="payment_mode"]:checked').value;
     if (amount < 100 || amount > 1000){
         alert("Minimum Amount is ₹100 and maximum amount is ₹1000");
         return false;
     }
-    console.log(payment_mode);
-    if(payment_mode === 'paynow') {
+    if(payment_mode === 'paynow' && trans_type === 'add') {
         const ref_id = getCookie('ref_id');
         const upi_link = `upi://pay?pa=9934311887@ybl&pn=Animesh&am=${amount}&cu=INR&tn=${ref_id}`;
         const link = document.createElement('a');
@@ -96,11 +96,11 @@ function validate_ticket_form(){
         link.click();
         return false;
     }
-    if (document.getElementById('transaction_type').value === 'withdraw' && open_withdrawal_ticket !== null) {
+    if (trans_type === 'withdraw' && open_withdrawal_ticket !== null) {
         alert("Open Tickets available. Please update the existing open ticket");
         return false;
     }
-    if (document.getElementById('transaction_type').value === 'add' && open_add_ticket !== null){
+    if (trans_type === 'add' && open_add_ticket !== null){
         alert("Open Tickets available. Please update the existing open ticket");
         return false;
     }

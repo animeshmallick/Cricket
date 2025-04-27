@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const matchList = document.getElementById('match-list');
     fetchWrapper('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches',
         {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
         .then(response => response.json())
@@ -13,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 // Function to create match cards
 function createMatchCard(match) {
+    const matchList = document.getElementById('match-list');
     if (match.series_id.includes('dummy') && match.match_id.includes('dummy') && getCookie('user_type') !== 'admin') {
         return;
     }
@@ -100,6 +100,5 @@ function closeBanner() {
     document.getElementById("banner").style.display = 'none';
 }
 function show_banner() {
-    if(Math.floor(Math.random() * 1000) % 8 === 0)
-        document.getElementById("banner").style.display = 'block';
+    document.getElementById("banner").style.display = 'block';
 }

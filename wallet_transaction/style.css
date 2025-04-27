@@ -63,3 +63,63 @@ button.edit-ticket-btn {
 div.large-gap {
     height: 1rem;
 }
+
+.payment-options {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+.radio-option {
+    position: relative;
+    padding-left: 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    user-select: none;
+    color: #333;
+}
+
+.radio-option input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-radio {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    height: 22px;
+    width: 22px;
+    background-color: #e0e0e0;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.radio-option input:checked ~ .custom-radio {
+    background-color: #4CAF50;
+}
+
+.custom-radio::after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.radio-option input:checked ~ .custom-radio::after {
+    display: block;
+}
+
+.radio-option .custom-radio::after {
+    top: 6px;
+    left: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+}

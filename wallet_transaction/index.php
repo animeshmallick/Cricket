@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div id="header"></div>
     <div class="main_container">
         <div class="sub-title">My Wallet Transaction</div>
-        <form action="index.php" method="POST" name='ticket_form' id="ticket_form">
+        <form action="index.php" method="POST" name='ticket_form' id="ticket_form" onsubmit="return validate_ticket_form()">
             <div class="container">
                 <div class="sub-title" id="max_withdraw_div" style="display: none">Max Amount To Withdraw ₹<span id="max_withdraw_amount"></span></div>
                 <div class="separator"></div>
@@ -80,6 +80,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
                     <option value="withdraw">Withdraw</option>
                 </select>
                 <input type="number" name="amount" placeholder="Enter amount" required>
+                <div class="payment-options">
+                    <label class="radio-option">Pay Now
+                        <input type="radio" name="payment_mode" value="paynow" checked>
+                        <span class="custom-radio"></span>
+                    </label>
+                    <label class="radio-option">Pay Later
+                        <input type="radio" name="payment_mode" value="paylater">
+                        <span class="custom-radio"></span>
+                    </label>
+                </div>
                 <button class="button" id='create-ticket-btn' type="submit">Add Money</button>
             </div>
         </form>
@@ -103,29 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
     <div class="separator"></div>
     <div id="footer"></div>
     </body>
-    <script>
-        document.getElementById('ticket_form').addEventListener('submit', function (e){
-            let amount = parseInt(document.forms['ticket_form']['amount'].value);
-            if (amount < 100 || amount > 1000){
-                alert("Minimum Amount is ₹100 and maximum amount is ₹1000");
-                e.preventDefault();
-            }
-            if(document.getElementById('transaction_type').value === 'withdraw' && open_withdrawal_ticket !== null){
-                alert("Open Tickets available. Please update the existing open ticket");
-                e.preventDefault();
-            }
-            if(document.getElementById('transaction_type').value === 'add' && open_add_ticket !== null){
-                alert("Open Tickets available. Please update the existing open ticket");
-                e.preventDefault();
-            }
-            let type = document.forms['ticket_form']['transaction_type'].value;
-            let max_withdraw_amount = parseInt(document.getElementById('max_withdraw_amount').innerHTML);
-            if (type === 'withdraw' && amount > max_withdraw_amount){
-                alert("Maximum Withdraw Amount is ₹"+max_withdraw_amount);
-                e.preventDefault();
-            }
-        });
-    </script>
     </html>
 <?php } else if($_SERVER['REQUEST_METHOD'] === 'POST' && $common->is_user_logged_in()) {
     $transaction_id = intval($_POST['transaction_id']);

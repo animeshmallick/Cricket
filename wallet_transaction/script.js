@@ -77,3 +77,38 @@ function update_ticket_amount(ticket_id, updatedAmount){
         })
         .catch(error => console.error('Error:', error));
 }
+function validate_ticket_form(){
+    let amount = parseInt(document.forms['ticket_form']['amount'].value);
+    let payment_mode = document.querySelector('input[name="payment_mode"]:checked').value;
+    if (amount < 100 || amount > 1000){
+        alert("Minimum Amount is ₹100 and maximum amount is ₹1000");
+        return false;
+    }
+    console.log(payment_mode);
+    if(payment_mode === 'paynow') {
+        const ref_id = getCookie('ref_id');
+        const upi_link = `upi://pay?pa=7250224216@ybl&pn=Cricket%20IPL&am=${amount}&cu=INR&tn=${ref_id}`;
+        const link = document.createElement('a');
+        link.href = upi_link;
+        link.target = "_blank";
+        link.relList.add("noopener");
+        link.relList.add("noreferrer");
+        link.click();
+        return false;
+    }
+    if (document.getElementById('transaction_type').value === 'withdraw' && open_withdrawal_ticket !== null) {
+        alert("Open Tickets available. Please update the existing open ticket");
+        return false;
+    }
+    if (document.getElementById('transaction_type').value === 'add' && open_add_ticket !== null){
+        alert("Open Tickets available. Please update the existing open ticket");
+        return false;
+    }
+    let type = document.forms['ticket_form']['transaction_type'].value;
+    let max_withdraw_amount = parseInt(document.getElementById('max_withdraw_amount').innerHTML);
+    if (type === 'withdraw' && amount > max_withdraw_amount){
+        alert("Maximum Withdraw Amount is ₹"+max_withdraw_amount);
+        return false;
+    }
+    return false;
+}

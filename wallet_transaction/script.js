@@ -87,7 +87,7 @@ function validate_ticket_form(){
     console.log(payment_mode);
     if(payment_mode === 'paynow') {
         const ref_id = getCookie('ref_id');
-        const upi_link = `upi://pay?pa=7250224216@ybl&pn=Cricket%20IPL&am=${amount}&cu=INR&tn=${ref_id}`;
+        const upi_link = `upi://pay?pa=9934311887@ybl&pn=Animesh&am=${amount}&cu=INR&tn=${ref_id}`;
         const link = document.createElement('a');
         link.href = upi_link;
         link.target = "_blank";

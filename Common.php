@@ -584,7 +584,7 @@ class Common
     private function calculate_rates($x, $a, $b, $count, $amount, $flag): array
     {
         //$x -= min($x * $count == 0 ? 0.3 : (0.05 * $count), 300);
-        $x -= min($x * 0.3, 300);
+        $x -= min($x * 0.25, 500);
 
         /*
         if($count > 2 && $count < 6)
@@ -600,17 +600,17 @@ class Common
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);
 
-        $r1=max(min($ga/$amount,1.2),0);
-        $r2=max(min($gb/$amount,1.2),0);
+        $r1=max(min($ga/$amount,1.25),0);
+        $r2=max(min($gb/$amount,1.25),0);
 
         try {
             if ($r1 + $r2 < 0.25 && $flag) {
                 $flag = !$flag;
                 return $this->calculate_rates($x + min($amount * 0.5, 50), $a, $b, $count, $amount, $flag);
             } else if($r1 == 0 && $r2 == 0 && !$flag){
-                return [0.2, 0.2];
-            } else if ($r1 + $r2 > 1.2) {
-                $f = 1.2 / ($r1 + $r2);
+                return [0.25, 0.25];
+            } else if ($r1 + $r2 > 1.5) {
+                $f = 1.5 / ($r1 + $r2);
             } else {
                 $f = 1;
             }
@@ -620,7 +620,7 @@ class Common
         $r1 *= $f;
         $r2 *= $f;
 
-        return [min($r1, 1), min($r2, 1)];
+        return [min($r1, 1.25), min($r2, 1.25)];
     }
 
     public function get_tickets(string $ref_id)

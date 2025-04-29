@@ -478,6 +478,9 @@ if(balls != null) {
     });
 }
 const parseDate = (dateStr) => {
+    if(typeof dateStr === 'object')
+        dateStr = dateStr[dateStr.length - 1];
+
     if (dateStr && dateStr.includes(", ") && dateStr.includes("/") && dateStr.includes(":")) {
         const [datePart, timePart] = dateStr.split(", ");
         const [day, month, year] = datePart.split("/").map(Number);

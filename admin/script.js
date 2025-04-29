@@ -206,8 +206,9 @@ function fill_user_card_content(users, sort){
     let total_withdraw_balance = 0;
     if(sort)
         users.sort((a, b) => (b.balance) - (a.balance));
-    else
+    else{
         users.sort((a, b) => parseDate(b.last_login) - parseDate(a.last_login));
+    }
 
     const usersContainer = document.getElementById("usersContainer");
     usersContainer.innerHTML = "";
@@ -241,11 +242,11 @@ function fill_user_card_content(users, sort){
             <div class="tran_status type">Type: ${user.type}</div>
             <div class="tran_status">Activated By: ${user.activated_by}</div>
             <div class="separator"></div>
-            <div class="tran_status">Last Login At: ${user.last_login}</div>
+            <div class="tran_status">Last Login At: ${typeof user.last_login === 'object' ? user.last_login[user.last_login.length - 1] : user.last_login}</div>
         `;
         const today = new Date();
         const formattedDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
-        if(user.last_login && user.last_login.toString().length > 0 && user.last_login.toString().includes(formattedDate)){
+        if(typeof user.last_login === 'object' && user.last_login[user.last_login.length - 1].toString().includes(formattedDate)){
             cardInner.classList.add('active-user');
         }
         if(user.ref_id !== getCookie('ref_id')) {

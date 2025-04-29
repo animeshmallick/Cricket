@@ -487,7 +487,7 @@ const parseDate = (dateStr) => {
 };
 
 //Refresh the AUTH cookies and extend time by 1hr if user is active
-['ref_id', 'fname', 'lname', 'user_type'].forEach(cookie => {
+['ref_id', 'fname', 'lname', 'user_type', 'session_id'].forEach(cookie => {
     if (getCookie(cookie) !== null)
     setCookie(cookie, getCookie(cookie))
 });

@@ -226,7 +226,7 @@ class Common
 
     public function insert_new_session_bid_to_db(int $bid_id, string $ref_id, string $series_id, string $match_id, string $session,
                                                  string $slot, int $runs_min, int $runs_max, float $rate, float $amount,
-                                                 string $bid_name, string $room): bool|string
+                                                 string $bid_name, string $room, string $session_id): bool|string
     {
         if ($rate == null)
             return false;
@@ -246,7 +246,8 @@ class Common
             "status" => "placed",
             'type' => 'session',
             'bid_name' => $bid_name,
-            'room' => $room
+            'room' => $room,
+            'session_id' => $session_id
         );
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);

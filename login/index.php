@@ -81,6 +81,7 @@ if($common->is_user_logged_in()){
             $common->setCookie("fname", $response->fname);
             $common->setCookie("lname", $response->lname);
             $common->setCookie("user_type", $response->type);
+            $common->setCookie('session_id', $response->session);
             $common->redirect_to('Cricket/');
         }
     }else{

@@ -92,8 +92,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             $run_min = $slot == 'x' ? 0 : ($slot == 'y' ? $bid_bookie_response->predicted_runs + 1 : 999);
             $run_max = $slot == 'x' ? $bid_bookie_response->predicted_runs - 1 : ($slot == 'y' ? 999 : 0);
             $ref_id = $common->get_cookie('ref_id');
+            $session_id = $common->get_cookie('session_id');
             $bid_place_response = $common->insert_new_session_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $session,
-                $slot, $run_min, $run_max, $rate, $amount, $bid_name, $room);
+                $slot, $run_min, $run_max, $rate, $amount, $bid_name, $room, $session_id);
             $bid_place_response = json_decode($bid_place_response);
             if($bid_place_response != null && $bid_place_response->recharge_status){
                 $status = true;

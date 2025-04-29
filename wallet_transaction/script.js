@@ -98,5 +98,5 @@ function validate_ticket_form(){
         alert("Maximum Withdraw Amount is ₹"+max_withdraw_amount);
         return false;
     }
-    return false;
+    return true;
 }

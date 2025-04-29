@@ -44,32 +44,15 @@ function createMatchCard(match) {
     left_div.classList.add('left-div');
     top_div.appendChild(left_div);
 
-    const right_div = document.createElement('div');
-    right_div.classList.add('right-div');
-    right_div.style.overflow = 'hidden';
-    top_div.appendChild(right_div);
-
-    const cover_image = document.createElement('img');
-    cover_image.src = `../images/cover/${match.cover_img}.png`;
-    cover_image.style.width = '11rem';
-    cover_image.style.height = '4rem';
-    cover_image.style.borderRadius = '0.5rem';
-    cover_image.style.objectFit = 'cover';
-    cover_image.onerror = function (){
-        this.src = `../images/cover/ipl.png`;
-        this.onerror = null;
-    };
-    cover_image.alt = 'Cover Image';
-    right_div.appendChild(cover_image);
-
     const teams = document.createElement('div');
     teams.classList.add('team_name');
     teams.textContent = match.teams.join(' vs ');
     left_div.appendChild(teams);
 
-    const score = document.createElement('span');
+    const score = document.createElement('div');
     score.style.fontSize = '0.85rem';
-    score.textContent = `${match.score.replaceAll('null', '0').replaceAll('(20)', '')}`;
+    score.style.textAlign = 'center';
+    score.innerHTML = `${match.score.replaceAll('null', '0').replaceAll('(20)', '')}`;
     left_div.appendChild(score);
 
     const match_details_div = document.createElement('div');

@@ -98,10 +98,7 @@ div.team_name {
     opacity: 1; /* Ensure the card is fully visible on hover */
 }
 div.left-div {
-    width: 50%;
-}
-div.right-div {
-    width: 52%;
+    width: 100%;
 }
 div.match-details {
     font-size: 1.2rem;
@@ -110,6 +107,7 @@ div.match-details {
     padding-left: 0.25rem;
     background: linear-gradient(90deg, indigo, plum);
     animation: breathe 1s infinite ease-in-out;
+    text-align: center;
 }
 canvas {
     position: absolute;

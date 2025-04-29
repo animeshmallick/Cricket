@@ -103,6 +103,7 @@ function logout(){
         delete_cookie('ghost_fname');
         delete_cookie('ghost_lname');
         delete_cookie('ghost_mode');
+        delete_cookie('session_id');
         redirect_to('Cricket/');
         console.log('logout');
     }

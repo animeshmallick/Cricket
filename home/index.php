@@ -61,7 +61,7 @@ if(!$common->is_user_logged_in()){
     <div style="display: flex">
         <div style="display: block; width: 90%">
             <ol>
-                <li>Add Money and get 25% extra bonus</li>
+                <li>Add Money and get 25% extra bonus (upto ₹100)</li>
                 <div class="separator"></div>
                 <li>Offer valid only for today</li>
             </ol>

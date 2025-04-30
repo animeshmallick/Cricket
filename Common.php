@@ -328,7 +328,7 @@ class Common
     }
 
     public function insert_new_winner_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $slot,
-                                                $rate, $amount, $bid_name, $room): bool|string
+                                                $rate, $amount, $bid_name, $room, $session_id): bool|string
     {
         $bid_data = array(
             "id" => $bid_id,
@@ -342,7 +342,8 @@ class Common
             "status" => "placed",
             'type' => 'winner',
             'bid_name' => $bid_name,
-            'room' => $room
+            'room' => $room,
+            'session_id' => $session_id
         );
         $url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/save_user_bid';
         $json_bid_data = json_encode($bid_data);

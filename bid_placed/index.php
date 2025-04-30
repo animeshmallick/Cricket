@@ -124,8 +124,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             $team = $slot == 'x' ? $bid_bookie_response->team_a : ($slot == 'y' ? $bid_bookie_response->team_b : '0');
             $ref_id = $common->get_cookie('ref_id');
             $refund = 0;
+            $session_id = $common->get_cookie('session_id');
             $bid_place_response = $common->insert_new_winner_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $slot,
-                $rate, $amount, $bid_name, $room);
+                $rate, $amount, $bid_name, $room, $session_id);
             $bid_place_response = json_decode($bid_place_response);
             if ($bid_place_response->recharge_status) {
                 $status = true;

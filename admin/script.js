@@ -217,11 +217,13 @@ function fill_user_card_content(users, sort){
     div.textContent = "Total Users : " + users.length;
     usersContainer.appendChild(div);
     users.forEach((user) => {
-        console.log(user.fname+' '+user.referral_from)
+        let withdraw_balance = user.balance;
         if (user.type !== 'admin') {
-            total_withdraw_balance = user.balance;
-            total_withdraw_balance -= user.hasOwnProperty('hold_amount') ? user.hold_amount : 0;
-            total_withdraw_balance -= 100;
+            withdraw_balance -= user.hasOwnProperty('hold_amount') ? user.hold_amount : 0;
+            withdraw_balance -= 100;
+            total_withdraw_balance += withdraw_balance;
+        }else{
+            withdraw_balance = 0;
         }
         const card = document.createElement("div");
         card.classList.add('card-inner');
@@ -235,7 +237,7 @@ function fill_user_card_content(users, sort){
             <div class="separator"></div>
             <div class="tran_status phone">Balance : ₹${user.balance}</div>
             <div class="tran_status">Hold Balance : ${user.hasOwnProperty('hold_amount') ? user.hold_amount : 0}</div>
-            <div class="tran_status">Max Withdraw Balance : ${total_withdraw_balance}</div>
+            <div class="tran_status">Max Withdraw Balance : ${withdraw_balance}</div>
             <div class="separator"></div>
             <div class="tran_status id">ID : ${user.ref_id}</div>
             <div class="tran_status status">Status : ${user.status}</div>

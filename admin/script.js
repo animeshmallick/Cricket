@@ -229,7 +229,6 @@ function fill_user_card_content(users, sort){
         cardInner.innerHTML = `
             <div class="tran_status name" style="font-weight: bold;font-size: 1.2rem">Name : ${user.fname + " " + user.lname}</div>
             <div class="tran_status phone">Phone : ${user.phone}</div>
-            <div class="tran_status">Password : ${user.password}</div>
             <div class="tran_status">Reffered To : ${user.referral_count === undefined ? 0 : user.referral_count} users</div>
             <div class="tran_status">Refferal From : ${user.referral_from}</div>
             <div class="separator"></div>

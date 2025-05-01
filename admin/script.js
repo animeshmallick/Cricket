@@ -219,8 +219,9 @@ function fill_user_card_content(users, sort){
     users.forEach((user) => {
         console.log(user.fname+' '+user.referral_from)
         if (user.type !== 'admin') {
-            total_withdraw_balance = Math.max(user.balance - (user.referral_count === undefined ? 0 : user.referral_count) * 50 - 100, 0);
+            total_withdraw_balance = user.balance;
             total_withdraw_balance -= user.hasOwnProperty('hold_amount') ? user.hold_amount : 0;
+            total_withdraw_balance -= 100;
         }
         const card = document.createElement("div");
         card.classList.add('card-inner');

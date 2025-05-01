@@ -221,6 +221,7 @@ function fill_user_card_content(users, sort){
         if (user.type !== 'admin') {
             withdraw_balance -= user.hasOwnProperty('hold_amount') ? user.hold_amount : 0;
             withdraw_balance -= 100;
+            withdraw_balance = Math.max(withdraw_balance, 0);
             total_withdraw_balance += withdraw_balance;
         }else{
             withdraw_balance = 0;

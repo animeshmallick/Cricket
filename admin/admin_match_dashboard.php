@@ -268,7 +268,7 @@ if ($common->is_user_logged_in() && $common->is_user_an_admin()){
             <?php } ?>
             <thead>
             <tr>
-                <th>Total</th>
+                <th>Total (<?= count($user_bids) ?>)</th>
                 <th><?php echo count($all_bids_session) + count($all_bids_winner) + count($all_bids_special)?></th>
                 <th><?php echo $total_c?></th>
                 <th><?php echo $total_d?></th>

@@ -218,10 +218,9 @@ function fill_user_card_content(users, sort){
     usersContainer.appendChild(div);
     users.forEach((user) => {
         console.log(user.fname+' '+user.referral_from)
-        let x = 0;
         if (user.type !== 'admin') {
-            x = Math.max(user.balance - (user.referral_count === undefined ? 0 : user.referral_count) * 50 - 100, 0);
-            total_withdraw_balance += x;
+            total_withdraw_balance = Math.max(user.balance - (user.referral_count === undefined ? 0 : user.referral_count) * 50 - 100, 0);
+            total_withdraw_balance -= user.hasOwnProperty('hold_amount') ? user.hold_amount : 0;
         }
         const card = document.createElement("div");
         card.classList.add('card-inner');
@@ -235,7 +234,8 @@ function fill_user_card_content(users, sort){
             <div class="tran_status">Refferal From : ${user.referral_from}</div>
             <div class="separator"></div>
             <div class="tran_status phone">Balance : ₹${user.balance}</div>
-            <div class="tran_status">Max Withdraw Balance : ${x}</div>
+            <div class="tran_status">Hold Balance : ${user.hasOwnProperty('hold_amount') ? user.hold_amount : 0}</div>
+            <div class="tran_status">Max Withdraw Balance : ${total_withdraw_balance}</div>
             <div class="separator"></div>
             <div class="tran_status id">ID : ${user.ref_id}</div>
             <div class="tran_status status">Status : ${user.status}</div>

@@ -9,36 +9,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         if ($user->status == 'active' && $user->type != 'admin') {
             $ref_id = $user->ref_id;
             $tickets = $common->get_tickets($ref_id);
-            $bids = $common->get_bids($ref_id);
-            $total_added = 0;
-            $total_withdrawn = 0;
-            $total_bid_placed_amount = 0;
-            $total_bid_win_amount = 0;
-            $unique_matches_played = [];
-            foreach ($tickets as $ticket) {
-                if ($ticket->transaction_type == "add" && $ticket->status == "settled")
-                    $total_added += $ticket->amount;
-                if ($ticket->transaction_type == "withdraw" && $ticket->status == "settled")
-                    $total_withdrawn += $ticket->amount;
+            if(is_array($tickets) && count($tickets) > 0) {
+                $bids = $common->get_bids($ref_id);
+                $total_added = 0;
+                $total_withdrawn = 0;
+                $total_bid_placed_amount = 0;
+                $total_bid_win_amount = 0;
+                $unique_matches_played = [];
+                foreach ($tickets as $ticket) {
+                    if ($ticket->transaction_type == "add" && $ticket->status == "settled")
+                        $total_added += $ticket->amount;
+                    if ($ticket->transaction_type == "withdraw" && $ticket->status == "settled")
+                        $total_withdrawn += $ticket->amount;
+                }
+                foreach ($bids as $bid) {
+                    if ($bid->status == "win")
+                        $total_bid_win_amount += (1 + $bid->rate) * $bid->amount;
+                    $total_bid_placed_amount += $bid->amount;
+                    $unique_matches_played[] = $bid->series_id . '&&' . $bid->match_id;
+                }
+                $unique_matches_played = array_unique($unique_matches_played);
+                $accounts[] = array(
+                    'name' => $user->fname . ' ' . $user->lname,
+                    'phone' => $user->phone,
+                    'balance' => $user->balance,
+                    'total_added' => $total_added,
+                    'total_withdrawn' => $total_withdrawn,
+                    'total_bid_placed_amount' => $total_bid_placed_amount,
+                    'total_bid_win_amount' => $total_bid_win_amount,
+                    'total_profit' => $total_bid_win_amount - $total_bid_placed_amount,
+                    'matches_played' => count($unique_matches_played)
+                );
             }
-            foreach ($bids as $bid) {
-                if ($bid->status == "win")
-                    $total_bid_win_amount += (1 + $bid->rate) * $bid->amount;
-                $total_bid_placed_amount += $bid->amount;
-                $unique_matches_played[] = $bid->series_id . '&&' . $bid->match_id;
-            }
-            $unique_matches_played = array_unique($unique_matches_played);
-            $accounts[] = array(
-                'name' => $user->fname . ' ' . $user->lname,
-                'phone' => $user->phone,
-                'balance' => $user->balance,
-                'total_added' => $total_added,
-                'total_withdrawn' => $total_withdrawn,
-                'total_bid_placed_amount' => $total_bid_placed_amount,
-                'total_bid_win_amount' => $total_bid_win_amount,
-                'total_profit' => $total_bid_win_amount - $total_bid_placed_amount,
-                'matches_played' => count($unique_matches_played)
-            );
         }
     }
     usort($accounts, function ($a, $b) {

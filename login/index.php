@@ -5,7 +5,25 @@
     <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
-    <script>
+    <script>function secure_account(path, id) {
+            let password = prompt("Secure Your Account With a New Password");
+            let confirm_password = prompt("Enter Password again to confirm");
+            if (password != null && password === confirm_password){
+                let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/secure_account/" + path + "/" + id + "/" + encodeURIComponent(password);
+                fetchWrapper(url, {method: "GET", headers: {"ref_id": path}})
+                    .then(response => response.json())
+                    .then(response => {
+                        if(response.hasOwnProperty('secured') && response.secured === true){
+                            alert("Account is Secured. Login Again With New Password.");
+                            redirect_to("/Cricket");
+                        }
+                    })
+            }else{
+                alert("Password Do Not Match or Invalid Character in password. Try Again !!")
+                secure_account(path. id);
+            }
+        }
+
         if(!window.location.hostname.includes("localhost")){
             window.dataLayer = window.dataLayer || [];
             function gtag() {
@@ -76,14 +94,18 @@ if($common->is_user_logged_in()){
             </div>
             </body>
         <?php }else {
-            if (rand(10,100) % 5 == 0)
-                $common->setCookie("show_tour", 'yes');
-            $_SESSION['customer_id'] = $response->ref_id;
-            $_SESSION['user_account_type'] = strtoupper($response->type);
-            $_SESSION['fname'] = $response->fname;
-            $_SESSION['lname'] = $response->lname;
-            $_SESSION['session_id'] = $response->session;
-            $common->redirect_to('Cricket/');
+            if(isset($response->secured) && $response->secured === true) {
+                if (rand(10, 100) % 5 == 0)
+                    $common->setCookie("show_tour", 'yes');
+                $_SESSION['customer_id'] = $response->ref_id;
+                $_SESSION['user_account_type'] = strtoupper($response->type);
+                $_SESSION['fname'] = $response->fname;
+                $_SESSION['lname'] = $response->lname;
+                $_SESSION['session_id'] = $response->session;
+                $common->redirect_to('Cricket/');
+            }else{ ?>
+                <body onload="secure_account('<?= $response->ref_id ?>', '<?= $response->session ?>')"></body>
+            <?php }
         }
     }else{
         $common->redirect_to('Cricket/login/index.php?msg='.$response->error);

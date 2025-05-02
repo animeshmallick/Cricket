@@ -13,7 +13,8 @@ function update_user_profile(){
         redirect_to(`Cricket/profile/index.php?msg=No changes to save`);
     else {
         const ref_id = getCookie('ref_id');
-        fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/${ref_id}/${fname}/${lname}/${password}`,
+        const session_id = getCookie('session_id');
+        fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/${ref_id}/${session_id}/${fname}/${lname}/${password}`,
             {method: "GET", headers: {"ref_id": ref_id}})
             .then(response => response.json())
             .then(data => redirect_to(`Cricket/profile/index.php?msg=${data.msg}`))

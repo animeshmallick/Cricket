@@ -3,12 +3,12 @@ class Common
 {
     public function is_user_an_agent(): bool
     {
-        return isset($_SESSION['user_type']) && $_SESSION['user_type'] == "agent";
+        return isset($_SESSION['user_account_type']) && $_SESSION['user_account_type'] == "agent";
     }
 
     public function is_user_an_admin(): bool
     {
-        return isset($_SESSION['user_type']) && $_SESSION['user_type'] == "admin";
+        return isset($_SESSION['user_account_type']) && $_SESSION['user_account_type'] == "ADMIN";
     }
 
     public function get_cookie(string $name): string

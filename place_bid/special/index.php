@@ -37,7 +37,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
             gtag('set', {
                 'user_id': <?=$_SESSION['ref_id']?>,
                 'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
-                'user_type': <?=$_SESSION['user_type']?>,
+                'user_type': <?=$_SESSION['user_account_type']?>,
                 'browser_details': navigator.userAgent
             })
             gtag('event', 'page_view', {

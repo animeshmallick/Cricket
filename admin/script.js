@@ -238,7 +238,6 @@ function fill_user_card_content(users, sort, ref_id){
             <div class="tran_status">Hold Balance : ${user.hasOwnProperty('hold_amount') ? user.hold_amount : 0}</div>
             <div class="tran_status">Max Withdraw Balance : ${withdraw_balance}</div>
             <div class="separator"></div>
-            <div class="tran_status id">ID : ${user.ref_id}</div>
             <div class="tran_status status">Status : ${user.status}</div>
             <div class="tran_status type">Type: ${user.type}</div>
             <div class="tran_status">Activated By: ${user.activated_by}</div>

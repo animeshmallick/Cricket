@@ -141,7 +141,7 @@ class Common
     {
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_session_bid_book/" . $series_id . "/" . $match_id . "/" . $session . "/" . $room;
         $book = json_decode($this->get_response_from_url($url));
-        $x = 100;
+        $x = 150;
         $a = 0;
         $b = 0;
         if(isset($book->error))

@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function () {
+function homeOnload(ref_id) {
     fetchWrapper('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches',
-        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(response => response.sort((a, b) => b.id - a.id))
         .then(matches => {
@@ -9,13 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         })
         .catch(error => {console.error('Error fetching matches:', error);});
-});
+};
 // Function to create match cards
 function createMatchCard(match) {
     const matchList = document.getElementById('match-list');
-    if (match.series_id.includes('dummy') && match.match_id.includes('dummy') && getCookie('user_type') !== 'admin') {
-        return;
-    }
     const matchCardWrapper = document.createElement('a');
     matchCardWrapper.classList.add('match-card');
     matchCardWrapper.href = `../match/index.php?series_id=${match.series_id}&match_id=${match.match_id}`;

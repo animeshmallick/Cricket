@@ -1,6 +1,6 @@
 setTimeout(() => {document.getElementById('msg').innerHTML = '';}, 10000);
 let oldFName = '',  oldLName = '', oldPassword = '';
-function update_user_profile(){
+function update_user_profile(ref_id, session_id){
     let fname = document.forms["update_user_profile_form"]["fname"].value;
     let lname = document.forms["update_user_profile_form"]["lname"].value;
     let password = document.forms["update_user_profile_form"]["password"].value;
@@ -12,8 +12,6 @@ function update_user_profile(){
     if(fname === oldFName && lname === oldLName && password === oldPassword)
         redirect_to(`Cricket/profile/index.php?msg=No changes to save`);
     else {
-        const ref_id = getCookie('ref_id');
-        const session_id = getCookie('session_id');
         fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/${ref_id}/${session_id}/${fname}/${lname}/${password}`,
             {method: "GET", headers: {"ref_id": ref_id}})
             .then(response => response.json())

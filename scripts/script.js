@@ -63,11 +63,10 @@ document.addEventListener('click', function(e) {
         w3_close();
     }
 });
-async function fill_header(){
+async function fill_header(ref_id){
     fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/header/`)
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .then(async () => {
-            const ref_id = getCookie('ref_id');
             fetchWrapper('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id,
                 {method: "GET", headers: {"ref_id": ref_id}})
                 .then(async response => {return await response.json()})
@@ -91,30 +90,13 @@ function redirect_to(path){
     console.log(url);
     window.location.href = url;
 }
-function logout(){
-    if (confirm("Are you sure?")) {
-        delete_cookie('ref_id');
-        delete_cookie('fname');
-        delete_cookie('lname');
-        delete_cookie('user_type');
-        delete_cookie('match_id');
-        delete_cookie('series_id');
-        delete_cookie('ghost_ref_id');
-        delete_cookie('ghost_fname');
-        delete_cookie('ghost_lname');
-        delete_cookie('ghost_mode');
-        delete_cookie('session_id');
-        redirect_to('Cricket/');
-        console.log('logout');
-    }
-}
-function fill_scorecard(){
+function fill_scorecard(ref_id){
     fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/scorecard/`)
         .then(async response => document.getElementById('scorecard').innerHTML = await response.text())
-        .then(async () => fill_scorecard_content())
+        .then(async () => fill_scorecard_content(ref_id))
         .catch(error => console.log(error));
 }
-function fill_scorecard_content(){
+function fill_scorecard_content(ref_id){
     const series_id = getCookie('series_id');
     const match_id = getCookie('match_id');
     if(series_id === null || match_id === null){
@@ -123,13 +105,13 @@ function fill_scorecard_content(){
         return;
     }
     fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${series_id}/${match_id}`,
-        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(async response => {return await response.json()})
         .then(async score => {
             update_scorecard(score);
             if(window.location.pathname.includes('match'))
-                enable_session_buttons(score);
-            scorecard_timer = setTimeout(() => fill_scorecard_content(), 6000);
+                enable_session_buttons(score, ref_id);
+            scorecard_timer = setTimeout(() => fill_scorecard_content(ref_id), 6000);
         })
         .catch(error => console.log(error));
 }
@@ -350,7 +332,7 @@ function update_themes(teams){
         document.getElementById('team2_name').style.color = `white`;
     }
 }
-function enable_session_buttons(scorecard){
+function enable_session_buttons(scorecard, ref_id){
     if (scorecard.balls_played > 6 && scorecard.balls_played < 30 && scorecard.innings === 1)
         document.getElementById('a1').classList.remove('disabled');
     else
@@ -402,7 +384,7 @@ function enable_session_buttons(scorecard){
     //    document.getElementById('special').classList.add('disabled');
 
     fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_match/${scorecard.series_id}/${scorecard.match_id}`,
-        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(async response => {
             return await response.json();
         }).then(response => {
@@ -489,24 +471,6 @@ const parseDate = (dateStr) => {
     }
     return new Date(2000, 1, 1, 0, 0, 0);
 };
-
-//Refresh the AUTH cookies and extend time by 1hr if user is active
-['ref_id', 'fname', 'lname', 'user_type', 'session_id'].forEach(cookie => {
-    if (getCookie(cookie) !== null)
-    setCookie(cookie, getCookie(cookie))
-});
-function disable_ghost_mode(){
-    setCookie('ref_id', getCookie('ghost_ref_id'));
-    setCookie('fname', getCookie('ghost_fname'));
-    setCookie('lname', getCookie('ghost_lname'));
-
-    delete_cookie('ghost_ref_id');
-    delete_cookie('ghost_fname');
-    delete_cookie('ghost_lname');
-    delete_cookie('ghost_mode');
-
-    redirect_to('Cricket/');
-}
 function refreshPage(btn) {
     // Add click animation
     btn.classList.add("clicked");
@@ -523,13 +487,13 @@ function refreshPage(btn) {
         location.reload(); // Refresh page
     }, 600);
 }
-function openScorecardPopup(team) {
+function openScorecardPopup(team, ref_id) {
     document.getElementById('scorecard').style.height = '100vh';
     const modal = document.getElementById("playerModal");
     const overlay = document.querySelector(".overlay");
     modal.innerHTML = `<div class="title" style="font-size:2rem">Loading Player Details</div>`
     const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_detailed_score/"+getCookie('series_id')+"/"+getCookie('match_id');
-    fetchWrapper(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+    fetchWrapper(url, {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => {
             let batsmen = data[team+'_batsmen'];

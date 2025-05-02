@@ -1,7 +1,6 @@
 let open_withdrawal_ticket = null;
 let open_add_ticket = null;
-function fill_wallet_transaction_tickets() {
-    const ref_id = getCookie('ref_id');
+function fill_wallet_transaction_tickets(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/" + ref_id,
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
@@ -52,18 +51,17 @@ function closeEditTicketPopup() {
     document.getElementById("popup").style.display = "none";
 }
 
-function updateTicketAmount() {
+function updateTicketAmount(ref_id) {
     const updatedAmount = document.getElementById("newAmount").value;
     const ticket_id = document.getElementById("tran_id").innerHTML;
     if (updatedAmount && !isNaN(updatedAmount)) {
-        update_ticket_amount(ticket_id, updatedAmount);
+        update_ticket_amount(ref_id, ticket_id, updatedAmount);
         closeEditTicketPopup();
     } else {
         alert("Please enter a valid number.");
     }
 }
-function update_ticket_amount(ticket_id, updatedAmount){
-    const ref_id = getCookie('ref_id');
+function update_ticket_amount(ref_id, ticket_id, updatedAmount){
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_ticket_amount/"+ticket_id+"/"+updatedAmount,
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())

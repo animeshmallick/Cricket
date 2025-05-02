@@ -1,7 +1,8 @@
 <?php
+session_start();
 include '../Common.php';
 $common = new Common();
-$user = $common->get_user_details_from_users($common->get_cookie('ref_id'));
+$user = $common->get_user_details_from_users($_SESSION['ref_id']);
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()) {
 ?>
     <html lang="en">
@@ -19,9 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()) {
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': getCookie('ref_id'),
-                    'user_name': getCookie('fname') + " " + getCookie('lname'),
-                    'user_type': getCookie('user_type'),
+                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
+                    'user_type': <?=$_SESSION['user_type']?>,
                     'browser_details': navigator.userAgent
                 })
                 gtag('event', 'page_view', {
@@ -53,13 +54,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()) {
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-        <body onload="fill_header();fill_footer();store_previous_profile_data()">
+        <body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_footer();store_previous_profile_data()">
             <div id="header"></div>
             <div id="header"></div>
             <div class="main_container">
                 <div class="sub-title">Register</div>
                 <p class="error" id="msg"><?php if(isset($_GET['msg'])) { echo $_GET['msg']; } ?></p>
-                <form action="index.php" method="POST" onsubmit="return update_user_profile()" name="update_user_profile_form">
+                <form action="index.php" method="POST" onsubmit="return update_user_profile('<?= $_SESSION['ref_id']?>', '<?= $_SESSION['session_id'] ?>')" name="update_user_profile_form">
                     <label class="label" for="fname">First Name:</label>
                     <input type="text" id="fname" name="fname" placeholder="Your First Name" value="<?= $user->fname ?>" required>
                     <label class="label" for="lname">Last Name:</label>

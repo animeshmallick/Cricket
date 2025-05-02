@@ -1,15 +1,14 @@
 <?php
-
 class Common
 {
     public function is_user_an_agent(): bool
     {
-        return $this->get_cookie('user_type') == "agent";
+        return isset($_SESSION['user_type']) && $_SESSION['user_type'] == "agent";
     }
 
     public function is_user_an_admin(): bool
     {
-        return $this->get_cookie('user_type') == "admin";
+        return isset($_SESSION['user_type']) && $_SESSION['user_type'] == "admin";
     }
 
     public function get_cookie(string $name): string
@@ -19,9 +18,10 @@ class Common
 
     public function is_user_logged_in(): bool
     {
-        return $this->get_cookie('ref_id') != null &&
-            $this->get_cookie('ref_id') != "null" &&
-            strlen($this->get_cookie('ref_id')) > 0;
+        return isset($_SESSION['ref_id']) &&
+            $_SESSION['ref_id'] != null &&
+            $_SESSION['ref_id'] != "null" &&
+            strlen($_SESSION['ref_id']) > 0;
     }
 
     public function logout(): void
@@ -30,17 +30,13 @@ class Common
     }
     function clear_all_cookies(): void
     {
-        $this->delete_cookie('ref_id');
-        $this->delete_cookie('fname');
-        $this->delete_cookie('lname');
-        $this->delete_cookie('user_type');
+        if(isset($_SESSION)) {
+            session_unset();
+            session_destroy();
+        }
         $this->delete_cookie('show_tour');
         $this->delete_cookie('match_id');
         $this->delete_cookie('series_id');
-        $this->delete_cookie('ghost_ref_id');
-        $this->delete_cookie('ghost_fname');
-        $this->delete_cookie('ghost_lname');
-        $this->delete_cookie('ghost_mode');
     }
     function delete_cookie($name): void
     {
@@ -70,7 +66,7 @@ class Common
 
     private function get_response_from_url($url): string
     {
-        $ref_id = $this->get_cookie('ref_id');
+        $ref_id = $_SESSION['ref_id'] ?? null;
         if ($ref_id == null || $ref_id == "null" || strlen($ref_id) == 0)
             $ref_id = 'Unknown';
         $ch = curl_init($url);
@@ -532,7 +528,7 @@ class Common
 
     public function update_user_profile(mixed $fname, mixed $lname, mixed $password)
     {
-        $ref_id = $this->get_cookie('ref_id');
+        $ref_id = $_SESSION['ref_id'];
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/" .$ref_id. "/" .$fname. "/" .$lname. "/" .$password;
         return json_decode($this->get_response_from_url($url));
     }

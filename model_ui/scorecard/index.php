@@ -7,7 +7,7 @@
 
     <!-- Team Logos and Scores -->
     <div class="space-y-1">
-        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team1_container" onclick="openScorecardPopup('team1')">
+        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team1_container" onclick="openScorecardPopup('team1', '<?= $_SESSION['ref_id']?>')">
             <img id="team1_logo" src="../../images/logo/india.png" alt="India" class="h-10 w-10 team-logo"/>
             <span id='team1_name' class="team-badge">Loading</span>
             <span id='team1_score' class="score text-yellow-400"></span>
@@ -18,7 +18,7 @@
                 <div id="progressBar" class="progress-bar"></div>
             </div>
         </div>
-        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team2_container" onclick="openScorecardPopup('team2')">
+        <div class="team-hover flex justify-between items-center text-sm rounded-md" id="team2_container" onclick="openScorecardPopup('team2', '<?= $_SESSION['ref_id']?>')">
             <img id='team2_logo' src="../../images/logo/england.png" alt="Australia" class="h-10 w-10 team-logo" />
             <span id='team2_name' class="team-badge">Loading</span>
             <span id='team2_score' class="score text-yellow-400"></span>

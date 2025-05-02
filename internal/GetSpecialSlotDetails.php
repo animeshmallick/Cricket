@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json');
 include "../Common.php";
 include "SlotScores.php";

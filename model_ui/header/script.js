@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', function() {
-    if(getCookie('user_type') === 'admin'){
+function header_onload(type){
+    if(type){
         fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any",
-            {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+            {method: "GET", headers: {"ref_id": 'Exception'}})
             .then(response => response.json())
             .then(data => {
                 let openTickets = 0;
@@ -14,4 +14,4 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => console.error('Error:', error));
     }
-});
+}

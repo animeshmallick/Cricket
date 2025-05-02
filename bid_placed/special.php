@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../Common.php";
 $common = new Common();
 
@@ -18,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
     $bid_id = (int)$_GET["bid_id"];
     $bid_name = $_GET["bid_name"] ?? "";
     $room = $_GET['room'];
-    $ref_id = $common->get_cookie("ref_id");
+    $ref_id = $_SESSION["ref_id"];
     $question_id = $_GET['question_id'];
 
     $bookie_response = $common->get_special_bid_bookie_details($series_id, $match_id, $amount, $room, $question_id);
@@ -58,9 +59,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': getCookie('ref_id'),
-                    'user_name': getCookie('fname') + " " + getCookie('lname'),
-                    'user_type': getCookie('user_type'),
+                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
+                    'user_type': <?=$_SESSION['user_type']?>,
                     'browser_details': navigator.userAgent
                 })
                 gtag('event', 'page_view', {
@@ -71,8 +72,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
                     'value': <?= $amount ?>,
                     'currency': 'INR',
                     'transaction_id': '<?= $bid_id ?>',
-                    'user_id': getCookie('ref_id'),
-                    'user_name': getCookie('fname') + " " + getCookie('lname'),
+                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'series_id': '<?= $series_id ?>',
                     'match_id': '<?= $match_id ?>',
                     'type': `special`,
@@ -108,8 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
         <script src="script.js?version=<?php echo time();?>"></script>
         <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header();
-        fill_scorecard();
+    <body onload="fill_header('<?= $_SESSION['ref_id']?>');
+        fill_scorecard('<?=$_SESSION['ref_id']?>');
         fill_footer();
         triggerPartyPopper()">
     <div id="header"></div>

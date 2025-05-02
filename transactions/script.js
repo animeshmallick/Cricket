@@ -1,19 +1,18 @@
-function fill_recharges() {
-    const ref_id = getCookie('ref_id');
+function fill_recharges(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_recharges/" + ref_id,
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
-        .then(data => fill_recharges_content(data))
+        .then(data => fill_recharges_content(data, ref_id))
         .catch(error => console.error('Error:', error));
 }
-function fill_recharges_content(recharges){
+function fill_recharges_content(recharges, ref_id){
     recharges.sort((a, b) => parseDate(b.time) - parseDate(a.time));
     recharges.push({
         'amount': 100,
         'time': 'account creation',
         'id': -1,
         'from': 'Cashback',
-        'to_ref_id': getCookie('ref_id')
+        'to_ref_id': ref_id
     })
     const rechargesContainer = document.getElementById("rechargesContainer");
 

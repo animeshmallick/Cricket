@@ -1,4 +1,4 @@
-function settle_bid_all(type){
+function settle_bid_all(type, ref_id){
     if (window.location.hostname.includes('localhost')) {
         alert("Cannot perform action from localhost.");
     }else {
@@ -14,7 +14,7 @@ function settle_bid_all(type){
                 let winner = runs >= run_min && runs <= run_max;
                 if (tr.children[3].innerHTML.includes('placed')) {
                     let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/" + tr.id + "/" + type + "/" + (winner ? "win" : "loss");
-                    fetchWrapper(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+                    fetchWrapper(url, {method: "GET", headers: {"ref_id": ref_id}})
                         .then(response => response.json())
                         .then(data => {
                             if (data.status.includes('successfully')) {
@@ -30,7 +30,7 @@ function settle_bid_all(type){
                 let winner = tr.getAttribute('winner') === userResponse.toLowerCase();
                 if(tr.children[3].innerHTML.includes('placed')) {
                     let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_bid/" + tr.id + "/" + type + "/" + (winner ? "win" : "loss");
-                    fetchWrapper(url, {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+                    fetchWrapper(url, {method: "GET", headers: {"ref_id": ref_id}})
                         .then(response => response.json())
                         .then(data => {
                             if (data.status.includes('successfully')) {
@@ -47,14 +47,14 @@ function settle_bid_all(type){
         }
     }
 }
-function fill_all_wallet_transaction_tickets() {
+function fill_all_wallet_transaction_tickets(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any",
-        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
-        .then(data => fill_transaction_ticket_content(data))
+        .then(data => fill_transaction_ticket_content(ref_id, data))
         .catch(error => console.error('Error:', error));
 }
-function fill_transaction_ticket_content(transactions){
+function fill_transaction_ticket_content(ref_id, transactions){
     transactions.sort((a, b) => parseDate(b.timestamp) - parseDate(a.timestamp));
     const transactionContainer = document.getElementById("transactionContainer");
     let admin_table = [];
@@ -102,7 +102,7 @@ function fill_transaction_ticket_content(transactions){
             const settleButton = document.createElement('button');
             settleButton.classList.add('settle_button');
             settleButton.textContent = 'Settle Ticket';
-            settleButton.onclick = function() {settle_ticket(transaction.id);};
+            settleButton.onclick = function() {settle_ticket(ref_id, transaction.id);};
             cardInner.classList.add('pending-user');
             cardInner.appendChild(settleButton);
         }else {
@@ -158,13 +158,12 @@ function fill_transaction_ticket_content(transactions){
     tbody.appendChild(tr);
     filter_tickets('open');
 }
-function settle_ticket(ticket_id){
+function settle_ticket(ref_id, ticket_id){
     if (window.location.hostname.includes('localhost') && false) {
         alert("Cannot perform action from localhost.");
     }else {
         const userResponse = prompt("Are you sure, You want to settle the bid. Type yes or reject", "no");
         if(userResponse.toLowerCase() === 'yes') {
-            const ref_id = getCookie('ref_id');
             fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_ticket/" + ticket_id + "/" + ref_id,
                 {method: "GET", headers: {"ref_id": ref_id}})
                 .then(response => {
@@ -178,7 +177,6 @@ function settle_ticket(ticket_id){
                 .catch(e => console.log(e));
         }
         if(userResponse.toLowerCase() === 'reject'){
-            const ref_id = getCookie('ref_id');
             fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/reject_ticket/" + ticket_id + "/" + ref_id,
                 {method: "GET", headers: {"ref_id": ref_id}})
                 .then(response => {
@@ -194,14 +192,14 @@ function settle_ticket(ticket_id){
     }
 }
 let card_data = null;
-function fill_all_users_card() {
+function fill_all_users_card(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true",
-        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
-        .then(data => fill_user_card_content(data, false))
+        .then(data => fill_user_card_content(data, false, ref_id))
         .catch(error => console.error('Error:', error));
 }
-function fill_user_card_content(users, sort){
+function fill_user_card_content(users, sort, ref_id){
     card_data = users;
     let total_withdraw_balance = 0;
     if(sort)
@@ -252,16 +250,6 @@ function fill_user_card_content(users, sort){
         if(typeof user.last_login === 'object' && user.last_login[user.last_login.length - 1].toString().includes(formattedDate)){
             cardInner.classList.add('active-user');
         }
-        if(user.ref_id !== getCookie('ref_id')) {
-            const ghostLoginButton = document.createElement('button');
-            ghostLoginButton.classList.add('ghost_login_button');
-            ghostLoginButton.id = user.ref_id;
-            ghostLoginButton.textContent = 'Login as Ghost';
-            ghostLoginButton.onclick = function () {
-                enable_ghost_mode(ghostLoginButton.id);
-            };
-            cardInner.appendChild(ghostLoginButton);
-        }
         card.appendChild(cardInner);
     });
     document.getElementById('total_withdraw_amount').innerHTML = total_withdraw_balance;
@@ -291,21 +279,6 @@ function filter_user(keyword){
             }
         });
         document.getElementById('usersContainer').children[0].textContent = "Total Users : " + total_users;
-    }
-}
-function enable_ghost_mode(ref_id){
-    const userResponse = prompt("Are you sure, You want to login as ghost into this account. Type yes.", "no");
-    if(userResponse.toLowerCase() === 'yes') {
-        setCookie('ghost_ref_id', getCookie('ref_id'));
-        setCookie('ghost_fname', getCookie('fname'));
-        setCookie('ghost_lname', getCookie('lname'));
-
-        setCookie('ref_id', ref_id);
-        setCookie('fname', "Ghost");
-        setCookie('lname', "User");
-        setCookie('ghost_mode', 'yes');
-        alert("Ghost Mode Enabled Successfully");
-        redirect_to('Cricket/');
     }
 }
 function filter_tickets(value){

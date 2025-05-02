@@ -75,10 +75,6 @@ else if ($_SERVER['REQUEST_METHOD'] === 'POST' && !$common->is_user_logged_in())
         $ref_id = $_POST['ref_id'];
         if ($common->insert_new_user($_POST['fname'], $_POST['lname'], $_POST['phone'], $_POST['password'],
             $ref_id, 'pending')) {
-            $common->setCookie('user_ref_id', $ref_id);
-            $common->setCookie('user_type', 'pending');
-            $common->setCookie('fname', $_POST['fname']);
-            $common->setCookie('lname', $_POST['lname']);
             ?>
             <body>
             <div class="container">

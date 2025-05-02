@@ -1,5 +1,4 @@
-function fill_bids() {
-    const ref_id = getCookie('ref_id');
+function fill_bids(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session",
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())

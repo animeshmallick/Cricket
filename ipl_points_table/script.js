@@ -1,6 +1,6 @@
-function fill_ipl_points_table() {
+function fill_ipl_points_table(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_ipl_points_table",
-        {method: "GET", headers: {"ref_id": getCookie("ref_id")}})
+        {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => {
             data.teams.sort((t1, t2) => {

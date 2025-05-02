@@ -44,6 +44,7 @@
     <link rel="icon" type="image/x-icon" href="/images/ball.png">
 </head>
 <?php
+session_start();
 include "../Common.php";
 $common = new Common();
 if($common->is_user_logged_in()){
@@ -77,11 +78,11 @@ if($common->is_user_logged_in()){
         <?php }else {
             if (rand(10,100) % 5 == 0)
                 $common->setCookie("show_tour", 'yes');
-            $common->setCookie("ref_id", $response->ref_id);
-            $common->setCookie("fname", $response->fname);
-            $common->setCookie("lname", $response->lname);
-            $common->setCookie("user_type", $response->type);
-            $common->setCookie('session_id', $response->session);
+            $_SESSION['ref_id'] = $response->ref_id;
+            $_SESSION['user_type'] = $response->type;
+            $_SESSION['fname'] = $response->fname;
+            $_SESSION['lname'] = $response->lname;
+            $_SESSION['session_id'] = $response->session;
             $common->redirect_to('Cricket/');
         }
     }else{

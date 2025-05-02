@@ -14,9 +14,9 @@
             gtag('js', new Date());
             gtag('config', 'G-BQY4C789R1');
             gtag('set', {
-                'user_id': getCookie('ref_id'),
-                'user_name': getCookie('fname') + " " + getCookie('lname'),
-                'user_type': getCookie('user_type'),
+                'user_id': <?=$_SESSION['ref_id']?>,
+                'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
+                'user_type': <?=$_SESSION['user_type']?>,
                 'browser_details': navigator.userAgent
             })
             gtag('event', 'page_view', {
@@ -49,7 +49,7 @@
     <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
     <script src="script.js?version=<?php echo time();?>"></script>
 </head>
-<body onload="fill_header();fill_ipl_points_table();fill_footer()">
+<body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_ipl_points_table('<?= $_SESSION['ref_id']?>');fill_footer()">
 <div id="header"></div>
 <div class="container">
     <div class="sub-title">IPL Points Table 2025</div>

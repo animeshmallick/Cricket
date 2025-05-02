@@ -7,7 +7,7 @@ if(!$common->is_user_logged_in()){
     <!DOCTYPE html>
     <html lang="en">
     <head>
-        <title>My Transactions : <?= $common->get_Cookie('fname')." ".$common->get_Cookie('lname') ?></title>
+        <title>My Transactions : <?= $_SESSION['fname']." ".$_SESSION['lname'] ?></title>
         <script src="../scripts/script.js?version=<?php echo time();?>"></script>
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
@@ -20,9 +20,9 @@ if(!$common->is_user_logged_in()){
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': getCookie('ref_id'),
-                    'user_name': getCookie('fname') + " " + getCookie('lname'),
-                    'user_type': getCookie('user_type'),
+                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
+                    'user_type': <?=$_SESSION['user_type']?>,
                     'browser_details': navigator.userAgent
                 })
                 gtag('event', 'page_view', {
@@ -55,7 +55,7 @@ if(!$common->is_user_logged_in()){
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header();fill_footer();fill_recharges()">
+    <body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_footer();fill_recharges('<?=$_SESSION['ref_id']?>')">
     <div id="header"></div>
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">Your Wallet Transactions</div>

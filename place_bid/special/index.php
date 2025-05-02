@@ -35,7 +35,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
             gtag('js', new Date());
             gtag('config', 'G-BQY4C789R1');
             gtag('set', {
-                'user_id': <?=$_SESSION['ref_id']?>,
+                'user_id': <?=$_SESSION['customer_id']?>,
                 'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                 'user_type': <?=$_SESSION['user_account_type']?>,
                 'browser_details': navigator.userAgent
@@ -72,7 +72,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
     <script src="https://unpkg.com/shepherd.js@8"></script>
     <link rel="stylesheet" href="https://unpkg.com/shepherd.js@8/dist/css/shepherd.css">
 </head>
-<body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_scorecard('<?=$_SESSION['ref_id']?>');fill_footer();fill_special_question(<?= $question_id ?>, true)">
+<body onload="fill_header('<?= $_SESSION['customer_id']?>');fill_scorecard('<?=$_SESSION['customer_id']?>');fill_footer();fill_special_question(<?= $question_id ?>, true)">
 <div id="header"></div>
 <div id="scorecard"></div>
 <div class="separator"></div>

@@ -26,7 +26,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'user_type': <?=$_SESSION['user_account_type']?>,
                     'browser_details': navigator.userAgent
@@ -61,7 +61,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['series_id']) || !isset($_GET['
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_scorecard('<?=$_SESSION['ref_id']?>');fill_footer();show_banner()">
+    <body onload="fill_header('<?= $_SESSION['customer_id']?>');fill_scorecard('<?=$_SESSION['customer_id']?>');fill_footer();show_banner()">
         <div class="banner" id="banner">
             <div class="title">Notice</div>
             <div style="display: flex">

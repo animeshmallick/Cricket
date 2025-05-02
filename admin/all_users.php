@@ -3,7 +3,7 @@ session_start();
 include "../Common.php";
 $common = new Common();
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $common->is_user_an_admin()){
-    $ref_id = $_SESSION['ref_id'];
+    $ref_id = $_SESSION['customer_id'];
     ?>
     <html lang="en">
     <head>
@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'user_type': <?=$_SESSION['user_account_type']?>,
                     'browser_details': navigator.userAgent
@@ -56,14 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in() && $com
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_all_users_card('<?= $_SESSION['ref_id']?>');fill_footer();">
+    <body onload="fill_header('<?= $_SESSION['customer_id']?>');fill_all_users_card('<?= $_SESSION['customer_id']?>');fill_footer();">
     <div id="header"></div>
     <div class="w-full grid grid-cols-1 md:grid-cols-2" style="padding: 0 1.2rem; background: linear-gradient(90deg, steelblue, rebeccapurple);border-radius: 1rem">
         <div class="title">All User Details</div>
         <div class="sub-title">Total Withdraw Amount ₹<span style="color: red" id="total_withdraw_amount"></span></div>
         <div class="gap"></div>
         <div>
-            <input type="checkbox" id="show_withdrawn" onchange="fill_user_card_content(card_data, this.checked, '<?= $_SESSION['ref_id']?>')">
+            <input type="checkbox" id="show_withdrawn" onchange="fill_user_card_content(card_data, this.checked, '<?= $_SESSION['customer_id']?>')">
             <label for="show_withdrawn">Sort By Balance</label>
         </div>
         <form>

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'user_type': <?=$_SESSION['user_account_type']?>,
                     'browser_details': navigator.userAgent
@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
                     'value': <?= $amount ?>,
                     'currency': 'INR',
                     'transaction_id': '<?= $bid_id ?>',
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'series_id': '<?= $series_id ?>',
                     'match_id': '<?= $match_id ?>',
@@ -77,8 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header('<?= $_SESSION['ref_id']?>');
-        fill_scorecard('<?=$_SESSION['ref_id']?>');
+    <body onload="fill_header('<?= $_SESSION['customer_id']?>');
+        fill_scorecard('<?=$_SESSION['customer_id']?>');
         fill_footer();
         triggerPartyPopper()">
     <div id="header"></div>
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
             $bid_runs_string .= ' by end of '.$common->get_end_over_from_session($session)."th Over";
             $run_min = $slot == 'x' ? 0 : ($slot == 'y' ? $bid_bookie_response->predicted_runs + 1 : 999);
             $run_max = $slot == 'x' ? $bid_bookie_response->predicted_runs - 1 : ($slot == 'y' ? 999 : 0);
-            $ref_id = $_SESSION['ref_id'];
+            $ref_id = $_SESSION['customer_id'];
             $session_id = $_SESSION['session_id'];
             $bid_place_response = $common->insert_new_session_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $session,
                 $slot, $run_min, $run_max, $rate, $amount, $bid_name, $room, $session_id);
@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && $common->is_user_logged_in() &&
         if(!isset($bid_bookie_response->error)) {
             $rate = $slot == 'x' ? $bid_bookie_response->rate_1 : ($slot == 'y' ? $bid_bookie_response->rate_2 : 0);
             $team = $slot == 'x' ? $bid_bookie_response->team_a : ($slot == 'y' ? $bid_bookie_response->team_b : '0');
-            $ref_id = $_SESSION['ref_id'];
+            $ref_id = $_SESSION['customer_id'];
             $refund = 0;
             $session_id = $_SESSION['session_id'];
             $bid_place_response = $common->insert_new_winner_bid_to_db($bid_id, $ref_id, $series_id, $match_id, $slot,

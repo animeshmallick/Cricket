@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_an_admin()){ ?>
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'user_type': <?=$_SESSION['user_account_type']?>,
                     'browser_details': navigator.userAgent
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_an_admin()){ ?>
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_footer();">
+    <body onload="fill_header('<?= $_SESSION['customer_id']?>');fill_footer();">
     <div id="header"></div>
     <div class="main_container">
         <div class="sub-title">Activate New User</div>
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_an_admin()){ ?>
 <?php } else if($_SERVER['REQUEST_METHOD'] === 'POST' && $common->is_user_an_admin() && $common->is_user_logged_in()) {
     $phone = $_POST['phone'];
     $otp = $_POST['otp'];
-    $response = $common->activate_user($_SESSION['ref_id'], $phone, $otp);
+    $response = $common->activate_user($_SESSION['customer_id'], $phone, $otp);
     header('Location:activate_user.php?msg='.$response->status);
 } else {
     header("Location: ../index.php");

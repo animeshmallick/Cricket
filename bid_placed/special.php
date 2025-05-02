@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'user_type': <?=$_SESSION['user_account_type']?>,
                     'browser_details': navigator.userAgent
@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
                     'value': <?= $amount ?>,
                     'currency': 'INR',
                     'transaction_id': '<?= $bid_id ?>',
-                    'user_id': <?=$_SESSION['ref_id']?>,
+                    'user_id': <?=$_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'series_id': '<?= $series_id ?>',
                     'match_id': '<?= $match_id ?>',
@@ -109,8 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && $common->is_user_logged_in()) {
         <script src="script.js?version=<?php echo time();?>"></script>
         <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header('<?= $_SESSION['ref_id']?>');
-        fill_scorecard('<?=$_SESSION['ref_id']?>');
+    <body onload="fill_header('<?= $_SESSION['customer_id']?>');
+        fill_scorecard('<?=$_SESSION['customer_id']?>');
         fill_footer();
         triggerPartyPopper()">
     <div id="header"></div>

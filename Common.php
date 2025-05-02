@@ -18,10 +18,10 @@ class Common
 
     public function is_user_logged_in(): bool
     {
-        return isset($_SESSION['ref_id']) &&
-            $_SESSION['ref_id'] != null &&
-            $_SESSION['ref_id'] != "null" &&
-            strlen($_SESSION['ref_id']) > 0;
+        return isset($_SESSION['customer_id']) &&
+            $_SESSION['customer_id'] != null &&
+            $_SESSION['customer_id'] != "null" &&
+            strlen($_SESSION['customer_id']) > 0;
     }
 
     public function logout(): void
@@ -66,7 +66,7 @@ class Common
 
     private function get_response_from_url($url): string
     {
-        $ref_id = $_SESSION['ref_id'] ?? null;
+        $ref_id = $_SESSION['customer_id'] ?? null;
         if ($ref_id == null || $ref_id == "null" || strlen($ref_id) == 0)
             $ref_id = 'Unknown';
         $ch = curl_init($url);
@@ -528,7 +528,7 @@ class Common
 
     public function update_user_profile(mixed $fname, mixed $lname, mixed $password)
     {
-        $ref_id = $_SESSION['ref_id'];
+        $ref_id = $_SESSION['customer_id'];
         $url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/update_profile/" .$ref_id. "/" .$fname. "/" .$lname. "/" .$password;
         return json_decode($this->get_response_from_url($url));
     }

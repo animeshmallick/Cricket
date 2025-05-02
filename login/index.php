@@ -78,7 +78,7 @@ if($common->is_user_logged_in()){
         <?php }else {
             if (rand(10,100) % 5 == 0)
                 $common->setCookie("show_tour", 'yes');
-            $_SESSION['ref_id'] = $response->ref_id;
+            $_SESSION['customer_id'] = $response->ref_id;
             $_SESSION['user_account_type'] = strtoupper($response->type);
             $_SESSION['fname'] = $response->fname;
             $_SESSION['lname'] = $response->lname;

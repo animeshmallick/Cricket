@@ -3,7 +3,7 @@ session_start();
 include "../Common.php";
 $common = new Common();
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
-    $ref_id = $_SESSION['ref_id'];
+    $ref_id = $_SESSION['customer_id'];
     $user = $common->get_user_details_from_users($ref_id);
 
     $tickets = $common->get_tickets($ref_id);
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
                 gtag('js', new Date());
                 gtag('config', 'G-BQY4C789R1');
                 gtag('set', {
-                    'user_id': <?= $_SESSION['ref_id']?>,
+                    'user_id': <?= $_SESSION['customer_id']?>,
                     'user_name': <?=$_SESSION['fname']?> + " " + <?=$_SESSION['lname']?>,
                     'user_type': <?=$_SESSION['user_account_type']?>,
                     'browser_details': navigator.userAgent
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $common->is_user_logged_in()){
         <script src="../model_ui/header/script.js?version=<?php echo time();?>"></script>
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
-    <body onload="fill_header('<?= $_SESSION['ref_id']?>');fill_footer();">
+    <body onload="fill_header('<?= $_SESSION['customer_id']?>');fill_footer();">
     <div id="header"></div>
     <div class="promotion-card-container">
         <div class="title" style="font-size: 1.5rem">Account Details</div>

@@ -191,15 +191,15 @@ function settle_ticket(ref_id, ticket_id){
         }
     }
 }
-let card_data = null;
+var card_data = null;
 function fill_all_users_card(ref_id) {
     fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_users?with_balance=true",
         {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
-        .then(data => fill_user_card_content(data, false, ref_id))
+        .then(data => fill_user_card_content(data, false))
         .catch(error => console.error('Error:', error));
 }
-function fill_user_card_content(users, sort, ref_id){
+function fill_user_card_content(users, sort){
     card_data = users;
     let total_withdraw_balance = 0;
     if(sort)

@@ -292,7 +292,7 @@ class Common
 
     public function get_winner_rates($all_bids, $amount): array
     {
-        $x = 50;
+        $x = 60;
         $a = 0.0;
         $b = 0.0;
         foreach ($all_bids as $bid) {

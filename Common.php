@@ -41,11 +41,7 @@ class Common
     {
         if(isset($_SESSION)) {
             session_unset();
-            try {
-                session_destroy();
-            }catch (Exception $ex){
-
-            }
+            //session_destroy();
         }
         $this->delete_cookie('show_tour');
         $this->delete_cookie('match_id');

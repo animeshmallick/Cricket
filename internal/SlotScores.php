@@ -28,17 +28,17 @@ class Scores {
     public function get_r2(float $curr_rr,int $wkts, $slot): float{
         if($curr_rr == 0)
             return $this->datahelper->get_default_runs($slot);
-        $factor = 1.25;
+        $factor = 0.8;
         if($wkts >= 2)
-            $factor = 1;
+            $factor = 0.6;
         if($wkts >= 5)
-            $factor = 0.8;
+            $factor = 0.4;
         if($wkts >= 7)
-            $factor = 0.5;
+            $factor = 0.2;
         if($wkts >= 9)
             $factor = 0;
 
-        if($curr_rr > 11)
+        if($curr_rr > 10.5)
             $factor = 0;
 
         return ($curr_rr + $factor) * ($this->datahelper->get_maxballs_for_slot($slot) / 6);

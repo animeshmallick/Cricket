@@ -22,7 +22,7 @@ if(!$common->is_user_logged_in() || !isset($_GET['room']) || $series_id == null 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Place Bid : Special</title>
+    <title>Place Bid : Special : <?= $_SESSION['fname']." ".$_SESSION['lname'] ?></title>
     <script src="../../scripts/script.js?version=<?php echo time();?>"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>

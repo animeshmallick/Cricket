@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "../Common.php";
 $common = new Common();
 if(!$common->is_user_logged_in()){

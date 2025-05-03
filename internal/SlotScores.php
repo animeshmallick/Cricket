@@ -28,13 +28,13 @@ class Scores {
     public function get_r2(float $curr_rr,int $wkts, $slot): float{
         if($curr_rr == 0)
             return $this->datahelper->get_default_runs($slot);
-        $factor = 0.8;
+        $factor = 0.6;
         if($wkts >= 2)
-            $factor = 0.6;
+            $factor = 0.45;
         if($wkts >= 5)
-            $factor = 0.4;
+            $factor = 0.3;
         if($wkts >= 7)
-            $factor = 0.2;
+            $factor = 0.15;
         if($wkts >= 9)
             $factor = 0;
 

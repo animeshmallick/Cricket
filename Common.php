@@ -18,10 +18,18 @@ class Common
 
     public function is_user_logged_in(): bool
     {
-        return isset($_SESSION['customer_id']) &&
+        $flag = isset($_SESSION['customer_id']) &&
             $_SESSION['customer_id'] != null &&
             $_SESSION['customer_id'] != "null" &&
-            strlen($_SESSION['customer_id']) > 0;
+            strlen($_SESSION['customer_id']) > 0 &&
+            isset($_SESSION['end_time']) &&
+            $_SESSION['end_time'] < time();
+        if ($flag){
+            $_SESSION['end_time'] = time() + 1200;
+        }else{
+            $this->logout();
+        }
+        return $flag;
     }
 
     public function logout(): void

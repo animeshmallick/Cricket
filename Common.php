@@ -18,18 +18,19 @@ class Common
 
     public function is_user_logged_in(): bool
     {
-        $flag = isset($_SESSION['customer_id']) &&
-            $_SESSION['customer_id'] != null &&
-            $_SESSION['customer_id'] != "null" &&
+        $sessionValid = isset($_SESSION['customer_id'], $_SESSION['end_time']) &&
+            $_SESSION['customer_id'] !== "null" &&
             strlen($_SESSION['customer_id']) > 0 &&
-            isset($_SESSION['end_time']) &&
-            $_SESSION['end_time'] < time();
-        if ($flag){
-            $_SESSION['end_time'] = time() + 1200;
-        }else{
-            $this->logout();
+            intval($_SESSION['end_time']) >= time();
+
+        if ($sessionValid) {
+            // Extend session expiry
+            $_SESSION['end_time'] = time() + 1200; // 20 minutes
+        } else {
+            $this->logout(); // Or session_destroy(), depending on your flow
         }
-        return $flag;
+
+        return $sessionValid;
     }
 
     public function logout(): void
@@ -40,7 +41,7 @@ class Common
     {
         if(isset($_SESSION)) {
             session_unset();
-            session_destroy();
+            //session_destroy();
         }
         $this->delete_cookie('show_tour');
         $this->delete_cookie('match_id');

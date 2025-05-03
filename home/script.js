@@ -1,6 +1,6 @@
 function homeOnload(ref_id) {
-    fetchWrapper('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches',
-        {method: "GET", headers: {"ref_id": ref_id}})
+    const url = 'https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_all_matches';
+    fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(response => response.sort((a, b) => b.id - a.id))
         .then(matches => {

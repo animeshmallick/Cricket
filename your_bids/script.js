@@ -1,20 +1,20 @@
 function fill_bids(ref_id) {
-    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session",
-        {method: "GET", headers: {"ref_id": ref_id}})
+    let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/session";
+    fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => {
-            fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/winner",
-                {method: "GET", headers: {"ref_id": ref_id}})
+            url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/winner";
+            fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
                 .then(response => response.json())
                 .then(response => data.concat(response))
                 .then(data => {
-                    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/special",
-                        {method: "GET", headers: {"ref_id": ref_id}})
+                    url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_bids/" + ref_id + "/special";
+                    fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
                         .then(response => response.json())
                         .then(response => data.concat(response))
                         .then(data => {
-                            fetchWrapper(`https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${getCookie('series_id')}/${getCookie('match_id')}`,
-                                {method: "GET", headers: {"ref_id": ref_id}})
+                            url = `https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_scorecard/${getCookie('series_id')}/${getCookie('match_id')}`;
+                            fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
                                 .then(response => response.json())
                                 .then(score => score.teams)
                                 .then(teams => {

@@ -64,7 +64,8 @@ document.addEventListener('click', function(e) {
     }
 });
 async function fill_header(ref_id){
-    fetchWrapper(`${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/header/`)
+    const url = `${window.location.protocol}//${window.location.hostname}/Cricket/model_ui/header/`;
+    fetchWrapper(url, {method: "GET", headers: {"ref_id": ref_id}})
         .then(async response => document.getElementById('header').innerHTML = await response.text())
         .then(async () => {
             fetchWrapper('https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_balance/'+ref_id,

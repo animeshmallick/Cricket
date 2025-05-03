@@ -48,8 +48,8 @@ function settle_bid_all(type, ref_id){
     }
 }
 function fill_all_wallet_transaction_tickets(ref_id) {
-    fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any",
-        {method: "GET", headers: {"ref_id": ref_id}})
+    let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/get_user_wallet_transaction_tickets/any";
+    fetchWrapper(url, {method: "GET", headers: {"ref_id": ref_id}})
         .then(response => response.json())
         .then(data => fill_transaction_ticket_content(ref_id, data))
         .catch(error => console.error('Error:', error));
@@ -164,8 +164,8 @@ function settle_ticket(ref_id, ticket_id){
     }else {
         const userResponse = prompt("Are you sure, You want to settle the bid. Type yes or reject", "no");
         if(userResponse.toLowerCase() === 'yes') {
-            fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_ticket/" + ticket_id + "/" + ref_id,
-                {method: "GET", headers: {"ref_id": ref_id}})
+            const url ="https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/settle_ticket/" + ticket_id + "/" + ref_id;
+            fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
                 .then(response => {
                     if (response.status === 200) {
                         alert("Ticket Settled Successfully");
@@ -177,8 +177,8 @@ function settle_ticket(ref_id, ticket_id){
                 .catch(e => console.log(e));
         }
         if(userResponse.toLowerCase() === 'reject'){
-            fetchWrapper("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/reject_ticket/" + ticket_id + "/" + ref_id,
-                {method: "GET", headers: {"ref_id": ref_id}})
+            const url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/reject_ticket/" + ticket_id + "/" + ref_id;
+            fetchWrapper(url,{method: "GET", headers: {"ref_id": ref_id}})
                 .then(response => {
                     if (response.status === 200) {
                         alert("Ticket Rejected Successfully");

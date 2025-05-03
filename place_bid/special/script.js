@@ -6,7 +6,7 @@ function fill_special_question(question_id, update_options){
     const amount = document.getElementById('bidSlider').value;
 
     const url = `${window.location.protocol}//${window.location.hostname}/Cricket/internal/GetSpecialSlotDetails.php?match_id=${match_id}&series_id=${series_id}&question_id=${question_id}&room=${room}&amount=${amount})`;
-    fetchWrapper(url)
+    fetchWrapper(url, {method: "GET"})
     .then(response => response.json())
     .then(data => {
         fill_special_question_data(data, update_options);

@@ -626,7 +626,7 @@ class Common
         $r1 *= $f;
         $r2 *= $f;
 
-        return [min($r1, 1.25), min($r2, 1.25)];
+        return [min($r1, 1.1), min($r2, 1.1)];
     }
 
     public function get_tickets(string $ref_id)

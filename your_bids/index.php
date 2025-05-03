@@ -57,7 +57,6 @@ if(!$common->is_user_logged_in()){
         <script src="script.js?version=<?php echo time();?>"></script>
     </head>
     <body onload="fill_header('<?= $_SESSION['customer_id']?>');fill_footer();fill_scorecard('<?=$_SESSION['customer_id']?>');fill_bids('<?=$_SESSION['customer_id']?>')">
-    <div id="loading">Finding all your Bids from Server, Please wait .... </div>
     <div id="header"></div>
     <div id="scorecard"></div>
     <div class="separator"></div>

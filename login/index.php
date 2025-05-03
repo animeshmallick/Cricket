@@ -5,10 +5,10 @@
     <script src="../scripts/script.js?version=<?php echo time();?>"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BQY4C789R1"></script>
-    <script>function secure_account(path, id) {
+    <script>function secure_account(path, id, oldPassword) {
             let password = prompt("Secure Your Account With a New Password");
             let confirm_password = prompt("Enter Password again to confirm");
-            if (password != null && password === confirm_password){
+            if (password != null && password === confirm_password && password !== oldPassword){
                 let url = "https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/secure_account/" + path + "/" + id + "/" + encodeURIComponent(password);
                 fetchWrapper(url, {method: "GET", headers: {"ref_id": path}})
                     .then(response => response.json())
@@ -19,8 +19,8 @@
                         }
                     })
             }else{
-                alert("Password Do Not Match or Invalid Character in password. Try Again !!")
-                secure_account(path. id);
+                alert("Password Do Not Match or Invalid Character in password. Or Same Password. Try Again !!")
+                secure_account(path, id, oldPassword);
             }
         }
 
@@ -104,7 +104,7 @@ if($common->is_user_logged_in()){
                 $_SESSION['session_id'] = $response->session;
                 $common->redirect_to('Cricket/');
             }else{ ?>
-                <body onload="secure_account('<?= $response->ref_id ?>', '<?= $response->session ?>')"></body>
+                <body onload="secure_account('<?= $response->ref_id ?>', '<?= $response->session ?>', '<?= $password ?>')"></body>
             <?php }
         }
     }else{

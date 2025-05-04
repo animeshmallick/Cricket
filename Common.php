@@ -604,8 +604,8 @@ class Common
         $ga = max((($x - $a)), 0);
         $gb = max((($x - $b)), 0);
 
-        $r1=max(min($ga/$amount,1.2),0);
-        $r2=max(min($gb/$amount,1.2),0);
+        $r1=max(min($ga/$amount,1.5),0);
+        $r2=max(min($gb/$amount,1.5),0);
 
         try {
             if ($r1 + $r2 < 0.25 && $flag) {
@@ -614,7 +614,7 @@ class Common
             } else if($r1 == 0 && $r2 == 0 && !$flag){
                 return [0.25, 0.25];
             } else if ($r1 + $r2 > 1.5) {
-                $f = 1.3 / ($r1 + $r2);
+                $f = 1.4 / ($r1 + $r2);
             } else {
                 $f = 1;
             }
@@ -624,7 +624,7 @@ class Common
         $r1 *= $f;
         $r2 *= $f;
 
-        return [min($r1, 1.05), min($r2, 1.05)];
+        return [min($r1, 1.1), min($r2, 1.1)];
     }
 
     public function get_tickets(string $ref_id)

@@ -157,7 +157,7 @@ class Common
             $x = $book->collected;
             $ai = 0;
             $flag = false;
-            for ($i = min($r-36,0); $i < $r; $i++) {
+            for ($i = $r - 1; $i >= min($r-36,0); $i--) {
                 $tmp = $book->runs[$i];
                 if($tmp > 0){
                     $a += $tmp;

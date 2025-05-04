@@ -214,7 +214,7 @@ function fill_user_card_content(users, sort){
     div.classList.add('title');
     div.textContent = "Total Users : " + users.length;
     usersContainer.appendChild(div);
-    users.forEach((user) => {w
+    users.forEach((user) => {
         if (user.type !== 'admin') {
             total_withdraw_balance += user.withdraw_balance;
         }

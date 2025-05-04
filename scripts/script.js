@@ -538,38 +538,19 @@ function formatted_status(status){
     return status.replace(/c ([A-Za-z]+) ([A-Za-z]+) /g, (match, first, last) => `c ${first.charAt(0)}.${last} `)
         .replace(/b ([A-Za-z]+) ([A-Za-z]+)/g, (match, first, last) => `b ${first.charAt(0)}.${last}`);
 }
-async function fetchWrapper(url, options = {}, retries = 3, delay = 1000) {
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    const abortOnExit = () => controller.abort();
-    window.addEventListener('beforeunload', abortOnExit);
-    window.addEventListener('pagehide', abortOnExit); // covers mobile browsers better
-
-    const doFetch = async (attempt) => {
+async function fetchWrapper(url, options, retries = 3, delay = 1000) {
+    for (let i = 0; i < retries; i++) {
         try {
-            const response = await fetch(url, { ...options, signal });
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            cleanup();
-            return response;
-        } catch (error) {
-            if (signal.aborted) {
-                console.warn('Fetch aborted due to navigation or page close.');
-                throw new Error('Fetch aborted');
+            const response = await fetch(url, options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
-
-            if (attempt < retries) {
+            return await response;
+        } catch (error) {
+            console.error(`Attempt ${i + 1} failed: ${error.message}`);
+            if (i < retries - 1) {
                 await new Promise(resolve => setTimeout(resolve, delay));
-                return doFetch(attempt + 1);
-            } else {
-                cleanup();
-                throw error;
             }
         }
-    };
-    const cleanup = () => {
-        window.removeEventListener('beforeunload', abortOnExit);
-        window.removeEventListener('pagehide', abortOnExit);
-    };
-    return doFetch(0);
+    }
 }

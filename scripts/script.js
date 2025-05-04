@@ -538,7 +538,7 @@ function formatted_status(status){
     return status.replace(/c ([A-Za-z]+) ([A-Za-z]+) /g, (match, first, last) => `c ${first.charAt(0)}.${last} `)
         .replace(/b ([A-Za-z]+) ([A-Za-z]+)/g, (match, first, last) => `b ${first.charAt(0)}.${last}`);
 }
-async function fetchWrapper(url, options, retries = 3, delay = 1000) {
+async function fetchWrapper(url, options, retries = 2, delay = 1000) {
     for (let i = 0; i < retries; i++) {
         try {
             const response = await fetch(url, options);

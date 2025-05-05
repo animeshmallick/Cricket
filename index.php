@@ -7,7 +7,7 @@ if($common->is_user_logged_in()){
 }else{
     $common->clear_all_cookies();
     $ping = $common->ping_backend();
-    if(isset($ping->status) && $ping->status){
+    if($ping){
 ?>
     <!DOCTYPE html>
     <html lang="en">

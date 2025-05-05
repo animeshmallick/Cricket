@@ -647,4 +647,11 @@ class Common
 
         return $all_bids;
     }
+
+    public function ping_backend(): array
+    {
+        $ping_response = $this->get_response_from_url("https://ablminqly0.execute-api.ap-south-1.amazonaws.com/Prod/ping");
+        return array('status' => isset($ping_response->message) &&
+            str_contains($ping_response->message, "ping request from server"));
+    }
 }

@@ -613,8 +613,8 @@ class Common
                 return $this->calculate_rates($x + min($amount * 0.5, 50), $a, $b, $count, $amount, $flag);
             } else if($r1 == 0 && $r2 == 0 && !$flag){
                 return [0.25, 0.25];
-            } else if ($r1 + $r2 > 1.5) {
-                $f = 1.4 / ($r1 + $r2);
+            } else if ($r1 + $r2 > 1.2) {
+                $f = 1.2 / ($r1 + $r2);
             } else {
                 $f = 1;
             }
